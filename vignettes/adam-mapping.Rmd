@@ -1,0 +1,171 @@
+---
+title: "Introduction to Variable Mapping"
+output:
+  rmarkdown::html_vignette
+resource_files:
+   - package_manual.pdf
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introduction to Variable Mapping}
+---
+
+```{r, echo = FALSE, message = FALSE, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+```{r, message = FALSE}
+library(metalite)
+```
+
+## Overview
+
+We design an abstraction of variable mapping to enhance the robustness
+of the meta information.
+The goal is to follow the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+in software design.
+
+The idea mimics the design of `ggplot2::aes()`.
+
+For a typical analysis, we required developer to provide variable names for
+
+- `name`: a reference name as a key to link other components
+- subject id (`id`): typically using "USUBJID" in ADaM data
+- treatment group (`group`): typically using `TRTXX` in ADaM data
+- other variables (`var`): additional variables required for analysis
+- `subset`: a subset expression to define the analysis. Typically using analysis flag `XXFL` in ADaM data.
+- `label`: a nature language to describe the purpose of this `adam_mapping` object.
+
+## Example 1: All Participants as Treated (apat)
+
+In this example, we define an `adam_mapping` for APaT population.
+The example illustrate an use case to decouple variable name in `ADSL` based on `data_mapping` abstract layer.
+
+```{r}
+x <- adam_mapping(
+  name = "apat",
+  id = "USUBJID",
+  group = "TRT01A",
+  subset = TRTFL == "Y",
+  label = "All Participants as Treated"
+)
+
+x
+```
+
+With the defined variable mapping, 
+our development of other standard function can rely on the abstraction.
+As long as a study team provide proper data and associate `adam_mapping`,
+our standard function can be used.
+
+In R, the abstraction is a named list that can be accessed by `.$subset` and assigned by `<-`.
+
+```{r}
+x$subset
+```
+
+```{r}
+x$var <- "AGE"
+x$subset <- quote(SAFFL == "Y") # using quote for an expression
+```
+
+```{r}
+x
+```
+
+If our goal is to summarize `var` by `group` within the population defined in `subset`.
+We can write R scripts in this abstract layer using base R or tidy evaluation as below.
+
+### Base R
+
+```{r}
+df <- r2rtf::r2rtf_adsl
+```
+
+```{r}
+ana <- df[eval(x$subset, df), ]
+
+split(ana, ana[[x$group]]) |>
+  sapply(function(y) mean(y[[x$var]]))
+```
+
+Reference: `eval` and expression. <https://adv-r.hadley.nz/evaluation.html?q=eval#evaluating>
+
+### Tidy evaluation
+
+```{r, eval = FALSE}
+library(dplyr)
+df %>%
+  dplyr::filter(!!x$subset) %>%
+  dplyr::group_by(.data[[x$group]]) %>%
+  dplyr::summarise(mean = mean(.data[[x$var]]))
+```
+
+- Reference: <https://dplyr.tidyverse.org/articles/programming.html>
+
+By using the `adam_mapping` abstract layer,
+it creates additional challenges to develop R program,
+yet we can reduce maintenance in the future.
+
+## Example 2: Serious adverse events (ser)
+
+In this example, we define an `adam_mapping` for serious adverse events (AE).
+The example illustrate an use case to inherit default values defined in `metalite`.
+
+An organization have conventions to define different analysis terms.
+We can define default values of those commonly used analysis terms.
+
+For example, we define a default `adam_mapping` object as below.
+A real example can be found in `mkmeta:::default_parameter_ae`
+
+```{r}
+ser_default <- adam_mapping(
+  name = "ser",
+  label = "serious adverse events",
+  subset = quote(AESER == "Y")
+)
+
+ser_default
+```
+
+With default values, 
+user can reduce input but still allow override
+default values if required.
+
+Assuming user define an `adam_mapping` for a study,
+because the study require a footnote to explain the meaning of serious adverse events.
+
+```{r}
+ser_user <- adam_mapping(
+  name = "ser",
+  id = "USUBJID",
+  group = "TRT01A",
+  label = "serious{^a} adverse events",
+  footnote = "{^a} this is a footnote"
+)
+```
+
+```{r}
+ser_user
+```
+
+After we merge the user defined and default `adam_mapping` objects. (always be left join)
+We can
+
+- keep all user defined variables.
+- add default `subset` variable, because it is not defined by user.
+
+```{r}
+merge(ser_user, ser_default)
+```
+
+Note: the `adam_mapping` object also allow user to define other variables.
+In this example, we added `footnote` variable.
+
+
+
+
+

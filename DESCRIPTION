@@ -1,0 +1,34 @@
+Package: metalite
+Type: Package
+Title: ADaM Metadata Structure
+Version: 0.0.1
+Authors@R: c(
+        person("Yilong", "Zhang", role = c("aut")),
+        person("Nan", "Xiao", email = "nan.xiao1@merck.com", role = c("aut", "cre")),
+        person("Ruchitbhai", "Patel", role = c("aut")),
+        person("Madhusudhan", "Ginnaram", role = c("aut")),
+        person("Sarad", "Nepal", role = c("aut")),
+        person("Yujie", "Zhao", role = c("aut")),
+        person("Merck Sharp & Dohme Corp", role = c("cph"))
+       )
+Description: An R package to create metadata structure for ADaM data analysis and reporting in clinical trial development.
+Depends: R (>= 4.1.0)
+License: GPL (= 3)
+Imports:
+    rlang,
+    glue
+Suggests: 
+    devtools,
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    covr,
+    r2rtf,
+    stringr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)  
+Rmarkdwon: echo = TRUE
+RoxygenNote: 7.1.2
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+

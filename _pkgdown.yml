@@ -1,0 +1,102 @@
+destination: docs
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#00857c"
+    navbar-light-brand-color: "#fff"
+    navbar-light-brand-hover-color: "#fff"
+    navbar-light-color: "#fff"
+    navbar-light-hover-color: "#fff"
+    navbar-light-active-color: "#fff"
+    dropdown-link-hover-color: "#fff"
+    dropdown-link-hover-bg: "#00857c"
+
+
+footer:
+  structure:
+    left: [developed_by, built_with, legal]
+    right: [blank]
+  components:
+    legal: "<br>Copyright &copy; Merck Sharp & Dohme Corp., a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA."
+    blank: "<span></span>"
+
+navbar:
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reference"
+      href: reference/index.html
+    - text: "Get Started"
+      href: articles/metalite.html
+    - text: "Articles"
+      href: articles/index.html
+    - text: "Changelog"
+      href: news/index.html
+
+reference:
+- title: Meta information
+  contents:
+  - "meta_adam"
+  - "meta_build"
+  - "meta_dummy"
+- title: Component definition 
+  contents:
+  - "define_plan"
+  - "define_population"
+  - "define_observation"
+  - "define_parameter"
+  - "define_analysis"
+- title: Collect components
+  contents:
+  - "collect_adam_mapping"
+  - "collect_population"
+  - "collect_population_index"
+  - "collect_population_id"
+  - "collect_population_record"
+  - "collect_observation_index"
+  - "collect_observation_record"
+  - "collect_dataname"
+  - "collect_title"
+- title: Collect specification information 
+  contents:
+  - "spec_title"
+  - "spec_filename"
+  - "spec_call_program"
+  - "spec_analysis_population"
+- title: Construct analysis plan
+  contents:
+  - "plan"
+  - "add_plan"
+  - "new_plan"
+  - "validate_plan"
+- title: Variable mapping
+  contents:
+  - "adam_mapping"
+  - "update_adam_mapping"
+  - "validate_adam_mapping"
+- title: Outdata 
+  contents:
+  - "outdata"
+  - "new_outdata"
+  - "validate_outdata"
+- title: Format
+  contents:
+  - "fmt_quote"
+  - "fmt_sentence"
+- title: Utility
+  contents:
+  - "check_duplicate_name"
+  - "default_apply"
+  - "meta_check_var"
+  - "meta_run"
+  - "meta_split"
+  - "meta_validate"
+  - "rtf_assemble"
+  - "rtf_mock_color"
+  - "omit_null"
+articles:
+- title: Get started
+  desc: "The first topic to read"
+  contents:
+  - metalite

@@ -1,0 +1,67 @@
+#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#
+#    This file is part of the metalite program.
+#
+#    metalite is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#' Build complete meta information
+#'
+#' @inheritParams define_population
+#'
+#' @export
+meta_build <- function(meta) {
+
+  # Attach
+  data_pop <- meta$data_population
+  data_obs <- meta$data_observation
+
+  plan <- meta$plan
+
+  # Input Checking
+  if (is.null(data_pop)) stop("analysis population dataset is not defined")
+  if (is.null(data_obs)) stop("analysis observation dataset is not defined")
+  if (length(plan) == 0) stop("analysis plan is not defined")
+
+  # Add default value
+  types <- c("population", "observation", "parameter", "analysis")
+
+  for (i in seq_along(types)) {
+    type <- types[i]
+    u_term <- unique(trimws(unlist(strsplit(plan[[type]], split = ";"))))
+
+    meta[[type]][u_term] <- lapply(u_term, function(x) {
+      if (is.null(meta[[type]][[x]])) meta[[type]][[x]] <- adam_mapping(name = !!x)
+      default_apply(meta[[type]][[x]])
+    })
+  }
+
+  # Update observation default values
+  for (i in seq_along(names(meta$observation))) {
+    id <- lapply(meta$population, `[[`, "id")
+    id <- unique(unlist(id))
+
+    group <- lapply(meta$population, `[[`, "group")
+    group <- unique(unlist(group))
+
+    if (length(id) == 1 & is.null(meta$observation[[i]]$id)) {
+      meta$observation[[i]]$id <- id
+    }
+
+    if (length(group) == 1 & is.null(meta$observation[[i]]$group)) {
+      meta$observation[[i]]$group <- group
+    }
+  }
+
+  meta_validate(meta)
+}

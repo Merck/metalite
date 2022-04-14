@@ -1,0 +1,293 @@
+#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#
+#    This file is part of the metalite program.
+#
+#    metalite is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#' Collect `adam_mapping` from `meta_adam` by `name`
+#'
+#' @inheritParams define_population
+#' @param name a value of keyword
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_adam_mapping(meta, "apat")
+#' @export
+#'
+collect_adam_mapping <- function(meta, name) {
+  check_args(arg = name, type = "character", length = 1)
+
+  adam <- list(
+    population = meta$population,
+    observation = meta$observation,
+    parameter = meta$parameter,
+    analysis = meta$analysis
+  )
+
+  location <- vapply(adam, function(x) name %in% names(x), FUN.VALUE = logical(1))
+
+  if (any(location)) {
+    map <- adam[location][[1]][[name]]
+    map[[".location"]] <- names(location)[location]
+  } else {
+    map <- NULL
+  }
+  map
+}
+
+#' Collect specification for population definition
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_population(meta, "apat", "wk12", "ser")
+#' @export
+#'
+collect_population <- function(meta,
+                               population,
+                               observation,
+                               parameter) {
+  term <- c(
+    population = collect_adam_mapping(meta, population)$subset,
+    observation = collect_adam_mapping(meta, observation)$subset,
+    parameter = collect_adam_mapping(meta, parameter)$subset
+  )
+
+  term <- lapply(term, function(x) fmt_quote(deparse(x)))
+
+  term
+}
+
+#' Collect population record index from population dataset
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' head(collect_population_index(meta, "apat"))
+#' @export
+#'
+collect_population_index <- function(meta,
+                                     population) {
+  pop <- rlang::eval_tidy(
+    expr = collect_adam_mapping(meta, population)$subset,
+    data = meta$data_population
+  )
+
+  n <- nrow(meta$data_population)
+
+  if (is.null(pop)) {
+    return(1:n)
+  }
+
+  which(pop)
+}
+
+
+#' Collect subject id information from population dataset
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' head(collect_population_id(meta, "apat"))
+#' @export
+#'
+collect_population_id <- function(meta,
+                                  population) {
+  meta$data_population[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
+}
+
+#' Collect population record from population dataset
+#'
+#' The key variables used in `id`, `group`, and `subset` are displayed by default.
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#' @param var a character vector of additional variables to be displayed in the output.
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' head(collect_population_record(meta, "apat"))
+#' head(collect_population_record(meta, "apat", var = "AGE"))
+#' @export
+#'
+collect_population_record <- function(meta,
+                                      population,
+                                      var = NULL) {
+  id <- collect_population_index(meta, population)
+
+
+  key <- c(
+    collect_adam_mapping(meta, population)[c("id", "group", "var")],
+    all.vars(collect_adam_mapping(meta, population)$subset)
+  )
+
+  var <- unique(unlist(c(key, var)))
+
+  meta$data_population[id, var]
+}
+
+#' Collect observation record index from observation dataset
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_observation_index(meta, "apat", "wk12", "ser")
+#' @export
+#'
+collect_observation_index <- function(meta,
+                                      population,
+                                      observation,
+                                      parameter) {
+  pop_id <- collect_population_id(meta, population)
+
+  # Records in the population
+  pop <- meta$data_observation[[collect_adam_mapping(meta, observation)$id]] %in% pop_id
+
+  # analysis observations
+  obs <- rlang::eval_tidy(
+    expr = collect_adam_mapping(meta, observation)$subset,
+    data = meta$data_observation
+  )
+
+  # parameter observations
+  par <- rlang::eval_tidy(
+    expr = collect_adam_mapping(meta, parameter)$subset,
+    data = meta$data_observation
+  )
+
+  n <- nrow(meta$data_observation)
+
+  if (is.null(pop)) pop <- rep(TRUE, n)
+  if (is.null(obs)) obs <- rep(TRUE, n)
+  if (is.null(par)) par <- rep(TRUE, n)
+
+  (1:n)[pop & obs & par]
+}
+
+#' Collect observation record from observation dataset
+#'
+#' The key variables used in `id`, `group`, and `subset` are displayed by default.
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#' @param var a character vector of additional variables to be displayed in the output.
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_observation_record(meta, "apat", "wk12", "ser")
+#' collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
+#' @export
+#'
+collect_observation_record <- function(meta,
+                                       population,
+                                       observation,
+                                       parameter,
+                                       var = NULL) {
+  id <- collect_observation_index(meta, population, observation, parameter)
+
+
+  key <- c(
+    collect_adam_mapping(meta, observation)[c("id", "group", "var")],
+    collect_adam_mapping(meta, parameter)[c("id", "group", "var")],
+    all.vars(collect_adam_mapping(meta, observation)$subset),
+    all.vars(collect_adam_mapping(meta, parameter)$subset)
+  )
+
+  var <- unique(unlist(c(key, var)))
+
+  meta$data_observation[id, var]
+}
+
+#' Collect specification for title
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_title(meta, "apat", "wk12", "ser", "ae_summary")
+#' collect_title(meta, "apat", "wk12", "ser", "ae_specific")
+#' @export
+#'
+collect_title <- function(meta,
+                          population,
+                          observation,
+                          parameter,
+                          analysis) {
+  x <- lapply(
+    c(analysis, observation, population),
+    function(x) {
+      tmp <- omit_null(collect_adam_mapping(meta, x)[c("title", "label")])
+      if (length(tmp) > 0) {
+        with(collect_adam_mapping(meta, parameter), fmt_sentence(glue::glue(tmp[[1]])))
+      } else {
+        NULL
+      }
+    }
+  )
+
+  unlist(x)
+}
+
+#' Collect specification for dataset name
+#'
+#' @inheritParams define_population
+#' @inheritParams plan
+#'
+#' @examples
+#' library(r2rtf)
+#' library(magrittr)
+#' meta <- meta_dummy()
+#'
+#' collect_dataname(meta)
+#' @export
+#'
+collect_dataname <- function(meta) {
+  c(
+    population = attr(meta$data_population, "data_name"),
+    observation = attr(meta$data_observation, "data_name")
+  )
+}
