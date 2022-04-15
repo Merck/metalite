@@ -111,8 +111,9 @@ collect_population_index <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#'
+#' meta <- meta_dummy()
 #' head(collect_population_id(meta, "apat"))
+#' 
 #' @export
 #'
 collect_population_id <- function(meta,
