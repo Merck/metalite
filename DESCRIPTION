@@ -16,7 +16,9 @@ Depends: R (>= 4.1.0)
 License: GPL (= 3)
 Imports:
     rlang,
-    glue
+    glue,
+    utils,
+    stats
 Suggests: 
     devtools,
     testthat (>= 3.0.0),

@@ -49,7 +49,7 @@ rtf_mock_color <- function(text) {
 
   # Match text in glue expression { }
   match_text <- stringr::str_match_all(text, "\\{\\s*(.*?)\\s*\\}")
-  match_text <- na.omit(do.call(rbind, match_text))
+  match_text <- stats::na.omit(do.call(rbind, match_text))
 
   # Convert to blue color
   .x <- vapply(match_text[, 2], function(x) {
