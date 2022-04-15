@@ -2,8 +2,6 @@
 title: "Introduction to metalite"
 output:
   rmarkdown::html_vignette
-resource_files:
-   - package_manual.pdf
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Introduction to metalite}
