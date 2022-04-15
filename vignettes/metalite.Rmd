@@ -56,7 +56,7 @@ For example, `metalite` can be used to:
 We illustrate the idea in the diagram below.
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-path <- system.file("figures/design-diagram.png", package = "metalite")
+path <- "figures/design-diagram.png"
 knitr::include_graphics(path)
 ```
 

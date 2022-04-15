@@ -47,5 +47,5 @@ For example, `metalite` can be used to:
 `metalite` need to work with other R packages to complete the work. 
 We illustrate the idea in the diagram below.
 
-![alt text](inst/figures/design-diagram.png)
+![alt text](vignettes/figures/design-diagram.png)
 
