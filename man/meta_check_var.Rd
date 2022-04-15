@@ -17,5 +17,5 @@ meta_check_var(meta, var, type = c("population", "observation"))
 Check variable name are in meta data
 }
 \examples{
-meta_check_var(meta_dummy(), var = "RACE")
+# meta_check_var(meta_dummy(), var = "RACE")
 }

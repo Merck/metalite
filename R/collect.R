@@ -22,7 +22,6 @@
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_adam_mapping(meta, "apat")
@@ -56,7 +55,6 @@ collect_adam_mapping <- function(meta, name) {
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_population(meta, "apat", "wk12", "ser")
@@ -84,7 +82,6 @@ collect_population <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' head(collect_population_index(meta, "apat"))
@@ -114,8 +111,6 @@ collect_population_index <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
-#' meta <- meta_dummy()
 #'
 #' head(collect_population_id(meta, "apat"))
 #' @export
@@ -135,7 +130,6 @@ collect_population_id <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' head(collect_population_record(meta, "apat"))
@@ -165,7 +159,6 @@ collect_population_record <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_observation_index(meta, "apat", "wk12", "ser")
@@ -211,7 +204,6 @@ collect_observation_index <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_observation_record(meta, "apat", "wk12", "ser")
@@ -245,7 +237,6 @@ collect_observation_record <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_title(meta, "apat", "wk12", "ser", "ae_summary")
@@ -279,7 +270,6 @@ collect_title <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' collect_dataname(meta)

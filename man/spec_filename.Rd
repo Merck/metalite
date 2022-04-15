@@ -14,7 +14,6 @@ Specification for analysis output filename
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 spec_filename(meta)

@@ -22,7 +22,6 @@
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' spec_filename(meta)
@@ -62,7 +61,6 @@ spec_filename <- function(meta) {
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' spec_analysis_population(meta)
@@ -100,7 +98,6 @@ spec_analysis_population <- function(meta) {
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' spec_call_program(meta)
@@ -134,7 +131,6 @@ spec_call_program <- function(meta,
 #'
 #' @examples
 #' library(r2rtf)
-#' library(magrittr)
 #' meta <- meta_dummy()
 #'
 #' spec_title(meta)

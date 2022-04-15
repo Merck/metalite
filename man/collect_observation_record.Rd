@@ -31,7 +31,6 @@ The key variables used in \code{id}, \code{group}, and \code{subset} are display
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 collect_observation_record(meta, "apat", "wk12", "ser")

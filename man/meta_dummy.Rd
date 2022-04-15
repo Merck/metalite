@@ -8,5 +8,5 @@ meta_dummy()
 }
 \description{
 This function is only for illustration purpose.
-\code{r2rtf} and \code{magrittr} packages are required.
+\code{r2rtf} package is required.
 }

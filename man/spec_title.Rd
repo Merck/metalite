@@ -14,7 +14,6 @@ Specification for analysis title
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 spec_title(meta)

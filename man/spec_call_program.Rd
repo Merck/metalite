@@ -16,7 +16,6 @@ Specification for analysis call program
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 spec_call_program(meta)

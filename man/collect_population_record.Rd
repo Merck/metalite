@@ -19,7 +19,6 @@ The key variables used in \code{id}, \code{group}, and \code{subset} are display
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 head(collect_population_record(meta, "apat"))

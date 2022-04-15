@@ -14,7 +14,6 @@ Collect specification for dataset name
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 collect_dataname(meta)

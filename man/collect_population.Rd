@@ -23,7 +23,6 @@ Collect specification for population definition
 }
 \examples{
 library(r2rtf)
-library(magrittr)
 meta <- meta_dummy()
 
 collect_population(meta, "apat", "wk12", "ser")

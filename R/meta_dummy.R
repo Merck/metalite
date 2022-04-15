@@ -18,7 +18,7 @@
 #' Create a dummy `meta_adam` object
 #'
 #' This function is only for illustration purpose.
-#' `r2rtf` and `magrittr` packages are required.
+#' `r2rtf` package is required.
 #'
 #' @export
 meta_dummy <- function() {

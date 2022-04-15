@@ -17,8 +17,6 @@ Collect subject id information from population dataset
 }
 \examples{
 library(r2rtf)
-library(magrittr)
-meta <- meta_dummy()
 
 head(collect_population_id(meta, "apat"))
 }
