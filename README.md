@@ -15,12 +15,13 @@ Downloads](https://cranlogs.r-pkg.org/badges/metalite)](https://cran.r-project.o
 
 # Overview
 
-The purpose of `metalite` is to define a unified data structure to save meta information 
+The purpose of `metalite` is to define a unified data structure to save metadata information 
 for analysis & reporting (A&R) based on ADaM datasets in clinical trial development. 
 
 The R package is design to 
 
 - standardize function input for analysis and reporting. 
+- separate logic from data dependency.
 - enables pipes (`|>`).
 - reduce manual steps to maintain SDLC documentation.
 - ensure consistency between analysis specification, mock and results.
@@ -28,9 +29,9 @@ The R package is design to
 We build `metalite` to enable principals below:
 
 - Automation: a function call is better than a checklist. 
-- Single-entry: enter in one place, sync to all delivery. 
+- Single-entry: enter in one place, sync to all deliveries. 
   - e.g. Enter data source one time for all AE analysis.
-- End-to-end: cover all steps in SDLC from define to delivery.
+- End-to-end: cover all steps in software development lifecycle from define to delivery.
 
 # Use cases 
 
@@ -38,7 +39,7 @@ We build `metalite` to enable principals below:
 For example, `metalite` can be used to: 
 
 - standardize input and output for A&R functions. 
-- create A&R grid 
+- create analysis and reporting planning grid 
 - create mock table 
 - create and validate A&R results
 - trace analysis records 
