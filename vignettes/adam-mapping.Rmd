@@ -98,9 +98,9 @@ Reference: `eval` and expression. <https://adv-r.hadley.nz/evaluation.html?q=eva
 
 ```{r, eval = FALSE}
 library(dplyr)
-df %>%
-  dplyr::filter(!!x$subset) %>%
-  dplyr::group_by(.data[[x$group]]) %>%
+df |>
+  dplyr::filter(!!x$subset) |>
+  dplyr::group_by(.data[[x$group]]) |>
   dplyr::summarise(mean = mean(.data[[x$var]]))
 ```
 
