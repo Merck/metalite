@@ -21,5 +21,4 @@ library(magrittr)
 meta <- meta_dummy()
 
 head(collect_population_id(meta, "apat"))
-
 }

@@ -18,5 +18,4 @@ Check variable name are in meta data
 }
 \examples{
 meta_check_var(meta_dummy(), var = "RACE")
-
 }

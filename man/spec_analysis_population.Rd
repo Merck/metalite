@@ -16,7 +16,6 @@ Specification for population definition
 library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
-  
-spec_analysis_population(meta)
 
+spec_analysis_population(meta)
 }

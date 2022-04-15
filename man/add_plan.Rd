@@ -27,7 +27,8 @@ The term name is used as key to link information.}
 Add additional analysis plan
 }
 \examples{
-plan("ae_summary", population = "apat", observation = c("wk12", "wk24"), parameter = "any;rel") |>
-  add_plan("ae_specific", population = "apat", observation = c("wk12", "wk24"), parameter = c("any", "rel"))
-
+plan("ae_summary", population = "apat", 
+      observation = c("wk12", "wk24"), parameter = "any;rel") |>
+  add_plan("ae_specific", population = "apat", 
+            observation = c("wk12", "wk24"), parameter = c("any", "rel"))
 }

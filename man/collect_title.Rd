@@ -29,7 +29,6 @@ library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
 
-collect_title(meta, "apat", "wk12", "ser", "ae_summary")      
+collect_title(meta, "apat", "wk12", "ser", "ae_summary")
 collect_title(meta, "apat", "wk12", "ser", "ae_specific")
-
 }

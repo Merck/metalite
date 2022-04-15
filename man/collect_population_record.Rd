@@ -24,5 +24,4 @@ meta <- meta_dummy()
 
 head(collect_population_record(meta, "apat"))
 head(collect_population_record(meta, "apat", var = "AGE"))
-
 }

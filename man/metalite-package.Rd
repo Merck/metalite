@@ -4,16 +4,25 @@
 \name{metalite-package}
 \alias{metalite}
 \alias{metalite-package}
-\title{metalite: ADaM metadata structure}
+\title{metalite: ADaM Metadata Structure}
 \description{
 An R package to create metadata structure for ADaM data analysis and reporting in clinical trial development.
 }
 \author{
 \strong{Maintainer}: Nan Xiao \email{nan.xiao1@merck.com}
 
+Authors:
+\itemize{
+  \item Yilong Zhang
+  \item Ruchitbhai Patel
+  \item Madhusudhan Ginnaram
+  \item Sarad Nepal
+  \item Yujie Zhao
+}
+
 Other contributors:
 \itemize{
-  \item BARDS, Merck & Co., Inc. [copyright holder]
+  \item Merck Sharp & Dohme Corp [copyright holder]
 }
 
 }

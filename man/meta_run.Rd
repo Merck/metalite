@@ -18,8 +18,12 @@ Execute analysis based on the analysis plan.
 }
 \examples{
 meta <- meta_dummy()
-ae_summary  <- function(...){ paste("results of", deparse(match.call(), nlines = 1)) }
-ae_specific <- function(...){ paste("results of", deparse(match.call(), nlines = 1)) }
+ae_summary <- function(...) {
+  paste("results of", deparse(match.call(), nlines = 1))
+}
+ae_specific <- function(...) {
+  paste("results of", deparse(match.call(), nlines = 1))
+}
 meta_run(meta)
 meta_run(meta, i = 2)
 }

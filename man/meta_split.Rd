@@ -16,6 +16,6 @@ population level and observation level data of a meta object.}
 Devide Meta into Groups
 }
 \examples{
-meta_dummy() |> 
+meta_dummy() |>
   meta_split("RACE")
 }

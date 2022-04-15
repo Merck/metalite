@@ -16,7 +16,6 @@ Collect specification for dataset name
 library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
-  
-collect_dataname(meta)
 
+collect_dataname(meta)
 }

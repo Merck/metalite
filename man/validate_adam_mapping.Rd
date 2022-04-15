@@ -14,7 +14,7 @@ Check adam_mapping class
 }
 \examples{
 \dontrun{
-  validate_adam_mapping(new_adam_mapping(list(name = "apat")))
+validate_adam_mapping(new_adam_mapping(list(name = "apat")))
 }
 
 }

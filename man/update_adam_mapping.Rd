@@ -20,5 +20,4 @@ Update mapping rule in \code{adam_mapping}
 meta <- meta_dummy()
 meta <- update_adam_mapping(meta, names(meta$parameter), start_date = "ASTDT")
 collect_adam_mapping(meta, "ser")
-
 }

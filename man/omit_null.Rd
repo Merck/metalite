@@ -14,7 +14,7 @@ Omit NULL values in a list
 }
 \examples{
 \dontrun{
-  omit_null(list(a = 1, b = NULL))
+omit_null(list(a = 1, b = NULL))
 }
 
 }

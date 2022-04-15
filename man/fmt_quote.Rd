@@ -14,7 +14,7 @@ Format quote
 }
 \examples{
 \dontrun{
-  'a = "b"'
-  fmt_quote('a = "b"')
+'a = "b"'
+fmt_quote('a = "b"')
 }
 }

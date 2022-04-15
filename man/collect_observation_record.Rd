@@ -36,5 +36,4 @@ meta <- meta_dummy()
 
 collect_observation_record(meta, "apat", "wk12", "ser")
 collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
-
 }

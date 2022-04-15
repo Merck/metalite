@@ -16,7 +16,6 @@ Specification for analysis output filename
 library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
-  
-spec_filename(meta)
 
+spec_filename(meta)
 }

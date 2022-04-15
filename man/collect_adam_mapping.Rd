@@ -19,6 +19,5 @@ library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
 
-collect_adam_mapping(meta, "apat") 
-
+collect_adam_mapping(meta, "apat")
 }

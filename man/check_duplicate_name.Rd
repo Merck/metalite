@@ -14,7 +14,7 @@ Check duplicate name
 }
 \examples{
 \dontrun{
-  check_duplicate_name(list(a = 1, b = 2, b = 3))
+check_duplicate_name(list(a = 1, b = 2, b = 3))
 }
 
 }

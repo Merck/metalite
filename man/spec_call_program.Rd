@@ -18,8 +18,7 @@ Specification for analysis call program
 library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
-  
+
 spec_call_program(meta)
 spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
-
 }

@@ -27,5 +27,4 @@ library(magrittr)
 meta <- meta_dummy()
 
 collect_observation_index(meta, "apat", "wk12", "ser")
-
 }

@@ -16,7 +16,6 @@ Specification for analysis title
 library(r2rtf)
 library(magrittr)
 meta <- meta_dummy()
-  
-spec_title(meta)
 
+spec_title(meta)
 }

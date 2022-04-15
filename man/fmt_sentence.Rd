@@ -14,6 +14,6 @@ Format sentence
 }
 \examples{
 \dontrun{
-  fmt_sentence(" a sentence that  needs to be cleaned  ")
+fmt_sentence(" a sentence that  needs to be cleaned  ")
 }
 }
