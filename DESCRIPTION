@@ -13,7 +13,7 @@ Authors@R: c(
        )
 Description: An R package to create metadata structure for ADaM data analysis and reporting in clinical trial development.
 Depends: R (>= 4.1.0)
-License: GPL (= 3)
+License: GPL (>= 3)
 Imports:
     rlang,
     glue,
