@@ -87,6 +87,7 @@ reference:
 - title: Utility
   contents:
   - "check_duplicate_name"
+  - "check_args"
   - "default_apply"
   - "meta_check_var"
   - "meta_run"
