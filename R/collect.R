@@ -28,6 +28,9 @@
 #' @export
 #'
 collect_adam_mapping <- function(meta, name) {
+  
+  if(is.null(name)) return(list())
+  
   check_args(arg = name, type = "character", length = 1)
 
   adam <- list(
@@ -62,8 +65,8 @@ collect_adam_mapping <- function(meta, name) {
 #'
 collect_population <- function(meta,
                                population,
-                               observation,
-                               parameter) {
+                               observation = NULL,
+                               parameter = NULL) {
   term <- c(
     population = collect_adam_mapping(meta, population)$subset,
     observation = collect_adam_mapping(meta, observation)$subset,
