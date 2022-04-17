@@ -24,13 +24,14 @@ library(metalite)
 ## Overview
 
 We design an abstraction of variable mapping to enhance the robustness
-of the meta information.
-The goal is to follow the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+of the metadata information.
+The goal is to follow the 
+[dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
 in software design.
 
 The idea mimics the design of `ggplot2::aes()`.
 
-For a typical analysis, we required developer to provide variable names for
+For a typical analysis, we require developer to provide variable names for
 
 - `name`: a reference name as a key to link other components
 - subject id (`id`): typically using "USUBJID" in ADaM data
