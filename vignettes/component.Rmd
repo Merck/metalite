@@ -1,0 +1,185 @@
+---
+title: "Collect Components"
+output:
+  rmarkdown::html_vignette
+resource_files:
+   - package_manual.pdf
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Collect Components}
+---
+
+```{r, echo = FALSE, message = FALSE, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+```{r, message = FALSE}
+library(metalite)
+```
+
+
+In this document, let's explore how to collect components using `metalite`.
+The document is for developer who plan to create new tools.
+
+Let's first define a meta object by using `meta_dummy()` function.
+It is an ad-hoc function to create a meta object same as in the `get started` page.
+
+```{r}
+meta <- metalite:::meta_dummy()
+meta
+```
+
+## Collect ADaM mapping
+
+The object in `meta` is organized as a list of ADaM mapping objects.
+For example, you can directly access an ADaM mapping object as a list.
+
+```{r}
+meta$population$apat
+```
+
+We created helper function to help you access components by component name.
+For example, we can collect the same `apat` component
+from `meta` by `name` using `collect_adam_mapping()`.
+
+Collect ADaM mapping for all participants as treated.
+
+```{r}
+collect_adam_mapping(meta, name = "apat")
+```
+
+We can collect ADaM mapping
+for serious adverse events parameter `meta$parameter$ser`.
+
+```{r}
+collect_adam_mapping(meta, name = "ser")
+```
+
+We can collect ADaM mapping for AE summary analysis method `meta$analysis$ae_summary`.
+
+```{r}
+collect_adam_mapping(meta, name = "ae_summary")
+```
+
+## Collect population
+
+While developing tools, developer also need to access the subset condition of a population.
+We can access the information from the list as
+
+```{r}
+meta$population$apat$subset
+```
+
+Equivalently, we can also use  `collect_population()` to collect the definition of a population.
+For example, we can collect subset condition for "apat" as
+
+```{r}
+collect_population(meta, population = "apat")
+```
+
+By using `collect_population`, we can find subset condition from multiple levels.
+For example, we can collect analysis population definition for
+`apat` population, `wk12` observation and `ser` parameters.
+
+```{r}
+collect_population(meta,
+  population = "apat",
+  observation = "wk12",
+  parameter = "ser"
+)
+```
+
+## Collect population records
+
+User may want to identify records belong to an analysis population.
+We can use `collect_population_index()` to show all population record index.
+In this example, user would get index from all population data set for `apat` or all participants as treated.
+
+```{r}
+population_index <- collect_population_index(meta, "apat")
+```
+
+```{r}
+head(collect_population_index(meta, "apat"))
+```
+
+Alternatively, people may want to know the ID of those subjects in a population.
+In this case, `collect_population_id()` can be used to collect `ID - > USUBJID`
+from the `apat` population.
+
+```{r}
+population_id <- collect_population_id(meta, "apat")
+```
+
+```{r}
+head(collect_population_id(meta, "apat"))
+```
+
+We can further directly collect observations using `collect_population_record()`.
+ By default, key variables used in `id`, `group`, and `subset` are displayed.
+
+This example shows how to collect population record from population data set for
+all participants as treated and only display default variables.
+
+```{r}
+head(collect_population_record(meta, "apat"))
+```
+
+This example show how to add variables in population data set to display.
+
+```{r}
+head(collect_population_record(meta, "apat", var = "AGE"))
+```
+
+We can also add add multiple additional variable to display
+
+```{r}
+head(collect_population_record(meta, "apat", var = c("AGE", "TRT01P")))
+```
+
+## Collect observation record
+
+Similarly we can collect observation records with examples below.
+This example shows how to collect observation record index
+from observation data set for serious AE from weeks 0 to 12 using `collect_observation_index()`
+
+```{r}
+collect_observation_index(meta, "apat", "wk12", "ser")
+```
+
+We can also directly collect records using `collect_observation_record()`.
+By default, key variables used in `id`, `group`, and `subset` are displayed.
+
+This example shows how to collect observation record from observation data set
+for all participants as treated from 0 to 12 week with serious AE and only display default variables.
+
+```{r}
+collect_observation_record(meta, "apat", "wk12", "ser")
+```
+
+This example show how to add variables in observation data set to display.
+
+```{r}
+collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
+```
+
+## Collect specifications
+
+We also provided helper functions to collect commonly used items
+
+Developer can collect table title for analysis function meta information using `collect_title()`.
+
+```{r}
+collect_title(meta, "apat", "wk12", "ser", "ae_summary")
+```
+
+Developer can collect specification for data set name using `collect_dataname()`.
+It will show the data set name for population and observation.
+
+```{r}
+collect_dataname(meta)
+```
