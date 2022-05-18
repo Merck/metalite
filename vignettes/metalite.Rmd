@@ -55,9 +55,8 @@ For example, `metalite` can be used to:
 `metalite` need to work with other R packages to complete the work. 
 We illustrate the idea in the diagram below.
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-path <- "figures/design-diagram.png"
-knitr::include_graphics(path)
+```{r, echo = FALSE, out.width = "100%", fig.align = "center"}
+knitr::include_graphics("images/design-diagram.png")
 ```
 
 # Mental model
