@@ -6,7 +6,16 @@
 \alias{metalite-package}
 \title{metalite: ADaM Metadata Structure}
 \description{
-An R package to create metadata structure for ADaM data analysis and reporting in clinical trial development.
+Create metadata structure for ADaM data analysis and reporting in clinical trial development.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://merck.github.io/metalite/}
+  \item \url{https://github.com/Merck/metalite}
+  \item Report bugs at \url{https://github.com/Merck/metalite/issues}
+}
+
 }
 \author{
 \strong{Maintainer}: Nan Xiao \email{nan.xiao1@merck.com}
