@@ -63,8 +63,13 @@ plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
 #' This function is a wrapper of `expand.grid`
 #'
 #' @inheritParams plan
-#'
+#' @examples 
+#' metalite:::new_plan(analysis = "ae_specific", 
+#'                     population = "apat", 
+#'                     observation = c("wk12", "wk24"), 
+#'                     parameter = c("any", "rel", "ser"))
 new_plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
+  # create a data frame from all combinations of the supplied vectors or factors. 
   x <- expand.grid(
     mock = mock,
     analysis = analysis,
@@ -72,7 +77,7 @@ new_plan <- function(analysis, population, observation, parameter, mock = 1, ...
     observation = observation,
     parameter = parameter,
     ...,
-    stringsAsFactors = FALSE
+    stringsAsFactors = FALSE # specifying if char vec are converted to factors
   )
 
   class(x) <- c("meta_plan", "data.frame")
