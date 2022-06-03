@@ -23,8 +23,8 @@
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
-#'
 #' collect_adam_mapping(meta, "apat")
+#' 
 #' @export
 #'
 collect_adam_mapping <- function(meta, name) {
@@ -39,9 +39,11 @@ collect_adam_mapping <- function(meta, name) {
     parameter = meta$parameter,
     analysis = meta$analysis
   )
-
+  
+  # find where the name is, population, or observation, or parameter, or analysis
   location <- vapply(adam, function(x) name %in% names(x), FUN.VALUE = logical(1))
-
+  
+  # add `.location` to the mapping, either population, or observation, or parameter, or analysis
   if (any(location)) {
     map <- adam[location][[1]][[name]]
     map[[".location"]] <- names(location)[location]
