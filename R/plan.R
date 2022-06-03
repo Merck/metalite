@@ -88,7 +88,10 @@ new_plan <- function(analysis, population, observation, parameter, mock = 1, ...
 #' Validate an analysis plan object
 #'
 #' @param plan a `meta_plan` object
-#'
+#' @examples 
+#' x <- plan(analysis = "ae_summary", population = "apat", observation = "wk12", parameter = "any")
+#' metalite:::validate_plan(x)
+#' 
 validate_plan <- function(plan) {
   stopifnot(all(c("meta_plan", "data.frame") %in% class(plan)))
   stopifnot(all(c("analysis", "population", "observation", "parameter") %in% names(plan)))
