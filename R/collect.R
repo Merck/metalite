@@ -125,6 +125,7 @@ collect_population_index <- function(meta,
 #'
 collect_population_id <- function(meta,
                                   population) {
+  # get the USUBJID (usually) from the population                    (extract the variable name "USUBJID")
   meta$data_population[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
 }
 
