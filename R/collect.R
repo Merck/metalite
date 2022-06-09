@@ -129,6 +129,7 @@ collect_population_id <- function(meta,
   meta$data_population[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
 }
 
+
 #' Collect population record from population dataset
 #'
 #' The key variables used in `id`, `group`, and `subset` are displayed by default.
@@ -148,16 +149,20 @@ collect_population_id <- function(meta,
 collect_population_record <- function(meta,
                                       population,
                                       var = NULL) {
+  # collect the subject index (e.g., 1:254) from the population
   id <- collect_population_index(meta, population)
 
-
+  # format the key var must to be output, 
+  # including the subject ID (e.g., USUBJID), grouping variable (TRTA, TRT01A)
   key <- c(
     collect_adam_mapping(meta, population)[c("id", "group", "var")],
     all.vars(collect_adam_mapping(meta, population)$subset)
   )
-
+  
+  # incorporate the key var with user input var
   var <- unique(unlist(c(key, var)))
-
+  
+  # output the population dataset with their index (id), and selected `var = ...`
   meta$data_population[id, var]
 }
 
