@@ -94,6 +94,7 @@ collect_population <- function(meta,
 #'
 collect_population_index <- function(meta,
                                      population) {
+  # eval_tidy() is a variant of base::eval() that powers the tidy evaluation framework
   pop <- rlang::eval_tidy(
     expr = collect_adam_mapping(meta, population)$subset,
     data = meta$data_population
