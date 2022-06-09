@@ -88,8 +88,8 @@ collect_population <- function(meta,
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
-#'
 #' head(collect_population_index(meta, "apat"))
+#' 
 #' @export
 #'
 collect_population_index <- function(meta,
@@ -101,7 +101,8 @@ collect_population_index <- function(meta,
   )
 
   n <- nrow(meta$data_population)
-
+  
+  # if the `population = ...` is not defined
   if (is.null(pop)) {
     return(1:n)
   }
