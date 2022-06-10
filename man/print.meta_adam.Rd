@@ -8,6 +8,8 @@
 }
 \arguments{
 \item{x}{a object returned by \code{meta_adam}}
+
+\item{...}{additional variables save to \code{print}}
 }
 \description{
 Print a meta data with its population, observation and analysis plans

@@ -48,6 +48,7 @@ meta_adam <- function(observation,
 
 #' Print a meta data with its population, observation and analysis plans
 #' @param x a object returned by \code{meta_adam}
+#' @param ... additional variables save to `print`
 #' 
 #' @examples 
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()
