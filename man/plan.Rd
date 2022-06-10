@@ -26,3 +26,22 @@ The term name is used as key to link information.}
 \description{
 This function is a wrapper of \code{expand.grid}
 }
+\examples{
+
+# example 1
+# create an analysis plan of AE summary 
+# with any AE, drug-related AE and serious AE
+plan(analysis = "ae_summary", 
+     population = "apat", 
+     observation = c("wk12", "wk24"), 
+     parameter = "any;rel;ser")
+
+# example 2
+# create an analysis plan of AE specific
+# with any AE, drug-related AE and serious AE
+plan(analysis = "ae_specific", 
+     population = "apat", 
+     observation = c("wk12", "wk24"), 
+     parameter = c("any", "rel", "ser"))
+     
+}

@@ -12,3 +12,15 @@ validate_outdata(x)
 \description{
 Validate outdata class
 }
+\examples{
+meta <- meta_dummy()
+metalite:::validate_outdata(outdata(meta = meta_dummy(), 
+                            population = "apat", 
+                            observation = "wk12", 
+                            parameter = "rel", 
+                            n = meta$data_population \%>\% group_by(TRTA) \%>\% summarize(n = n()), 
+                            group = "TRTA", 
+                            reference_group = 1, 
+                            order = 1:3))
+                            
+}
