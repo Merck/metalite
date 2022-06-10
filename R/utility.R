@@ -68,5 +68,7 @@ check_duplicate_name <- function(x) {
 #' fmt_sentence(" a sentence that  needs to be cleaned  ")
 #' }
 fmt_sentence <- function(x) {
+  # replace innternal extra whitespace and leading 
+  # and/or trailing whitespace from character strings.
   trimws(gsub("\\s+", " ", x))
 }
