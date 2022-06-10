@@ -38,6 +38,7 @@ omit_null <- function(x) {
 #' fmt_quote('a = "b"')
 #' }
 fmt_quote <- function(x) {
+  # replace `"` into `'` in x 
   gsub('"', "'", x)
 }
 
