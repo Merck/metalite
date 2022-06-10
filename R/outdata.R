@@ -37,6 +37,7 @@
 #' @return A list with class `outdata`. Components of the list are either quosures or constants.
 #' 
 #' @examples 
+#' library(dplyr)
 #' outdata(meta = meta_dummy(), 
 #'         population = "apat", 
 #'         observation = "wk12", 
@@ -79,6 +80,7 @@ outdata <- function(meta,
 #' @param env an environment
 #' 
 #' @examples 
+#' library(dplyr)
 #' meta <- meta_dummy()
 #' x <- list(meta = meta_dummy(), 
 #'           population = "apat", 
@@ -102,6 +104,7 @@ new_outdata <- function(x, env = globalenv()) {
 #' @param x an `outdata` object
 #'
 #' @examples 
+#' library(dplyr)
 #' meta <- meta_dummy()
 #' metalite:::validate_outdata(outdata(meta = meta_dummy(), 
 #'                             population = "apat", 
