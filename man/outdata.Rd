@@ -48,13 +48,13 @@ The outdata class define a standard output format for analysis and reporting.
 The implementation idea mimic \code{ggplot2::aes}.
 }
 \examples{
-library(dplyr)
 outdata(meta = meta_dummy(), 
         population = "apat", 
         observation = "wk12", 
         parameter = "rel", 
-        n = meta$data_population \%>\% group_by(TRTA) \%>\% summarize(n = n()), 
+        n = data.frame(TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), n = c(86, 84, 84)), 
         group = "TRTA", 
         reference_group = 1, 
         order = 1:3)
+        
 }
