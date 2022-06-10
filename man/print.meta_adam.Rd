@@ -13,6 +13,6 @@
 Print a meta data with its population, observation and analysis plans
 }
 \examples{
-meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print.meta_adam()
+meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()
 
 }
