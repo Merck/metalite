@@ -13,6 +13,7 @@ validate_outdata(x)
 Validate outdata class
 }
 \examples{
+library(dplyr)
 meta <- meta_dummy()
 metalite:::validate_outdata(outdata(meta = meta_dummy(), 
                             population = "apat", 

@@ -15,6 +15,7 @@ new_outdata(x, env = globalenv())
 Structure outdata class
 }
 \examples{
+library(dplyr)
 meta <- meta_dummy()
 x <- list(meta = meta_dummy(), 
           population = "apat", 
