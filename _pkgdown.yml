@@ -38,6 +38,7 @@ reference:
 - title: Meta information
   contents:
   - "meta_adam"
+  - "print.meta_adam"
   - "meta_build"
   - "meta_dummy"
 - title: Component definition 

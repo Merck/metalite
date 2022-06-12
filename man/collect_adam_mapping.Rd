@@ -17,6 +17,6 @@ Collect \code{adam_mapping} from \code{meta_adam} by \code{name}
 \examples{
 library(r2rtf)
 meta <- meta_dummy()
-
 collect_adam_mapping(meta, "apat")
+
 }

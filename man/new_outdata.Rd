@@ -2,7 +2,7 @@
 % Please edit documentation in R/outdata.R
 \name{new_outdata}
 \alias{new_outdata}
-\title{Validate outdata class}
+\title{Structure outdata class}
 \usage{
 new_outdata(x, env = globalenv())
 }
@@ -12,5 +12,20 @@ new_outdata(x, env = globalenv())
 \item{env}{an environment}
 }
 \description{
-Validate outdata class
+Structure outdata class
+}
+\examples{
+meta <- meta_dummy()
+x <- list(meta = meta_dummy(), 
+          population = "apat", 
+          observation = "wk12", 
+          parameter = "rel", 
+          n = data.frame(
+            TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+            n = c(86, 84, 84)), 
+          group = "TRTA", 
+          reference_group = 1, 
+          order = 1:3)
+metalite:::new_outdata(x)
+
 }

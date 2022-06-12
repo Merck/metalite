@@ -35,7 +35,19 @@
 #' @param ... additional variables save to `outdata`.
 #'
 #' @return A list with class `outdata`. Components of the list are either quosures or constants.
-#'
+#' 
+#' @examples 
+#' outdata(meta = meta_dummy(), 
+#'         population = "apat", 
+#'         observation = "wk12", 
+#'         parameter = "rel", 
+#'         n = data.frame(
+#'           TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+#'           n = c(86, 84, 84)), 
+#'         group = "TRTA", 
+#'         reference_group = 1, 
+#'         order = 1:3)
+#'         
 #' @export
 outdata <- function(meta,
                     population,
@@ -64,12 +76,25 @@ outdata <- function(meta,
   validate_outdata(x)
 }
 
-#' Validate outdata class
+#' Structure outdata class
 #'
 #' @param x an `outdata` object
 #' @param env an environment
-#'
-#'
+#' 
+#' @examples 
+#' meta <- meta_dummy()
+#' x <- list(meta = meta_dummy(), 
+#'           population = "apat", 
+#'           observation = "wk12", 
+#'           parameter = "rel", 
+#'           n = data.frame(
+#'             TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+#'             n = c(86, 84, 84)), 
+#'           group = "TRTA", 
+#'           reference_group = 1, 
+#'           order = 1:3)
+#' metalite:::new_outdata(x)
+#' 
 new_outdata <- function(x, env = globalenv()) {
   if (!is.list(x)) {
     rlang::abort("`x` must be a list")
@@ -82,7 +107,20 @@ new_outdata <- function(x, env = globalenv()) {
 #'
 #' @param x an `outdata` object
 #'
-#'
+#' @examples 
+#' meta <- meta_dummy()
+#' metalite:::validate_outdata(
+#'   outdata(meta = meta_dummy(), 
+#'   population = "apat", 
+#'   observation = "wk12", 
+#'   parameter = "rel", 
+#'   n = data.frame(
+#'     TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+#'     n = c(86, 84, 84)), 
+#'   group = "TRTA", 
+#'   reference_group = 1, 
+#'   order = 1:3))
+#'                             
 validate_outdata <- function(x) {
 
   # All required variable

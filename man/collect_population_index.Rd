@@ -18,6 +18,6 @@ Collect population record index from population dataset
 \examples{
 library(r2rtf)
 meta <- meta_dummy()
-
 head(collect_population_index(meta, "apat"))
+
 }
