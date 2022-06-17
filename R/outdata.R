@@ -38,15 +38,15 @@
 #' 
 #' @examples 
 #' metalite:::outdata(meta = meta_dummy(), 
-#'         population = "apat", 
-#'         observation = "wk12", 
-#'         parameter = "rel", 
-#'         n = data.frame(
-#'           TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
-#'           n = c(86, 84, 84)), 
-#'         group = "TRTA", 
-#'         reference_group = 1, 
-#'         order = 1:3)
+#'                    population = "apat", 
+#'                    observation = "wk12", 
+#'                    parameter = "rel", 
+#'                    n = data.frame(
+#'                      TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+#'                      n = c(86, 84, 84)), 
+#'                    group = "TRTA", 
+#'                    reference_group = 1, 
+#'                    order = 1:3)
 #'         
 outdata <- function(meta,
                     population,
@@ -109,7 +109,7 @@ new_outdata <- function(x, env = globalenv()) {
 #' @examples 
 #' meta <- meta_dummy()
 #' metalite:::validate_outdata(
-#'   outdata(meta = meta_dummy(), 
+#'   metalite:::outdata(meta = meta_dummy(), 
 #'   population = "apat", 
 #'   observation = "wk12", 
 #'   parameter = "rel", 
