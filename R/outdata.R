@@ -37,7 +37,7 @@
 #' @return A list with class `outdata`. Components of the list are either quosures or constants.
 #' 
 #' @examples 
-#' outdata(meta = meta_dummy(), 
+#' metalite:::outdata(meta = meta_dummy(), 
 #'         population = "apat", 
 #'         observation = "wk12", 
 #'         parameter = "rel", 
