@@ -7,7 +7,7 @@
 new_outdata(x, env = globalenv())
 }
 \arguments{
-\item{x}{an \code{outdata} object}
+\item{x}{an list object containing elements: meta, population, observation, parameter, n, order, group, and reference_group}
 
 \item{env}{an environment}
 }

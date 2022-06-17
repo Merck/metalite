@@ -48,7 +48,6 @@
 #'         reference_group = 1, 
 #'         order = 1:3)
 #'         
-#' @export
 outdata <- function(meta,
                     population,
                     observation,
@@ -78,7 +77,7 @@ outdata <- function(meta,
 
 #' Structure outdata class
 #'
-#' @param x an `outdata` object
+#' @param x an list object containing elements: meta, population, observation, parameter, n, order, group, and reference_group 
 #' @param env an environment
 #' 
 #' @examples 
