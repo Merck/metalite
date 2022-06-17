@@ -37,18 +37,17 @@
 #' @return A list with class `outdata`. Components of the list are either quosures or constants.
 #' 
 #' @examples 
-#' outdata(meta = meta_dummy(), 
-#'         population = "apat", 
-#'         observation = "wk12", 
-#'         parameter = "rel", 
-#'         n = data.frame(
-#'           TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
-#'           n = c(86, 84, 84)), 
-#'         group = "TRTA", 
-#'         reference_group = 1, 
-#'         order = 1:3)
+#' metalite:::outdata(meta = meta_dummy(), 
+#'                    population = "apat", 
+#'                    observation = "wk12", 
+#'                    parameter = "rel", 
+#'                    n = data.frame(
+#'                      TRTA = c("Placebo", "Xanomeline Low Dose", "Xanomeline High Dose"), 
+#'                      n = c(86, 84, 84)), 
+#'                    group = "TRTA", 
+#'                    reference_group = 1, 
+#'                    order = 1:3)
 #'         
-#' @export
 outdata <- function(meta,
                     population,
                     observation,
@@ -78,7 +77,7 @@ outdata <- function(meta,
 
 #' Structure outdata class
 #'
-#' @param x an `outdata` object
+#' @param x an list object containing elements: meta, population, observation, parameter, n, order, group, and reference_group 
 #' @param env an environment
 #' 
 #' @examples 
@@ -110,7 +109,7 @@ new_outdata <- function(x, env = globalenv()) {
 #' @examples 
 #' meta <- meta_dummy()
 #' metalite:::validate_outdata(
-#'   outdata(meta = meta_dummy(), 
+#'   metalite:::outdata(meta = meta_dummy(), 
 #'   population = "apat", 
 #'   observation = "wk12", 
 #'   parameter = "rel", 

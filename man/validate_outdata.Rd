@@ -15,7 +15,7 @@ Validate outdata class
 \examples{
 meta <- meta_dummy()
 metalite:::validate_outdata(
-  outdata(meta = meta_dummy(), 
+  metalite:::outdata(meta = meta_dummy(), 
   population = "apat", 
   observation = "wk12", 
   parameter = "rel", 
