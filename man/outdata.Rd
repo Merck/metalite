@@ -48,7 +48,7 @@ The outdata class define a standard output format for analysis and reporting.
 The implementation idea mimic \code{ggplot2::aes}.
 }
 \examples{
-outdata(meta = meta_dummy(), 
+metalite:::outdata(meta = meta_dummy(), 
         population = "apat", 
         observation = "wk12", 
         parameter = "rel", 
