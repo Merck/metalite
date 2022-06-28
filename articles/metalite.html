@@ -85,8 +85,8 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/" class="external-link">r2rtf</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/" class="external-link">r2rtf</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -147,11 +147,11 @@
 </ul>
 <p>For a typical adverse events analysis, the AE records is saved in ADAE (observation level) and the population information is saved in ADSL (population level). With demo ADaM datasets in <code>r2rtf</code> package, we can construct an object as below using <code>meta_adam</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>observation <span class="op">=</span> <span class="va">r2rtf_adae</span>, 
-          population <span class="op">=</span> <span class="va">r2rtf_adsl</span><span class="op">)</span> 
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>observation <span class="op">=</span> <span class="va">r2rtf_adae</span>, </span>
+<span>          population <span class="op">=</span> <span class="va">r2rtf_adsl</span><span class="op">)</span> </span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records</span></span></code></pre></div>
 <ul>
 <li>Analysis Plan (<code>define_plan</code>): specification of analysis
 <ul>
@@ -164,34 +164,34 @@
 <p>We also need to understand the analysis plan for the adverse events analysis. Specifically, the details of each table, listing and figure (TLF)</p>
 <p>Here we use two helper functions (<code>plan</code> and <code>add_plan</code>) to create an analysis plan. The analysis plan is a dataframe that indicate the specification of each TLF. In the code below, we construct 10 TLFs based on different combination of analysis function, population, observation and parameter.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plan.html">plan</a></span><span class="op">(</span>analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>, 
-             observation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wk12"</span>, <span class="st">"wk24"</span><span class="op">)</span>, parameter <span class="op">=</span> <span class="st">"any;rel;ser"</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/add_plan.html">add_plan</a></span><span class="op">(</span>analysis <span class="op">=</span> <span class="st">"ae_specific"</span>, population <span class="op">=</span> <span class="st">"apat"</span>, 
-           observation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wk12"</span>, <span class="st">"wk24"</span><span class="op">)</span>, 
-           parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"any"</span>, <span class="st">"aeosi"</span>, <span class="st">"rel"</span>, <span class="st">"ser"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">plan</span>
-<span class="co">#&gt;    mock    analysis population observation   parameter</span>
-<span class="co">#&gt; 1     1  ae_summary       apat        wk12 any;rel;ser</span>
-<span class="co">#&gt; 2     1  ae_summary       apat        wk24 any;rel;ser</span>
-<span class="co">#&gt; 3     1 ae_specific       apat        wk12         any</span>
-<span class="co">#&gt; 4     1 ae_specific       apat        wk24         any</span>
-<span class="co">#&gt; 5     1 ae_specific       apat        wk12       aeosi</span>
-<span class="co">#&gt; 6     1 ae_specific       apat        wk24       aeosi</span>
-<span class="co">#&gt; 7     1 ae_specific       apat        wk12         rel</span>
-<span class="co">#&gt; 8     1 ae_specific       apat        wk24         rel</span>
-<span class="co">#&gt; 9     1 ae_specific       apat        wk12         ser</span>
-<span class="co">#&gt; 10    1 ae_specific       apat        wk24         ser</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plan.html">plan</a></span><span class="op">(</span>analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>, </span>
+<span>             observation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wk12"</span>, <span class="st">"wk24"</span><span class="op">)</span>, parameter <span class="op">=</span> <span class="st">"any;rel;ser"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/add_plan.html">add_plan</a></span><span class="op">(</span>analysis <span class="op">=</span> <span class="st">"ae_specific"</span>, population <span class="op">=</span> <span class="st">"apat"</span>, </span>
+<span>           observation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wk12"</span>, <span class="st">"wk24"</span><span class="op">)</span>, </span>
+<span>           parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"any"</span>, <span class="st">"aeosi"</span>, <span class="st">"rel"</span>, <span class="st">"ser"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">plan</span></span>
+<span><span class="co">#&gt;    mock    analysis population observation   parameter</span></span>
+<span><span class="co">#&gt; 1     1  ae_summary       apat        wk12 any;rel;ser</span></span>
+<span><span class="co">#&gt; 2     1  ae_summary       apat        wk24 any;rel;ser</span></span>
+<span><span class="co">#&gt; 3     1 ae_specific       apat        wk12         any</span></span>
+<span><span class="co">#&gt; 4     1 ae_specific       apat        wk24         any</span></span>
+<span><span class="co">#&gt; 5     1 ae_specific       apat        wk12       aeosi</span></span>
+<span><span class="co">#&gt; 6     1 ae_specific       apat        wk24       aeosi</span></span>
+<span><span class="co">#&gt; 7     1 ae_specific       apat        wk12         rel</span></span>
+<span><span class="co">#&gt; 8     1 ae_specific       apat        wk24         rel</span></span>
+<span><span class="co">#&gt; 9     1 ae_specific       apat        wk12         ser</span></span>
+<span><span class="co">#&gt; 10    1 ae_specific       apat        wk24         ser</span></span></code></pre></div>
 <p>Then, we can define the analysis plan using <code>define_plan</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>,
-          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> |&gt;
-  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span>
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span>
-<span class="co">#&gt;    .$plan    Analysis plan with 10 plans</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>,</span>
+<span>          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
+<span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans</span></span></code></pre></div>
 <ul>
 <li>Analysis Meta data:
 <ul>
@@ -207,115 +207,115 @@
 </ul>
 <p>There are more details that needs to be defined in the metadata information. For example, how to select the APaT population from the <code>ADSL</code> dataset. This is achieved by defining the population. We have defined some built-in information that follows an A&amp;R conventions. So, the programs know the meaning of “apat” as below.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, 
-          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span>
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span>
-<span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis population type:</span>
-<span class="co">#&gt;     name        id group var subset                         label</span>
-<span class="co">#&gt; 1 'apat' 'USUBJID'                  'All Participants as Treated'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, </span>
+<span>          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
+<span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis population type:</span></span>
+<span><span class="co">#&gt;     name        id group var subset                         label</span></span>
+<span><span class="co">#&gt; 1 'apat' 'USUBJID'                  'All Participants as Treated'</span></span></code></pre></div>
 <p>Some project specific information still needs to be provided by study team such as the group variable name and subset flag condition.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, 
-          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span>,
-                    group <span class="op">=</span> <span class="st">"TRT01A"</span>, 
-                    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span>
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span>
-<span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis population type:</span>
-<span class="co">#&gt;     name        id    group var       subset                         label</span>
-<span class="co">#&gt; 1 'apat' 'USUBJID' 'TRT01A'     SAFFL == 'Y' 'All Participants as Treated'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, </span>
+<span>          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span>,</span>
+<span>                    group <span class="op">=</span> <span class="st">"TRT01A"</span>, </span>
+<span>                    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
+<span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis population type:</span></span>
+<span><span class="co">#&gt;     name        id    group var       subset                         label</span></span>
+<span><span class="co">#&gt; 1 'apat' 'USUBJID' 'TRT01A'     SAFFL == 'Y' 'All Participants as Treated'</span></span></code></pre></div>
 <p>Similarly, we can define other meta information for analysis observation, parameter and function. We will also use <code>meta_build</code> to add default values for other <code>name</code> that is not specified.</p>
 <blockquote>
 <p>In <code>metalite</code>, we save this demo example in <code><a href="../reference/meta_dummy.html">meta_dummy()</a></code> to illustrate different use cases.</p>
 </blockquote>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, 
-          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span>plan <span class="op">=</span> <span class="va">plan</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span>,
-                    group <span class="op">=</span> <span class="st">"TRT01A"</span>, 
-                    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_observation.html">define_observation</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"wk12"</span>,
-                  group <span class="op">=</span> <span class="st">"TRTA"</span>, 
-                  subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, 
-                  label <span class="op">=</span> <span class="st">"Weeks 0 to 12"</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_observation.html">define_observation</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"wk24"</span>,
-                  group <span class="op">=</span> <span class="st">"TRTA"</span>, 
-                  subset <span class="op">=</span> <span class="va">AOCC01FL</span> <span class="op">==</span> <span class="st">"Y"</span>,    <span class="co"># just for demo, another flag shall be used.  </span>
-                  label <span class="op">=</span> <span class="st">"Weeks 0 to 24"</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"rel"</span>, 
-                subset <span class="op">=</span> <span class="va">AEREL</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"POSSIBLE"</span>, <span class="st">"PROBABLE"</span><span class="op">)</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"aeosi"</span>, 
-                subset <span class="op">=</span> <span class="va">AEOSI</span> <span class="op">==</span> <span class="st">"Y"</span>, 
-                label <span class="op">=</span> <span class="st">"adverse events of special interest"</span><span class="op">)</span> |&gt; 
-  
-  <span class="fu"><a href="../reference/define_analysis.html">define_analysis</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"ae_summary"</span>, 
-                  title <span class="op">=</span> <span class="st">"Summary of Adverse Events"</span><span class="op">)</span> |&gt;
-  
-  <span class="fu"><a href="../reference/meta_build.html">meta_build</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span>
-<span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis population type:</span>
-<span class="co">#&gt;     name        id    group var       subset                         label</span>
-<span class="co">#&gt; 1 'apat' 'USUBJID' 'TRT01A'     SAFFL == 'Y' 'All Participants as Treated'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis observation type:</span>
-<span class="co">#&gt;     name        id  group var          subset           label</span>
-<span class="co">#&gt; 1 'wk12' 'USUBJID' 'TRTA'        SAFFL == 'Y' 'Weeks 0 to 12'</span>
-<span class="co">#&gt; 2 'wk24' 'USUBJID' 'TRTA'     AOCC01FL == 'Y' 'Weeks 0 to 24'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis parameter type:</span>
-<span class="co">#&gt;      name                                label</span>
-<span class="co">#&gt; 1   'rel'        'drug-related adverse events'</span>
-<span class="co">#&gt; 2 'aeosi' 'adverse events of special interest'</span>
-<span class="co">#&gt; 3   'any'                 'any adverse events'</span>
-<span class="co">#&gt; 4   'ser'             'serious adverse events'</span>
-<span class="co">#&gt;                                 subset</span>
-<span class="co">#&gt; 1 AEREL %in% c('POSSIBLE', 'PROBABLE')</span>
-<span class="co">#&gt; 2                         AEOSI == 'Y'</span>
-<span class="co">#&gt; 3                                     </span>
-<span class="co">#&gt; 4                         AESER == 'Y'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis function:</span>
-<span class="co">#&gt;            name                           label</span>
-<span class="co">#&gt; 1  'ae_summary'  'Table: adverse event summary'</span>
-<span class="co">#&gt; 2 'ae_specific' 'Table: specific adverse event'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span>population <span class="op">=</span> <span class="va">r2rtf_adsl</span>, </span>
+<span>          observation <span class="op">=</span> <span class="va">r2rtf_adae</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span>plan <span class="op">=</span> <span class="va">plan</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span>,</span>
+<span>                    group <span class="op">=</span> <span class="st">"TRT01A"</span>, </span>
+<span>                    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_observation.html">define_observation</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"wk12"</span>,</span>
+<span>                  group <span class="op">=</span> <span class="st">"TRTA"</span>, </span>
+<span>                  subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>, </span>
+<span>                  label <span class="op">=</span> <span class="st">"Weeks 0 to 12"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_observation.html">define_observation</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"wk24"</span>,</span>
+<span>                  group <span class="op">=</span> <span class="st">"TRTA"</span>, </span>
+<span>                  subset <span class="op">=</span> <span class="va">AOCC01FL</span> <span class="op">==</span> <span class="st">"Y"</span>,    <span class="co"># just for demo, another flag shall be used.  </span></span>
+<span>                  label <span class="op">=</span> <span class="st">"Weeks 0 to 24"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"rel"</span>, </span>
+<span>                subset <span class="op">=</span> <span class="va">AEREL</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"POSSIBLE"</span>, <span class="st">"PROBABLE"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"aeosi"</span>, </span>
+<span>                subset <span class="op">=</span> <span class="va">AEOSI</span> <span class="op">==</span> <span class="st">"Y"</span>, </span>
+<span>                label <span class="op">=</span> <span class="st">"adverse events of special interest"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/define_analysis.html">define_analysis</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"ae_summary"</span>, </span>
+<span>                  title <span class="op">=</span> <span class="st">"Summary of Adverse Events"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="../reference/meta_build.html">meta_build</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
+<span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis population type:</span></span>
+<span><span class="co">#&gt;     name        id    group var       subset                         label</span></span>
+<span><span class="co">#&gt; 1 'apat' 'USUBJID' 'TRT01A'     SAFFL == 'Y' 'All Participants as Treated'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis observation type:</span></span>
+<span><span class="co">#&gt;     name        id  group var          subset           label</span></span>
+<span><span class="co">#&gt; 1 'wk12' 'USUBJID' 'TRTA'        SAFFL == 'Y' 'Weeks 0 to 12'</span></span>
+<span><span class="co">#&gt; 2 'wk24' 'USUBJID' 'TRTA'     AOCC01FL == 'Y' 'Weeks 0 to 24'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis parameter type:</span></span>
+<span><span class="co">#&gt;      name                                label</span></span>
+<span><span class="co">#&gt; 1   'rel'        'drug-related adverse events'</span></span>
+<span><span class="co">#&gt; 2 'aeosi' 'adverse events of special interest'</span></span>
+<span><span class="co">#&gt; 3   'any'                 'any adverse events'</span></span>
+<span><span class="co">#&gt; 4   'ser'             'serious adverse events'</span></span>
+<span><span class="co">#&gt;                                 subset</span></span>
+<span><span class="co">#&gt; 1 AEREL %in% c('POSSIBLE', 'PROBABLE')</span></span>
+<span><span class="co">#&gt; 2                         AEOSI == 'Y'</span></span>
+<span><span class="co">#&gt; 3                                     </span></span>
+<span><span class="co">#&gt; 4                         AESER == 'Y'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis function:</span></span>
+<span><span class="co">#&gt;            name                           label</span></span>
+<span><span class="co">#&gt; 1  'ae_summary'  'Table: adverse event summary'</span></span>
+<span><span class="co">#&gt; 2 'ae_specific' 'Table: specific adverse event'</span></span></code></pre></div>
 <p>As a developer, you can reuse those meta information for your development. It also allow developers to <strong>standardize</strong> the input of their functions. So the <code>plan$analysis</code> is analysis name. <code>meta</code> and other columns in <code>plan</code> are function arguments</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ae_summary</span><span class="op">(</span><span class="va">meta</span>, 
-           <span class="va">population</span>, 
-           <span class="va">observation</span>, 
-           <span class="va">parameter</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">ae_summary</span><span class="op">(</span><span class="va">meta</span>, </span>
+<span>           <span class="va">population</span>, </span>
+<span>           <span class="va">observation</span>, </span>
+<span>           <span class="va">parameter</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -326,7 +326,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Yilong Zhang, Nan Xiao, Ruchitbhai Patel, Madhusudhan Ginnaram, Sarad Nepal, Yujie Zhao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+<p>Developed by Yilong Zhang, Nan Xiao, Ruchitbhai Patel, Madhusudhan Ginnaram, Sarad Nepal, Yujie Zhao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -85,206 +85,206 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></span></code></pre></div>
 <p>In this document, let’s explore how to collect components using <code>metalite</code>. The document is for developer who plan to create new tools.</p>
 <p>Let’s first define a meta object by using <code><a href="../reference/meta_dummy.html">meta_dummy()</a></code> function. It is an ad-hoc function to create a meta object same as in the <code>get started</code> page.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu">metalite</span><span class="fu">:::</span><span class="fu"><a href="../reference/meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">meta</span>
-<span class="co">#&gt; ADaM Meta Data: </span>
-<span class="co">#&gt;    .$data_population     Population data with 254 subjects </span>
-<span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span>
-<span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis population type:</span>
-<span class="co">#&gt;     name        id  group var       subset                         label</span>
-<span class="co">#&gt; 1 'apat' 'USUBJID' 'TRTA'     SAFFL == 'Y' 'All Participants as Treated'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis observation type:</span>
-<span class="co">#&gt;     name        id  group var          subset           label</span>
-<span class="co">#&gt; 1 'wk12' 'USUBJID' 'TRTA'        SAFFL == 'Y' 'Weeks 0 to 12'</span>
-<span class="co">#&gt; 2 'wk24' 'USUBJID' 'TRTA'     AOCC01FL == 'Y' 'Weeks 0 to 24'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis parameter type:</span>
-<span class="co">#&gt;      name                                label</span>
-<span class="co">#&gt; 1   'rel'        'drug-related adverse events'</span>
-<span class="co">#&gt; 2 'aeosi' 'adverse events of special interest'</span>
-<span class="co">#&gt; 3   'any'                 'any adverse events'</span>
-<span class="co">#&gt; 4   'ser'             'serious adverse events'</span>
-<span class="co">#&gt;                                 subset</span>
-<span class="co">#&gt; 1 AEREL %in% c('POSSIBLE', 'PROBABLE')</span>
-<span class="co">#&gt; 2                         AEOSI == 'Y'</span>
-<span class="co">#&gt; 3                                     </span>
-<span class="co">#&gt; 4                         AESER == 'Y'</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;   Analysis function:</span>
-<span class="co">#&gt;            name                           label</span>
-<span class="co">#&gt; 1  'ae_summary'  'Table: adverse event summary'</span>
-<span class="co">#&gt; 2 'ae_specific' 'Table: specific adverse event'</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu">metalite</span><span class="fu">:::</span><span class="fu"><a href="../reference/meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">meta</span></span>
+<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
+<span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
+<span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis population type:</span></span>
+<span><span class="co">#&gt;     name        id  group var       subset                         label</span></span>
+<span><span class="co">#&gt; 1 'apat' 'USUBJID' 'TRTA'     SAFFL == 'Y' 'All Participants as Treated'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis observation type:</span></span>
+<span><span class="co">#&gt;     name        id  group var          subset           label</span></span>
+<span><span class="co">#&gt; 1 'wk12' 'USUBJID' 'TRTA'        SAFFL == 'Y' 'Weeks 0 to 12'</span></span>
+<span><span class="co">#&gt; 2 'wk24' 'USUBJID' 'TRTA'     AOCC01FL == 'Y' 'Weeks 0 to 24'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis parameter type:</span></span>
+<span><span class="co">#&gt;      name                                label</span></span>
+<span><span class="co">#&gt; 1   'rel'        'drug-related adverse events'</span></span>
+<span><span class="co">#&gt; 2 'aeosi' 'adverse events of special interest'</span></span>
+<span><span class="co">#&gt; 3   'any'                 'any adverse events'</span></span>
+<span><span class="co">#&gt; 4   'ser'             'serious adverse events'</span></span>
+<span><span class="co">#&gt;                                 subset</span></span>
+<span><span class="co">#&gt; 1 AEREL %in% c('POSSIBLE', 'PROBABLE')</span></span>
+<span><span class="co">#&gt; 2                         AEOSI == 'Y'</span></span>
+<span><span class="co">#&gt; 3                                     </span></span>
+<span><span class="co">#&gt; 4                         AESER == 'Y'</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   Analysis function:</span></span>
+<span><span class="co">#&gt;            name                           label</span></span>
+<span><span class="co">#&gt; 1  'ae_summary'  'Table: adverse event summary'</span></span>
+<span><span class="co">#&gt; 2 'ae_specific' 'Table: specific adverse event'</span></span></code></pre></div>
 <div class="section level2">
 <h2 id="collect-adam-mapping">Collect ADaM mapping<a class="anchor" aria-label="anchor" href="#collect-adam-mapping"></a>
 </h2>
 <p>The object in <code>meta</code> is organized as a list of ADaM mapping objects. For example, you can directly access an ADaM mapping object as a list.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">meta</span><span class="op">$</span><span class="va">population</span><span class="op">$</span><span class="va">apat</span>
-<span class="co">#&gt; ADaM mapping: </span>
-<span class="co">#&gt; * `name`   -&gt; "apat"</span>
-<span class="co">#&gt; * `id`     -&gt; "USUBJID"</span>
-<span class="co">#&gt; * `group`  -&gt; "TRTA"</span>
-<span class="co">#&gt; * `var`    -&gt; NULL</span>
-<span class="co">#&gt; * `subset` -&gt; SAFFL == "Y"</span>
-<span class="co">#&gt; * `label`  -&gt; "All Participants as Treated"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">population</span><span class="op">$</span><span class="va">apat</span></span>
+<span><span class="co">#&gt; ADaM mapping: </span></span>
+<span><span class="co">#&gt; * `name`   -&gt; "apat"</span></span>
+<span><span class="co">#&gt; * `id`     -&gt; "USUBJID"</span></span>
+<span><span class="co">#&gt; * `group`  -&gt; "TRTA"</span></span>
+<span><span class="co">#&gt; * `var`    -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `subset` -&gt; SAFFL == "Y"</span></span>
+<span><span class="co">#&gt; * `label`  -&gt; "All Participants as Treated"</span></span></code></pre></div>
 <p>We created helper function to help you access components by component name. For example, we can collect the same <code>apat</code> component from <code>meta</code> by <code>name</code> using <code><a href="../reference/collect_adam_mapping.html">collect_adam_mapping()</a></code>.</p>
 <p>Collect ADaM mapping for all participants as treated.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span>
-<span class="co">#&gt; ADaM mapping: </span>
-<span class="co">#&gt; * `name`      -&gt; "apat"</span>
-<span class="co">#&gt; * `id`        -&gt; "USUBJID"</span>
-<span class="co">#&gt; * `group`     -&gt; "TRTA"</span>
-<span class="co">#&gt; * `var`       -&gt; NULL</span>
-<span class="co">#&gt; * `subset`    -&gt; SAFFL == "Y"</span>
-<span class="co">#&gt; * `label`     -&gt; "All Participants as Treated"</span>
-<span class="co">#&gt; * `.location` -&gt; "population"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM mapping: </span></span>
+<span><span class="co">#&gt; * `name`      -&gt; "apat"</span></span>
+<span><span class="co">#&gt; * `id`        -&gt; "USUBJID"</span></span>
+<span><span class="co">#&gt; * `group`     -&gt; "TRTA"</span></span>
+<span><span class="co">#&gt; * `var`       -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `subset`    -&gt; SAFFL == "Y"</span></span>
+<span><span class="co">#&gt; * `label`     -&gt; "All Participants as Treated"</span></span>
+<span><span class="co">#&gt; * `.location` -&gt; "population"</span></span></code></pre></div>
 <p>We can collect ADaM mapping for serious adverse events parameter <code>meta$parameter$ser</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"ser"</span><span class="op">)</span>
-<span class="co">#&gt; ADaM mapping: </span>
-<span class="co">#&gt; * `name`      -&gt; "ser"</span>
-<span class="co">#&gt; * `id`        -&gt; NULL</span>
-<span class="co">#&gt; * `group`     -&gt; NULL</span>
-<span class="co">#&gt; * `var`       -&gt; "AEDECOD"</span>
-<span class="co">#&gt; * `subset`    -&gt; AESER == "Y"</span>
-<span class="co">#&gt; * `label`     -&gt; "serious adverse events"</span>
-<span class="co">#&gt; * `soc`       -&gt; "AEBODSYS"</span>
-<span class="co">#&gt; * `seq`       -&gt; 401</span>
-<span class="co">#&gt; * `term1`     -&gt; "Serious"</span>
-<span class="co">#&gt; * `term2`     -&gt; ""</span>
-<span class="co">#&gt; * `summ_row`  -&gt; "with serious adverse events"</span>
-<span class="co">#&gt; * `.location` -&gt; "parameter"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"ser"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM mapping: </span></span>
+<span><span class="co">#&gt; * `name`      -&gt; "ser"</span></span>
+<span><span class="co">#&gt; * `id`        -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `group`     -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `var`       -&gt; "AEDECOD"</span></span>
+<span><span class="co">#&gt; * `subset`    -&gt; AESER == "Y"</span></span>
+<span><span class="co">#&gt; * `label`     -&gt; "serious adverse events"</span></span>
+<span><span class="co">#&gt; * `soc`       -&gt; "AEBODSYS"</span></span>
+<span><span class="co">#&gt; * `seq`       -&gt; 401</span></span>
+<span><span class="co">#&gt; * `term1`     -&gt; "Serious"</span></span>
+<span><span class="co">#&gt; * `term2`     -&gt; ""</span></span>
+<span><span class="co">#&gt; * `summ_row`  -&gt; "with serious adverse events"</span></span>
+<span><span class="co">#&gt; * `.location` -&gt; "parameter"</span></span></code></pre></div>
 <p>We can collect ADaM mapping for AE summary analysis method <code>meta$analysis$ae_summary</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"ae_summary"</span><span class="op">)</span>
-<span class="co">#&gt; ADaM mapping: </span>
-<span class="co">#&gt; * `name`      -&gt; "ae_summary"</span>
-<span class="co">#&gt; * `id`        -&gt; NULL</span>
-<span class="co">#&gt; * `group`     -&gt; NULL</span>
-<span class="co">#&gt; * `var`       -&gt; NULL</span>
-<span class="co">#&gt; * `subset`    -&gt; NULL</span>
-<span class="co">#&gt; * `label`     -&gt; "Table: adverse event summary"</span>
-<span class="co">#&gt; * `title`     -&gt; "Summary of Adverse Events"</span>
-<span class="co">#&gt; * `.location` -&gt; "analysis"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_adam_mapping.html">collect_adam_mapping</a></span><span class="op">(</span><span class="va">meta</span>, name <span class="op">=</span> <span class="st">"ae_summary"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ADaM mapping: </span></span>
+<span><span class="co">#&gt; * `name`      -&gt; "ae_summary"</span></span>
+<span><span class="co">#&gt; * `id`        -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `group`     -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `var`       -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `subset`    -&gt; NULL</span></span>
+<span><span class="co">#&gt; * `label`     -&gt; "Table: adverse event summary"</span></span>
+<span><span class="co">#&gt; * `title`     -&gt; "Summary of Adverse Events"</span></span>
+<span><span class="co">#&gt; * `.location` -&gt; "analysis"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="collect-population">Collect population<a class="anchor" aria-label="anchor" href="#collect-population"></a>
 </h2>
 <p>While developing tools, developer also need to access the subset condition of a population. We can access the information from the list as</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">meta</span><span class="op">$</span><span class="va">population</span><span class="op">$</span><span class="va">apat</span><span class="op">$</span><span class="va">subset</span>
-<span class="co">#&gt; SAFFL == "Y"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">population</span><span class="op">$</span><span class="va">apat</span><span class="op">$</span><span class="va">subset</span></span>
+<span><span class="co">#&gt; SAFFL == "Y"</span></span></code></pre></div>
 <p>Equivalently, we can also use <code><a href="../reference/collect_population.html">collect_population()</a></code> to collect the definition of a population. For example, we can collect subset condition for “apat” as</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_population.html">collect_population</a></span><span class="op">(</span><span class="va">meta</span>, population <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span>
-<span class="co">#&gt; $population</span>
-<span class="co">#&gt; [1] "SAFFL == 'Y'"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_population.html">collect_population</a></span><span class="op">(</span><span class="va">meta</span>, population <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $population</span></span>
+<span><span class="co">#&gt; [1] "SAFFL == 'Y'"</span></span></code></pre></div>
 <p>By using <code>collect_population</code>, we can find subset condition from multiple levels. For example, we can collect analysis population definition for <code>apat</code> population, <code>wk12</code> observation and <code>ser</code> parameters.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_population.html">collect_population</a></span><span class="op">(</span><span class="va">meta</span>,
-  population <span class="op">=</span> <span class="st">"apat"</span>,
-  observation <span class="op">=</span> <span class="st">"wk12"</span>,
-  parameter <span class="op">=</span> <span class="st">"ser"</span>
-<span class="op">)</span>
-<span class="co">#&gt; $population</span>
-<span class="co">#&gt; [1] "SAFFL == 'Y'"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $observation</span>
-<span class="co">#&gt; [1] "SAFFL == 'Y'"</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; $parameter</span>
-<span class="co">#&gt; [1] "AESER == 'Y'"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_population.html">collect_population</a></span><span class="op">(</span><span class="va">meta</span>,</span>
+<span>  population <span class="op">=</span> <span class="st">"apat"</span>,</span>
+<span>  observation <span class="op">=</span> <span class="st">"wk12"</span>,</span>
+<span>  parameter <span class="op">=</span> <span class="st">"ser"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; $population</span></span>
+<span><span class="co">#&gt; [1] "SAFFL == 'Y'"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $observation</span></span>
+<span><span class="co">#&gt; [1] "SAFFL == 'Y'"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $parameter</span></span>
+<span><span class="co">#&gt; [1] "AESER == 'Y'"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="collect-population-records">Collect population records<a class="anchor" aria-label="anchor" href="#collect-population-records"></a>
 </h2>
 <p>User may want to identify records belong to an analysis population. We can use <code><a href="../reference/collect_population_index.html">collect_population_index()</a></code> to show all population record index. In this example, user would get index from all population data set for <code>apat</code> or all participants as treated.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">population_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_population_index.html">collect_population_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">population_index</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_population_index.html">collect_population_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_index.html">collect_population_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] 1 2 3 4 5 6</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_index.html">collect_population_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 1 2 3 4 5 6</span></span></code></pre></div>
 <p>Alternatively, people may want to know the ID of those subjects in a population. In this case, <code><a href="../reference/collect_population_id.html">collect_population_id()</a></code> can be used to collect <code>ID - &gt; USUBJID</code> from the <code>apat</code> population.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">population_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_population_id.html">collect_population_id</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">population_id</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/collect_population_id.html">collect_population_id</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_id.html">collect_population_id</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "01-701-1015" "01-701-1023" "01-701-1028" "01-701-1033" "01-701-1034"</span>
-<span class="co">#&gt; [6] "01-701-1047"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_id.html">collect_population_id</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "01-701-1015" "01-701-1023" "01-701-1028" "01-701-1033" "01-701-1034"</span></span>
+<span><span class="co">#&gt; [6] "01-701-1047"</span></span></code></pre></div>
 <p>We can further directly collect observations using <code><a href="../reference/collect_population_record.html">collect_population_record()</a></code>. By default, key variables used in <code>id</code>, <code>group</code>, and <code>subset</code> are displayed.</p>
 <p>This example shows how to collect population record from population data set for all participants as treated and only display default variables.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;       USUBJID                 TRTA SAFFL</span>
-<span class="co">#&gt; 1 01-701-1015              Placebo     Y</span>
-<span class="co">#&gt; 2 01-701-1023              Placebo     Y</span>
-<span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y</span>
-<span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y</span>
-<span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y</span>
-<span class="co">#&gt; 6 01-701-1047              Placebo     Y</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       USUBJID                 TRTA SAFFL</span></span>
+<span><span class="co">#&gt; 1 01-701-1015              Placebo     Y</span></span>
+<span><span class="co">#&gt; 2 01-701-1023              Placebo     Y</span></span>
+<span><span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y</span></span>
+<span><span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y</span></span>
+<span><span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y</span></span>
+<span><span class="co">#&gt; 6 01-701-1047              Placebo     Y</span></span></code></pre></div>
 <p>This example show how to add variables in population data set to display.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, var <span class="op">=</span> <span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;       USUBJID                 TRTA SAFFL AGE</span>
-<span class="co">#&gt; 1 01-701-1015              Placebo     Y  63</span>
-<span class="co">#&gt; 2 01-701-1023              Placebo     Y  64</span>
-<span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y  71</span>
-<span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y  74</span>
-<span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y  77</span>
-<span class="co">#&gt; 6 01-701-1047              Placebo     Y  85</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, var <span class="op">=</span> <span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       USUBJID                 TRTA SAFFL AGE</span></span>
+<span><span class="co">#&gt; 1 01-701-1015              Placebo     Y  63</span></span>
+<span><span class="co">#&gt; 2 01-701-1023              Placebo     Y  64</span></span>
+<span><span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y  71</span></span>
+<span><span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y  74</span></span>
+<span><span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y  77</span></span>
+<span><span class="co">#&gt; 6 01-701-1047              Placebo     Y  85</span></span></code></pre></div>
 <p>We can also add add multiple additional variable to display</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"TRT01P"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;       USUBJID                 TRTA SAFFL AGE               TRT01P</span>
-<span class="co">#&gt; 1 01-701-1015              Placebo     Y  63              Placebo</span>
-<span class="co">#&gt; 2 01-701-1023              Placebo     Y  64              Placebo</span>
-<span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y  71 Xanomeline High Dose</span>
-<span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y  74  Xanomeline Low Dose</span>
-<span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y  77 Xanomeline High Dose</span>
-<span class="co">#&gt; 6 01-701-1047              Placebo     Y  85              Placebo</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/collect_population_record.html">collect_population_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AGE"</span>, <span class="st">"TRT01P"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;       USUBJID                 TRTA SAFFL AGE               TRT01P</span></span>
+<span><span class="co">#&gt; 1 01-701-1015              Placebo     Y  63              Placebo</span></span>
+<span><span class="co">#&gt; 2 01-701-1023              Placebo     Y  64              Placebo</span></span>
+<span><span class="co">#&gt; 3 01-701-1028 Xanomeline High Dose     Y  71 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt; 4 01-701-1033  Xanomeline Low Dose     Y  74  Xanomeline Low Dose</span></span>
+<span><span class="co">#&gt; 5 01-701-1034 Xanomeline High Dose     Y  77 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt; 6 01-701-1047              Placebo     Y  85              Placebo</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="collect-observation-record">Collect observation record<a class="anchor" aria-label="anchor" href="#collect-observation-record"></a>
 </h2>
 <p>Similarly we can collect observation records with examples below. This example shows how to collect observation record index from observation data set for serious AE from weeks 0 to 12 using <code><a href="../reference/collect_observation_index.html">collect_observation_index()</a></code></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_observation_index.html">collect_observation_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span><span class="op">)</span>
-<span class="co">#&gt; [1]  689 1131 1173</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_observation_index.html">collect_observation_index</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  689 1131 1173</span></span></code></pre></div>
 <p>We can also directly collect records using <code><a href="../reference/collect_observation_record.html">collect_observation_record()</a></code>. By default, key variables used in <code>id</code>, <code>group</code>, and <code>subset</code> are displayed.</p>
 <p>This example shows how to collect observation record from observation data set for all participants as treated from 0 to 12 week with serious AE and only display default variables.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_observation_record.html">collect_observation_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span><span class="op">)</span>
-<span class="co">#&gt;          USUBJID                 TRTA</span>
-<span class="co">#&gt; 689  01-709-1424 Xanomeline High Dose</span>
-<span class="co">#&gt; 1131 01-718-1170  Xanomeline Low Dose</span>
-<span class="co">#&gt; 1173 01-718-1371 Xanomeline High Dose</span>
-<span class="co">#&gt;                                             AEDECOD SAFFL AESER</span>
-<span class="co">#&gt; 689                                         SYNCOPE     Y     Y</span>
-<span class="co">#&gt; 1131                                        SYNCOPE     Y     Y</span>
-<span class="co">#&gt; 1173 PARTIAL SEIZURES WITH SECONDARY GENERALISATION     Y     Y</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_observation_record.html">collect_observation_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          USUBJID                 TRTA</span></span>
+<span><span class="co">#&gt; 689  01-709-1424 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt; 1131 01-718-1170  Xanomeline Low Dose</span></span>
+<span><span class="co">#&gt; 1173 01-718-1371 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt;                                             AEDECOD SAFFL AESER</span></span>
+<span><span class="co">#&gt; 689                                         SYNCOPE     Y     Y</span></span>
+<span><span class="co">#&gt; 1131                                        SYNCOPE     Y     Y</span></span>
+<span><span class="co">#&gt; 1173 PARTIAL SEIZURES WITH SECONDARY GENERALISATION     Y     Y</span></span></code></pre></div>
 <p>This example show how to add variables in observation data set to display.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_observation_record.html">collect_observation_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span>, var <span class="op">=</span> <span class="st">"AEDECOD"</span><span class="op">)</span>
-<span class="co">#&gt;          USUBJID                 TRTA</span>
-<span class="co">#&gt; 689  01-709-1424 Xanomeline High Dose</span>
-<span class="co">#&gt; 1131 01-718-1170  Xanomeline Low Dose</span>
-<span class="co">#&gt; 1173 01-718-1371 Xanomeline High Dose</span>
-<span class="co">#&gt;                                             AEDECOD SAFFL AESER</span>
-<span class="co">#&gt; 689                                         SYNCOPE     Y     Y</span>
-<span class="co">#&gt; 1131                                        SYNCOPE     Y     Y</span>
-<span class="co">#&gt; 1173 PARTIAL SEIZURES WITH SECONDARY GENERALISATION     Y     Y</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_observation_record.html">collect_observation_record</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span>, var <span class="op">=</span> <span class="st">"AEDECOD"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          USUBJID                 TRTA</span></span>
+<span><span class="co">#&gt; 689  01-709-1424 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt; 1131 01-718-1170  Xanomeline Low Dose</span></span>
+<span><span class="co">#&gt; 1173 01-718-1371 Xanomeline High Dose</span></span>
+<span><span class="co">#&gt;                                             AEDECOD SAFFL AESER</span></span>
+<span><span class="co">#&gt; 689                                         SYNCOPE     Y     Y</span></span>
+<span><span class="co">#&gt; 1131                                        SYNCOPE     Y     Y</span></span>
+<span><span class="co">#&gt; 1173 PARTIAL SEIZURES WITH SECONDARY GENERALISATION     Y     Y</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="collect-specifications">Collect specifications<a class="anchor" aria-label="anchor" href="#collect-specifications"></a>
@@ -292,14 +292,14 @@
 <p>We also provided helper functions to collect commonly used items</p>
 <p>Developer can collect table title for analysis function meta information using <code><a href="../reference/collect_title.html">collect_title()</a></code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_title.html">collect_title</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span>, <span class="st">"ae_summary"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "Summary of Adverse Events"   "Weeks 0 to 12"              </span>
-<span class="co">#&gt; [3] "All Participants as Treated"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_title.html">collect_title</a></span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"wk12"</span>, <span class="st">"ser"</span>, <span class="st">"ae_summary"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Summary of Adverse Events"   "Weeks 0 to 12"              </span></span>
+<span><span class="co">#&gt; [3] "All Participants as Treated"</span></span></code></pre></div>
 <p>Developer can collect specification for data set name using <code><a href="../reference/collect_dataname.html">collect_dataname()</a></code>. It will show the data set name for population and observation.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/collect_dataname.html">collect_dataname</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span>
-<span class="co">#&gt;  population observation </span>
-<span class="co">#&gt;      "adsl"      "adae"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_dataname.html">collect_dataname</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  population observation </span></span>
+<span><span class="co">#&gt;      "adsl"      "adae"</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -309,7 +309,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Yilong Zhang, Nan Xiao, Ruchitbhai Patel, Madhusudhan Ginnaram, Sarad Nepal, Yujie Zhao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+<p>Developed by Yilong Zhang, Nan Xiao, Ruchitbhai Patel, Madhusudhan Ginnaram, Sarad Nepal, Yujie Zhao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
 </div>
 
 <div class="pkgdown-footer-right">
