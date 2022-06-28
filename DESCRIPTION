@@ -25,6 +25,7 @@ Imports:
     utils
 Suggests:
     covr,
+    dplyr,
     knitr,
     r2rtf,
     rmarkdown,
