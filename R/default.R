@@ -31,6 +31,7 @@ default_all <- function() {
 #'
 #' @examples
 #' default_apply(adam_mapping(name = "apat"))
+#' @export
 default_apply <- function(x) {
   default <- default_all()
 
