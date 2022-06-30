@@ -12,3 +12,12 @@ rtf_mock_color(text)
 \description{
 The function will automatically replace text between \code{<} and \code{>} into blue.
 }
+\examples{
+library(r2rtf)
+
+head(iris) \%>\%
+  r2rtf::rtf_title(rtf_mock_color("{week}")) \%>\%
+  rtf_body() \%>\%
+  rtf_encode() \%>\%
+  write_rtf(file = paste0("~/ex-1.rtf"))
+}

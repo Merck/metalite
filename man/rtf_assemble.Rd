@@ -12,3 +12,18 @@ rtf_assemble(path)
 \description{
 Assemble RTF files into one single RTF file
 }
+\examples{
+library(r2rtf)
+
+head(iris) \%>\%
+  rtf_body() \%>\%
+  rtf_encode() \%>\%
+  write_rtf(file = paste0(tempdir(), "/ex-1.rtf"))
+
+tail(iris) \%>\%
+  rtf_body() \%>\%
+  rtf_encode() \%>\%
+  write_rtf(file = paste0(tempdir(), "/ex-2.rtf"))
+
+rtf_assemble(c(paste0(tempdir(), "/ex-1.rtf"), paste0(tempdir(), "/ex-2.rtf")))
+}

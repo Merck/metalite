@@ -16,3 +16,14 @@ define_analysis(meta, name, ...)
 \description{
 Define analysis function meta information for ADaM dataset
 }
+\examples{
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
+  define_plan(plan = plan) |>
+  define_analysis(
+    name = "ae_summary",
+    title = "Summary of Adverse Events"
+  )
+}

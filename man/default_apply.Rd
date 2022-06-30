@@ -12,3 +12,6 @@ default_apply(x)
 \description{
 Apply default values to ADaM mappings
 }
+\examples{
+default_apply(adam_mapping(name = "apat"))
+}

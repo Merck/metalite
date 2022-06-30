@@ -35,3 +35,16 @@ define_observation(
 \description{
 Define analysis observation meta information for ADaM dataset
 }
+\examples{
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
+  define_plan(plan = plan) |>
+  define_observation(
+    name = "wk12",
+    group = "TRTA",
+    subset = SAFFL == "Y",
+    label = "Weeks 0 to 12"
+  )
+}
