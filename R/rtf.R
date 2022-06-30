@@ -29,9 +29,10 @@ rtf_assemble <- function(path) {
   end <- vapply(rtf, length, numeric(1))
   end[-n] <- end[-n] - 1
 
+  as_rtf_new_page <- get("as_rtf_new_page", asNamespace("r2rtf"))
   for (i in 1:n) {
     rtf[[i]] <- rtf[[i]][start[i]:end[i]]
-    if (i < n) rtf[[i]] <- c(rtf[[i]], r2rtf:::as_rtf_new_page())
+    if (i < n) rtf[[i]] <- c(rtf[[i]], as_rtf_new_page())
   }
   rtf <- do.call(c, rtf)
 
