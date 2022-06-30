@@ -28,9 +28,9 @@ default_all <- function() {
 #' Apply default values to ADaM mappings
 #'
 #' @param x an `adam_mapping` object
-#' @examples 
+#'
+#' @examples
 #' default_apply(adam_mapping(name = "apat"))
-#' 
 default_apply <- function(x) {
   default <- default_all()
 

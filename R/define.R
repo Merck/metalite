@@ -19,14 +19,15 @@
 #'
 #' @param meta a `meta_adam` object.
 #' @param plan a dataframe for analysis plan
-#' 
-#' @examples 
-#' library(r2rtf)
-#' 
-#' meta_adam(population = r2rtf::r2rtf_adsl,
-#' observation = r2rtf::r2rtf_adae) |>
-#' define_plan(plan)
 #'
+#' @examples
+#' library(r2rtf)
+#'
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan)
 #' @export
 define_plan <- function(meta,
                         plan) {
@@ -38,13 +39,15 @@ define_plan <- function(meta,
 #'
 #' @param meta an `meta_adam` object.
 #' @inheritParams adam_mapping
-#' @examples 
+#' @examples
 #' library(r2rtf)
-#' 
-#' meta_adam(population = r2rtf::r2rtf_adsl,
-#' observation = r2rtf::r2rtf_adae) |>
-#' define_plan(plan) |>
-#' define_population(name = "apat")
+#'
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan) |>
+#'   define_population(name = "apat")
 #' @export
 define_population <- function(meta,
                               name,
@@ -78,17 +81,18 @@ define_population <- function(meta,
 #' Define analysis observation meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @examples 
-#' meta_adam(population = r2rtf_adsl, 
-#' observation = r2rtf_adae) |>
-#'   
+#' @examples
+#' meta_adam(
+#'   population = r2rtf_adsl,
+#'   observation = r2rtf_adae
+#' ) |>
 #'   define_plan(plan = plan) |>
-#'   
-#'   define_observation(name = "wk12",
-#'                      group = "TRTA", 
-#'                      subset = SAFFL == "Y", 
-#'                      label = "Weeks 0 to 12") 
-#'
+#'   define_observation(
+#'     name = "wk12",
+#'     group = "TRTA",
+#'     subset = SAFFL == "Y",
+#'     label = "Weeks 0 to 12"
+#'   )
 #' @export
 define_observation <- function(meta,
                                name,
@@ -122,13 +126,17 @@ define_observation <- function(meta,
 #' Define analysis parameter meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' 
-#' @examples 
-#' meta_adam(population = r2rtf_adsl, 
-#' observation = r2rtf_adae) |>
-#' define_plan(plan = plan) |>
-#' define_parameter(name = "rel", 
-#' subset = AEREL %in% c("POSSIBLE", "PROBABLE"))
+#'
+#' @examples
+#' meta_adam(
+#'   population = r2rtf_adsl,
+#'   observation = r2rtf_adae
+#' ) |>
+#'   define_plan(plan = plan) |>
+#'   define_parameter(
+#'     name = "rel",
+#'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
+#'   )
 #' @export
 define_parameter <- function(meta,
                              name,
@@ -154,14 +162,17 @@ define_parameter <- function(meta,
 #' Define analysis function meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' 
-#' @examples 
-#' meta_adam(population = r2rtf_adsl, 
-#' observation = r2rtf_adae) |>
-#' define_plan(plan = plan) |>
-#' define_analysis(name = "ae_summary", 
-#' title = "Summary of Adverse Events")
 #'
+#' @examples
+#' meta_adam(
+#'   population = r2rtf_adsl,
+#'   observation = r2rtf_adae
+#' ) |>
+#'   define_plan(plan = plan) |>
+#'   define_analysis(
+#'     name = "ae_summary",
+#'     title = "Summary of Adverse Events"
+#'   )
 #' @export
 define_analysis <- function(meta,
                             name,
