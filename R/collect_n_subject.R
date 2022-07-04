@@ -58,16 +58,15 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #' collect_n_subject(meta, "apat", "sex")
 #' 
 #' @export
-collect_n_subject <- function(meta, population, parameter, var = NULL, use_na = c("ifany", "no", "always")){
+collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "no", "always")){
   
   use_na <- match.arg(use_na)
   
   # Obtain variables
-  pop_var <- collect_adam_mapping(meta, population)$var
   par_var <- collect_adam_mapping(meta, parameter)$var
   
   # Obtain Data
-  pop <- collect_population_record(meta, population, var = unique(c(pop_var, par_var, var)))
+  pop <- collect_population_record(meta, population, var = par_var)
 
   # Obtain ID
   pop_id <- collect_adam_mapping(meta, population)$id

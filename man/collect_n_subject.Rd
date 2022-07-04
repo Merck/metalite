@@ -8,7 +8,6 @@ collect_n_subject(
   meta,
   population,
   parameter,
-  var = NULL,
   use_na = c("ifany", "no", "always")
 )
 }
@@ -20,8 +19,6 @@ The term name is used as key to link information.}
 
 \item{parameter}{a character value of parameter term name.
 The term name is used as key to link information.}
-
-\item{var}{a character vector of useful variable names in an ADaM dataset.}
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
 }
