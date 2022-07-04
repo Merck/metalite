@@ -82,7 +82,6 @@ collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "
   
   # Obtain Number of Subjects
   pop_n <- n_subject(pop[[pop_id]], pop[[pop_group]], par = pop[[par_var]])
-  pop_n
   
   # Prepare subset considtion dataset
   level_par_var <- paste0(par_var," == '", levels(pop[[par_var]]), "'")
@@ -92,7 +91,6 @@ collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "
   level_pop_var <- paste(level_pop_var, fmt_quote(deparse(pop_subset)), sep = " & ")
   
   res <- outer(level_par_var, level_pop_var, FUN = paste, sep = " & ")
-  
   
   res <- data.frame(name = levels(pop[[par_var]]), res)
   names(res) <- c("name", levels(pop[[pop_group]]))
