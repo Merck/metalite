@@ -58,5 +58,5 @@ metalite:::outdata(meta = meta_dummy(),
                    group = "TRTA", 
                    reference_group = 1, 
                    order = 1:3)
-        
+
 }

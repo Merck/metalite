@@ -47,7 +47,8 @@
 #'                    group = "TRTA", 
 #'                    reference_group = 1, 
 #'                    order = 1:3)
-#'         
+#'
+#' @export         
 outdata <- function(meta,
                     population,
                     observation,
