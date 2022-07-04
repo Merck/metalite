@@ -22,7 +22,7 @@ Count number of unique subjects
 library(r2rtf)
 r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
 r2rtf_adae$SEX[1:5] <- NA
-n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
-n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
-n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
+metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
+metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
 }
