@@ -59,6 +59,7 @@ reference:
   - "collect_observation_record"
   - "collect_dataname"
   - "collect_title"
+  - "collect_n_subject"
 - title: Collect specification information 
   contents:
   - "spec_title"
@@ -95,6 +96,7 @@ reference:
   - "meta_split"
   - "meta_validate"
   - "omit_null"
+  - "n_subject"
 
 articles:
 - title: Get started

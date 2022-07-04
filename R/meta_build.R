@@ -23,7 +23,10 @@
 #' meta_adam(observation = r2rtf::r2rtf_adae, 
 #' population = r2rtf::r2rtf_adsl) |>
 #'   # define analysis plan
-#'   define_plan(plan(analysis = "ae_summary", population = "apat", observation = c("wk12"), parameter = "any;rel")) |>
+#'   define_plan(plan(analysis = "ae_summary", 
+#'                    population = "apat", 
+#'                    observation = c("wk12"), 
+#'                    parameter = "any;rel")) |>
 #'   # define population
 #'   define_population(name = "apat",
 #'                     group = "TRT01A", 
