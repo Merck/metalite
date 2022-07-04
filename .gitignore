@@ -12,4 +12,6 @@ doc
 Meta
 inst/library/
 library
- 
+metalite.Rcheck/
+metalite*.tar.gz
+metalite*.tgz
