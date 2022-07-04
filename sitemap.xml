@@ -46,6 +46,9 @@
     <loc>/reference/collect_dataname.html</loc>
   </url>
   <url>
+    <loc>/reference/collect_n_subject.html</loc>
+  </url>
+  <url>
     <loc>/reference/collect_observation_index.html</loc>
   </url>
   <url>
@@ -116,6 +119,9 @@
   </url>
   <url>
     <loc>/reference/metalite-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/n_subject.html</loc>
   </url>
   <url>
     <loc>/reference/new_outdata.html</loc>
