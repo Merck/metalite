@@ -94,8 +94,6 @@ reference:
   - "meta_run"
   - "meta_split"
   - "meta_validate"
-  - "rtf_assemble"
-  - "rtf_mock_color"
   - "omit_null"
 
 articles:
