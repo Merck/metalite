@@ -2,6 +2,7 @@
 ^\.Rproj\.user$
 ^_pkgdown\.yml$
 ^pkgdown$
+^docs$
 ^data-raw$
 ^LICENSE\.md$
 ^LICENSES_THIRD_PARTY$
