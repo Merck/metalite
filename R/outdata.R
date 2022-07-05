@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -35,7 +35,6 @@
 #' @param ... additional variables save to `outdata`.
 #'
 #' @return A list with class `outdata`. Components of the list are either quosures or constants.
-#'
 #' @examples
 #' metalite:::outdata(
 #'   meta = meta_dummy(),
@@ -50,6 +49,8 @@
 #'   reference_group = 1,
 #'   order = 1:3
 #' )
+#'
+#' @export
 outdata <- function(meta,
                     population,
                     observation,

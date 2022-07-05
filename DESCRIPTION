@@ -21,10 +21,10 @@ Depends: R (>= 4.1.0)
 Imports:
     glue,
     rlang,
-    stats,
     utils
 Suggests:
     covr,
+    dplyr,
     knitr,
     r2rtf,
     rmarkdown,

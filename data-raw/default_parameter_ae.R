@@ -25,6 +25,28 @@ default_parameter_ae <- list(
     summ_row = "with drug-related{^a} adverse events",
     summ_foot = "{^a}Determined by the investigator to be related to the drug."
   ),
+  g34 = adam_mapping(
+    name = "g34",
+    label = "grade 3-4 adverse events",
+    subset = quote(ATOXGRN %in% c(3, 4)),
+    var = "AEDECOD",
+    soc = "AEBODSYS",
+    seq = 250,
+    term1 = "Grade 3-4",
+    term2 = "",
+    summ_row = "with grade 3-4 adverse events"
+  ),
+  g340rel = adam_mapping(
+    name = "g340rel",
+    label = "drug-related grade 3-5 adverse events",
+    subset = quote(ATOXGRN %in% c(3, 4) & AREL == "Y"),
+    var = "AEDECOD",
+    soc = "AEBODSYS",
+    seq = 251,
+    term1 = "Drug-Related Grade 3-4",
+    term2 = "",
+    summ_row = "with grade 3-4 adverse events"
+  ),
   g35 = adam_mapping(
     name = "g35",
     label = "grade 3-5 adverse events",
@@ -106,7 +128,7 @@ default_parameter_ae <- list(
   dtc0rel = adam_mapping(
     name = "dtc0rel",
     label = "drug-related adverse events result in death",
-    subset = quote(AESDTC == "Y" & AREL == "Y"),
+    subset = quote(AESDTH == "Y" & AREL == "Y"),
     var = "AEDECOD",
     soc = "AEBODSYS",
     seq = 601,
@@ -150,7 +172,7 @@ default_parameter_ae <- list(
   disc0ser0rel = adam_mapping(
     name = "disc0ser0rel",
     label = "serious drug-related adverse events resulting in discontinuation",
-    subset = quote(toupper(AEACN) == "DRUG WITHDRAWN" & AESER == "Y"),
+    subset = quote(toupper(AEACN) == "DRUG WITHDRAWN" & AESER == "Y" & AREL == "Y"),
     var = "AEDECOD",
     soc = "AEBODSYS",
     seq = 850,
