@@ -50,7 +50,6 @@ adam_mapping <- function(name,
                          ...) {
   try(subset, silent = TRUE)
 
-
   exprs <- rlang::enquos(
     name = name,
     id = id,
@@ -93,9 +92,7 @@ new_adam_mapping <- function(x, env = globalenv()) {
 #' \dontrun{
 #' validate_adam_mapping(new_adam_mapping(list(name = "apat")))
 #' }
-#'
 validate_adam_mapping <- function(x) {
-
   # All required variable
   char <- c("name", "id", "group", "var", "header", "label")
 

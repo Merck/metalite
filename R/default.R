@@ -30,6 +30,7 @@ default_all <- function() {
 #' @param x an `adam_mapping` object
 #' @examples
 #' default_apply(adam_mapping(name = "apat"))
+#' @export
 default_apply <- function(x) {
   default <- default_all()
 
