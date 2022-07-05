@@ -19,10 +19,9 @@
 #'
 #' This function is only for illustration purpose.
 #' `r2rtf` package is required.
-#' 
-#' @examples  
+#'
+#' @examples
 #' meta_dummy()
-#' 
 #' @export
 meta_dummy <- function() {
   adsl <- r2rtf::r2rtf_adsl

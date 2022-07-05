@@ -27,8 +27,10 @@ The term name is used as key to link information.}
 This function is a wrapper of \code{expand.grid}
 }
 \examples{
-metalite:::new_plan(analysis = "ae_specific", 
-                    population = "apat", 
-                    observation = c("wk12", "wk24"), 
-                    parameter = c("any", "rel", "ser"))
+metalite:::new_plan(
+  analysis = "ae_specific",
+  population = "apat",
+  observation = c("wk12", "wk24"),
+  parameter = c("any", "rel", "ser")
+)
 }

@@ -18,22 +18,21 @@
 #' Assemble RTF files into one single RTF file
 #'
 #' @param path a vector of RTF file path
-#' 
-#' @examples 
-#' library(r2rtf)
-#' 
-#' head(iris) %>%
-#' rtf_body() %>%
-#' rtf_encode() %>%
-#' write_rtf(file = paste0(tempdir(), "/ex-1.rtf"))
-#' 
-#' tail(iris) %>%
-#' rtf_body() %>%
-#' rtf_encode() %>%
-#' write_rtf(file = paste0(tempdir(), "/ex-2.rtf"))
-#' 
-#' rtf_assemble(c(paste0(tempdir(), "/ex-1.rtf"), paste0(tempdir(), "/ex-2.rtf")))
 #'
+#' @examples
+#' library(r2rtf)
+#'
+#' head(iris) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file = paste0(tempdir(), "/ex-1.rtf"))
+#'
+#' tail(iris) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file = paste0(tempdir(), "/ex-2.rtf"))
+#'
+#' rtf_assemble(c(paste0(tempdir(), "/ex-1.rtf"), paste0(tempdir(), "/ex-2.rtf")))
 #' @export
 rtf_assemble <- function(path) {
   rtf <- lapply(path, readLines)
@@ -58,15 +57,14 @@ rtf_assemble <- function(path) {
 #' The function will automatically replace text between `<` and `>` into blue.
 #'
 #' @param text a string.
-#' @examples 
+#' @examples
 #' library(r2rtf)
-#' 
-#' head(iris)  %>%
-#' r2rtf::rtf_title(rtf_mock_color("{week}")) %>%
-#' rtf_body() %>%
-#' rtf_encode() %>%
-#' write_rtf(file = paste0("~/ex-1.rtf"))
-#' 
+#'
+#' head(iris) %>%
+#'   r2rtf::rtf_title(rtf_mock_color("{week}")) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file = paste0("~/ex-1.rtf"))
 #' @export
 rtf_mock_color <- function(text) {
 

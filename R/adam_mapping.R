@@ -31,16 +31,15 @@
 #' @param ... additional variables.
 #'
 #' @return A list with class `adam_mapping`. Components of the list are either quosures or constants.
-#' 
-#' @examples 
+#'
+#' @examples
 #' adam_mapping(
-#' name = "apat",
-#' id = "USUBJID",
-#' group = "TRT01A",
-#' subset = TRTFL == 'Y',
-#' label = "All Participants as Treated"
+#'   name = "apat",
+#'   id = "USUBJID",
+#'   group = "TRT01A",
+#'   subset = TRTFL == "Y",
+#'   label = "All Participants as Treated"
 #' )
-#' 
 #' @export
 adam_mapping <- function(name,
                          id = NULL,
@@ -50,7 +49,7 @@ adam_mapping <- function(name,
                          label = NULL,
                          ...) {
   try(subset, silent = TRUE)
-  
+
 
   exprs <- rlang::enquos(
     name = name,

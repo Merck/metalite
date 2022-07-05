@@ -14,3 +14,12 @@ define_plan(meta, plan)
 \description{
 Define analysis plan meta information for ADaM dataset
 }
+\examples{
+library(r2rtf)
+
+meta_adam(
+  population = r2rtf::r2rtf_adsl,
+  observation = r2rtf::r2rtf_adae
+) |>
+  define_plan(plan)
+}

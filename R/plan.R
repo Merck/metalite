@@ -30,24 +30,27 @@
 #' @param mock a numeric value of mock table number.
 #' @param ... additional arguments
 #'
-#' @examples 
-#' 
+#' @examples
+#'
 #' # example 1
-#' # create an analysis plan of AE summary 
+#' # create an analysis plan of AE summary
 #' # with any AE, drug-related AE and serious AE
-#' plan(analysis = "ae_summary", 
-#'      population = "apat", 
-#'      observation = c("wk12", "wk24"), 
-#'      parameter = "any;rel;ser")
-#' 
+#' plan(
+#'   analysis = "ae_summary",
+#'   population = "apat",
+#'   observation = c("wk12", "wk24"),
+#'   parameter = "any;rel;ser"
+#' )
+#'
 #' # example 2
 #' # create an analysis plan of AE specific
 #' # with any AE, drug-related AE and serious AE
-#' plan(analysis = "ae_specific", 
-#'      population = "apat", 
-#'      observation = c("wk12", "wk24"), 
-#'      parameter = c("any", "rel", "ser"))
-#'      
+#' plan(
+#'   analysis = "ae_specific",
+#'   population = "apat",
+#'   observation = c("wk12", "wk24"),
+#'   parameter = c("any", "rel", "ser")
+#' )
 #' @export
 #'
 plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
@@ -63,13 +66,15 @@ plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
 #' This function is a wrapper of `expand.grid`
 #'
 #' @inheritParams plan
-#' @examples 
-#' metalite:::new_plan(analysis = "ae_specific", 
-#'                     population = "apat", 
-#'                     observation = c("wk12", "wk24"), 
-#'                     parameter = c("any", "rel", "ser"))
+#' @examples
+#' metalite:::new_plan(
+#'   analysis = "ae_specific",
+#'   population = "apat",
+#'   observation = c("wk12", "wk24"),
+#'   parameter = c("any", "rel", "ser")
+#' )
 new_plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
-  # create a data frame from all combinations of the supplied vectors or factors. 
+  # create a data frame from all combinations of the supplied vectors or factors.
   x <- expand.grid(
     mock = mock,
     analysis = analysis,
@@ -88,10 +93,9 @@ new_plan <- function(analysis, population, observation, parameter, mock = 1, ...
 #' Validate an analysis plan object
 #'
 #' @param plan a `meta_plan` object
-#' @examples 
+#' @examples
 #' x <- plan(analysis = "ae_summary", population = "apat", observation = "wk12", parameter = "any")
 #' metalite:::validate_plan(x)
-#' 
 validate_plan <- function(plan) {
   stopifnot(all(c("meta_plan", "data.frame") %in% class(plan)))
   stopifnot(all(c("analysis", "population", "observation", "parameter") %in% names(plan)))
@@ -105,10 +109,14 @@ validate_plan <- function(plan) {
 #' @inheritParams validate_plan
 #'
 #' @examples
-#' plan("ae_summary", population = "apat", 
-#'       observation = c("wk12", "wk24"), parameter = "any;rel") |>
-#'   add_plan("ae_specific", population = "apat", 
-#'             observation = c("wk12", "wk24"), parameter = c("any", "rel"))
+#' plan("ae_summary",
+#'   population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel"
+#' ) |>
+#'   add_plan("ae_specific",
+#'     population = "apat",
+#'     observation = c("wk12", "wk24"), parameter = c("any", "rel")
+#'   )
 #' @export
 add_plan <- function(plan, analysis, population, observation, parameter, ...) {
   plan <- validate_plan(plan)
