@@ -74,16 +74,20 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">metalite</span><span class="fu">:::</span><span class="fu">validate_outdata</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  <span class="fu">metalite</span><span class="fu">:::</span><span class="fu"><a href="outdata.html">outdata</a></span><span class="op">(</span>meta <span class="op">=</span> <span class="fu"><a href="meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>  population <span class="op">=</span> <span class="st">"apat"</span>, </span></span>
-<span class="r-in"><span>  observation <span class="op">=</span> <span class="st">"wk12"</span>, </span></span>
-<span class="r-in"><span>  parameter <span class="op">=</span> <span class="st">"rel"</span>, </span></span>
-<span class="r-in"><span>  n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    TRTA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Xanomeline High Dose"</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">86</span>, <span class="fl">84</span>, <span class="fl">84</span><span class="op">)</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>  group <span class="op">=</span> <span class="st">"TRTA"</span>, </span></span>
-<span class="r-in"><span>  reference_group <span class="op">=</span> <span class="fl">1</span>, </span></span>
-<span class="r-in"><span>  order <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">metalite</span><span class="fu">:::</span><span class="fu"><a href="outdata.html">outdata</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    meta <span class="op">=</span> <span class="fu"><a href="meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    population <span class="op">=</span> <span class="st">"apat"</span>,</span></span>
+<span class="r-in"><span>    observation <span class="op">=</span> <span class="st">"wk12"</span>,</span></span>
+<span class="r-in"><span>    parameter <span class="op">=</span> <span class="st">"rel"</span>,</span></span>
+<span class="r-in"><span>    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      TRTA <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Placebo"</span>, <span class="st">"Xanomeline Low Dose"</span>, <span class="st">"Xanomeline High Dose"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">86</span>, <span class="fl">84</span>, <span class="fl">84</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    group <span class="op">=</span> <span class="st">"TRTA"</span>,</span></span>
+<span class="r-in"><span>    reference_group <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    order <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ meta           :List of 7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ population     : chr "apat"</span>
@@ -93,7 +97,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ order          : int [1:3] 1 2 3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ group          : chr "TRTA"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ reference_group: num 1</span>
-<span class="r-in"><span>                            </span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
