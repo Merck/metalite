@@ -11,7 +11,5 @@ This function is only for illustration purpose.
 \code{r2rtf} package is required.
 }
 \examples{
- 
 meta_dummy()
-
 }

@@ -18,3 +18,17 @@ define_parameter(meta, name, subset, ...)
 \description{
 Define analysis parameter meta information for ADaM dataset
 }
+\examples{
+plan <- plan(analysis = "ae_summary", population = "apat", 
+observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+
+meta_adam(
+  population = r2rtf::r2rtf_adsl,
+  observation = r2rtf::r2rtf_adae
+) |>
+  define_plan(plan = plan) |>
+  define_parameter(
+    name = "rel",
+    subset = AEREL \%in\% c("POSSIBLE", "PROBABLE")
+  )
+}

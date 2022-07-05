@@ -13,28 +13,41 @@ meta_build(meta)
 Build complete meta information
 }
 \examples{
-meta_adam(observation = r2rtf::r2rtf_adae, 
-population = r2rtf::r2rtf_adsl) |>
+meta_adam(
+  observation = r2rtf::r2rtf_adae,
+  population = r2rtf::r2rtf_adsl
+) |>
   # define analysis plan
-  define_plan(plan(analysis = "ae_summary", 
-                   population = "apat", 
-                   observation = c("wk12"), 
-                   parameter = "any;rel")) |>
+  define_plan(
+    plan(
+      analysis = "ae_summary",
+      population = "apat",
+      observation = c("wk12"),
+      parameter = "any;rel"
+    )
+  ) |>
   # define population
-  define_population(name = "apat",
-                    group = "TRT01A", 
-                    subset = SAFFL == "Y") |>
+  define_population(
+    name = "apat",
+    group = "TRT01A",
+    subset = SAFFL == "Y"
+  ) |>
   # define observation
-  define_observation(name = "wk12",
-                     group = "TRTA", 
-                     subset = SAFFL == "Y", 
-                     label = "Weeks 0 to 12") |>
+  define_observation(
+    name = "wk12",
+    group = "TRTA",
+    subset = SAFFL == "Y",
+    label = "Weeks 0 to 12"
+  ) |>
   # define parameter - rel
-  define_parameter(name = "rel", 
-                   subset = AEREL \%in\% c("POSSIBLE", "PROBABLE")) |>
+  define_parameter(
+    name = "rel",
+    subset = AEREL \%in\% c("POSSIBLE", "PROBABLE")
+  ) |>
   # define analysis
-  define_parameter(name = "rel", 
-                   subset = AEREL \%in\% c("POSSIBLE", "PROBABLE")) |>
+  define_parameter(
+    name = "rel",
+    subset = AEREL \%in\% c("POSSIBLE", "PROBABLE")
+  ) |>
   meta_build()
-  
 }

@@ -32,6 +32,14 @@
 #'
 #' @return A list with class `adam_mapping`. Components of the list are either quosures or constants.
 #'
+#' @examples
+#' adam_mapping(
+#'   name = "apat",
+#'   id = "USUBJID",
+#'   group = "TRT01A",
+#'   subset = TRTFL == "Y",
+#'   label = "All Participants as Treated"
+#' )
 #' @export
 adam_mapping <- function(name,
                          id = NULL,
@@ -84,9 +92,7 @@ new_adam_mapping <- function(x, env = globalenv()) {
 #' \dontrun{
 #' validate_adam_mapping(new_adam_mapping(list(name = "apat")))
 #' }
-#'
 validate_adam_mapping <- function(x) {
-
   # All required variable
   char <- c("name", "id", "group", "var", "header", "label")
 

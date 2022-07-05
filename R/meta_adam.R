@@ -19,17 +19,15 @@
 #'
 #' @param observation a data frame for observation level data
 #' @param population a data frame for population level data. Default is the same as `observation`
-#' 
-#' @examples 
+#'
+#' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
-#' 
 #' @export
 meta_adam <- function(observation,
                       population = observation) {
-  
   attr(population, "data_name") <- deparse(substitute(population))
   attr(observation, "data_name") <- deparse(substitute(observation))
-  
+
   # Creating a `meta_adam` by using structure() function
   structure(
     list(
@@ -49,33 +47,32 @@ meta_adam <- function(observation,
 #' Print a meta data with its population, observation and analysis plans
 #' @param x a object returned by \code{meta_adam}
 #' @param ... additional variables save to `print`
-#' 
-#' @examples 
+#'
+#' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()
-#' 
 #' @export
 print.meta_adam <- function(x, ...) {
   e <- c(".$data_population", ".$data_observation", ".$plan")
-  
+
   # print the number of subjects in population & observation
   cat("ADaM Meta Data:", "\n")
   cat("  ", e[1], "\tPopulation data", "with", nrow(x$data_population), "subjects", "\n")
   cat("  ", e[2], "\tObservation data", "with", nrow(x$data_observation), "records", "\n")
-  
+
   # print the number of analysis plans
   if (length(x$plan) > 0) {
     cat("  ", e[3], "\tAnalysis plan", "with", nrow(x$plan), "plans", "\n")
   }
 
   cat("\n\n")
-  
+
   # print the details of population
   if (length(x$population) > 0) {
     cat(" ", "Analysis population type:\n")
     print(bind_rows2(lapply(x$population, as.data.frame)))
     cat("\n\n")
   }
-  
+
   # print the details of observation
   if (length(x$observation) > 0) {
     cat(" ", "Analysis observation type:\n")
