@@ -48,6 +48,8 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #'
 #' @inheritParams plan
 #' @inheritParams define_population
+#' @param listing a logical value to display drill down listing per row.
+#' @param histogram a logical value to display histogram by group. 
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #'
 #' @examples
@@ -61,7 +63,8 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 collect_n_subject <- function(meta, 
                               population, 
                               parameter, 
-                              row_listing = FALSE, 
+                              listing = FALSE, 
+                              histogram = FALSE,
                               use_na = c("ifany", "no", "always")){
   
   use_na <- match.arg(use_na)
@@ -127,7 +130,7 @@ collect_n_subject <- function(meta,
   rownames(res) <- NULL
   
   # Create row listing 
-  if(row_listing){
+  if(listing){
     
     row_subset <- paste(var_subset, pop_subset, sep = " & ")
     listing <- lapply(var_subset, function(x){
@@ -139,5 +142,32 @@ collect_n_subject <- function(meta,
     listing <- NULL
   }
   
-  list(n = pop_n, subset = res, listing = listing)  
+  # Show distribution graph
+  if(histogram){
+
+    ana <- data.frame(id = id, group = group, var = pop[[par_var]])
+    ana <- stats::na.omit(ana)
+    
+    label <- attr(meta$data_population[[par_var]], "label")
+    
+    pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
+      ggplot2::facet_wrap(~ group) + 
+      ggplot2::xlab(label) + 
+      ggplot2::ylab("Number of Subjects") + 
+      ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
+      ggplot2::theme_bw() 
+    
+    if(any(c("factor", "character") %in% class(ana$var))){
+      pop_hist <- pop_hist + ggplot2::geom_bar() 
+    }
+    
+    if(any(c("numeric", "integer", "Date") %in% class(ana$var))){
+      pop_hist <- pop_hist + ggplot2::geom_histogram(bins = 5) 
+    }  
+    
+  }else{
+    pop_hist <- NULL
+  }
+  
+  list(n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
 }
