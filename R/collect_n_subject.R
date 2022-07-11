@@ -85,6 +85,7 @@ collect_n_subject <- function(meta,
   id <- pop[[pop_id]]
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
+  class_var <- class(var)
   
   # standardize group variable 
   stopifnot(any(c("factor", "character") %in% class(group)))
@@ -93,20 +94,58 @@ collect_n_subject <- function(meta,
   
   # standardize continuous variables 
   stopifnot(any(c("numeric", "integer", "Date", "factor", "character") %in% class(var)))
-  if(any(c("numeric", "integer", "Date") %in% class(var))){
+  if(any(c("numeric", "integer", "Date") %in% class_var)){
+    
+    # calculate summary statistics
+    pop_num <- tapply(var, group, function(x){
+      value <-c( mean = mean(x, na.rm = TRUE), 
+                 sd = sd(x, na.rm = TRUE),
+                 median = median(x, na.rm = TRUE),
+                 min = min(x, na.rm = TRUE), 
+                 max = max(x, na.rm = TRUE))
+      value <- formatC(value, format = "f", digits = 1)
+      c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
+    }) 
+    pop_num <- data.frame(name = c("Mean (SD)", "Median [Min, Max]"), 
+                          do.call(cbind, pop_num))
+    
     var <- ifelse(is.na(var), "Missing", "Subjects with Data")
     var <- factor(var, levels = c("Subjects with Data", "Missing"))
+    
+    # Obtain Number of Subjects
+    pop_n <- n_subject(id, group, par = var)
+    
+    # combine results
+    names(pop_num) <- names(pop_n)  
   }
   
   # standardize categorical variables
-  if(any(c("factor", "character") %in% class(var))){
+  if(any(c("factor", "character") %in% class_var)){
     var <- factor(var, exclude = NULL)
     levels(var)[is.na(levels(var))] <- "Missing"
+    
+    # Obtain Number of Subjects
+    pop_n <- n_subject(id, group, par = var)
   }
   
-  # Obtain Number of Subjects
-  pop_n <- n_subject(id, group, par = var)
+  # add percentage 
+  pop_tmp <- pop_n
+  for(i in seq(names(pop_n))){
+    if("integer" %in% class(pop_n[[i]])){
+      pct <- formatC(pop_n[[i]] / sum(pop_n[[i]]) * 100, format = "f", digits = 1, width = 5)
+      pop_tmp[[i]] <- glue::glue("{pop_n[[i]]} ({pct}%)")
+    }
+  }
   
+  # prepare summary table
+  if(any(c("numeric", "integer", "Date") %in% class_var)){
+    pop_table <- rbind(pop_n[1, ], pop_num, pop_tmp[2, ]) 
+  }
+  
+  if(any(c("factor", "character") %in% class_var)){
+    pop_table <- pop_tmp
+  }
+
   # Prepare subset condition
   subset_condition <- function(x, name){
     switch(x, 
@@ -157,11 +196,11 @@ collect_n_subject <- function(meta,
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
     
-    if(any(c("factor", "character") %in% class(ana$var))){
+    if(any(c("factor", "character") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_bar() 
     }
     
-    if(any(c("numeric", "integer", "Date") %in% class(ana$var))){
+    if(any(c("numeric", "integer", "Date") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_histogram(bins = 5) 
     }  
     
@@ -169,5 +208,5 @@ collect_n_subject <- function(meta,
     pop_hist <- NULL
   }
   
-  list(n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
+  list(table = pop_table, n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
 }
