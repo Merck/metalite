@@ -94,8 +94,8 @@ collect_n_subject <- function(meta,
   # standardize continuous variables 
   stopifnot(any(c("numeric", "integer", "Date", "factor", "character") %in% class(var)))
   if(any(c("numeric", "integer", "Date") %in% class(var))){
-    var <- ifelse(is.na(var), "Missing", "Subjects in Population")
-    var <- factor(var, levels = c("Subjects in Population", "Missing"))
+    var <- ifelse(is.na(var), "Missing", "Subjects with Data")
+    var <- factor(var, levels = c("Subjects with Data", "Missing"))
   }
   
   # standardize categorical variables
@@ -110,7 +110,7 @@ collect_n_subject <- function(meta,
   # Prepare subset condition
   subset_condition <- function(x, name){
     switch(x, 
-           "Subjects in Population" = glue::glue("! is.na({name})"), 
+           "Subjects with Data" = glue::glue("! is.na({name})"), 
            "Missing" = glue::glue("is.na({name})"), 
            glue::glue("{name} == '{x}'")
     )
