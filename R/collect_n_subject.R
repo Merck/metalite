@@ -58,7 +58,11 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #' collect_n_subject(meta, "apat", "sex")
 #' 
 #' @export
-collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "no", "always")){
+collect_n_subject <- function(meta, 
+                              population, 
+                              parameter, 
+                              row_listing = FALSE, 
+                              use_na = c("ifany", "no", "always")){
   
   use_na <- match.arg(use_na)
   
@@ -67,38 +71,73 @@ collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "
   
   # Obtain Data
   pop <- collect_population_record(meta, population, var = par_var)
-
+  
   # Obtain ID
   pop_id <- collect_adam_mapping(meta, population)$id
   
   # Obtain Group 
   pop_group <- collect_adam_mapping(meta, population)$group
   
-  # Proper Handle Missing Value 
-  pop[[par_var]] <- factor(pop[[par_var]], exclude = NULL)
-  pop[[pop_group]] <- factor(pop[[pop_group]], exclude = NULL)
-  levels(pop[[par_var]])[is.na(levels(pop[[par_var]]))] <- "Missing"
-  levels(pop[[pop_group]])[is.na(levels(pop[[pop_group]]))] <- "Missing"
+  # define analysis dataset
+  id <- pop[[pop_id]]
+  group <- pop[[pop_group]]
+  var <- pop[[par_var]]
+  
+  # standardize group variable 
+  stopifnot(any(c("factor", "character") %in% class(group)))
+  group <- factor(group, exclude = NULL)
+  levels(group)[is.na(levels(group))] <- "Missing"
+  
+  # standardize continuous variables 
+  stopifnot(any(c("numeric", "integer", "Date", "factor", "character") %in% class(var)))
+  if(any(c("numeric", "integer", "Date") %in% class(var))){
+    var <- ifelse(is.na(var), "Missing", "Subjects in Population")
+    var <- factor(var, levels = c("Subjects in Population", "Missing"))
+  }
+  
+  # standardize categorical variables
+  if(any(c("factor", "character") %in% class(var))){
+    var <- factor(var, exclude = NULL)
+    levels(var)[is.na(levels(var))] <- "Missing"
+  }
   
   # Obtain Number of Subjects
-  pop_n <- n_subject(pop[[pop_id]], pop[[pop_group]], par = pop[[par_var]])
-  pop_n
+  pop_n <- n_subject(id, group, par = var)
   
-  # Prepare subset considtion dataset
-  level_par_var <- paste0(par_var," == '", levels(pop[[par_var]]), "'")
-  level_pop_var <- paste0(pop_group, " == '", levels(pop[[pop_group]]), "'")
+  # Prepare subset condition
+  subset_condition <- function(x, name){
+    switch(x, 
+           "Subjects in Population" = glue::glue("! is.na({name})"), 
+           "Missing" = glue::glue("is.na({name})"), 
+           glue::glue("{name} == '{x}'")
+    )
+  }
   
+  var_subset <- vapply(levels(var), subset_condition, name = par_var, FUN.VALUE = character(1))
+  group_subset <-vapply(levels(group), subset_condition, name = pop_group, FUN.VALUE = character(1))
   pop_subset <- collect_adam_mapping(meta, population)$subset
-  level_pop_var <- paste(level_pop_var, fmt_quote(deparse(pop_subset)), sep = " & ")
+  pop_subset<- fmt_quote(deparse(pop_subset))
   
-  res <- outer(level_par_var, level_pop_var, FUN = paste, sep = " & ")
+  full_subset <- paste(group_subset, pop_subset, sep = " & ")
+  full_subset <- outer(var_subset, full_subset, FUN = paste, sep = " & ")
   
+  res <- data.frame(name = levels(var), full_subset)
+  names(res) <- c("name", levels(group))
+  res <- res[1:nrow(pop_n), 1:ncol(pop_n)]
+  rownames(res) <- NULL
   
-  res <- data.frame(name = levels(pop[[par_var]]), res)
-  names(res) <- c("name", levels(pop[[pop_group]]))
-  res <- res[1:nrow(pop_n), 1:ncol(pop_n)]  
+  # Create row listing 
+  if(row_listing){
+    
+    row_subset <- paste(var_subset, pop_subset, sep = " & ")
+    listing <- lapply(var_subset, function(x){
+      pop_listing <- subset(pop, rlang::eval_tidy(expr = str2lang(x), data = pop))
+      pop_listing <- reset_label(pop_listing, meta$data_population)
+    })
+    
+  }else{
+    listing <- NULL
+  }
   
-  list(n = pop_n, subset = res)  
+  list(n = pop_n, subset = res, listing = listing)  
 }
-
-
