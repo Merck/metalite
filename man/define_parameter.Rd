@@ -4,7 +4,7 @@
 \alias{define_parameter}
 \title{Define analysis parameter meta information for ADaM dataset}
 \usage{
-define_parameter(meta, name, subset, ...)
+define_parameter(meta, name, subset = NULL, ...)
 }
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
