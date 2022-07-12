@@ -40,7 +40,9 @@ reference:
   - "meta_adam"
   - "print.meta_adam"
   - "meta_build"
+- title: Meta Dummy Examples
   - "meta_dummy"
+  - "meta_dummy_exploration"
 - title: Component definition 
   contents:
   - "define_plan"
@@ -97,7 +99,8 @@ reference:
   - "meta_validate"
   - "omit_null"
   - "n_subject"
-
+  - "reset_label"
+  
 articles:
 - title: Get started
   desc: "The first topic to read"
