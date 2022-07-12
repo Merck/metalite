@@ -48,6 +48,8 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #'
 #' @inheritParams plan
 #' @inheritParams define_population
+#' @param listing a logical value to display drill down listing per row.
+#' @param histogram a logical value to display histogram by group. 
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #'
 #' @examples
@@ -58,7 +60,12 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #' collect_n_subject(meta, "apat", "sex")
 #' 
 #' @export
-collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "no", "always")){
+collect_n_subject <- function(meta, 
+                              population, 
+                              parameter, 
+                              listing = FALSE, 
+                              histogram = FALSE,
+                              use_na = c("ifany", "no", "always")){
   
   use_na <- match.arg(use_na)
   
@@ -67,38 +74,139 @@ collect_n_subject <- function(meta, population, parameter, use_na = c("ifany", "
   
   # Obtain Data
   pop <- collect_population_record(meta, population, var = par_var)
-
+  
   # Obtain ID
   pop_id <- collect_adam_mapping(meta, population)$id
   
   # Obtain Group 
   pop_group <- collect_adam_mapping(meta, population)$group
   
-  # Proper Handle Missing Value 
-  pop[[par_var]] <- factor(pop[[par_var]], exclude = NULL)
-  pop[[pop_group]] <- factor(pop[[pop_group]], exclude = NULL)
-  levels(pop[[par_var]])[is.na(levels(pop[[par_var]]))] <- "Missing"
-  levels(pop[[pop_group]])[is.na(levels(pop[[pop_group]]))] <- "Missing"
+  # define analysis dataset
+  id <- pop[[pop_id]]
+  group <- pop[[pop_group]]
+  var <- pop[[par_var]]
+  class_var <- class(var)
   
-  # Obtain Number of Subjects
-  pop_n <- n_subject(pop[[pop_id]], pop[[pop_group]], par = pop[[par_var]])
-  pop_n
+  # standardize group variable 
+  stopifnot(any(c("factor", "character") %in% class(group)))
+  group <- factor(group, exclude = NULL)
+  levels(group)[is.na(levels(group))] <- "Missing"
   
-  # Prepare subset considtion dataset
-  level_par_var <- paste0(par_var," == '", levels(pop[[par_var]]), "'")
-  level_pop_var <- paste0(pop_group, " == '", levels(pop[[pop_group]]), "'")
+  # standardize continuous variables 
+  stopifnot(any(c("numeric", "integer", "Date", "factor", "character") %in% class(var)))
+  if(any(c("numeric", "integer", "Date") %in% class_var)){
+    
+    # calculate summary statistics
+    pop_num <- tapply(var, group, function(x){
+      value <-c( mean = mean(x, na.rm = TRUE), 
+                 sd = stats::sd(x, na.rm = TRUE),
+                 median = stats::median(x, na.rm = TRUE),
+                 min = min(x, na.rm = TRUE), 
+                 max = max(x, na.rm = TRUE))
+      value <- formatC(value, format = "f", digits = 1)
+      c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
+    }) 
+    pop_num <- data.frame(name = c("Mean (SD)", "Median [Min, Max]"), 
+                          do.call(cbind, pop_num))
+    
+    var <- ifelse(is.na(var), "Missing", "Subjects with Data")
+    var <- factor(var, levels = c("Subjects with Data", "Missing"))
+    
+    # Obtain Number of Subjects
+    pop_n <- n_subject(id, group, par = var)
+    
+    # combine results
+    names(pop_num) <- names(pop_n)  
+  }
   
+  # standardize categorical variables
+  if(any(c("factor", "character") %in% class_var)){
+    var <- factor(var, exclude = NULL)
+    levels(var)[is.na(levels(var))] <- "Missing"
+    
+    # Obtain Number of Subjects
+    pop_n <- n_subject(id, group, par = var)
+  }
+  
+  # add percentage 
+  pop_tmp <- pop_n
+  for(i in seq(names(pop_n))){
+    if("integer" %in% class(pop_n[[i]])){
+      pct <- formatC(pop_n[[i]] / sum(pop_n[[i]]) * 100, format = "f", digits = 1, width = 5)
+      pop_tmp[[i]] <- glue::glue("{pop_n[[i]]} ({pct}%)")
+    }
+  }
+  
+  # prepare summary table
+  if(any(c("numeric", "integer", "Date") %in% class_var)){
+    pop_table <- rbind(pop_n[1, ], pop_num, pop_tmp[2, ]) 
+  }
+  
+  if(any(c("factor", "character") %in% class_var)){
+    pop_table <- pop_tmp
+  }
+
+  # Prepare subset condition
+  subset_condition <- function(x, name){
+    switch(x, 
+           "Subjects with Data" = glue::glue("! is.na({name})"), 
+           "Missing" = glue::glue("is.na({name})"), 
+           glue::glue("{name} == '{x}'")
+    )
+  }
+  
+  var_subset <- vapply(levels(var), subset_condition, name = par_var, FUN.VALUE = character(1))
+  group_subset <-vapply(levels(group), subset_condition, name = pop_group, FUN.VALUE = character(1))
   pop_subset <- collect_adam_mapping(meta, population)$subset
-  level_pop_var <- paste(level_pop_var, fmt_quote(deparse(pop_subset)), sep = " & ")
+  pop_subset<- fmt_quote(deparse(pop_subset))
   
-  res <- outer(level_par_var, level_pop_var, FUN = paste, sep = " & ")
+  full_subset <- paste(group_subset, pop_subset, sep = " & ")
+  full_subset <- outer(var_subset, full_subset, FUN = paste, sep = " & ")
   
+  res <- data.frame(name = levels(var), full_subset)
+  names(res) <- c("name", levels(group))
+  res <- res[1:nrow(pop_n), 1:ncol(pop_n)]
+  rownames(res) <- NULL
   
-  res <- data.frame(name = levels(pop[[par_var]]), res)
-  names(res) <- c("name", levels(pop[[pop_group]]))
-  res <- res[1:nrow(pop_n), 1:ncol(pop_n)]  
+  # Create row listing 
+  if(listing){
+    
+    row_subset <- paste(var_subset, pop_subset, sep = " & ")
+    listing <- lapply(var_subset, function(x){
+      pop_listing <- subset(pop, rlang::eval_tidy(expr = str2lang(x), data = pop))
+      pop_listing <- reset_label(pop_listing, meta$data_population)
+    })
+    
+  }else{
+    listing <- NULL
+  }
   
-  list(n = pop_n, subset = res)  
+  # Show distribution graph
+  if(histogram){
+
+    ana <- data.frame(id = id, group = group, var = pop[[par_var]])
+    ana <- stats::na.omit(ana)
+    
+    label <- attr(meta$data_population[[par_var]], "label")
+    
+    pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
+      ggplot2::facet_wrap(~ group) + 
+      ggplot2::xlab(label) + 
+      ggplot2::ylab("Number of Subjects") + 
+      ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
+      ggplot2::theme_bw() 
+    
+    if(any(c("factor", "character") %in% class_var)){
+      pop_hist <- pop_hist + ggplot2::geom_bar() 
+    }
+    
+    if(any(c("numeric", "integer", "Date") %in% class_var)){
+      pop_hist <- pop_hist + ggplot2::geom_histogram(bins = 5) 
+    }  
+    
+  }else{
+    pop_hist <- NULL
+  }
+  
+  list(table = pop_table, n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
 }
-
-

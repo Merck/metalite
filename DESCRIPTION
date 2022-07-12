@@ -21,8 +21,10 @@ Depends: R (>= 4.1.0)
 Imports:
     glue,
     rlang,
-    utils
+    utils,
+    stats
 Suggests:
+    ggplot2,
     covr,
     dplyr,
     knitr,

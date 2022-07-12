@@ -66,7 +66,8 @@ define_population <- function(meta,
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -114,7 +115,8 @@ define_observation <- function(meta,
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -150,14 +152,15 @@ define_observation <- function(meta,
 #' @export
 define_parameter <- function(meta,
                              name,
-                             subset,
+                             subset = NULL,
                              ...) {
   if (!any(grepl(name, meta$plan[["parameter"]]))) {
     warning(name, " is not in .$plan")
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     subset = !!rlang::enquo(subset),
@@ -194,6 +197,8 @@ define_analysis <- function(meta,
     warning(name, " is not in .$plan")
   }
 
+  list(...)
+  
   x <- adam_mapping(name = !!name, ...)
 
   meta$analysis[[name]] <- default_apply(x)

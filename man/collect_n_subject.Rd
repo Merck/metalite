@@ -8,6 +8,8 @@ collect_n_subject(
   meta,
   population,
   parameter,
+  listing = FALSE,
+  histogram = FALSE,
   use_na = c("ifany", "no", "always")
 )
 }
@@ -19,6 +21,10 @@ The term name is used as key to link information.}
 
 \item{parameter}{a character value of parameter term name.
 The term name is used as key to link information.}
+
+\item{listing}{a logical value to display drill down listing per row.}
+
+\item{histogram}{a logical value to display histogram by group.}
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
 }
