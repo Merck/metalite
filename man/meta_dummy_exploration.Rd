@@ -15,8 +15,20 @@ meta_dummy_exploration(
 \arguments{
 \item{data}{a data frame}
 
-\item{group}{a character value of group variable name in \code{data}.}
+\item{group}{a character vector of group variable names in an ADaM dataset.}
+
+\item{name}{a character value of term name. The term name is used as key to link information.}
+
+\item{subset}{an expression to identify analysis records. Refer \code{subset()} function.}
+
+\item{label}{a character value of analysis label.}
 }
 \description{
 Create a data exploration \code{meta_adam} object
+}
+\examples{
+meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
+collect_n_subject(meta, "ase", "AGE")
+collect_n_subject(meta, "ase", "SEX")
+
 }

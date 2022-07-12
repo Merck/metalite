@@ -99,8 +99,8 @@ collect_n_subject <- function(meta,
     # calculate summary statistics
     pop_num <- tapply(var, group, function(x){
       value <-c( mean = mean(x, na.rm = TRUE), 
-                 sd = sd(x, na.rm = TRUE),
-                 median = median(x, na.rm = TRUE),
+                 sd = stats::sd(x, na.rm = TRUE),
+                 median = stats::median(x, na.rm = TRUE),
                  min = min(x, na.rm = TRUE), 
                  max = max(x, na.rm = TRUE))
       value <- formatC(value, format = "f", digits = 1)
