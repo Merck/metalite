@@ -109,6 +109,9 @@
     <loc>/reference/meta_dummy.html</loc>
   </url>
   <url>
+    <loc>/reference/meta_dummy_exploration.html</loc>
+  </url>
+  <url>
     <loc>/reference/meta_run.html</loc>
   </url>
   <url>
@@ -140,6 +143,9 @@
   </url>
   <url>
     <loc>/reference/print.meta_adam.html</loc>
+  </url>
+  <url>
+    <loc>/reference/reset_label.html</loc>
   </url>
   <url>
     <loc>/reference/spec_analysis_population.html</loc>
