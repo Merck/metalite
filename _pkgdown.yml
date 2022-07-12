@@ -41,6 +41,7 @@ reference:
   - "print.meta_adam"
   - "meta_build"
 - title: Meta Dummy Examples
+  contents:
   - "meta_dummy"
   - "meta_dummy_exploration"
 - title: Component definition 
