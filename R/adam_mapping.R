@@ -48,8 +48,10 @@ adam_mapping <- function(name,
                          subset = NULL,
                          label = NULL,
                          ...) {
+  
   try(subset, silent = TRUE)
-
+  list(...)
+  
   exprs <- rlang::enquos(
     name = name,
     id = id,
