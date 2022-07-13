@@ -86,6 +86,7 @@ collect_n_subject <- function(meta,
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   class_var <- class(var)
+  label <- attr(meta$data_population[[par_var]], "label")
   
   # standardize group variable 
   stopifnot(any(c("factor", "character") %in% class(group)))
@@ -93,8 +94,8 @@ collect_n_subject <- function(meta,
   levels(group)[is.na(levels(group))] <- "Missing"
   
   # standardize continuous variables 
-  stopifnot(any(c("numeric", "integer", "Date", "factor", "character") %in% class(var)))
-  if(any(c("numeric", "integer", "Date") %in% class_var)){
+  stopifnot(any(c("numeric", "integer", "factor", "character") %in% class(var)))
+  if(any(c("numeric", "integer") %in% class_var)){
     
     # calculate summary statistics
     pop_num <- tapply(var, group, function(x){
@@ -138,14 +139,21 @@ collect_n_subject <- function(meta,
   }
   
   # prepare summary table
-  if(any(c("numeric", "integer", "Date") %in% class_var)){
+  if(any(c("numeric", "integer") %in% class_var)){
     pop_table <- rbind(pop_n[1, ], pop_num, pop_tmp[2, ]) 
   }
   
   if(any(c("factor", "character") %in% class_var)){
     pop_table <- pop_tmp
   }
-
+  
+  # add table header using variable label
+  header <- data.frame( t(c(label, rep(NA, ncol(pop_table) - 1)) ) )
+  names(header) <- names(pop_table)
+  
+  pop_table <- rbind(header, pop_table)
+  rownames(pop_table) <- NULL
+  
   # Prepare subset condition
   subset_condition <- function(x, name){
     switch(x, 
@@ -187,8 +195,6 @@ collect_n_subject <- function(meta,
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
     
-    label <- attr(meta$data_population[[par_var]], "label")
-    
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
       ggplot2::xlab(label) + 
@@ -200,7 +206,7 @@ collect_n_subject <- function(meta,
       pop_hist <- pop_hist + ggplot2::geom_bar() 
     }
     
-    if(any(c("numeric", "integer", "Date") %in% class_var)){
+    if(any(c("numeric", "integer") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_histogram(bins = 5) 
     }  
     
