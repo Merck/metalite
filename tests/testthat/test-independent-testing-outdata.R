@@ -6,6 +6,8 @@ meta <- meta_dummy()
 output<-outdata(meta_dummy(), "apat", "wk12", "rel", n = meta$data_population %>% group_by(TRTA) %>% summarize(n = n()), group = "TRTA", reference_group = 1, order = 1:3)
 
   expect_equal(class(output), "outdata")
+  expect_equal(length(output), 8)
+  expect_equal(names(output), c("meta", "population", "observation", "parameter", "n", "order", "group", "reference_group"))
 })
 
 
