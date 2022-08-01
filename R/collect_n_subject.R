@@ -9,9 +9,11 @@
 #' library(r2rtf)
 #' r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
 #' r2rtf_adae$SEX[1:5] <- NA
-#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
-#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
-#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+#' \dontrun{
+#'    n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
+#'    n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
+#'    n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+#' }
 n_subject <- function(id, 
                       group, 
                       par = NULL, 
@@ -58,13 +60,12 @@ n_subject <- function(id,
 #' @param display_total a logical value to display total column. 
 #' 
 #' @examples
-#' \dontrun{
 #' suppressWarnings(
 #' meta <- meta_dummy() |> 
 #'   define_parameter(name="sex", var = "SEX", label = "Sex") 
 #'  )
 #' collect_n_subject(meta, "apat", "sex")
-#' }
+#' 
 #' @export
 collect_n_subject <- function(meta, 
                               population, 
