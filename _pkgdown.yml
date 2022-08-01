@@ -98,6 +98,7 @@ reference:
   - "meta_run"
   - "meta_split"
   - "meta_validate"
+  - "meta_add_total"
   - "omit_null"
   - "n_subject"
   - "reset_label"

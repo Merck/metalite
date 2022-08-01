@@ -10,7 +10,8 @@ collect_n_subject(
   parameter,
   listing = FALSE,
   histogram = FALSE,
-  use_na = c("ifany", "no", "always")
+  use_na = c("ifany", "no", "always"),
+  display_total = TRUE
 )
 }
 \arguments{
@@ -27,6 +28,8 @@ The term name is used as key to link information.}
 \item{histogram}{a logical value to display histogram by group.}
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
+
+\item{display_total}{a logical value to display total column.}
 }
 \description{
 Collect number of subjects and its subset condition

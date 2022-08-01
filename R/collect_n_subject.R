@@ -9,10 +9,13 @@
 #' library(r2rtf)
 #' r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
 #' r2rtf_adae$SEX[1:5] <- NA
-#' metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
-#' metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
-#' metalite:::n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
-n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")) {
+#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
+#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
+#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+n_subject <- function(id, 
+                      group, 
+                      par = NULL, 
+                      use_na = c("ifany", "no", "always")) {
   
   use_na <- match.arg(use_na)
   
@@ -44,6 +47,7 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
   res
 }
 
+
 #' Collect number of subjects and its subset condition
 #'
 #' @inheritParams plan
@@ -51,7 +55,8 @@ n_subject <- function(id, group, par = NULL, use_na = c("ifany", "no", "always")
 #' @param listing a logical value to display drill down listing per row.
 #' @param histogram a logical value to display histogram by group. 
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
-#'
+#' @param display_total a logical value to display total column. 
+#' 
 #' @examples
 #' suppressWarnings(
 #' meta <- meta_dummy() |> 
@@ -65,10 +70,16 @@ collect_n_subject <- function(meta,
                               parameter, 
                               listing = FALSE, 
                               histogram = FALSE,
-                              use_na = c("ifany", "no", "always")){
+                              use_na = c("ifany", "no", "always"), 
+                              display_total = TRUE){
   
   use_na <- match.arg(use_na)
   
+  if(display_total){
+    
+    meta <- meta_add_total(meta)
+    
+  }
   # Obtain variables
   par_var <- collect_adam_mapping(meta, parameter)$var
   
@@ -176,12 +187,14 @@ collect_n_subject <- function(meta,
   res <- res[1:nrow(pop_n), 1:ncol(pop_n)]
   rownames(res) <- NULL
   
+  res <- res[, setdiff(names(res), "Total")]
+  
   # Create row listing 
   if(listing){
     
     row_subset <- paste(var_subset, pop_subset, sep = " & ")
     listing <- lapply(var_subset, function(x){
-      pop_listing <- subset(pop, rlang::eval_tidy(expr = str2lang(x), data = pop))
+      pop_listing <- subset(pop, rlang::eval_tidy(expr = str2lang(x), data = pop) & (! group %in% "Total") )
       pop_listing <- reset_label(pop_listing, meta$data_population)
     })
     
@@ -194,6 +207,7 @@ collect_n_subject <- function(meta,
 
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
+    ana <- subset(ana, group != "Total")
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
