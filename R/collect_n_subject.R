@@ -58,12 +58,13 @@ n_subject <- function(id,
 #' @param display_total a logical value to display total column. 
 #' 
 #' @examples
+#' \dontrun{
 #' suppressWarnings(
 #' meta <- meta_dummy() |> 
 #'   define_parameter(name="sex", var = "SEX", label = "Sex") 
 #'  )
 #' collect_n_subject(meta, "apat", "sex")
-#' 
+#' }
 #' @export
 collect_n_subject <- function(meta, 
                               population, 

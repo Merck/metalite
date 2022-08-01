@@ -35,10 +35,11 @@ The term name is used as key to link information.}
 Collect number of subjects and its subset condition
 }
 \examples{
+\dontrun{
 suppressWarnings(
 meta <- meta_dummy() |> 
   define_parameter(name="sex", var = "SEX", label = "Sex") 
  )
 collect_n_subject(meta, "apat", "sex")
-
+}
 }
