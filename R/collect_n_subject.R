@@ -94,12 +94,17 @@ collect_n_subject <- function(meta,
   # Obtain Group 
   pop_group <- collect_adam_mapping(meta, population)$group
   
-  # define analysis dataset
+  # Define analysis dataset
   id <- pop[[pop_id]]
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   class_var <- class(var)
-  label <- attr(meta$data_population[[par_var]], "label")
+  
+  # Obtain varaible label 
+  label <- collect_adam_mapping(meta, par_var)$label
+  if(is.null(label)){
+    label <- collect_adam_mapping(meta, par_var)$var
+  }
   
   # standardize group variable 
   stopifnot(any(c("factor", "character") %in% class(group)))
