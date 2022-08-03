@@ -100,10 +100,10 @@ collect_n_subject <- function(meta,
   var <- pop[[par_var]]
   class_var <- class(var)
   
-  # Obtain varaible label 
-  label <- collect_adam_mapping(meta, par_var)$label
+  # Obtain variable label 
+  label <- collect_adam_mapping(meta, parameter)$label
   if(is.null(label)){
-    label <- collect_adam_mapping(meta, par_var)$var
+    label <- collect_adam_mapping(meta, parameter)$var
   }
   
   # standardize group variable 
@@ -217,11 +217,17 @@ collect_n_subject <- function(meta,
     ana <- subset(ana, group != "Total")
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
-      ggplot2::facet_wrap(~ group) + 
+      # ggplot2::facet_wrap(~ group) + 
       ggplot2::xlab(label) + 
       ggplot2::ylab("Number of Subjects") + 
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
+    
+   # Rotate x-axis direction  
+   if(nchar(paste(unique(ana$var), collapse = "")) > 30){
+     pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
+   }
+      
     
     if(any(c("factor", "character") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_bar() 
