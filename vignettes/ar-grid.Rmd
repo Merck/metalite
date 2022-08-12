@@ -6,7 +6,7 @@ resource_files:
    - package_manual.pdf
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Introduction to Variable Mapping}
+  %\VignetteIndexEntry{Create A&R Grid}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -111,6 +111,6 @@ my_grid |>
   mutate(across(everything(), ~ gsub("\n", "<br>", .x))) |>
   gt::gt() |>
   gt::fmt_markdown(columns = gt::everything()) |>
-  gt::tab_options( table.font.size = 9)
+  gt::tab_options(table.font.size = 15)
 ```
 
