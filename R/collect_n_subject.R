@@ -261,7 +261,7 @@ collect_n_subject <- function(meta,
     ana <- subset(ana, group != "Total")
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
-      # ggplot2::facet_wrap(~ group) + 
+      ggplot2::facet_wrap(~ group) + 
       ggplot2::xlab(label) + 
       ggplot2::ylab("Number of Subjects") + 
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
