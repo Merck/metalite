@@ -99,6 +99,7 @@ reference:
   - "meta_split"
   - "meta_validate"
   - "meta_add_total"
+  - "meta_remove_blank_group"
   - "omit_null"
   - "n_subject"
   - "reset_label"
