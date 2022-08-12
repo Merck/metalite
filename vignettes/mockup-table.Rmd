@@ -1,0 +1,339 @@
+---
+title: "Create Mockup Table based on Metadata"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Create Mockup Table based on Metadata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(metalite)
+library(r2rtf)
+library(dplyr)
+```
+
+In this document, we illustrate a way to create mockup table by using the metadata created by `metalite`.
+An easy-to-follow example is used for illustration purpose.
+If users want to get a comprehensive production ready work, then users need to refine this simple example to align with their cases.
+
+## Overview of the example we used
+
+In this example, the available datasets are adae and adsl, which are available in the `r2rtf` R package, i.e., `r2rtf::r2rtf_adae` and `r2rtf::r2rtf_adsl`.
+For these two datasets, our objective is to conduct two adverse event (AE) analysis: (1) AE summary analysis and (3) specific AE analysis.
+And the population for these two analysis is all participants as treated (APaT).
+Besides, there is one observations for these two analysis: weeks 0-12.
+In the analysis, we are interested in three types of AEs: (1) any AEs, (2) series AEs, and (3) drug-related AEs.
+
+Please note the above example servers for illustration purpose, instead of a comprehensive production ready work.
+If users are interested in more AE analysis with more AE categories, or get more types of populations/observations, modification of code in this vignette is needed.
+
+## Prepare the metadata
+
+In this section, we introduce the steps to prepare the metadata used for the aforementioned two AE analysis.
+
+### Step 1: Define the meta data
+
+To define a meta data, users need to specify both population and observations datasets.
+In our example, the observation dataset comes from `r2rtf::r2rtf_adae` and the population dataset comes from `r2rtf::r2rtf_adsl`.
+So we define the meta data by `metalite::meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
+
+```{r}
+adae <- r2rtf::r2rtf_adae
+adsl <- r2rtf::r2rtf_adsl |> rename(TRTA = TRT01A)
+meta <- meta_adam(
+  observation = adae,
+  population = adsl
+)
+```
+
+### Step 2: Define the analysis plan
+
+To start mockup tables, we begin with defining the mockup analysis plan.
+To define an analysis plan, we use `plan()` and `add_plan()` to add details per one **mockup** analysis.
+
+Recall in this example, we have 2 analysis plans:
+
+- AE summary;
+- Specific AE analysis.
+
+For the AE summary analysis, we will define `analysis = "ae_summary"`.
+Similarly we define proper population, observation and parameter key words for
+
+- `population = "apat"`: All Participants as Treated (APaT).
+- `observation = "wk12"`: Weeks 0-12 analyses.
+- `parameter = "any;rel;ser"`: a table to cover "any", "drug related" and "serious" adverse events.
+
+For the AE specific analysis, users can follow the similar logic as in AE summary.
+
+So, we can define an analysis plan as below for a total of 2 mockup to generate 4 TLFs.
+
+```{r}
+plan <- plan(
+    analysis = "ae_summary", population = "apat",
+    observation = "wk12", parameter = "any;rel;ser"
+  ) |>
+    add_plan(
+      analysis = "ae_specific", population = "apat",
+      observation = "wk12",
+      parameter = c("any", "rel", "ser")
+    )
+plan
+```
+
+Then, we use incorporate the above defined plan into the metadata by using `metalite::define_plan()`, i.e.,
+
+```{r}
+meta <- meta |> define_plan(plan)
+```
+
+### Step 3: Define the keywords
+
+After defining the overview of the analysis plan,
+we begin to define the meaning of key words.
+
+**Define keywords in population:**
+
+The following code define the keywords `"apat"`, which is a population keywords for APaT population.
+And here we also cover the key information such as group variable, the group order, etc...
+
+```{r}
+meta <- meta |>
+  define_population(
+    name = "apat",
+    group = "TRTA",
+    group_order = c(
+      "High Dose" = "Xanomeline High Dose",
+      "Placebo" = "Placebo"
+    ),
+    subset = SAFFL == "Y"
+  )
+```
+
+**Define keywords in observation:**
+
+The following code define the keywords `"wk12"`, which is an observation keywords for Weeks 0-12 observations.
+
+```{r}
+meta <- meta |>
+  define_observation(
+    name = "wk12",
+    group = "TRTA",
+    ae_var = "AEDECOD",
+    var = c("AEREL", "AESER"),
+    subset = SAFFL == "Y",
+    label = "Weeks 0 to 12"
+  ) 
+```
+
+**Define keywords in analysis plans:**
+
+Note that in the analysis plan, there are 5 keywords:
+
+- `"any"`: a parameter keywords for any adverse events.
+- `"rel"`: a parameter keywords for drug-related adverse events.
+- `"ser"`: a parameter keywords for serious adverse events.
+- `"ae_summary"`: an analysis keywords for AE summary analysis.
+- `"ae_specific"`: an analysis keywords for specific AE analysis.
+
+For the first three keywords, we can define them by `metalite::define_parameter()` as follows.
+Here we can add (1) the endnotes, (2) lables, (3) the criterion to filter, ect...
+
+```{r}
+meta <- meta |>
+  define_parameter(
+    name = "any",
+    end_notes = c()
+  ) |>
+  define_parameter(
+    name = "rel",
+    subset = AEREL %in% c("POSSIBLE", "PROBABLE"),
+    label = "drug-realted adverse events"
+  ) |>
+  define_parameter(
+    name = "ser",
+    subset = AESER == "Y",
+    label = "serious adverse events",
+    end_notes = c("Serious adverse events up to 90 days of last dose are included.")
+  )
+```
+
+For the last two keywords, we can define them by `metalite::define_analysis()`.
+In this vignette, we only present the mockup table of AE summary.
+If users are interested in specific AE analysis, please define the keywords for `"ae_specific"` as `define_analysis(name = "ae_specific", title = ...)`.
+
+```{r}
+meta <- meta |>
+  define_analysis(
+    name = "ae_summary",
+    title = "Summary of Adverse Events"
+  )
+```
+
+### Step 4: Build and review the meta data
+
+Once all keywords, datasets, analysis plan are defined, users can build the meta data to compose all the information.
+
+```{r}
+meta <- meta |> meta_build()
+```
+
+After the entire meta data is built, users can review the analysis plan by
+
+```{r}
+meta$plan
+```
+
+And the entire meta is
+
+```{r}
+meta
+```
+
+## Add components of mockup table
+
+Based on the mockup table, we specify additional parameters that are required in the function we will define in the next section.
+
+- `mockup = TRUE` as we will create mockup for both analysis.
+- `output_report` to define the output path based on `analysis` keywords.
+
+```{r}
+meta$plan <- meta$plan |>
+  mutate(
+    mockup = TRUE,
+    output_report = paste0("./tlf/mock-", analysis, ".rtf")
+  )
+meta$plan
+```
+
+After the plan is updated, we can construct call program.
+Here we also provide a global argument for the data source.
+
+```{r}
+spec_call_program(meta,
+  data_source = "[adam-adsl; adae]"
+)
+```
+
+The pending effort is to define `ae_summary` and `ae_specific` function that can generate the mock up tables based on the inputs.
+
+## Create functions
+
+Let's create a simplified version of `ae_summary` to illustrate the idea.
+
+<details>
+<summary> Click to view the code for function `ae_summary()` </summary>
+```{r}
+ae_summary <- function(meta,
+                       population,
+                       observation,
+                       parameter,
+                       mockup,
+                       output_report,
+                       data_source,
+                       ...) {
+
+  # Identify parameter keywords
+  para_list <- unlist(strsplit(parameter, ";"))
+
+  # Row label
+  ae_label <- vapply(para_list,
+    FUN = function(x) {
+      collect_adam_mapping(meta, x)$label
+    },
+    FUN.VALUE = character(1)
+  )
+
+  # Get treatment grouping order
+  trt_order <- eval(collect_adam_mapping(meta, population)$group_order)
+
+  # Get the title/endnotes of TLF
+  title_text <- collect_title(
+    meta = meta,
+    population = population,
+    observation = observation,
+    parameter = parameter, analysis = "ae_summary"
+  )
+  title_text[2] <- "{Week}"
+
+  # Logic to create mockup table
+  if (mockup) {
+
+    # Generate RTF
+    x <- tibble::tibble(
+      ae_label = ae_label,
+      n_1 = rep("x", length(ae_label)),
+      n_2 = rep("x", length(ae_label)), # no display_total/ci
+      pct_1 = rep("x.xx", length(ae_label)),
+      pct_2 = rep("x.xx", length(ae_label))
+    ) |>
+      dplyr::select(ae_label, n_1, pct_1, n_2, pct_2, everything()) |>
+      r2rtf::rtf_title(rtf_mock_color(title_text)) |>
+      r2rtf::rtf_colheader(paste0(" | ", paste(names(trt_order), collapse = " | "), " "),
+        col_rel_width = c(3, rep(2, length(trt_order)))
+      ) |>
+      r2rtf::rtf_colheader(" | n | (%) | n | (%) ",
+        border_top = c("", rep("single", 2 * length(trt_order))),
+        border_bottom = "single",
+        border_left = c("single", rep(c("single", ""), length(trt_order))),
+        col_rel_width = c(3, rep(1, 2 * length(trt_order)))
+      ) |>
+      r2rtf::rtf_body(
+        col_rel_width = c(3, rep(1, 2 * length(trt_order))),
+        border_left = c("single", rep(c("single", ""), length(trt_order))),
+        text_justification = c("l", rep("c", 2 * length(trt_order)))
+      ) |>
+      r2rtf::rtf_source(data_source)
+
+    # Require r2rtf to use color
+    attr(x, "page")$use_color <- TRUE
+
+    # Save RTF to a path
+    if (!is.null(output_report)) {
+      x |>
+        r2rtf::rtf_encode() |>
+        r2rtf::write_rtf(output_report)
+    }
+  }
+
+  if (!mockup) {
+    # Logic to perform actual AE summary table.
+    # Omit here
+  }
+
+  output_report
+}
+```
+</details>
+
+
+For illustration purposes, we only create mock up table for the first row.
+
+```{r}
+meta_run(meta,
+  i = 1,
+  data_source = "[adam-adsl; adae]"
+)
+```
+
+## Display the generated mockup tables
+
+```{r}
+# Convert RTF to PDF
+r2rtf:::rtf_convert_format(
+  input = "tlf/mock-ae_summary.rtf",
+  output_dir = "tlf/",
+  format = "pdf"
+)
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("tlf/mock-ae_summary.pdf")
+```
