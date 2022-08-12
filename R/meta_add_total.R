@@ -5,7 +5,8 @@
 #' 
 #' @export
 meta_add_total <- function(meta, 
-                           total = "Total"){
+                           total = "Total",
+                           remove_blank_group = FALSE){
   
   stopifnot(length(total) == 1)
   
@@ -14,6 +15,7 @@ meta_add_total <- function(meta,
   
   pop_grp <- vapply(meta$population, "[[", FUN.VALUE = character(1), "group")
   obs_grp <- vapply(meta$population, "[[", FUN.VALUE = character(1), "group")
+  
   grp <- unique(c(pop_grp, obs_grp))
   
   for(i in seq(grp)){

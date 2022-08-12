@@ -10,6 +10,7 @@ collect_n_subject(
   parameter,
   listing = FALSE,
   histogram = FALSE,
+  remove_blank_group = FALSE,
   use_na = c("ifany", "no", "always"),
   display_total = TRUE
 )
@@ -26,6 +27,8 @@ The term name is used as key to link information.}
 \item{listing}{a logical value to display drill down listing per row.}
 
 \item{histogram}{a logical value to display histogram by group.}
+
+\item{remove_blank_group}{a logical value to remove a group with all missing value of a parameter.}
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
 
