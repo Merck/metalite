@@ -116,14 +116,14 @@ collect_n_subject <- function(meta,
   
   use_na <- match.arg(use_na)
   
-  if(display_total){
-    
-    meta <- meta_add_total(meta, remove_blank_group)
-    
-  }
-  
   if(remove_blank_group){
     meta <- meta_remove_blank_group(meta, population, parameter)
+  }
+  
+  if(display_total){
+    
+    meta <- meta_add_total(meta)
+    
   }
   
   # Obtain variables
