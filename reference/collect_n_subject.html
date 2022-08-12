@@ -66,6 +66,7 @@
 <span>  <span class="va">parameter</span>,</span>
 <span>  listing <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  histogram <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  remove_blank_group <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  use_na <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ifany"</span>, <span class="st">"no"</span>, <span class="st">"always"</span><span class="op">)</span>,</span>
 <span>  display_total <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -95,6 +96,10 @@ The term name is used as key to link information.</p></dd>
 <dd><p>a logical value to display histogram by group.</p></dd>
 
 
+<dt>remove_blank_group</dt>
+<dd><p>a logical value to remove a group with all missing value of a parameter.</p></dd>
+
+
 <dt>use_na</dt>
 <dd><p>a character value for whether to include NA values in the table. Refer <code>useNA</code> argument in <code>table</code> function for more details.</p></dd>
 
@@ -112,13 +117,13 @@ The term name is used as key to link information.</p></dd>
 <span class="r-in"><span> <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">collect_n_subject</span><span class="op">(</span><span class="va">meta</span>, <span class="st">"apat"</span>, <span class="st">"sex"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $table</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   name     Placebo Xanomeline Low Dose Xanomeline High Dose        Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name     Placebo Xanomeline Low Dose Xanomeline High Dose        FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  Sex        &lt;NA&gt;                &lt;NA&gt;                 &lt;NA&gt;         &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    F 53 ( 61.6%)         50 ( 59.5%)          40 ( 47.6%) 143 ( 56.3%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    M 33 ( 38.4%)         34 ( 40.5%)          44 ( 52.4%) 111 ( 43.7%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   name Placebo Xanomeline Low Dose Xanomeline High Dose Total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   name Placebo Xanomeline Low Dose Xanomeline High Dose FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    F      53                  50                   40   143</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    M      33                  34                   44   111</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -132,6 +137,9 @@ The term name is used as key to link information.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         Xanomeline High Dose</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 SEX == 'F' &amp; TRTA == 'Xanomeline High Dose' &amp; SAFFL == 'Y'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 SEX == 'M' &amp; TRTA == 'Xanomeline High Dose' &amp; SAFFL == 'Y'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                         FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 SEX == 'F' &amp; TRTA == 'FALSE' &amp; SAFFL == 'Y'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 SEX == 'M' &amp; TRTA == 'FALSE' &amp; SAFFL == 'Y'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $listing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
