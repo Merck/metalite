@@ -328,12 +328,12 @@ meta_run(meta,
 ```{r}
 # Convert RTF to PDF
 r2rtf:::rtf_convert_format(
-  input = "tlf/mock-ae_summary.rtf",
-  output_dir = "tlf/",
+  input = "./tlf/mock-ae_summary.rtf",
+  output_dir = "./tlf/",
   format = "pdf"
 )
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("tlf/mock-ae_summary.pdf")
+knitr::include_graphics("./tlf/mock-ae_summary.pdf")
 ```
