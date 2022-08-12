@@ -4,7 +4,7 @@
 \alias{meta_add_total}
 \title{Add duplicate data to enable a total group.}
 \usage{
-meta_add_total(meta, total = "Total", remove_blank_group = FALSE)
+meta_add_total(meta, total = "Total")
 }
 \arguments{
 \item{meta}{a metalite object}
