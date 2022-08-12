@@ -25,9 +25,9 @@ library(dplyr)
 
 ## Overview
 
-In this document, we illustrate how create the A&R grid by `metalite`.
+In this document, we illustrate how to create the A&R grid by `metalite`.
 
-## Procedure
+## Build a Meta Data
 
 ### Step 1: input the population and observation datasets.
 ```{r}
