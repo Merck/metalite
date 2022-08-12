@@ -1,0 +1,116 @@
+---
+title: "Create A&R Grid"
+output:
+  rmarkdown::html_vignette
+resource_files:
+   - package_manual.pdf
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Introduction to Variable Mapping}
+---
+
+```{r, echo = FALSE, message = FALSE, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+```{r, message = FALSE}
+library(metalite)
+library(r2rtf)
+library(dplyr)
+```
+
+## Overview
+
+In this document, we illustrate how create the A&R grid by `metalite`.
+
+## Procedure
+
+### Step 1: input the population and observation datasets.
+```{r}
+my_meta <- meta_adam(population = r2rtf_adsl,
+                     observation = r2rtf_adae)
+```
+
+
+### Step 2: create statistical analysis plans.
+
+```{r}
+my_plan <- plan(analysis = "ae_summary", population = "apat", 
+             observation = c("wk12", "wk24"), parameter = "any;rel;ser") |>
+  
+  add_plan(analysis = "ae_specific", population = "apat", 
+           observation = c("wk12", "wk24"), 
+           parameter = c("any", "aeosi", "rel", "ser"))
+```
+
+### Step 3: feed in the analysis plan to the existing meta data.
+```{r}
+my_meta <- my_meta |>  define_plan(my_plan)
+```
+
+### Step 4: define the key words in the above meta data.
+
+### Step 4.1: define the key words in population \& observation
+```{r}
+my_meta <- my_meta |> 
+  
+  define_population(name = "apat", 
+                    group = "TRT01A",  
+                    subset = SAFFL == "Y") |>
+  
+   define_observation(name = "wk12",
+                      group = "TRTA", 
+                      subset = SAFFL == "Y", 
+                      label = "Weeks 0 to 12") |>
+  
+  define_observation(name = "wk24",
+                     group = "TRTA", 
+                     subset = AOCC01FL == "Y",    # just for demo, another flag shall be used.  
+                     label = "Weeks 0 to 24")
+```
+
+### Step 4.2 define the key words in the analysis plans
+```{r}
+my_meta <- my_meta |>  
+  
+  define_parameter(name = "rel", 
+                   subset = AEREL %in% c("POSSIBLE", "PROBABLE")) |>
+  
+  define_parameter(name = "aeosi", 
+                   subset = AEOSI == "Y", 
+                   label = "adverse events of special interest") |> 
+  
+  define_analysis(name = "ae_summary", 
+                  title = "Summary of Adverse Events") |>
+  
+  define_analysis(name = "ae_specific",
+                  title = "Summary of Specific Adverse Events")
+```
+
+### Step 5: build the meta data
+```{r}
+my_meta <- my_meta |> meta_build()
+```
+
+## Create A\&R Grid
+```{r}
+my_grid <- data.frame(
+  title = spec_title(my_meta), 
+  filename = spec_filename(my_meta), 
+  function_name = my_meta$plan$analysis,
+  population = spec_analysis_population(my_meta)
+)
+```
+
+```{r}
+my_grid |>
+  mutate(across(everything(), ~ gsub("\n", "<br>", .x))) |>
+  gt::gt() |>
+  gt::fmt_markdown(columns = gt::everything()) |>
+  gt::tab_options( table.font.size = 9)
+```
+
