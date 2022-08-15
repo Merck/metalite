@@ -109,6 +109,7 @@ articles:
   desc: "The first topic to read"
   contents:
   - metalite
+  - ar-grid
 - title: Development details
   contents:
   - component

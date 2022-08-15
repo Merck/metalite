@@ -27,6 +27,7 @@ Suggests:
     ggplot2,
     covr,
     dplyr,
+    gt,
     knitr,
     r2rtf,
     rmarkdown,
