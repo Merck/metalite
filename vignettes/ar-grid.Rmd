@@ -1,12 +1,10 @@
 ---
-title: "Create A&R Grid"
+title: "Create AR Grid"
 output:
   rmarkdown::html_vignette
-resource_files:
-   - package_manual.pdf
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Create A&R Grid}
+  %\VignetteIndexEntry{Create AR Grid}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -27,16 +25,17 @@ library(dplyr)
 
 In this document, we illustrate how to create the A&R grid by `metalite`.
 
-## Build a Meta Data
+## Build metadata
 
-### Step 1: input the population and observation datasets.
+### Step 1: input the population and observation datasets
+
 ```{r}
 my_meta <- meta_adam(population = r2rtf_adsl,
                      observation = r2rtf_adae)
 ```
 
 
-### Step 2: create statistical analysis plans.
+### Step 2: create statistical analysis plans
 
 ```{r}
 my_plan <- plan(analysis = "ae_summary", population = "apat", 
@@ -47,14 +46,16 @@ my_plan <- plan(analysis = "ae_summary", population = "apat",
            parameter = c("any", "aeosi", "rel", "ser"))
 ```
 
-### Step 3: feed in the analysis plan to the existing meta data.
+### Step 3: feed in the analysis plan to the existing metadata
+
 ```{r}
 my_meta <- my_meta |>  define_plan(my_plan)
 ```
 
-### Step 4: define the key words in the above meta data.
+### Step 4: define the key words in the above meta data
 
 ### Step 4.1: define the key words in population \& observation
+
 ```{r}
 my_meta <- my_meta |> 
   
@@ -74,6 +75,7 @@ my_meta <- my_meta |>
 ```
 
 ### Step 4.2 define the key words in the analysis plans
+
 ```{r}
 my_meta <- my_meta |>  
   
@@ -92,11 +94,13 @@ my_meta <- my_meta |>
 ```
 
 ### Step 5: build the meta data
+
 ```{r}
 my_meta <- my_meta |> meta_build()
 ```
 
 ## Create A\&R Grid
+
 ```{r}
 my_grid <- data.frame(
   title = spec_title(my_meta), 
