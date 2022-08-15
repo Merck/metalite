@@ -30,15 +30,15 @@ In this document, we illustrate how to create the A&R grid by `metalite`.
 ### Step 1: input the population and observation datasets
 
 ```{r}
-my_meta <- meta_adam(population = r2rtf_adsl,
-                     observation = r2rtf_adae)
+metadata <- meta_adam(population = r2rtf_adsl,
+                      observation = r2rtf_adae)
 ```
 
 
 ### Step 2: create statistical analysis plans
 
 ```{r}
-my_plan <- plan(analysis = "ae_summary", population = "apat", 
+plan <- plan(analysis = "ae_summary", population = "apat", 
              observation = c("wk12", "wk24"), parameter = "any;rel;ser") |>
   
   add_plan(analysis = "ae_specific", population = "apat", 
@@ -49,15 +49,15 @@ my_plan <- plan(analysis = "ae_summary", population = "apat",
 ### Step 3: feed in the analysis plan to the existing metadata
 
 ```{r}
-my_meta <- my_meta |>  define_plan(my_plan)
+metadata <- metadata |>  define_plan(plan)
 ```
 
-### Step 4: define the key words in the above meta data
+### Step 4: define the key words in the above metadata
 
 ### Step 4.1: define the key words in population \& observation
 
 ```{r}
-my_meta <- my_meta |> 
+metadata <- metadata |> 
   
   define_population(name = "apat", 
                     group = "TRT01A",  
@@ -77,7 +77,7 @@ my_meta <- my_meta |>
 ### Step 4.2 define the key words in the analysis plans
 
 ```{r}
-my_meta <- my_meta |>  
+metadata <- metadata |>  
   
   define_parameter(name = "rel", 
                    subset = AEREL %in% c("POSSIBLE", "PROBABLE")) |>
@@ -93,25 +93,25 @@ my_meta <- my_meta |>
                   title = "Summary of Specific Adverse Events")
 ```
 
-### Step 5: build the meta data
+### Step 5: build the metadata
 
 ```{r}
-my_meta <- my_meta |> meta_build()
+metadata <- metadata |> meta_build()
 ```
 
 ## Create A\&R Grid
 
 ```{r}
-my_grid <- data.frame(
-  title = spec_title(my_meta), 
-  filename = spec_filename(my_meta), 
-  function_name = my_meta$plan$analysis,
-  population = spec_analysis_population(my_meta)
+ar_grid <- data.frame(
+  title = spec_title(metadata), 
+  filename = spec_filename(metadata), 
+  function_name = metadata$plan$analysis,
+  population = spec_analysis_population(metadata)
 )
 ```
 
 ```{r}
-my_grid |>
+ar_grid |>
   mutate(across(everything(), ~ gsub("\n", "<br>", .x))) |>
   gt::gt() |>
   gt::fmt_markdown(columns = gt::everything()) |>
