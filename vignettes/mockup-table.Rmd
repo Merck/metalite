@@ -275,7 +275,8 @@ ae_summary <- function(meta,
       pct_2 = rep("x.xx", length(ae_label))
     ) |>
       dplyr::select(ae_label, n_1, pct_1, n_2, pct_2, everything()) |>
-      r2rtf::rtf_title(rtf_mock_color(title_text)) |>
+      # r2rtf::rtf_title(rtf_mock_color(title_text)) |>
+      r2rtf::rtf_title(title_text) |>
       r2rtf::rtf_colheader(paste0(" | ", paste(names(trt_order), collapse = " | "), " "),
         col_rel_width = c(3, rep(2, length(trt_order)))
       ) |>
