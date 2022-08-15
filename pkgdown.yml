@@ -3,7 +3,8 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   adam-mapping: adam-mapping.html
+  ar-grid: ar-grid.html
   component: component.html
   metalite: metalite.html
-last_built: 2022-08-12T15:37Z
+last_built: 2022-08-15T16:57Z
 
