@@ -12,7 +12,6 @@ template:
     dropdown-link-hover-color: "#fff"
     dropdown-link-hover-bg: "#00857c"
 
-
 footer:
   structure:
     left: [developed_by, built_with, legal]
@@ -96,11 +95,13 @@ reference:
   - "rtf_assemble"
   - "rtf_mock_color"
   - "omit_null"
+
 articles:
 - title: Get started
   desc: "The first topic to read"
   contents:
   - metalite
+  - mockup-table
 - title: Development details
   contents:
   - component
