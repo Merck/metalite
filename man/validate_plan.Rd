@@ -12,3 +12,7 @@ validate_plan(plan)
 \description{
 Validate an analysis plan object
 }
+\examples{
+x <- plan(analysis = "ae_summary", population = "apat", observation = "wk12", parameter = "any")
+metalite:::validate_plan(x)
+}

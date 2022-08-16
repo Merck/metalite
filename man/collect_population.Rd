@@ -4,7 +4,7 @@
 \alias{collect_population}
 \title{Collect specification for population definition}
 \usage{
-collect_population(meta, population, observation, parameter)
+collect_population(meta, population, observation = NULL, parameter = NULL)
 }
 \arguments{
 \item{meta}{an \code{meta_adam} object.}

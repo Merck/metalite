@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -20,6 +20,16 @@
 #' @param meta a `meta_adam` object.
 #' @param plan a dataframe for analysis plan
 #'
+#' @examples
+#' library(r2rtf)
+#' plan <- plan(analysis = "ae_summary", population = "apat", 
+#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#'
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan)
 #' @export
 define_plan <- function(meta,
                         plan) {
@@ -31,7 +41,17 @@ define_plan <- function(meta,
 #'
 #' @param meta an `meta_adam` object.
 #' @inheritParams adam_mapping
-#'
+#' @examples
+#' library(r2rtf)
+#' plan <- plan(analysis = "ae_summary", population = "apat", 
+#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#' 
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan) |>
+#'   define_population(name = "apat")
 #' @export
 define_population <- function(meta,
                               name,
@@ -46,7 +66,8 @@ define_population <- function(meta,
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -65,7 +86,21 @@ define_population <- function(meta,
 #' Define analysis observation meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#'
+#' @examples
+#' plan <- plan(analysis = "ae_summary", population = "apat", 
+#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#' 
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan = plan) |>
+#'   define_observation(
+#'     name = "wk12",
+#'     group = "TRTA",
+#'     subset = SAFFL == "Y",
+#'     label = "Weeks 0 to 12"
+#'   )
 #' @export
 define_observation <- function(meta,
                                name,
@@ -80,7 +115,8 @@ define_observation <- function(meta,
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -100,17 +136,31 @@ define_observation <- function(meta,
 #'
 #' @inheritParams define_population
 #'
+#' @examples
+#' plan <- plan(analysis = "ae_summary", population = "apat", 
+#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#' 
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan = plan) |>
+#'   define_parameter(
+#'     name = "rel",
+#'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
+#'   )
 #' @export
 define_parameter <- function(meta,
                              name,
-                             subset,
+                             subset = NULL,
                              ...) {
   if (!any(grepl(name, meta$plan[["parameter"]]))) {
     warning(name, " is not in .$plan")
   }
 
   try(subset, silent = TRUE)
-
+  list(...)
+  
   x <- adam_mapping(
     name = !!name,
     subset = !!rlang::enquo(subset),
@@ -126,6 +176,19 @@ define_parameter <- function(meta,
 #'
 #' @inheritParams define_population
 #'
+#' @examples
+#' plan <- plan(analysis = "ae_summary", population = "apat", 
+#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#' 
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
+#'   define_plan(plan = plan) |>
+#'   define_analysis(
+#'     name = "ae_summary",
+#'     title = "Summary of Adverse Events"
+#'   )
 #' @export
 define_analysis <- function(meta,
                             name,
@@ -134,6 +197,8 @@ define_analysis <- function(meta,
     warning(name, " is not in .$plan")
   }
 
+  list(...)
+  
   x <- adam_mapping(name = !!name, ...)
 
   meta$analysis[[name]] <- default_apply(x)

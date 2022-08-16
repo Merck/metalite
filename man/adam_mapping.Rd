@@ -39,3 +39,12 @@ are mapped to standardized term.
 \details{
 The implementation idea mimic \code{ggplot2::aes}.
 }
+\examples{
+adam_mapping(
+  name = "apat",
+  id = "USUBJID",
+  group = "TRT01A",
+  subset = TRTFL == "Y",
+  label = "All Participants as Treated"
+)
+}

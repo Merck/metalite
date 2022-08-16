@@ -14,3 +14,6 @@ meta_adam(observation, population = observation)
 \description{
 Create a metadata representation for ADaM data analysis
 }
+\examples{
+meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
+}

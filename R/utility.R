@@ -38,6 +38,7 @@ omit_null <- function(x) {
 #' fmt_quote('a = "b"')
 #' }
 fmt_quote <- function(x) {
+  # replace `"` into `'` in x
   gsub('"', "'", x)
 }
 
@@ -67,5 +68,24 @@ check_duplicate_name <- function(x) {
 #' fmt_sentence(" a sentence that  needs to be cleaned  ")
 #' }
 fmt_sentence <- function(x) {
+  # replace innternal extra whitespace and leading
+  # and/or trailing whitespace from character strings.
   trimws(gsub("\\s+", " ", x))
+}
+
+
+#' Reset Dataset Label 
+#' 
+#' @param data a data frame 
+#' @param data_label a data frame with label
+reset_label <- function(data, data_label){
+  
+  name <- names(data)
+  
+  for(i in seq(name)){
+    attr(data[[i]], "label") <- attr(data_label[[name[i]]], "label")
+  }
+  
+  data
+  
 }

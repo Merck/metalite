@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -23,11 +23,14 @@
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
-#'
 #' collect_adam_mapping(meta, "apat")
 #' @export
 #'
 collect_adam_mapping <- function(meta, name) {
+  if (is.null(name)) {
+    return(list())
+  }
+
   check_args(arg = name, type = "character", length = 1)
 
   adam <- list(
@@ -37,8 +40,10 @@ collect_adam_mapping <- function(meta, name) {
     analysis = meta$analysis
   )
 
+  # find where the name is, population, or observation, or parameter, or analysis
   location <- vapply(adam, function(x) name %in% names(x), FUN.VALUE = logical(1))
 
+  # add `.location` to the mapping, either population, or observation, or parameter, or analysis
   if (any(location)) {
     map <- adam[location][[1]][[name]]
     map[[".location"]] <- names(location)[location]
@@ -62,8 +67,8 @@ collect_adam_mapping <- function(meta, name) {
 #'
 collect_population <- function(meta,
                                population,
-                               observation,
-                               parameter) {
+                               observation = NULL,
+                               parameter = NULL) {
   term <- c(
     population = collect_adam_mapping(meta, population)$subset,
     observation = collect_adam_mapping(meta, observation)$subset,
@@ -83,12 +88,12 @@ collect_population <- function(meta,
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
-#'
 #' head(collect_population_index(meta, "apat"))
 #' @export
 #'
 collect_population_index <- function(meta,
                                      population) {
+  # eval_tidy() is a variant of base::eval() that powers the tidy evaluation framework
   pop <- rlang::eval_tidy(
     expr = collect_adam_mapping(meta, population)$subset,
     data = meta$data_population
@@ -96,6 +101,7 @@ collect_population_index <- function(meta,
 
   n <- nrow(meta$data_population)
 
+  # if the `population = ...` is not defined
   if (is.null(pop)) {
     return(1:n)
   }
@@ -113,13 +119,14 @@ collect_population_index <- function(meta,
 #' library(r2rtf)
 #' meta <- meta_dummy()
 #' head(collect_population_id(meta, "apat"))
-#' 
 #' @export
 #'
 collect_population_id <- function(meta,
                                   population) {
+  # get the USUBJID (usually) from the population                    (extract the variable name "USUBJID")
   meta$data_population[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
 }
+
 
 #' Collect population record from population dataset
 #'
@@ -140,16 +147,20 @@ collect_population_id <- function(meta,
 collect_population_record <- function(meta,
                                       population,
                                       var = NULL) {
+  # collect the subject index (e.g., 1:254) from the population
   id <- collect_population_index(meta, population)
 
-
+  # format the key var must to be output,
+  # including the subject ID (e.g., USUBJID), grouping variable (TRTA, TRT01A)
   key <- c(
     collect_adam_mapping(meta, population)[c("id", "group", "var")],
     all.vars(collect_adam_mapping(meta, population)$subset)
   )
 
+  # incorporate the key var with user input var
   var <- unique(unlist(c(key, var)))
 
+  # output the population dataset with their index (id), and selected `var = ...`
   meta$data_population[id, var]
 }
 

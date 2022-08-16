@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -28,6 +28,9 @@ default_all <- function() {
 #' Apply default values to ADaM mappings
 #'
 #' @param x an `adam_mapping` object
+#' @examples
+#' default_apply(adam_mapping(name = "apat"))
+#' @export
 default_apply <- function(x) {
   default <- default_all()
 

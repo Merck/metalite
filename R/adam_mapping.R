@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -32,6 +32,14 @@
 #'
 #' @return A list with class `adam_mapping`. Components of the list are either quosures or constants.
 #'
+#' @examples
+#' adam_mapping(
+#'   name = "apat",
+#'   id = "USUBJID",
+#'   group = "TRT01A",
+#'   subset = TRTFL == "Y",
+#'   label = "All Participants as Treated"
+#' )
 #' @export
 adam_mapping <- function(name,
                          id = NULL,
@@ -40,8 +48,10 @@ adam_mapping <- function(name,
                          subset = NULL,
                          label = NULL,
                          ...) {
+  
   try(subset, silent = TRUE)
-
+  list(...)
+  
   exprs <- rlang::enquos(
     name = name,
     id = id,
@@ -84,9 +94,7 @@ new_adam_mapping <- function(x, env = globalenv()) {
 #' \dontrun{
 #' validate_adam_mapping(new_adam_mapping(list(name = "apat")))
 #' }
-#'
 validate_adam_mapping <- function(x) {
-
   # All required variable
   char <- c("name", "id", "group", "var", "header", "label")
 

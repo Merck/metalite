@@ -35,3 +35,15 @@ define_population(
 \description{
 Define analysis population meta information for ADaM dataset
 }
+\examples{
+library(r2rtf)
+plan <- plan(analysis = "ae_summary", population = "apat", 
+observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+
+meta_adam(
+  population = r2rtf::r2rtf_adsl,
+  observation = r2rtf::r2rtf_adae
+) |>
+  define_plan(plan) |>
+  define_population(name = "apat")
+}

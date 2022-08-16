@@ -1,4 +1,4 @@
-#    Copyright (c) 2022 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the metalite program.
 #
@@ -19,9 +19,46 @@
 #'
 #' @inheritParams define_population
 #'
+#' @examples
+#' meta_adam(
+#'   observation = r2rtf::r2rtf_adae,
+#'   population = r2rtf::r2rtf_adsl
+#' ) |>
+#'   # define analysis plan
+#'   define_plan(
+#'     plan(
+#'       analysis = "ae_summary",
+#'       population = "apat",
+#'       observation = c("wk12"),
+#'       parameter = "any;rel"
+#'     )
+#'   ) |>
+#'   # define population
+#'   define_population(
+#'     name = "apat",
+#'     group = "TRT01A",
+#'     subset = SAFFL == "Y"
+#'   ) |>
+#'   # define observation
+#'   define_observation(
+#'     name = "wk12",
+#'     group = "TRTA",
+#'     subset = SAFFL == "Y",
+#'     label = "Weeks 0 to 12"
+#'   ) |>
+#'   # define parameter - rel
+#'   define_parameter(
+#'     name = "rel",
+#'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
+#'   ) |>
+#'   # define analysis
+#'   define_parameter(
+#'     name = "rel",
+#'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
+#'   ) |>
+#'   meta_build()
 #' @export
 meta_build <- function(meta) {
-
   # Attach
   data_pop <- meta$data_population
   data_obs <- meta$data_observation
@@ -33,7 +70,7 @@ meta_build <- function(meta) {
   if (is.null(data_obs)) stop("analysis observation dataset is not defined")
   if (length(plan) == 0) stop("analysis plan is not defined")
 
-  # Add default value
+  # Add default value (if users do not define the key words)
   types <- c("population", "observation", "parameter", "analysis")
 
   for (i in seq_along(types)) {
@@ -46,7 +83,7 @@ meta_build <- function(meta) {
     })
   }
 
-  # Update observation default values
+  # Update observation default values (recall in `meta_adam`, observation = population)
   for (i in seq_along(names(meta$observation))) {
     id <- lapply(meta$population, `[[`, "id")
     id <- unique(unlist(id))
