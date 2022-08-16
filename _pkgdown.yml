@@ -12,7 +12,6 @@ template:
     dropdown-link-hover-color: "#fff"
     dropdown-link-hover-bg: "#00857c"
 
-
 footer:
   structure:
     left: [developed_by, built_with, legal]
@@ -103,13 +102,14 @@ reference:
   - "omit_null"
   - "n_subject"
   - "reset_label"
-  
+
 articles:
 - title: Get started
   desc: "The first topic to read"
   contents:
   - metalite
   - ar-grid
+  - mockup-table
 - title: Development details
   contents:
   - component
