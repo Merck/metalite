@@ -326,7 +326,7 @@ meta_run(meta,
 
 ## Display the generated mockup tables
 
-```{r}
+```{r, eval = FALSE}
 # Convert RTF to PDF
 r2rtf:::rtf_convert_format(
   input = "./tlf/mock-ae_summary.rtf",
