@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="metalite">
-<title>Create Mockup Table based on Metadata • metalite</title>
+<title>Create Mockup Table Based on Metadata • metalite</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="Create Mockup Table based on Metadata">
+<meta property="og:title" content="Create Mockup Table Based on Metadata">
 <meta property="og:description" content="metalite">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -75,7 +75,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Create Mockup Table based on Metadata</h1>
+      <img src="" class="logo" alt=""><h1>Create Mockup Table Based on Metadata</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/Merck/metalite/blob/HEAD/vignettes/mockup-table.Rmd" class="external-link"><code>vignettes/mockup-table.Rmd</code></a></small>
@@ -87,15 +87,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/" class="external-link">r2rtf</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Attaching package: 'dplyr'</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:stats':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     filter, lag</span></span>
-<span><span class="co">#&gt; The following objects are masked from 'package:base':</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
 <p>In this document, we illustrate a way to create mockup table by using the metadata created by <code>metalite</code>. An easy-to-follow example is used for illustration purpose. If users want to get a comprehensive production ready work, then users need to refine this simple example to align with their cases.</p>
 <div class="section level2">
 <h2 id="overview-of-the-example-we-used">Overview of the example we used<a class="anchor" aria-label="anchor" href="#overview-of-the-example-we-used"></a>
@@ -108,9 +100,9 @@
 </h2>
 <p>In this section, we introduce the steps to prepare the metadata used for the aforementioned two AE analysis.</p>
 <div class="section level3">
-<h3 id="step-1-define-the-meta-data">Step 1: Define the meta data<a class="anchor" aria-label="anchor" href="#step-1-define-the-meta-data"></a>
+<h3 id="step-1-define-the-metadata">Step 1: Define the metadata<a class="anchor" aria-label="anchor" href="#step-1-define-the-metadata"></a>
 </h3>
-<p>To define a meta data, users need to specify both population and observations datasets. In our example, the observation dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and the population dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. So we define the meta data by <code><a href="../reference/meta_adam.html">metalite::meta_adam()</a></code> as follows, where users can specify the observation dataset name and population dataset name.</p>
+<p>To define a metadata, users need to specify both population and observations datasets. In our example, the observation dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and the population dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. So we define the metadata by <code><a href="../reference/meta_adam.html">metalite::meta_adam()</a></code> as follows, where users can specify the observation dataset name and population dataset name.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">::</span><span class="va"><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf_adae</a></span></span>
 <span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">::</span><span class="va"><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf_adsl</a></span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRTA <span class="op">=</span> <span class="va">TRT01A</span><span class="op">)</span></span>
@@ -187,7 +179,7 @@
 <span>    var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AEREL"</span>, <span class="st">"AESER"</span><span class="op">)</span>,</span>
 <span>    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span>,</span>
 <span>    label <span class="op">=</span> <span class="st">"Weeks 0 to 12"</span></span>
-<span>  <span class="op">)</span> </span></code></pre></div>
+<span>  <span class="op">)</span></span></code></pre></div>
 <p><strong>Define keywords in analysis plans:</strong></p>
 <p>Note that in the analysis plan, there are 5 keywords:</p>
 <ul>
@@ -202,7 +194,7 @@
 <li>
 <code>"ae_specific"</code>: an analysis keywords for specific AE analysis.</li>
 </ul>
-<p>For the first three keywords, we can define them by <code><a href="../reference/define_parameter.html">metalite::define_parameter()</a></code> as follows. Here we can add (1) the endnotes, (2) lables, (3) the criterion to filter, ect…</p>
+<p>For the first three keywords, we can define them by <code><a href="../reference/define_parameter.html">metalite::define_parameter()</a></code> as follows. Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, ect…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span></span>
@@ -229,12 +221,12 @@
 <span>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="step-4-build-and-review-the-meta-data">Step 4: Build and review the meta data<a class="anchor" aria-label="anchor" href="#step-4-build-and-review-the-meta-data"></a>
+<h3 id="step-4-build-and-review-the-metadata">Step 4: Build and review the metadata<a class="anchor" aria-label="anchor" href="#step-4-build-and-review-the-metadata"></a>
 </h3>
-<p>Once all keywords, datasets, analysis plan are defined, users can build the meta data to compose all the information.</p>
+<p>Once all keywords, datasets, analysis plan are defined, users can build the metadata to compose all the information.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/meta_build.html">meta_build</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>After the entire meta data is built, users can review the analysis plan by</p>
+<p>After the entire metadata is built, users can review the analysis plan by</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter</span></span>
@@ -413,14 +405,7 @@ Click to view the code for function <code>ae_summary()</code>
 <div class="section level2">
 <h2 id="display-the-generated-mockup-tables">Display the generated mockup tables<a class="anchor" aria-label="anchor" href="#display-the-generated-mockup-tables"></a>
 </h2>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Convert RTF to PDF</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="https://merck.github.io/r2rtf/reference/rtf_convert_format.html" class="external-link">rtf_convert_format</a></span><span class="op">(</span></span>
-<span>  input <span class="op">=</span> <span class="st">"./tlf/mock-ae_summary.rtf"</span>,</span>
-<span>  output_dir <span class="op">=</span> <span class="st">"./tlf/"</span>,</span>
-<span>  format <span class="op">=</span> <span class="st">"pdf"</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<embed src="./tlf/mock-ae_summary.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+<embed src="tlf/mock-ae_summary.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
