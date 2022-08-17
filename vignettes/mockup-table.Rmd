@@ -1,8 +1,11 @@
 ---
-title: "Create Mockup Table based on Metadata"
+title: "Create Mockup Table Based on Metadata"
 output: rmarkdown::html_vignette
+resource_files:
+  - tlf/*.rtf
+  - tlf/*.pdf
 vignette: >
-  %\VignetteIndexEntry{Create Mockup Table based on Metadata}
+  %\VignetteIndexEntry{Create Mockup Table Based on Metadata}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r, message=FALSE, warning=FALSE}
 library(metalite)
 library(r2rtf)
 library(dplyr)
@@ -39,11 +42,11 @@ If users are interested in more AE analysis with more AE categories, or get more
 
 In this section, we introduce the steps to prepare the metadata used for the aforementioned two AE analysis.
 
-### Step 1: Define the meta data
+### Step 1: Define the metadata
 
-To define a meta data, users need to specify both population and observations datasets.
+To define a metadata, users need to specify both population and observations datasets.
 In our example, the observation dataset comes from `r2rtf::r2rtf_adae` and the population dataset comes from `r2rtf::r2rtf_adsl`.
-So we define the meta data by `metalite::meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
+So we define the metadata by `metalite::meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
 
 ```{r}
 adae <- r2rtf::r2rtf_adae
@@ -130,7 +133,7 @@ meta <- meta |>
     var = c("AEREL", "AESER"),
     subset = SAFFL == "Y",
     label = "Weeks 0 to 12"
-  ) 
+  )
 ```
 
 **Define keywords in analysis plans:**
@@ -144,7 +147,7 @@ Note that in the analysis plan, there are 5 keywords:
 - `"ae_specific"`: an analysis keywords for specific AE analysis.
 
 For the first three keywords, we can define them by `metalite::define_parameter()` as follows.
-Here we can add (1) the endnotes, (2) lables, (3) the criterion to filter, ect...
+Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, ect...
 
 ```{r}
 meta <- meta |>
@@ -177,15 +180,15 @@ meta <- meta |>
   )
 ```
 
-### Step 4: Build and review the meta data
+### Step 4: Build and review the metadata
 
-Once all keywords, datasets, analysis plan are defined, users can build the meta data to compose all the information.
+Once all keywords, datasets, analysis plan are defined, users can build the metadata to compose all the information.
 
 ```{r}
 meta <- meta |> meta_build()
 ```
 
-After the entire meta data is built, users can review the analysis plan by
+After the entire metadata is built, users can review the analysis plan by
 
 ```{r}
 meta$plan
@@ -326,15 +329,15 @@ meta_run(meta,
 
 ## Display the generated mockup tables
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo=FALSE}
 # Convert RTF to PDF
 r2rtf:::rtf_convert_format(
-  input = "./tlf/mock-ae_summary.rtf",
-  output_dir = "./tlf/",
+  input = "tlf/mock-ae_summary.rtf",
+  output_dir = "tlf/",
   format = "pdf"
 )
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("./tlf/mock-ae_summary.pdf")
+knitr::include_graphics("tlf/mock-ae_summary.pdf")
 ```
