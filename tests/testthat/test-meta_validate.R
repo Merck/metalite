@@ -1,8 +1,48 @@
-library(metalite)
-library(r2rtf)
-
 meta <- meta_dummy()
 
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
+test_that("Check data_type", {
+  
+  meta$data_population <- NULL
+  expect_error(meta_validate(meta))
+  
+  meta$data_observation <- NULL
+  expect_error(meta_validate(meta))
+  
+  meta$plan <- NULL
+  expect_error(meta_validate(meta))
 })
+
+
+test_that("Check plan variable name", {
+  names(meta$plan)[5] <- "param"
+  expect_error(meta_validate(meta))
+})
+
+
+
+test_that("Check id variable", {
+  meta$population$apat$id <- "id"
+  expect_error(meta_validate(meta))
+})
+
+test_that("Check label variable", {
+  meta$population$apat$label <- NULL
+  expect_warning(meta_validate(meta))
+})
+
+test_that("Check observation variables in the datasets", {
+  
+  meta$observation$wk12$id <- "ID"
+  expect_error(meta_validate(meta))
+  
+  meta$observation$wk12$group <- "group"
+  expect_error(meta_validate(meta))
+  
+  meta$observation$wk12$var<- "var"
+  expect_error(meta_validate(meta))
+})
+
+
+
+
+
