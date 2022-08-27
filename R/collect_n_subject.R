@@ -258,7 +258,7 @@ collect_n_subject <- function(meta,
 
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
-    ana <- subset(ana, group != "Total")
+    # ana <- subset(ana, group != "Total")
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
