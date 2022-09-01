@@ -1,7 +1,7 @@
 
 test_that("variable 'RACE' checking", {
   p <- meta_check_var(meta_dummy(), var = "RACE", type = c("observation"))
-  expect_equal(names(p$data_observation)[9],"RACE")
+  expect_true("RACE" %in% names(p$data_observation))
 }) 
 
 
@@ -12,7 +12,7 @@ test_that("variable 'AEDECOD' checking in population", {
 
 test_that("variable 'AEDECOD' checking in observation", {
   q <- meta_check_var(meta_dummy(), var = "AEDECOD", type = c("observation"))
-  expect_equal(names(q$data_observation)[25],"AEDECOD")
+  expect_true("AEDECOD" %in% names(q$data_observation))
 }) 
 
 
@@ -25,7 +25,7 @@ test_that("variable 'BMIBL' checking in population or observation", {
 
 test_that("variable 'BMIBL' checking in population", {
   l <- meta_check_var(meta_dummy(), var = "BMIBL", type = c("population"))
-  expect_equal(names(l$data_population)[33],"BMIBL")
+  expect_true("BMIBL" %in% names(l$data_population))
 }) 
 
 test_that("variable 'BMIBL' checking in obervation", {
