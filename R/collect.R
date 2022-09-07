@@ -239,7 +239,13 @@ collect_observation_record <- function(meta,
 
   var <- unique(unlist(c(key, var)))
 
-  meta$data_observation[id, var]
+  
+  ans <- meta$data_observation[id, var]
+  ans_label <- lapply(meta$data_observation, attr, "label")
+  for (x in names(ans)) {
+    attr(ans[[x]], "lable") <- ans_label[[x]]
+  }
+  return(ans)
 }
 
 #' Collect specification for title
