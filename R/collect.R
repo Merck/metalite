@@ -239,13 +239,14 @@ collect_observation_record <- function(meta,
 
   var <- unique(unlist(c(key, var)))
 
-  
+  # subset the data to be output
   ans <- meta$data_observation[id, var]
-  ans_label <- lapply(meta$data_observation, attr, "label")
-  for (x in names(ans)) {
-    attr(ans[[x]], "label") <- ans_label[[x]]
-  }
-  return(ans)
+  # get all labels from the un-subset data
+  ans_label <- as.data.frame(get_label(meta$data_observation))
+  # assign labels
+  assign_label(data = ans, 
+               var = names(ans), 
+               label = ans_label[match(names(ans), rownames(ans_label)), ])
 }
 
 #' Collect specification for title
