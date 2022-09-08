@@ -243,7 +243,7 @@ collect_observation_record <- function(meta,
   ans <- meta$data_observation[id, var]
   ans_label <- lapply(meta$data_observation, attr, "label")
   for (x in names(ans)) {
-    attr(ans[[x]], "lable") <- ans_label[[x]]
+    attr(ans[[x]], "label") <- ans_label[[x]]
   }
   return(ans)
 }
