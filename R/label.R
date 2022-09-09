@@ -5,7 +5,7 @@
 #' @return labels of the input data frame
 #'
 #' @examples 
-#' get_label(r2rtf::r2rtf_adae)
+#' metalite:::get_label(r2rtf::r2rtf_adae)
 #' 
 get_label <- function(data){
   
@@ -30,8 +30,8 @@ get_label <- function(data){
 #' @return a data frame with labels updated 
 #'
 #' @examples
-#' assign_label(r2rtf::r2rtf_adae)
-#' assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
+#' metalite:::assign_label(r2rtf::r2rtf_adae)
+#' metalite:::assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
 assign_label <- function(data,
                          var = names(data),
                          label = names(data)){

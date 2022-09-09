@@ -20,6 +20,6 @@ a data frame with labels updated
 A function to assign labels to a data frame
 }
 \examples{
-assign_label(r2rtf::r2rtf_adae)
-assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
+metalite:::assign_label(r2rtf::r2rtf_adae)
+metalite:::assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
 }
