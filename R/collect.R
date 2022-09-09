@@ -240,7 +240,7 @@ collect_observation_record <- function(meta,
   var <- unique(unlist(c(key, var)))
 
   # subset the data to be output
-  ans <- meta$data_observation[id, var]
+  ans <- meta$data_observation[id, var, drop = FALSE]
   # get all labels from the un-subset data
   ans_label <- as.data.frame(get_label(meta$data_observation))
   # assign labels
