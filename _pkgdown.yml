@@ -102,6 +102,8 @@ reference:
   - "omit_null"
   - "n_subject"
   - "reset_label"
+  - "get_label"
+  - "assign_label"
 
 articles:
 - title: Get started

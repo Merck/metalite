@@ -7,6 +7,8 @@
 #' @examples 
 #' metalite:::get_label(r2rtf::r2rtf_adae)
 #' 
+#' @export
+#' 
 get_label <- function(data){
   
   label <- vapply(data, function(x){
@@ -32,6 +34,9 @@ get_label <- function(data){
 #' @examples
 #' metalite:::assign_label(r2rtf::r2rtf_adae)
 #' metalite:::assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
+#' 
+#' @export
+#' 
 assign_label <- function(data,
                          var = names(data),
                          label = names(data)){

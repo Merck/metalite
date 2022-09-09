@@ -22,4 +22,5 @@ A function to assign labels to a data frame
 \examples{
 metalite:::assign_label(r2rtf::r2rtf_adae)
 metalite:::assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
+
 }
