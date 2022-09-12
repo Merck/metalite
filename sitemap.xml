@@ -40,6 +40,9 @@
     <loc>/reference/add_plan.html</loc>
   </url>
   <url>
+    <loc>/reference/assign_label.html</loc>
+  </url>
+  <url>
     <loc>/reference/check_args.html</loc>
   </url>
   <url>
@@ -98,6 +101,9 @@
   </url>
   <url>
     <loc>/reference/fmt_sentence.html</loc>
+  </url>
+  <url>
+    <loc>/reference/get_label.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
