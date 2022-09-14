@@ -45,5 +45,3 @@ test_that("variable 'RACE = AMERICAN INDIAN OR ALASKA NATIVE' checking in data_o
   z <- meta_dummy()$data_observation %>% filter(RACE=="AMERICAN INDIAN OR ALASKA NATIVE")
   expect_equal(length(x$`AMERICAN INDIAN OR ALASKA NATIVE`$data_observation$USUBJID), length(z$USUBJID))
 }) 
-
-devtools::test_coverage_active_file()
