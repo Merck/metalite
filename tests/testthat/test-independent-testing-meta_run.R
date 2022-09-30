@@ -1,14 +1,6 @@
 # Create dummy meta_adam object
 meta <- meta_dummy()
 
-# Create 2 dummy functions
-ae_summary <- function(...) {
-  paste("results of", deparse(match.call(), nlines = 1))
-}
-ae_specific <- function(...) {
-  paste("results of", deparse(match.call(), nlines = 1))
-}
-
 # Snapshot testing
 test_that("all analysis based on the analysis plan would be executed", {
   expect_snapshot(meta_run(meta))
