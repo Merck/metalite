@@ -10,6 +10,7 @@ collect_n_subject(
   parameter,
   listing = FALSE,
   histogram = FALSE,
+  var_listing = NULL,
   remove_blank_group = FALSE,
   use_na = c("ifany", "no", "always"),
   display_total = TRUE
@@ -27,6 +28,8 @@ The term name is used as key to link information.}
 \item{listing}{a logical value to display drill down listing per row.}
 
 \item{histogram}{a logical value to display histogram by group.}
+
+\item{var_listing}{a character vector of additional variables included in the listing.}
 
 \item{remove_blank_group}{a logical value to remove a group with all missing value of a parameter.}
 
