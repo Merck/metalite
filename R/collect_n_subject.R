@@ -49,6 +49,43 @@ n_subject <- function(id,
   res
 }
 
+#' Remove blank group based on analysis parameter. 
+#' 
+#' @inheritParams collect_n_subject
+meta_remove_blank_group <- function(meta, 
+                                    population,
+                                    parameter){
+  
+  pop <- meta$data_population
+  obs <- meta$data_observation
+
+  pop_grp <- collect_adam_mapping(meta, population)$group
+  obs_grp <- collect_adam_mapping(meta, population)$group
+  
+  pop_var <- collect_adam_mapping(meta, parameter)$var
+  
+  if(is.null(pop_var)){
+    stop("meta_remove_blank_group: parameter is not available in meta$population")
+  }
+  
+  loc <- which(table(is.na(pop[[pop_var]]), pop[[pop_grp]])["FALSE", ] == 0 )
+  
+  if(length(loc) > 0){
+    pop_ind <- ! pop[[pop_grp]] %in% levels(pop[[pop_grp]])[loc]
+    pop <- pop[pop_ind, ]
+    pop[[pop_grp]] <- factor(pop[[pop_grp]], levels(pop[[pop_grp]])[- loc])
+    
+    obs_ind <- ! obs[[obs_grp]] %in% levels(obs[[obs_grp]])[loc]
+    obs <- obs[obs_ind, ]
+    obs[[obs_grp]] <- factor(obs[[obs_grp]], levels(obs[[obs_grp]])[- loc])
+  }
+  
+  meta$data_population  <- pop 
+  meta$data_observation <- obs 
+  
+  meta
+  
+}
 
 #' Collect number of subjects and its subset condition
 #'
@@ -56,6 +93,7 @@ n_subject <- function(id,
 #' @inheritParams define_population
 #' @param listing a logical value to display drill down listing per row.
 #' @param histogram a logical value to display histogram by group. 
+#' @param remove_blank_group a logical value to remove a group with all missing value of a parameter. 
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #' @param display_total a logical value to display total column. 
 #' 
@@ -72,16 +110,22 @@ collect_n_subject <- function(meta,
                               parameter, 
                               listing = FALSE, 
                               histogram = FALSE,
+                              remove_blank_group = FALSE,
                               use_na = c("ifany", "no", "always"), 
                               display_total = TRUE){
   
   use_na <- match.arg(use_na)
+  
+  if(remove_blank_group){
+    meta <- meta_remove_blank_group(meta, population, parameter)
+  }
   
   if(display_total){
     
     meta <- meta_add_total(meta)
     
   }
+  
   # Obtain variables
   par_var <- collect_adam_mapping(meta, parameter)$var
   
@@ -94,12 +138,17 @@ collect_n_subject <- function(meta,
   # Obtain Group 
   pop_group <- collect_adam_mapping(meta, population)$group
   
-  # define analysis dataset
+  # Define analysis dataset
   id <- pop[[pop_id]]
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   class_var <- class(var)
-  label <- attr(meta$data_population[[par_var]], "label")
+  
+  # Obtain variable label 
+  label <- collect_adam_mapping(meta, parameter)$label
+  if(is.null(label)){
+    label <- collect_adam_mapping(meta, parameter)$var
+  }
   
   # standardize group variable 
   stopifnot(any(c("factor", "character") %in% class(group)))
@@ -209,7 +258,7 @@ collect_n_subject <- function(meta,
 
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
-    ana <- subset(ana, group != "Total")
+    # ana <- subset(ana, group != "Total")
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
@@ -217,6 +266,12 @@ collect_n_subject <- function(meta,
       ggplot2::ylab("Number of Subjects") + 
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
+    
+   # Rotate x-axis direction  
+   if(nchar(paste(unique(ana$var), collapse = "")) > 30){
+     pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
+   }
+      
     
     if(any(c("factor", "character") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_bar() 
