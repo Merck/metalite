@@ -129,10 +129,10 @@ collect_n_subject <- function(meta,
   }
   
   # Obtain variables
-  par_var <- unique(c(collect_adam_mapping(meta, parameter)$var, var_listing))
+  par_var <- collect_adam_mapping(meta, parameter)$var
   
   # Obtain Data
-  pop <- collect_population_record(meta, population, var = par_var)
+  pop <- collect_population_record(meta, population, var = c(var_listing, par_var) )
   
   # Obtain ID
   pop_id <- collect_adam_mapping(meta, population)$id
