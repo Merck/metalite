@@ -93,6 +93,7 @@ meta_remove_blank_group <- function(meta,
 #' @inheritParams define_population
 #' @param listing a logical value to display drill down listing per row.
 #' @param histogram a logical value to display histogram by group. 
+#' @param var_listing a character vector of additional variables included in the listing.  
 #' @param remove_blank_group a logical value to remove a group with all missing value of a parameter. 
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #' @param display_total a logical value to display total column. 
@@ -110,6 +111,7 @@ collect_n_subject <- function(meta,
                               parameter, 
                               listing = FALSE, 
                               histogram = FALSE,
+                              var_listing = NULL,
                               remove_blank_group = FALSE,
                               use_na = c("ifany", "no", "always"), 
                               display_total = TRUE){
@@ -130,7 +132,7 @@ collect_n_subject <- function(meta,
   par_var <- collect_adam_mapping(meta, parameter)$var
   
   # Obtain Data
-  pop <- collect_population_record(meta, population, var = par_var)
+  pop <- collect_population_record(meta, population, var = c(var_listing, par_var) )
   
   # Obtain ID
   pop_id <- collect_adam_mapping(meta, population)$id
