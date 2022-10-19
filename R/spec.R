@@ -119,7 +119,7 @@ spec_call_program <- function(meta,
 
     x <- c(as.list(x), list(...))
 
-    fun[i] <- fmt_quote(deparse1(as.call(x)))
+    fun[i] <- gsub("`", "", fmt_quote(deparse1(as.call(x))))
   }
 
   fun
