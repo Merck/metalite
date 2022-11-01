@@ -2,7 +2,19 @@
 % Please edit documentation in R/label.R
 \name{assign_label}
 \alias{assign_label}
-\title{A function to assign labels to a data frame}
+\title{A function to assign labels to a data frame
+Case 1:
+If the variable's label is already define in the original data frame,
+but not re-defined in assign_label(...), its original labels will be kept.
+Case 2:
+If the variable's label is already define in the original data frame,
+but re-defined by assign_label(...), its labels will be re-defined.
+Case 3:
+If the variable's label is not define in the original data frame,
+but it is defined by assign_label(...), its labels will added.
+Case 4:
+If the variable's label is not define in the original data frame,
+neither does it defined by assign_label(...), its labels will be the variable name itself.}
 \usage{
 assign_label(data, var = names(data), label = names(data))
 }
@@ -18,6 +30,18 @@ a data frame with labels updated
 }
 \description{
 A function to assign labels to a data frame
+Case 1:
+If the variable's label is already define in the original data frame,
+but not re-defined in assign_label(...), its original labels will be kept.
+Case 2:
+If the variable's label is already define in the original data frame,
+but re-defined by assign_label(...), its labels will be re-defined.
+Case 3:
+If the variable's label is not define in the original data frame,
+but it is defined by assign_label(...), its labels will added.
+Case 4:
+If the variable's label is not define in the original data frame,
+neither does it defined by assign_label(...), its labels will be the variable name itself.
 }
 \examples{
 metalite:::assign_label(r2rtf::r2rtf_adae)
