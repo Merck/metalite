@@ -88,21 +88,43 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/" class="external-link">r2rtf</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<p>In this document, we illustrate a way to create mockup table by using the metadata created by <code>metalite</code>. An easy-to-follow example is used for illustration purpose. If users want to get a comprehensive production ready work, then users need to refine this simple example to align with their cases.</p>
+<p>In this document, we illustrate a way to create mockup table by using
+the metadata created by <code>metalite</code>. An easy-to-follow example
+is used for illustration purpose. If users want to get a comprehensive
+production ready work, then users need to refine this simple example to
+align with their cases.</p>
 <div class="section level2">
 <h2 id="overview-of-the-example-we-used">Overview of the example we used<a class="anchor" aria-label="anchor" href="#overview-of-the-example-we-used"></a>
 </h2>
-<p>In this example, the available datasets are adae and adsl, which are available in the <code>r2rtf</code> R package, i.e., <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. For these two datasets, our objective is to conduct two adverse event (AE) analysis: (1) AE summary analysis and (3) specific AE analysis. And the population for these two analysis is all participants as treated (APaT). Besides, there is one observations for these two analysis: weeks 0-12. In the analysis, we are interested in three types of AEs: (1) any AEs, (2) series AEs, and (3) drug-related AEs.</p>
-<p>Please note the above example servers for illustration purpose, instead of a comprehensive production ready work. If users are interested in more AE analysis with more AE categories, or get more types of populations/observations, modification of code in this vignette is needed.</p>
+<p>In this example, the available datasets are adae and adsl, which are
+available in the <code>r2rtf</code> R package, i.e.,
+<code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. For
+these two datasets, our objective is to conduct two adverse event (AE)
+analysis: (1) AE summary analysis and (3) specific AE analysis. And the
+population for these two analysis is all participants as treated (APaT).
+Besides, there is one observations for these two analysis: weeks 0-12.
+In the analysis, we are interested in three types of AEs: (1) any AEs,
+(2) series AEs, and (3) drug-related AEs.</p>
+<p>Please note the above example servers for illustration purpose,
+instead of a comprehensive production ready work. If users are
+interested in more AE analysis with more AE categories, or get more
+types of populations/observations, modification of code in this vignette
+is needed.</p>
 </div>
 <div class="section level2">
 <h2 id="prepare-the-metadata">Prepare the metadata<a class="anchor" aria-label="anchor" href="#prepare-the-metadata"></a>
 </h2>
-<p>In this section, we introduce the steps to prepare the metadata used for the aforementioned two AE analysis.</p>
+<p>In this section, we introduce the steps to prepare the metadata used
+for the aforementioned two AE analysis.</p>
 <div class="section level3">
 <h3 id="step-1-define-the-metadata">Step 1: Define the metadata<a class="anchor" aria-label="anchor" href="#step-1-define-the-metadata"></a>
 </h3>
-<p>To define a metadata, users need to specify both population and observations datasets. In our example, the observation dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and the population dataset comes from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. So we define the metadata by <code><a href="../reference/meta_adam.html">metalite::meta_adam()</a></code> as follows, where users can specify the observation dataset name and population dataset name.</p>
+<p>To define a metadata, users need to specify both population and
+observations datasets. In our example, the observation dataset comes
+from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf::r2rtf_adae</a></code> and the population dataset comes
+from <code><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf::r2rtf_adsl</a></code>. So we define the metadata by
+<code><a href="../reference/meta_adam.html">metalite::meta_adam()</a></code> as follows, where users can specify
+the observation dataset name and population dataset name.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">adae</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">::</span><span class="va"><a href="https://merck.github.io/r2rtf/reference/r2rtf_adae.html" class="external-link">r2rtf_adae</a></span></span>
 <span><span class="va">adsl</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">::</span><span class="va"><a href="https://merck.github.io/r2rtf/reference/r2rtf_adsl.html" class="external-link">r2rtf_adsl</a></span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TRTA <span class="op">=</span> <span class="va">TRT01A</span><span class="op">)</span></span>
@@ -114,23 +136,32 @@
 <div class="section level3">
 <h3 id="step-2-define-the-analysis-plan">Step 2: Define the analysis plan<a class="anchor" aria-label="anchor" href="#step-2-define-the-analysis-plan"></a>
 </h3>
-<p>To start mockup tables, we begin with defining the mockup analysis plan. To define an analysis plan, we use <code><a href="../reference/plan.html">plan()</a></code> and <code><a href="../reference/add_plan.html">add_plan()</a></code> to add details per one <strong>mockup</strong> analysis.</p>
+<p>To start mockup tables, we begin with defining the mockup analysis
+plan. To define an analysis plan, we use <code><a href="../reference/plan.html">plan()</a></code> and
+<code><a href="../reference/add_plan.html">add_plan()</a></code> to add details per one <strong>mockup</strong>
+analysis.</p>
 <p>Recall in this example, we have 2 analysis plans:</p>
 <ul>
 <li>AE summary;</li>
 <li>Specific AE analysis.</li>
 </ul>
-<p>For the AE summary analysis, we will define <code>analysis = "ae_summary"</code>. Similarly we define proper population, observation and parameter key words for</p>
+<p>For the AE summary analysis, we will define
+<code>analysis = "ae_summary"</code>. Similarly we define proper
+population, observation and parameter key words for</p>
 <ul>
 <li>
-<code>population = "apat"</code>: All Participants as Treated (APaT).</li>
+<code>population = "apat"</code>: All Participants as Treated
+(APaT).</li>
 <li>
 <code>observation = "wk12"</code>: Weeks 0-12 analyses.</li>
 <li>
-<code>parameter = "any;rel;ser"</code>: a table to cover “any”, “drug related” and “serious” adverse events.</li>
+<code>parameter = "any;rel;ser"</code>: a table to cover “any”,
+“drug related” and “serious” adverse events.</li>
 </ul>
-<p>For the AE specific analysis, users can follow the similar logic as in AE summary.</p>
-<p>So, we can define an analysis plan as below for a total of 2 mockup to generate 4 TLFs.</p>
+<p>For the AE specific analysis, users can follow the similar logic as
+in AE summary.</p>
+<p>So, we can define an analysis plan as below for a total of 2 mockup
+to generate 4 TLFs.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plan.html">plan</a></span><span class="op">(</span></span>
 <span>    analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span>
@@ -147,16 +178,20 @@
 <span><span class="co">#&gt; 2    1 ae_specific       apat        wk12         any</span></span>
 <span><span class="co">#&gt; 3    1 ae_specific       apat        wk12         rel</span></span>
 <span><span class="co">#&gt; 4    1 ae_specific       apat        wk12         ser</span></span></code></pre></div>
-<p>Then, we use incorporate the above defined plan into the metadata by using <code><a href="../reference/define_plan.html">metalite::define_plan()</a></code>, i.e.,</p>
+<p>Then, we use incorporate the above defined plan into the metadata by
+using <code><a href="../reference/define_plan.html">metalite::define_plan()</a></code>, i.e.,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="step-3-define-the-keywords">Step 3: Define the keywords<a class="anchor" aria-label="anchor" href="#step-3-define-the-keywords"></a>
 </h3>
-<p>After defining the overview of the analysis plan, we begin to define the meaning of key words.</p>
+<p>After defining the overview of the analysis plan, we begin to define
+the meaning of key words.</p>
 <p><strong>Define keywords in population:</strong></p>
-<p>The following code define the keywords <code>"apat"</code>, which is a population keywords for APaT population. And here we also cover the key information such as group variable, the group order, etc…</p>
+<p>The following code define the keywords <code>"apat"</code>, which is
+a population keywords for APaT population. And here we also cover the
+key information such as group variable, the group order, etc…</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span></span>
@@ -169,7 +204,8 @@
 <span>    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><strong>Define keywords in observation:</strong></p>
-<p>The following code define the keywords <code>"wk12"</code>, which is an observation keywords for Weeks 0-12 observations.</p>
+<p>The following code define the keywords <code>"wk12"</code>, which is
+an observation keywords for Weeks 0-12 observations.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_observation.html">define_observation</a></span><span class="op">(</span></span>
@@ -184,17 +220,24 @@
 <p>Note that in the analysis plan, there are 5 keywords:</p>
 <ul>
 <li>
-<code>"any"</code>: a parameter keywords for any adverse events.</li>
+<code>"any"</code>: a parameter keywords for any adverse
+events.</li>
 <li>
-<code>"rel"</code>: a parameter keywords for drug-related adverse events.</li>
+<code>"rel"</code>: a parameter keywords for drug-related adverse
+events.</li>
 <li>
-<code>"ser"</code>: a parameter keywords for serious adverse events.</li>
+<code>"ser"</code>: a parameter keywords for serious adverse
+events.</li>
 <li>
-<code>"ae_summary"</code>: an analysis keywords for AE summary analysis.</li>
+<code>"ae_summary"</code>: an analysis keywords for AE summary
+analysis.</li>
 <li>
-<code>"ae_specific"</code>: an analysis keywords for specific AE analysis.</li>
+<code>"ae_specific"</code>: an analysis keywords for specific AE
+analysis.</li>
 </ul>
-<p>For the first three keywords, we can define them by <code><a href="../reference/define_parameter.html">metalite::define_parameter()</a></code> as follows. Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, ect…</p>
+<p>For the first three keywords, we can define them by
+<code><a href="../reference/define_parameter.html">metalite::define_parameter()</a></code> as follows. Here we can add
+(1) the endnotes, (2) labels, (3) the criterion to filter, ect…</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_parameter.html">define_parameter</a></span><span class="op">(</span></span>
@@ -212,7 +255,12 @@
 <span>    label <span class="op">=</span> <span class="st">"serious adverse events"</span>,</span>
 <span>    end_notes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Serious adverse events up to 90 days of last dose are included."</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p>For the last two keywords, we can define them by <code><a href="../reference/define_analysis.html">metalite::define_analysis()</a></code>. In this vignette, we only present the mockup table of AE summary. If users are interested in specific AE analysis, please define the keywords for <code>"ae_specific"</code> as <code>define_analysis(name = "ae_specific", title = ...)</code>.</p>
+<p>For the last two keywords, we can define them by
+<code><a href="../reference/define_analysis.html">metalite::define_analysis()</a></code>. In this vignette, we only
+present the mockup table of AE summary. If users are interested in
+specific AE analysis, please define the keywords for
+<code>"ae_specific"</code> as
+<code>define_analysis(name = "ae_specific", title = ...)</code>.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_analysis.html">define_analysis</a></span><span class="op">(</span></span>
@@ -223,10 +271,12 @@
 <div class="section level3">
 <h3 id="step-4-build-and-review-the-metadata">Step 4: Build and review the metadata<a class="anchor" aria-label="anchor" href="#step-4-build-and-review-the-metadata"></a>
 </h3>
-<p>Once all keywords, datasets, analysis plan are defined, users can build the metadata to compose all the information.</p>
+<p>Once all keywords, datasets, analysis plan are defined, users can
+build the metadata to compose all the information.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="va">meta</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/meta_build.html">meta_build</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>After the entire metadata is built, users can review the analysis plan by</p>
+<p>After the entire metadata is built, users can review the analysis
+plan by</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter</span></span>
@@ -271,12 +321,15 @@
 <div class="section level2">
 <h2 id="add-components-of-mockup-table">Add components of mockup table<a class="anchor" aria-label="anchor" href="#add-components-of-mockup-table"></a>
 </h2>
-<p>Based on the mockup table, we specify additional parameters that are required in the function we will define in the next section.</p>
+<p>Based on the mockup table, we specify additional parameters that are
+required in the function we will define in the next section.</p>
 <ul>
 <li>
-<code>mockup = TRUE</code> as we will create mockup for both analysis.</li>
+<code>mockup = TRUE</code> as we will create mockup for both
+analysis.</li>
 <li>
-<code>output_report</code> to define the output path based on <code>analysis</code> keywords.</li>
+<code>output_report</code> to define the output path based on
+<code>analysis</code> keywords.</li>
 </ul>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="va">meta</span><span class="op">$</span><span class="va">plan</span> <span class="op">|&gt;</span></span>
@@ -295,7 +348,8 @@
 <span><span class="co">#&gt; 2 ./tlf/mock-ae_specific.rtf</span></span>
 <span><span class="co">#&gt; 3 ./tlf/mock-ae_specific.rtf</span></span>
 <span><span class="co">#&gt; 4 ./tlf/mock-ae_specific.rtf</span></span></code></pre></div>
-<p>After the plan is updated, we can construct call program. Here we also provide a global argument for the data source.</p>
+<p>After the plan is updated, we can construct call program. Here we
+also provide a global argument for the data source.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/spec_call_program.html">spec_call_program</a></span><span class="op">(</span><span class="va">meta</span>,</span>
 <span>  data_source <span class="op">=</span> <span class="st">"[adam-adsl; adae]"</span></span>
@@ -304,12 +358,15 @@
 <span><span class="co">#&gt; [2] "ae_specific(meta = meta, population = 'apat', observation = 'wk12', parameter = 'any', mockup = TRUE, output_report = './tlf/mock-ae_specific.rtf', data_source = '[adam-adsl; adae]')"      </span></span>
 <span><span class="co">#&gt; [3] "ae_specific(meta = meta, population = 'apat', observation = 'wk12', parameter = 'rel', mockup = TRUE, output_report = './tlf/mock-ae_specific.rtf', data_source = '[adam-adsl; adae]')"      </span></span>
 <span><span class="co">#&gt; [4] "ae_specific(meta = meta, population = 'apat', observation = 'wk12', parameter = 'ser', mockup = TRUE, output_report = './tlf/mock-ae_specific.rtf', data_source = '[adam-adsl; adae]')"</span></span></code></pre></div>
-<p>The pending effort is to define <code>ae_summary</code> and <code>ae_specific</code> function that can generate the mock up tables based on the inputs.</p>
+<p>The pending effort is to define <code>ae_summary</code> and
+<code>ae_specific</code> function that can generate the mock up tables
+based on the inputs.</p>
 </div>
 <div class="section level2">
 <h2 id="create-functions">Create functions<a class="anchor" aria-label="anchor" href="#create-functions"></a>
 </h2>
-<p>Let’s create a simplified version of <code>ae_summary</code> to illustrate the idea.</p>
+<p>Let’s create a simplified version of <code>ae_summary</code> to
+illustrate the idea.</p>
 <details><summary>
 Click to view the code for function <code>ae_summary()</code>
 </summary><div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -393,7 +450,8 @@ Click to view the code for function <code>ae_summary()</code>
 <span></span>
 <span>  <span class="va">output_report</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-</details><p>For illustration purposes, we only create mock up table for the first row.</p>
+</details><p>For illustration purposes, we only create mock up table for the first
+row.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_run.html">meta_run</a></span><span class="op">(</span><span class="va">meta</span>,</span>
 <span>  i <span class="op">=</span> <span class="fl">1</span>,</span>

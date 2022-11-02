@@ -411,7 +411,19 @@
           
           <code><a href="assign_label.html">assign_label()</a></code> 
         </dt>
-        <dd>A function to assign labels to a data frame</dd>
+        <dd>A function to assign labels to a data frame
+Case 1:
+If the variable's label is already define in the original data frame,
+but not re-defined in assign_label(...), its original labels will be kept.
+Case 2:
+If the variable's label is already define in the original data frame,
+but re-defined by assign_label(...), its labels will be re-defined.
+Case 3:
+If the variable's label is not define in the original data frame,
+but it is defined by assign_label(...), its labels will added.
+Case 4:
+If the variable's label is not define in the original data frame,
+neither does it defined by assign_label(...), its labels will be the variable name itself.</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
