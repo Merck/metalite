@@ -28,10 +28,10 @@ test_that("Assign labels for duplicate variables", {
 }) 
 
 
-test_that("Assign labels for single variable", {
-  tbl <- data.frame(a = c(1, 2, 3), b = c(-1, -2, -3))
-  expect_message(tbl <- assign_label(tbl, var = "a", label = "variable 1"))
-}) 
+# test_that("Assign labels for single variable", {
+#   tbl <- data.frame(a = c(1, 2, 3), b = c(-1, -2, -3))
+#   expect_message(tbl <- assign_label(tbl, var = "a", label = "variable 1"))
+# }) 
 
 
 test_that("Assign labels for all variable", {
