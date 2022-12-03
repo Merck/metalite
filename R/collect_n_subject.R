@@ -119,9 +119,10 @@ collect_n <- function(meta,
                       display_total = TRUE){
   
   use_na <- match.arg(use_na)
-  type <- match.arg(record)
+  type <- match.arg(type)
   
-  title <- c(subject = ifelse(type == "subject", "Subjects with Data", "Number of Records"),
+  title <- c(all = ifelse(type == "subject", "Number of Subjects", "Number of Records"),
+             with_data = ifelse(type == "subject", "Subjects with Data", "Records with Data"),
              missing = "Missing")
   
   if(remove_blank_group){
@@ -172,6 +173,15 @@ collect_n <- function(meta,
   # standardize continuous variables 
   stopifnot(any(c("numeric", "integer", "factor", "character", "logical") %in% class(var)))
   
+  # summary of population
+  all <- rep(title["all"], length(var))
+  pop_all <- n_subject(id, group, par = all)
+  
+  var_n <- factor(is.na(var), c(FALSE, TRUE), title[c("with_data", "missing")])
+  
+  # Obtain Number of Subjects
+  pop_n <- n_subject(id, group, par = var_n)
+  
   # Transfer logical value
   if("logical" %in% class_var){
     class_var <- "character"
@@ -193,19 +203,28 @@ collect_n <- function(meta,
     pop_num <- data.frame(name = c("Mean (SD)", "Median [Min, Max]"), 
                           do.call(cbind, pop_num))
     
-    var <- factor(is.na(var), c(FALSE, TRUE), title)
-    
-    # Obtain Number of Subjects
-    pop_n <- n_subject(id, group, par = var)
-    
     # combine results
     names(pop_num) <- names(pop_n)  
+    
+    # add percentage 
+    pop_tmp <- pop_n
+    for(i in seq(names(pop_n))){
+      if("integer" %in% class(pop_n[[i]])){
+        pct <- formatC(pop_n[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
+        pop_tmp[[i]] <- glue::glue("{pop_n[[i]]} ({pct}%)")
+      }
+    }
+    
+    # prepare summary table
+    pop_table <- rbind(pop_all, pop_n[1, ], pop_num, pop_tmp[2, ]) 
+    var_level <- title
   }
   
   # standardize categorical variables
   if(any(c("factor", "character") %in% class_var)){
+
     var <- factor(var, exclude = NULL)
-    
+
     if(! all(is.na(var))){
       levels(var) <- c(levels(var), title["missing"])
     }else{
@@ -213,30 +232,19 @@ collect_n <- function(meta,
     }
     
     # Obtain Number of Subjects
-    pop_n <- n_subject(id, group, par = var)
+    pop_num <- n_subject(id, group, par = var)
     
-    all <- rep(title["subject"], length(var))
-    pop_all <- n_subject(id, group, par = all)
-    
-    levels(var) <- c(title["subject"], levels(var))
-  }
-  
-  # add percentage 
-  pop_tmp <- pop_n
-  for(i in seq(names(pop_n))){
-    if("integer" %in% class(pop_n[[i]])){
-      pct <- formatC(pop_n[[i]] / sum(pop_n[[i]]) * 100, format = "f", digits = 1, width = 5)
-      pop_tmp[[i]] <- glue::glue("{pop_n[[i]]} ({pct}%)")
+    pop_tmp <- pop_num
+    for(i in seq(names(pop_tmp))){
+      if("integer" %in% class(pop_tmp[[i]])){
+        pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
+        pop_tmp[[i]] <- glue::glue("{pop_tmp[[i]]} ({pct}%)")
+      }
     }
-  }
-  
-  # prepare summary table
-  if(any(c("numeric", "integer") %in% class_var)){
-    pop_table <- rbind(pop_n[1, ], pop_num, pop_tmp[2, ]) 
-  }
-  
-  if(any(c("factor", "character") %in% class_var)){
-    pop_table <- rbind(pop_all, pop_tmp)
+    
+    # prepare summary table
+    pop_table <- rbind(pop_all, pop_n[1, ], pop_tmp)
+    var_level <- unique(c(title, levels(var)))
   }
   
   # add table header using variable label
@@ -249,7 +257,11 @@ collect_n <- function(meta,
   # Prepare subset condition
   subset_condition <- function(x, name){
     
-    if(x == title["subject"]){
+    if(x == title["all"]){
+      return("")
+    }
+    
+    if(x == title["with_data"]){
       return(glue::glue("(! is.na({name}))"))
     } 
     
@@ -261,7 +273,8 @@ collect_n <- function(meta,
 
   }
   
-  var_subset <- vapply(levels(var), subset_condition, name = par_var, FUN.VALUE = character(1))
+  
+  var_subset <- vapply(var_level, subset_condition, name = par_var, FUN.VALUE = character(1))
   group_subset <-vapply(levels(group), subset_condition, name = pop_group, FUN.VALUE = character(1))
   pop_subset <- collect_adam_mapping(meta, population)$subset
   pop_subset<- fmt_quote(deparse(pop_subset))
@@ -269,7 +282,7 @@ collect_n <- function(meta,
   full_subset <- paste(group_subset, pop_subset, sep = " & ")
   full_subset <- outer(var_subset, full_subset, FUN = paste, sep = " & ")
   
-  res <- data.frame(name = levels(var), full_subset)
+  res <- data.frame(name = var_level, full_subset)
   names(res) <- c("name", levels(group))
   res <- res[, 1:ncol(pop_n)]
   rownames(res) <- NULL
