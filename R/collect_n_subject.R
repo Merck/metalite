@@ -58,7 +58,7 @@ meta_remove_blank_group <- function(meta,
   
   pop <- meta$data_population
   obs <- meta$data_observation
-
+  
   pop_grp <- collect_adam_mapping(meta, population)$group
   obs_grp <- collect_adam_mapping(meta, population)$group
   
@@ -144,6 +144,7 @@ collect_n_subject <- function(meta,
   id <- pop[[pop_id]]
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
+  
   class_var <- class(var)
   
   # Obtain variable label 
@@ -158,7 +159,14 @@ collect_n_subject <- function(meta,
   levels(group)[is.na(levels(group))] <- "Missing"
   
   # standardize continuous variables 
-  stopifnot(any(c("numeric", "integer", "factor", "character") %in% class(var)))
+  stopifnot(any(c("numeric", "integer", "factor", "character", "logical") %in% class(var)))
+  
+  # Transfer logical value
+  if("logical" %in% class_var){
+    class_var <- "character"
+    var <- factor(var, c(TRUE, FALSE), c("Yes", "No") )
+  }
+  
   if(any(c("numeric", "integer") %in% class_var)){
     
     # calculate summary statistics
@@ -257,7 +265,7 @@ collect_n_subject <- function(meta,
   
   # Show distribution graph
   if(histogram){
-
+    
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
     # ana <- subset(ana, group != "Total")
@@ -269,11 +277,11 @@ collect_n_subject <- function(meta,
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
     
-   # Rotate x-axis direction  
-   if(nchar(paste(unique(ana$var), collapse = "")) > 30){
-     pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
-   }
-      
+    # Rotate x-axis direction  
+    if(nchar(paste(unique(ana$var), collapse = "")) > 30){
+      pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
+    }
+    
     
     if(any(c("factor", "character") %in% class_var)){
       pop_hist <- pop_hist + ggplot2::geom_bar() 
