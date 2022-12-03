@@ -118,6 +118,9 @@ collect_n_subject <- function(meta,
   
   use_na <- match.arg(use_na)
   
+  title <- c(subject = "Subjects with Data",
+             missing = "Missing")
+  
   if(remove_blank_group){
     meta <- meta_remove_blank_group(meta, population, parameter)
   }
@@ -182,8 +185,7 @@ collect_n_subject <- function(meta,
     pop_num <- data.frame(name = c("Mean (SD)", "Median [Min, Max]"), 
                           do.call(cbind, pop_num))
     
-    var <- ifelse(is.na(var), "Missing", "Subjects with Data")
-    var <- factor(var, levels = c("Subjects with Data", "Missing"))
+    var <- factor(is.na(var), c(FALSE, TRUE), title)
     
     # Obtain Number of Subjects
     pop_n <- n_subject(id, group, par = var)
@@ -195,10 +197,20 @@ collect_n_subject <- function(meta,
   # standardize categorical variables
   if(any(c("factor", "character") %in% class_var)){
     var <- factor(var, exclude = NULL)
-    levels(var)[is.na(levels(var))] <- "Missing"
+    
+    if(! all(is.na(var))){
+      levels(var) <- c(levels(var), title["missing"])
+    }else{
+      levels(var)[is.na(levels(var))] <- title["missing"]
+    }
     
     # Obtain Number of Subjects
     pop_n <- n_subject(id, group, par = var)
+    
+    all <- rep(title["subject"], length(var))
+    pop_all <- n_subject(id, group, par = all)
+    
+    levels(var) <- c(title["subject"], levels(var))
   }
   
   # add percentage 
@@ -216,7 +228,7 @@ collect_n_subject <- function(meta,
   }
   
   if(any(c("factor", "character") %in% class_var)){
-    pop_table <- pop_tmp
+    pop_table <- rbind(pop_all, pop_tmp)
   }
   
   # add table header using variable label
@@ -228,11 +240,17 @@ collect_n_subject <- function(meta,
   
   # Prepare subset condition
   subset_condition <- function(x, name){
-    switch(x, 
-           "Subjects with Data" = glue::glue("! is.na({name})"), 
-           "Missing" = glue::glue("is.na({name})"), 
-           glue::glue("{name} == '{x}'")
-    )
+    
+    if(x == title["subject"]){
+      return(glue::glue("(! is.na({name}))"))
+    } 
+    
+    if(x == title["missing"]){
+      return(glue::glue("is.na({name})"))
+    }
+    
+    glue::glue("{name} == '{x}'")
+
   }
   
   var_subset <- vapply(levels(var), subset_condition, name = par_var, FUN.VALUE = character(1))
@@ -245,7 +263,7 @@ collect_n_subject <- function(meta,
   
   res <- data.frame(name = levels(var), full_subset)
   names(res) <- c("name", levels(group))
-  res <- res[1:nrow(pop_n), 1:ncol(pop_n)]
+  res <- res[, 1:ncol(pop_n)]
   rownames(res) <- NULL
   
   res <- res[, setdiff(names(res), "Total")]
@@ -268,12 +286,20 @@ collect_n_subject <- function(meta,
     
     ana <- data.frame(id = id, group = group, var = pop[[par_var]])
     ana <- stats::na.omit(ana)
-    # ana <- subset(ana, group != "Total")
+    
+    if(any(c("numeric", "integer") %in% class_var)){
+      ana$var <- cut(ana$var, 
+          seq(min(ana$var, na.rm = TRUE), 
+              max(ana$var, na.rm = TRUE),
+              length.out = 6), include.lowest = TRUE
+      )
+      
+    }
     
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
       ggplot2::xlab(label) + 
-      ggplot2::ylab("Number of Subjects") + 
+      ggplot2::ylab("Number of Records") + 
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
     
@@ -282,15 +308,8 @@ collect_n_subject <- function(meta,
       pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
     }
     
-    
-    if(any(c("factor", "character") %in% class_var)){
-      pop_hist <- pop_hist + ggplot2::geom_bar() 
-    }
-    
-    if(any(c("numeric", "integer") %in% class_var)){
-      pop_hist <- pop_hist + ggplot2::geom_histogram(bins = 5) 
-    }  
-    
+    pop_hist <- pop_hist + ggplot2::geom_bar() 
+
   }else{
     pop_hist <- NULL
   }
