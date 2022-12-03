@@ -147,15 +147,17 @@ collect_n_subject <- function(meta,
   pop_group <- collect_adam_mapping(meta, population)$group
   
   # Define analysis dataset
-  if(any(duplicated(pop[[pop_id]]))){
-    warning(pop_id, " is not a unique ID")
-  }
-  
-  id <- seq(pop[[pop_id]])
+  uid <- pop[[pop_id]]
+  id <- seq(uid)
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   
   class_var <- class(var)
+  
+  # Check ID duplication 
+  if(any(duplicated(uid[! group %in% "Total"]))){
+    warning(pop_id, " is not a unique ID")
+  }
   
   # Obtain variable label 
   label <- collect_adam_mapping(meta, parameter)$label
