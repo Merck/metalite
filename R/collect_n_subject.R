@@ -162,7 +162,7 @@ collect_n_subject <- function(meta,
   levels(group)[is.na(levels(group))] <- "Missing"
   
   # standardize continuous variables 
-  stopifnot(any(c("numeric", "integer", "factor", "character", "logical") %in% class(var)))
+  stopifnot(inherits(var, c("numeric", "integer", "factor", "character", "logical")))
   
   # Transfer logical value
   if("logical" %in% class_var){
