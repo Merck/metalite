@@ -5,8 +5,8 @@
 #' 
 #' @examples 
 #' meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
-#' collect_n_subject(meta, "ase", "AGE")
-#' collect_n_subject(meta, "ase", "SEX")
+#' collect_n(meta, "ase", "AGE")
+#' collect_n(meta, "ase", "SEX")
 #' 
 #' @export
 meta_dummy_exploration <- function(data, 

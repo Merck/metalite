@@ -51,7 +51,7 @@ n_subject <- function(id,
 
 #' Remove blank group based on analysis parameter. 
 #' 
-#' @inheritParams collect_n_subject
+#' @inheritParams collect_n
 meta_remove_blank_group <- function(meta, 
                                     population,
                                     parameter){
@@ -103,22 +103,24 @@ meta_remove_blank_group <- function(meta,
 #' meta <- meta_dummy() |> 
 #'   define_parameter(name="sex", var = "SEX", label = "Sex") 
 #'  )
-#' collect_n_subject(meta, "apat", "sex")
+#' collect_n(meta, "apat", "sex")
 #' 
 #' @export
-collect_n_subject <- function(meta, 
-                              population, 
-                              parameter, 
-                              listing = FALSE, 
-                              histogram = FALSE,
-                              var_listing = NULL,
-                              remove_blank_group = FALSE,
-                              use_na = c("ifany", "no", "always"), 
-                              display_total = TRUE){
+collect_n <- function(meta, 
+                      population, 
+                      parameter, 
+                      listing = FALSE, 
+                      histogram = FALSE,
+                      var_listing = NULL,
+                      remove_blank_group = FALSE,
+                      type = c("subject", "record"),                     
+                      use_na = c("ifany", "no", "always"), 
+                      display_total = TRUE){
   
   use_na <- match.arg(use_na)
+  type <- match.arg(record)
   
-  title <- c(subject = "Subjects with Data",
+  title <- c(subject = ifelse(type == "subject", "Subjects with Data", "Number of Records"),
              missing = "Missing")
   
   if(remove_blank_group){
@@ -144,7 +146,12 @@ collect_n_subject <- function(meta,
   pop_group <- collect_adam_mapping(meta, population)$group
   
   # Define analysis dataset
-  id <- pop[[pop_id]]
+  if(type == "subject"){
+    id <- pop[[pop_id]]
+  }else{
+    id <- seq(pop[[pop_id]])
+  }
+  
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   
