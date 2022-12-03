@@ -107,22 +107,21 @@ meta_remove_blank_group <- function(meta,
 #' collect_n(meta, "apat", "sex")
 #' 
 #' @export
-collect_n <- function(meta, 
-                      population, 
-                      parameter, 
-                      listing = FALSE, 
-                      histogram = FALSE,
-                      var_listing = NULL,
-                      remove_blank_group = FALSE,
-                      type = c("record", "subject"),                     
-                      use_na = c("ifany", "no", "always"), 
-                      display_total = TRUE){
+collect_n_subject <- function(meta, 
+                              population, 
+                              parameter, 
+                              listing = FALSE, 
+                              histogram = FALSE,
+                              var_listing = NULL,
+                              remove_blank_group = FALSE,
+                              type = "Subjects",                     
+                              use_na = c("ifany", "no", "always"), 
+                              display_total = TRUE){
   
   use_na <- match.arg(use_na)
-  type <- match.arg(type)
-  
-  title <- c(all = ifelse(type == "subject", "Number of Subjects", "Number of Records"),
-             with_data = ifelse(type == "subject", "Subjects with Data", "Records with Data"),
+
+  title <- c(all = glue::glue("Number of {type}"),
+             with_data = glue::glue("{type} with Data"),
              missing = "Missing")
   
   if(remove_blank_group){
@@ -148,12 +147,11 @@ collect_n <- function(meta,
   pop_group <- collect_adam_mapping(meta, population)$group
   
   # Define analysis dataset
-  if(type == "subject"){
-    id <- pop[[pop_id]]
-  }else{
-    id <- seq(pop[[pop_id]])
+  if(any(duplicated(pop[[pop_id]]))){
+    warning(pop_id, " is not a unique ID")
   }
   
+  id <- seq(pop[[pop_id]])
   group <- pop[[pop_group]]
   var <- pop[[par_var]]
   
@@ -272,7 +270,6 @@ collect_n <- function(meta,
     glue::glue("{name} == '{x}'")
 
   }
-  
   
   var_subset <- vapply(var_level, subset_condition, name = par_var, FUN.VALUE = character(1))
   group_subset <-vapply(levels(group), subset_condition, name = pop_group, FUN.VALUE = character(1))
