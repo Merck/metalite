@@ -61,7 +61,7 @@ reference:
   - "collect_observation_record"
   - "collect_dataname"
   - "collect_title"
-  - "collect_n"
+  - "collect_n_subject"
 - title: Collect specification information 
   contents:
   - "spec_title"

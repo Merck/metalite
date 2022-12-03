@@ -51,7 +51,7 @@ n_subject <- function(id,
 
 #' Remove blank group based on analysis parameter. 
 #' 
-#' @inheritParams collect_n
+#' @inheritParams collect_n_subject
 meta_remove_blank_group <- function(meta, 
                                     population,
                                     parameter){
@@ -95,7 +95,7 @@ meta_remove_blank_group <- function(meta,
 #' @param histogram a logical value to display histogram by group. 
 #' @param var_listing a character vector of additional variables included in the listing.  
 #' @param remove_blank_group a logical value to remove a group with all missing value of a parameter. 
-#' @param type a character value to control type of count by unique subjects or unique records.
+#' @param type a character value to control title name. e.g. Subjects or Records.
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #' @param display_total a logical value to display total column. 
 #' 
@@ -104,7 +104,7 @@ meta_remove_blank_group <- function(meta,
 #' meta <- meta_dummy() |> 
 #'   define_parameter(name="sex", var = "SEX", label = "Sex") 
 #'  )
-#' collect_n(meta, "apat", "sex")
+#' collect_n_subject(meta, "apat", "sex")
 #' 
 #' @export
 collect_n_subject <- function(meta, 
@@ -317,7 +317,7 @@ collect_n_subject <- function(meta,
     pop_hist <- ggplot2::ggplot(data = ana, ggplot2::aes(x = var, group = group)) + 
       ggplot2::facet_wrap(~ group) + 
       ggplot2::xlab(label) + 
-      ggplot2::ylab("Number of Records") + 
+      ggplot2::ylab(title["all"]) + 
       ggplot2::ggtitle(glue::glue("Histogram of {label}")) + 
       ggplot2::theme_bw() 
     
