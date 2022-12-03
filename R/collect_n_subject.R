@@ -172,7 +172,7 @@ collect_n_subject <- function(meta,
   
   # standardize continuous variables 
   stopifnot(inherits(var, c("numeric", "integer", "factor", "character", "logical")))
-  
+
   # summary of population
   all <- rep(title["all"], length(var))
   pop_all <- n_subject(id, group, par = all)
