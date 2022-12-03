@@ -166,12 +166,12 @@ collect_n <- function(meta,
   }
   
   # standardize group variable 
-  stopifnot(any(c("factor", "character") %in% class(group)))
+  stopifnot(inherits(group, c("factor", "character")))
   group <- factor(group, exclude = NULL)
   levels(group)[is.na(levels(group))] <- "Missing"
   
   # standardize continuous variables 
-  stopifnot(any(c("numeric", "integer", "factor", "character", "logical") %in% class(var)))
+  stopifnot(inherits(var, c("numeric", "integer", "factor", "character", "logical")))
   
   # summary of population
   all <- rep(title["all"], length(var))
