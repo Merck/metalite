@@ -95,6 +95,7 @@ meta_remove_blank_group <- function(meta,
 #' @param histogram a logical value to display histogram by group. 
 #' @param var_listing a character vector of additional variables included in the listing.  
 #' @param remove_blank_group a logical value to remove a group with all missing value of a parameter. 
+#' @param type a character value to control type of count by unique subjects or unique records.
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #' @param display_total a logical value to display total column. 
 #' 
@@ -113,7 +114,7 @@ collect_n <- function(meta,
                       histogram = FALSE,
                       var_listing = NULL,
                       remove_blank_group = FALSE,
-                      type = c("subject", "record"),                     
+                      type = c("record", "subject"),                     
                       use_na = c("ifany", "no", "always"), 
                       display_total = TRUE){
   
