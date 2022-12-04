@@ -12,6 +12,7 @@ collect_n_subject(
   histogram = FALSE,
   var_listing = NULL,
   remove_blank_group = FALSE,
+  type = "Subjects",
   use_na = c("ifany", "no", "always"),
   display_total = TRUE
 )
@@ -32,6 +33,8 @@ The term name is used as key to link information.}
 \item{var_listing}{a character vector of additional variables included in the listing.}
 
 \item{remove_blank_group}{a logical value to remove a group with all missing value of a parameter.}
+
+\item{type}{a character value to control title name. e.g. Subjects or Records.}
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
 
