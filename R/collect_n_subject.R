@@ -225,7 +225,7 @@ collect_n_subject <- function(meta,
 
     var <- factor(var, exclude = NULL)
 
-    if(! all(is.na(var))){
+    if(all(is.na(var))){
       levels(var) <- c(levels(var), title["missing"])
     }else{
       levels(var)[is.na(levels(var))] <- title["missing"]
@@ -334,5 +334,5 @@ collect_n_subject <- function(meta,
     pop_hist <- NULL
   }
   
-  list(table = pop_table, n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
+  list(table = pop_table, n = pop_all, subset = res, listing = listing, histogram = pop_hist)  
 }
