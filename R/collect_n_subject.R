@@ -258,7 +258,7 @@ collect_n_subject <- function(meta,
   subset_condition <- function(x, name){
     
     if(x == title["all"]){
-      return("")
+      return("TRUE")
     }
     
     if(x == title["with_data"]){
