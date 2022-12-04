@@ -325,7 +325,7 @@ collect_n_subject <- function(meta,
     
     # Rotate x-axis direction  
     if(nchar(paste(unique(ana$var), collapse = "")) > 30){
-      pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
+      pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45, hjust = 0)) 
     }
     
     pop_hist <- pop_hist + ggplot2::geom_bar() 
