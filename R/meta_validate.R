@@ -19,7 +19,6 @@
 #'
 #' @inheritParams define_population
 meta_validate <- function(meta) {
-
   # Check data type
   if (!is.data.frame(meta$data_population)) {
     stop(".$data_population must be a data frame")

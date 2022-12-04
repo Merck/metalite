@@ -244,9 +244,11 @@ collect_observation_record <- function(meta,
   # get all labels from the un-subset data
   ans_label <- get_label(meta$data_observation)
   # assign labels
-  assign_label(data = ans, 
-               var = names(ans), 
-               label = ans_label[match(names(ans), names(ans_label))])
+  assign_label(
+    data = ans,
+    var = names(ans),
+    label = ans_label[match(names(ans), names(ans_label))]
+  )
 }
 
 #' Collect specification for title

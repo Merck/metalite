@@ -129,7 +129,6 @@ new_outdata <- function(x, env = globalenv()) {
 #'   )
 #' )
 validate_outdata <- function(x) {
-
   # All required variable
   char <- c("population", "observation", "parameter", "group")
   num <- c("reference_group", "order")

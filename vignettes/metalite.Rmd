@@ -83,8 +83,10 @@ the population information is saved in ADSL (population level).
 With demo ADaM datasets in `r2rtf` package, we can construct an object as below using `meta_adam`. 
 
 ```{r}
-meta_adam(observation = r2rtf_adae, 
-          population = r2rtf_adsl) 
+meta_adam(
+  observation = r2rtf_adae,
+  population = r2rtf_adsl
+)
 ```
 
 - Analysis Plan (`define_plan`): specification of analysis 
@@ -101,12 +103,15 @@ In the code below, we construct 10 TLFs based on different combination of
 analysis function, population, observation and parameter. 
 
 ```{r}
-plan <- plan(analysis = "ae_summary", population = "apat", 
-             observation = c("wk12", "wk24"), parameter = "any;rel;ser") |>
-  
-  add_plan(analysis = "ae_specific", population = "apat", 
-           observation = c("wk12", "wk24"), 
-           parameter = c("any", "aeosi", "rel", "ser"))
+plan <- plan(
+  analysis = "ae_summary", population = "apat",
+  observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+) |>
+  add_plan(
+    analysis = "ae_specific", population = "apat",
+    observation = c("wk12", "wk24"),
+    parameter = c("any", "aeosi", "rel", "ser")
+  )
 
 plan
 ```
@@ -114,8 +119,10 @@ plan
 Then, we can define the analysis plan using `define_plan`.
 
 ```{r}
-meta_adam(population = r2rtf_adsl,
-          observation = r2rtf_adae) |>
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
   define_plan(plan)
 ```
   
@@ -132,11 +139,11 @@ We have defined some built-in information that follows an A&R conventions.
 So, the programs know the meaning of "apat" as below. 
 
 ```{r}
-meta_adam(population = r2rtf_adsl, 
-          observation = r2rtf_adae) |>
-  
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
   define_plan(plan) |>
-  
   define_population(name = "apat")
 ```
 
@@ -144,14 +151,16 @@ Some project specific information still needs to be provided by study team
 such as the group variable name and subset flag condition. 
 
 ```{r}
-meta_adam(population = r2rtf_adsl, 
-          observation = r2rtf_adae) |>
-  
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
   define_plan(plan) |>
-  
-  define_population(name = "apat",
-                    group = "TRT01A", 
-                    subset = SAFFL == "Y")
+  define_population(
+    name = "apat",
+    group = "TRT01A",
+    subset = SAFFL == "Y"
+  )
 ```
 
 Similarly, we can define other meta information 
@@ -161,35 +170,41 @@ We will also use `meta_build` to add default values for other `name` that is not
 > In `metalite`, we save this demo example in `meta_dummy()` to illustrate different use cases.
 
 ```{r}
-meta_adam(population = r2rtf_adsl, 
-          observation = r2rtf_adae) |>
-  
+meta_adam(
+  population = r2rtf_adsl,
+  observation = r2rtf_adae
+) |>
   define_plan(plan = plan) |>
-  
-  define_population(name = "apat",
-                    group = "TRT01A", 
-                    subset = SAFFL == "Y") |>
-  
-  define_observation(name = "wk12",
-                  group = "TRTA", 
-                  subset = SAFFL == "Y", 
-                  label = "Weeks 0 to 12") |>
-  
-  define_observation(name = "wk24",
-                  group = "TRTA", 
-                  subset = AOCC01FL == "Y",    # just for demo, another flag shall be used.  
-                  label = "Weeks 0 to 24") |>
-  
-  define_parameter(name = "rel", 
-                subset = AEREL %in% c("POSSIBLE", "PROBABLE")) |>
-  
-  define_parameter(name = "aeosi", 
-                subset = AEOSI == "Y", 
-                label = "adverse events of special interest") |> 
-  
-  define_analysis(name = "ae_summary", 
-                  title = "Summary of Adverse Events") |>
-  
+  define_population(
+    name = "apat",
+    group = "TRT01A",
+    subset = SAFFL == "Y"
+  ) |>
+  define_observation(
+    name = "wk12",
+    group = "TRTA",
+    subset = SAFFL == "Y",
+    label = "Weeks 0 to 12"
+  ) |>
+  define_observation(
+    name = "wk24",
+    group = "TRTA",
+    subset = AOCC01FL == "Y", # just for demo, another flag shall be used.
+    label = "Weeks 0 to 24"
+  ) |>
+  define_parameter(
+    name = "rel",
+    subset = AEREL %in% c("POSSIBLE", "PROBABLE")
+  ) |>
+  define_parameter(
+    name = "aeosi",
+    subset = AEOSI == "Y",
+    label = "adverse events of special interest"
+  ) |>
+  define_analysis(
+    name = "ae_summary",
+    title = "Summary of Adverse Events"
+  ) |>
   meta_build()
 ```
 
@@ -198,10 +213,12 @@ It also allow developers to **standardize** the input of their functions.
 So the `plan$analysis` is analysis name. `meta` and other columns in `plan` are function arguments
 
 ```{r, eval = FALSE}
-ae_summary(meta, 
-           population, 
-           observation, 
-           parameter, ...)
+ae_summary(
+  meta,
+  population,
+  observation,
+  parameter, ...
+)
 ```
 
 

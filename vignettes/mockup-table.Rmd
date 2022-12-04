@@ -80,14 +80,14 @@ So, we can define an analysis plan as below for a total of 2 mockup to generate 
 
 ```{r}
 plan <- plan(
-    analysis = "ae_summary", population = "apat",
-    observation = "wk12", parameter = "any;rel;ser"
-  ) |>
-    add_plan(
-      analysis = "ae_specific", population = "apat",
-      observation = "wk12",
-      parameter = c("any", "rel", "ser")
-    )
+  analysis = "ae_summary", population = "apat",
+  observation = "wk12", parameter = "any;rel;ser"
+) |>
+  add_plan(
+    analysis = "ae_specific", population = "apat",
+    observation = "wk12",
+    parameter = c("any", "rel", "ser")
+  )
 plan
 ```
 
@@ -242,7 +242,6 @@ ae_summary <- function(meta,
                        output_report,
                        data_source,
                        ...) {
-
   # Identify parameter keywords
   para_list <- unlist(strsplit(parameter, ";"))
 
@@ -268,7 +267,6 @@ ae_summary <- function(meta,
 
   # Logic to create mockup table
   if (mockup) {
-
     # Generate RTF
     x <- tibble::tibble(
       ae_label = ae_label,

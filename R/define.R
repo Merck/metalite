@@ -22,8 +22,10 @@
 #'
 #' @examples
 #' library(r2rtf)
-#' plan <- plan(analysis = "ae_summary", population = "apat", 
-#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
+#' plan <- plan(
+#'   analysis = "ae_summary", population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+#' )
 #'
 #' meta_adam(
 #'   population = r2rtf::r2rtf_adsl,
@@ -43,9 +45,11 @@ define_plan <- function(meta,
 #' @inheritParams adam_mapping
 #' @examples
 #' library(r2rtf)
-#' plan <- plan(analysis = "ae_summary", population = "apat", 
-#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
-#' 
+#' plan <- plan(
+#'   analysis = "ae_summary", population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+#' )
+#'
 #' meta_adam(
 #'   population = r2rtf::r2rtf_adsl,
 #'   observation = r2rtf::r2rtf_adae
@@ -67,7 +71,7 @@ define_population <- function(meta,
 
   try(subset, silent = TRUE)
   list(...)
-  
+
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -87,9 +91,11 @@ define_population <- function(meta,
 #'
 #' @inheritParams define_population
 #' @examples
-#' plan <- plan(analysis = "ae_summary", population = "apat", 
-#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
-#' 
+#' plan <- plan(
+#'   analysis = "ae_summary", population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+#' )
+#'
 #' meta_adam(
 #'   population = r2rtf::r2rtf_adsl,
 #'   observation = r2rtf::r2rtf_adae
@@ -116,7 +122,7 @@ define_observation <- function(meta,
 
   try(subset, silent = TRUE)
   list(...)
-  
+
   x <- adam_mapping(
     name = !!name,
     id = !!id,
@@ -137,9 +143,11 @@ define_observation <- function(meta,
 #' @inheritParams define_population
 #'
 #' @examples
-#' plan <- plan(analysis = "ae_summary", population = "apat", 
-#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
-#' 
+#' plan <- plan(
+#'   analysis = "ae_summary", population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+#' )
+#'
 #' meta_adam(
 #'   population = r2rtf::r2rtf_adsl,
 #'   observation = r2rtf::r2rtf_adae
@@ -160,7 +168,7 @@ define_parameter <- function(meta,
 
   try(subset, silent = TRUE)
   list(...)
-  
+
   x <- adam_mapping(
     name = !!name,
     subset = !!rlang::enquo(subset),
@@ -177,9 +185,11 @@ define_parameter <- function(meta,
 #' @inheritParams define_population
 #'
 #' @examples
-#' plan <- plan(analysis = "ae_summary", population = "apat", 
-#' observation = c("wk12", "wk24"), parameter = "any;rel;ser")
-#' 
+#' plan <- plan(
+#'   analysis = "ae_summary", population = "apat",
+#'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
+#' )
+#'
 #' meta_adam(
 #'   population = r2rtf::r2rtf_adsl,
 #'   observation = r2rtf::r2rtf_adae
@@ -198,7 +208,7 @@ define_analysis <- function(meta,
   }
 
   list(...)
-  
+
   x <- adam_mapping(name = !!name, ...)
 
   meta$analysis[[name]] <- default_apply(x)
