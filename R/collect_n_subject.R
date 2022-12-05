@@ -225,7 +225,7 @@ collect_n_subject <- function(meta,
 
     var <- factor(var, exclude = NULL)
 
-    if(! all(is.na(var))){
+    if(all(is.na(var))){
       levels(var) <- c(levels(var), title["missing"])
     }else{
       levels(var)[is.na(levels(var))] <- title["missing"]
@@ -258,7 +258,7 @@ collect_n_subject <- function(meta,
   subset_condition <- function(x, name){
     
     if(x == title["all"]){
-      return("")
+      return("TRUE")
     }
     
     if(x == title["with_data"]){
@@ -325,7 +325,7 @@ collect_n_subject <- function(meta,
     
     # Rotate x-axis direction  
     if(nchar(paste(unique(ana$var), collapse = "")) > 30){
-      pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45)) 
+      pop_hist <- pop_hist + ggplot2::theme(axis.text.x = ggplot2::element_text(angle = -45, hjust = 0)) 
     }
     
     pop_hist <- pop_hist + ggplot2::geom_bar() 
@@ -334,5 +334,5 @@ collect_n_subject <- function(meta,
     pop_hist <- NULL
   }
   
-  list(table = pop_table, n = pop_n, subset = res, listing = listing, histogram = pop_hist)  
+  list(table = pop_table, n = pop_all, subset = res, listing = listing, histogram = pop_hist)  
 }
