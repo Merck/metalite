@@ -9,5 +9,4 @@ test_that("meta_dummy() structure", {
   expect_equal(class(x$observation), "list")
   expect_equal(class(x$parameter), "list")
   expect_equal(class(x$analysis), "list")
-  
 })

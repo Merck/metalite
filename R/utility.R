@@ -74,18 +74,16 @@ fmt_sentence <- function(x) {
 }
 
 
-#' Reset Dataset Label 
-#' 
-#' @param data a data frame 
+#' Reset Dataset Label
+#'
+#' @param data a data frame
 #' @param data_label a data frame with label
-reset_label <- function(data, data_label){
-  
+reset_label <- function(data, data_label) {
   name <- names(data)
-  
-  for(i in seq(name)){
+
+  for (i in seq(name)) {
     attr(data[[i]], "label") <- attr(data_label[[name[i]]], "label")
   }
-  
+
   data
-  
 }
