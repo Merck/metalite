@@ -164,14 +164,14 @@ in AE summary.</p>
 to generate 4 TLFs.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/plan.html">plan</a></span><span class="op">(</span></span>
-<span>    analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span>
-<span>    observation <span class="op">=</span> <span class="st">"wk12"</span>, parameter <span class="op">=</span> <span class="st">"any;rel;ser"</span></span>
-<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="../reference/add_plan.html">add_plan</a></span><span class="op">(</span></span>
-<span>      analysis <span class="op">=</span> <span class="st">"ae_specific"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span>
-<span>      observation <span class="op">=</span> <span class="st">"wk12"</span>,</span>
-<span>      parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"any"</span>, <span class="st">"rel"</span>, <span class="st">"ser"</span><span class="op">)</span></span>
-<span>    <span class="op">)</span></span>
+<span>  analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span>
+<span>  observation <span class="op">=</span> <span class="st">"wk12"</span>, parameter <span class="op">=</span> <span class="st">"any;rel;ser"</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/add_plan.html">add_plan</a></span><span class="op">(</span></span>
+<span>    analysis <span class="op">=</span> <span class="st">"ae_specific"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span>
+<span>    observation <span class="op">=</span> <span class="st">"wk12"</span>,</span>
+<span>    parameter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"any"</span>, <span class="st">"rel"</span>, <span class="st">"ser"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
 <span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter</span></span>
 <span><span class="co">#&gt; 1    1  ae_summary       apat        wk12 any;rel;ser</span></span>
@@ -378,7 +378,6 @@ Click to view the code for function <code>ae_summary()</code>
 <span>                       <span class="va">output_report</span>,</span>
 <span>                       <span class="va">data_source</span>,</span>
 <span>                       <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
 <span>  <span class="co"># Identify parameter keywords</span></span>
 <span>  <span class="va">para_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">parameter</span>, <span class="st">";"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -404,7 +403,6 @@ Click to view the code for function <code>ae_summary()</code>
 <span></span>
 <span>  <span class="co"># Logic to create mockup table</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="va">mockup</span><span class="op">)</span> <span class="op">{</span></span>
-<span></span>
 <span>    <span class="co"># Generate RTF</span></span>
 <span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span></span>
 <span>      ae_label <span class="op">=</span> <span class="va">ae_label</span>,</span>
