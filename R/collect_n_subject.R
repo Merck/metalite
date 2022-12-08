@@ -250,7 +250,7 @@ collect_n_subject <- function(meta,
   header <- data.frame(t(c(label, rep(NA, ncol(pop_table) - 1))))
   names(header) <- names(pop_table)
 
-  pop_table <- rbind(header, pop_table)
+  pop_table <- rbind(pop_table[1, ], header, pop_table[-1, ])
   rownames(pop_table) <- NULL
 
   # Prepare subset condition
