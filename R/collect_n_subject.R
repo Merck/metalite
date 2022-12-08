@@ -217,6 +217,7 @@ collect_n_subject <- function(meta,
     # prepare summary table
     pop_table <- rbind(pop_all, pop_n[1, ], pop_num, pop_tmp[2, ])
     var_level <- title
+    names(var_level) <- NULL
   }
 
   # standardize categorical variables
