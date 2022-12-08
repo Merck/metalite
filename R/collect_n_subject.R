@@ -217,6 +217,7 @@ collect_n_subject <- function(meta,
     # prepare summary table
     pop_table <- rbind(pop_all, pop_n[1, ], pop_num, pop_tmp[2, ])
     var_level <- title
+    names(var_level) <- NULL
   }
 
   # standardize categorical variables
@@ -249,7 +250,7 @@ collect_n_subject <- function(meta,
   header <- data.frame(t(c(label, rep(NA, ncol(pop_table) - 1))))
   names(header) <- names(pop_table)
 
-  pop_table <- rbind(header, pop_table)
+  pop_table <- rbind(pop_table[1, ], header, pop_table[-1, ])
   rownames(pop_table) <- NULL
 
   # Prepare subset condition
