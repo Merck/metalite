@@ -9,6 +9,8 @@ Authors@R: c(
     person("Brian", "Lang", role = c("ctb")),
     person("Howard", "Baek", role = c("ctb")),
     person("Ruchitbhai", "Patel", role = c("ctb")),
+    person("Madhusudhan", "Ginnaram", role = c("ctb")),
+    person("Sarad", "Nepal", role = c("ctb")),
     person("Venkatesh", "Burla", role = c("ctb")),
     person("Merck Sharp & Dohme Corp", role = c("cph"))
     )
