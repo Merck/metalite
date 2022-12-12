@@ -9,6 +9,7 @@ Authors@R: c(
     person("Brian", "Lang", role = c("ctr")),
     person("Howard", "Baek", role = c("ctr")),
     person("Ruchitbhai", "Patel", role = c("ctr")),
+    person("Venkatesh", "Burla", role = c("ctr")),
     person("Merck Sharp & Dohme Corp", role = c("cph"))
     )
 Description: A metadata structure for ADaM data analysis
