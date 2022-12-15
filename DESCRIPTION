@@ -3,8 +3,8 @@ Title: ADaM Metadata Structure
 Version: 0.1.0
 Authors@R: c(
     person("Yilong", "Zhang", role = c("aut")),
-    person("Nan", "Xiao", email = "nan.xiao1@merck.com", role = c("aut", "cre")),
-    person("Yujie", "Zhao", role = c("aut")),
+    person("Yujie", "Zhao", email = "yujie.zhao@merck.com", role = c("aut", "cre")),
+    person("Nan", "Xiao", role = c("aut")),
     person("Benjamin", "Wang", role = c("ctb")),
     person("Brian", "Lang", role = c("ctb")),
     person("Howard", "Baek", role = c("ctb")),
@@ -40,4 +40,4 @@ Suggests:
     tibble
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
