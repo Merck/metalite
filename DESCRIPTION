@@ -1,16 +1,20 @@
 Package: metalite
 Title: ADaM Metadata Structure
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: c(
     person("Yilong", "Zhang", role = c("aut")),
     person("Nan", "Xiao", email = "nan.xiao1@merck.com", role = c("aut", "cre")),
-    person("Ruchitbhai", "Patel", role = c("aut")),
-    person("Madhusudhan", "Ginnaram", role = c("aut")),
-    person("Sarad", "Nepal", role = c("aut")),
     person("Yujie", "Zhao", role = c("aut")),
+    person("Benjamin", "Wang", role = c("ctb")),
+    person("Brian", "Lang", role = c("ctb")),
+    person("Howard", "Baek", role = c("ctb")),
+    person("Ruchitbhai", "Patel", role = c("ctb")),
+    person("Madhusudhan", "Ginnaram", role = c("ctb")),
+    person("Sarad", "Nepal", role = c("ctb")),
+    person("Venkatesh", "Burla", role = c("ctb")),
     person("Merck Sharp & Dohme Corp", role = c("cph"))
     )
-Description: Create metadata structure for ADaM data analysis
+Description: A metadata structure for ADaM data analysis
     and reporting in clinical trial development.
 License: GPL-3
 URL: https://merck.github.io/metalite/, https://github.com/Merck/metalite
