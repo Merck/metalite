@@ -6,6 +6,8 @@
 \alias{metalite-package}
 \title{metalite: ADaM Metadata Structure}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Create metadata structure for ADaM data analysis and reporting in clinical trial development.
 }
 \seealso{
