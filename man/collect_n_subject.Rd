@@ -45,9 +45,9 @@ Collect number of subjects and its subset condition
 }
 \examples{
 suppressWarnings(
-meta <- meta_dummy() |> 
-  define_parameter(name="sex", var = "SEX", label = "Sex") 
- )
+  meta <- meta_dummy() |>
+    define_parameter(name = "sex", var = "SEX", label = "Sex")
+)
 collect_n_subject(meta, "apat", "sex")
 
 }
