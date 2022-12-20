@@ -64,8 +64,8 @@ meta_remove_blank_group <- function(meta,
   
   pop_var <- collect_adam_mapping(meta, parameter)$var
   
-  if(is.null(pop_var)){
-    stop("meta_remove_blank_group: parameter is not available in meta$population")
+  if(is.null(pop[[pop_var]])){
+    stop(glue::glue("meta_remove_blank_group: parameter {pop_var} is not available in meta$population"))
   }
   
   loc <- which(table(is.na(pop[[pop_var]]), pop[[pop_grp]])["FALSE", ] == 0 )
