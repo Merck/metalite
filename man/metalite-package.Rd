@@ -6,7 +6,9 @@
 \alias{metalite-package}
 \title{metalite: ADaM Metadata Structure}
 \description{
-Create metadata structure for ADaM data analysis and reporting in clinical trial development.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+A metadata structure for ADaM data analysis and reporting in clinical trial development.
 }
 \seealso{
 Useful links:
@@ -18,19 +20,23 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Nan Xiao \email{nan.xiao1@merck.com}
+\strong{Maintainer}: Yujie Zhao \email{yujie.zhao@merck.com}
 
 Authors:
 \itemize{
   \item Yilong Zhang
-  \item Ruchitbhai Patel
-  \item Madhusudhan Ginnaram
-  \item Sarad Nepal
-  \item Yujie Zhao
+  \item Nan Xiao
 }
 
 Other contributors:
 \itemize{
+  \item Benjamin Wang [contributor]
+  \item Brian Lang [contributor]
+  \item Howard Baek [contributor]
+  \item Ruchitbhai Patel [contributor]
+  \item Madhusudhan Ginnaram [contributor]
+  \item Sarad Nepal [contributor]
+  \item Venkatesh Burla [contributor]
   \item Merck Sharp & Dohme Corp [copyright holder]
 }
 

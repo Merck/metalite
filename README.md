@@ -1,4 +1,4 @@
-# metalite
+# metalite <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 
@@ -11,7 +11,7 @@
 
 ## Overview
 
-The purpose of `metalite` is to define a unified data structure to save metadata information
+The purpose of the metalite R package is to define a unified data structure to save metadata information
 for analysis & reporting (A&R) based on ADaM datasets in clinical trial development.
 
 The R package is designed to
@@ -22,7 +22,7 @@ The R package is designed to
 - reduce manual steps to maintain SDLC documentation.
 - ensure consistency between analysis specification, mock, and results.
 
-We build `metalite` to enable principals below:
+We build the metalite R package to enable principals below:
 
 - Automation: a function call is better than a checklist.
 - Single-entry: enter in one place, sync to all deliveries.
@@ -31,8 +31,8 @@ We build `metalite` to enable principals below:
 
 ## Use cases
 
-`metalite` build a foundation to simplify tool development.
-For example, `metalite` can be used to:
+The metalite R package build a foundation to simplify tool development.
+For example, the metalite can be used to:
 
 - standardize input and output for A&R functions.
 - create analysis and reporting planning grid
@@ -40,7 +40,8 @@ For example, `metalite` can be used to:
 - create and validate A&R results
 - trace analysis records
 
-`metalite` needs to work with other R packages to complete the work.
+Note: metalite is a low level R package 
+that needs to work with other R packages to complete the work.
 We illustrate the idea in the diagram below.
 
 <img src="man/figures/design-diagram.png" width="100%" />

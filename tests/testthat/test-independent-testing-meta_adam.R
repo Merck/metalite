@@ -12,6 +12,4 @@ test_that("meta_adam testing", {
   expect_equal(test$observation, list())
   expect_equal(test$parameter, list())
   expect_equal(test$analysis, list())
-
 })
-
