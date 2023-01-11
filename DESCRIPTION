@@ -35,7 +35,6 @@ Suggests:
     knitr,
     r2rtf,
     rmarkdown,
-    stringr,
     testthat (>= 3.0.0),
     tibble
 Config/testthat/edition: 3
