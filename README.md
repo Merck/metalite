@@ -2,7 +2,6 @@
 
 <!-- badges: start -->
 
-[![CRAN status](https://www.r-pkg.org/badges/version/metalite)](https://CRAN.R-project.org/package=metalite)
 [![Codecov test coverage](https://codecov.io/gh/Merck/metalite/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Merck/metalite?branch=main)
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/metalite)](https://cran.r-project.org/package=metalite)
 [![R-CMD-check](https://github.com/Merck/metalite/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Merck/metalite/actions/workflows/R-CMD-check.yaml)
