@@ -20,5 +20,5 @@ nothing is check is passed; otherwise some error message
 Check variable name are in meta data
 }
 \examples{
-meta_check_var(meta_dummy(), var = "RACE")
+metalite:::eta_check_var(meta_dummy(), var = "RACE")
 }

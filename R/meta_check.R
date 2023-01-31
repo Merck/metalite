@@ -22,7 +22,7 @@
 #' @param type a character vector of data type to check
 #' @returns nothing is check is passed; otherwise some error message
 #' @examples
-#' meta_check_var(meta_dummy(), var = "RACE")
+#' metalite:::eta_check_var(meta_dummy(), var = "RACE")
 meta_check_var <- function(meta,
                            var,
                            type = c("population", "observation")) {
