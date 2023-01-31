@@ -40,6 +40,9 @@ The term name is used as key to link information.}
 
 \item{display_total}{a logical value to display total column.}
 }
+\value{
+a list showing number of subjects and its subset condition
+}
 \description{
 Collect number of subjects and its subset condition
 }

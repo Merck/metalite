@@ -32,6 +32,9 @@ define_population(
 
 \item{...}{additional variables.}
 }
+\value{
+a metadata with population defined
+}
 \description{
 Define analysis population meta information for ADaM dataset
 }

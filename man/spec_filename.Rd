@@ -9,6 +9,9 @@ spec_filename(meta)
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
 }
+\value{
+a vector os character showing the rtf file names
+}
 \description{
 Specification for analysis output filename
 }

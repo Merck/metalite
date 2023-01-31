@@ -11,6 +11,9 @@ collect_adam_mapping(meta, name)
 
 \item{name}{a value of keyword}
 }
+\value{
+an \code{adam_mapping} class showing the definition of the search variable in \code{name}
+}
 \description{
 Collect \code{adam_mapping} from \code{meta_adam} by \code{name}
 }
@@ -18,4 +21,5 @@ Collect \code{adam_mapping} from \code{meta_adam} by \code{name}
 library(r2rtf)
 meta <- meta_dummy()
 collect_adam_mapping(meta, "apat")
+
 }

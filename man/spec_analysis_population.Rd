@@ -9,6 +9,10 @@ spec_analysis_population(meta)
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
 }
+\value{
+a vector of character showing the populations used
+in the order of the analysis plans
+}
 \description{
 Specification for population definition
 }

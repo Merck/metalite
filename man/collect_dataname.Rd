@@ -9,6 +9,9 @@ collect_dataname(meta)
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
 }
+\value{
+a vector of character showing the name of the population/observation
+}
 \description{
 Collect specification for dataset name
 }

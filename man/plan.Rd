@@ -23,6 +23,9 @@ The term name is used as key to link information.}
 
 \item{...}{additional arguments}
 }
+\value{
+a data.frame showing the analysis plans
+}
 \description{
 This function is a wrapper of \code{expand.grid}
 }

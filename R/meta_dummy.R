@@ -19,7 +19,7 @@
 #'
 #' This function is only for illustration purpose.
 #' `r2rtf` package is required.
-#'
+#' @returns a metadata
 #' @examples
 #' meta_dummy()
 #' @export

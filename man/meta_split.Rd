@@ -12,6 +12,9 @@ meta_split(meta, by)
 \item{by}{a character variable name both in
 population level and observation level data of a meta object.}
 }
+\value{
+a metadata split by the input variable
+}
 \description{
 Devide Meta into Groups
 }

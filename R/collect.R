@@ -19,11 +19,14 @@
 #'
 #' @inheritParams define_population
 #' @param name a value of keyword
-#'
+#' 
+#' @returns an \code{adam_mapping} class showing the definition of the search variable in \code{name}
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
 #' collect_adam_mapping(meta, "apat")
+#' 
 #' @export
 #'
 collect_adam_mapping <- function(meta, name) {
@@ -61,8 +64,13 @@ collect_adam_mapping <- function(meta, name) {
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
-#'
+#' collect_population(meta, "apat")
+#' collect_population(meta, "apat", "wk12")
 #' collect_population(meta, "apat", "wk12", "ser")
+#' 
+#' @returns a list covering the filter of population, 
+#' observation (if input) and parameter (if input)
+#' 
 #' @export
 #'
 collect_population <- function(meta,
@@ -84,11 +92,13 @@ collect_population <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#'
+#' @returns a vector of patient index within the population group
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
 #' head(collect_population_index(meta, "apat"))
+#' 
 #' @export
 #'
 collect_population_index <- function(meta,
@@ -114,11 +124,13 @@ collect_population_index <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#'
+#' @returns a vector of patient ID within the population group
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
 #' head(collect_population_id(meta, "apat"))
+#' 
 #' @export
 #'
 collect_population_id <- function(meta,
@@ -135,7 +147,8 @@ collect_population_id <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param var a character vector of additional variables to be displayed in the output.
-#'
+#' @returns a data.frame showing the variables in the population dataset
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -168,7 +181,8 @@ collect_population_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#'
+#' @returns a vector of patient index within the observation group
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -213,7 +227,8 @@ collect_observation_index <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param var a character vector of additional variables to be displayed in the output.
-#'
+#' @returns a data.frame showing the observation datset
+#' 
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -255,7 +270,7 @@ collect_observation_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#'
+#' @returns a vector of strings to compose the table captions
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -288,7 +303,7 @@ collect_title <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#'
+#' @returns a vector of character showing the name of the population/observation
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
