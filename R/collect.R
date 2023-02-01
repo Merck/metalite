@@ -270,6 +270,7 @@ collect_observation_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
+#' @param title_order a character vector to define the order of title from each component.
 #' @returns a vector of strings to compose the table captions
 #' @examples
 #' library(r2rtf)
@@ -283,9 +284,16 @@ collect_title <- function(meta,
                           population,
                           observation,
                           parameter,
-                          analysis) {
+                          analysis,
+                          title_order = c("analysis", "observation", "population")) {
+
+  for(i in seq(title_order)){
+    title_component[i] <- get(title_order[i])
+  }
+  print(title_component)
+  
   x <- lapply(
-    c(analysis, observation, population),
+    title_component,
     function(x) {
       tmp <- omit_null(collect_adam_mapping(meta, x)[c("title", "label")])
       if (length(tmp) > 0) {
