@@ -286,10 +286,11 @@ collect_title <- function(meta,
                           parameter,
                           analysis,
                           title_order = c("analysis", "observation", "population")) {
+  
+  title_component <- c()
   for (i in seq(title_order)) {
     title_component[i] <- get(title_order[i])
   }
-  print(title_component)
 
   x <- lapply(
     title_component,
