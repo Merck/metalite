@@ -136,7 +136,7 @@ There are more details that needs to be defined in the metadata information.
 For example, how to select the APaT population from the `ADSL` dataset. 
 This is achieved by defining the population. 
 We have defined some built-in information that follows an A&R conventions. 
-So, the programs know the meaning of "apat" as below. 
+So, the programs know the meaning of `apat` as below. 
 
 ```{r}
 meta_adam(

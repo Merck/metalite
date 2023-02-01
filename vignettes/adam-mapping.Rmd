@@ -40,7 +40,7 @@ For a typical analysis, we require developer to provide variable names for
 - `subset`: a subset expression to define the analysis. Typically using analysis flag `XXFL` in ADaM data.
 - `label`: a nature language to describe the purpose of this `adam_mapping` object.
 
-## Example 1: All Participants as Treated (apat)
+## Example 1: All Participants as Treated (`apat`)
 
 In this example, we define an `adam_mapping` for APaT population.
 The example illustrate an use case to decouple variable name in `ADSL` based on `data_mapping` abstract layer.
@@ -93,7 +93,7 @@ split(ana, ana[[x$group]]) |>
   sapply(function(y) mean(y[[x$var]]))
 ```
 
-Reference: `eval` and expression. <https://adv-r.hadley.nz/evaluation.html?q=eval#evaluating>
+Reference: [`eval` and expression](https://adv-r.hadley.nz/evaluation.html#evaluating).
 
 ### Tidy evaluation
 
@@ -105,13 +105,13 @@ df |>
   dplyr::summarise(mean = mean(.data[[x$var]]))
 ```
 
-- Reference: <https://dplyr.tidyverse.org/articles/programming.html>
+- Reference: [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html).
 
 By using the `adam_mapping` abstract layer,
 it creates additional challenges to develop R program,
 yet we can reduce maintenance in the future.
 
-## Example 2: Serious adverse events (ser)
+## Example 2: Serious adverse events (`ser`)
 
 In this example, we define an `adam_mapping` for serious adverse events (AE).
 The example illustrate an use case to inherit default values defined in `metalite`.
@@ -120,7 +120,7 @@ An organization have conventions to define different analysis terms.
 We can define default values of those commonly used analysis terms.
 
 For example, we define a default `adam_mapping` object as below.
-A real example can be found in `mkmeta:::default_parameter_ae`
+A real example can be found in `metalite:::default_parameter_ae`.
 
 ```{r}
 ser_default <- adam_mapping(

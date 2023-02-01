@@ -147,7 +147,7 @@ Note that in the analysis plan, there are 5 keywords:
 - `"ae_specific"`: an analysis keywords for specific AE analysis.
 
 For the first three keywords, we can define them by `metalite::define_parameter()` as follows.
-Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, ect...
+Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, etc.
 
 ```{r}
 meta <- meta |>
@@ -271,7 +271,7 @@ ae_summary <- function(meta,
     x <- tibble::tibble(
       ae_label = ae_label,
       n_1 = rep("x", length(ae_label)),
-      n_2 = rep("x", length(ae_label)), # no display_total/ci
+      n_2 = rep("x", length(ae_label)), # no display_total/CI
       pct_1 = rep("x.xx", length(ae_label)),
       pct_2 = rep("x.xx", length(ae_label))
     ) |>

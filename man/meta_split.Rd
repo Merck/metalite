@@ -2,7 +2,7 @@
 % Please edit documentation in R/meta_split.R
 \name{meta_split}
 \alias{meta_split}
-\title{Devide Meta into Groups}
+\title{Divide Meta into Groups}
 \usage{
 meta_split(meta, by)
 }
@@ -16,7 +16,7 @@ population level and observation level data of a meta object.}
 a metadata split by the input variable
 }
 \description{
-Devide Meta into Groups
+Divide Meta into Groups
 }
 \examples{
 meta_dummy() |>

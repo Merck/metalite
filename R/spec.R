@@ -19,7 +19,7 @@
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector os character showing the rtf file names
+#' @returns a vector of character showing the rtf file names
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()

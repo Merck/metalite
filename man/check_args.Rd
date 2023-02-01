@@ -28,8 +28,8 @@ if \code{type}, \code{length} or \code{dim} is NULL, the corresponding check wil
 
 \if{latex}{
  \itemize{
-   \item Check if arg is NULL.
-   \item Extract the type, length and dim information from arg.
+   \item Check if \code{arg} is \code{NULL}.
+   \item Extract the type, length and dim information from \code{arg}.
    \item Compare with target values and report error message if it does not match.
  }
  }

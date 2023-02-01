@@ -75,7 +75,7 @@ meta$population$apat$subset
 ```
 
 Equivalently, we can also use  `collect_population()` to collect the definition of a population.
-For example, we can collect subset condition for "apat" as
+For example, we can collect subset condition for `apat` as
 
 ```{r}
 collect_population(meta, population = "apat")

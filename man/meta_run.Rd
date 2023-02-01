@@ -9,7 +9,7 @@ meta_run(meta, i = NULL, ...)
 \arguments{
 \item{meta}{a \code{meta_adam} object.}
 
-\item{i}{a vector of integer to indicate \code{i}th analysis in \code{meta$plan}.}
+\item{i}{a vector of integer to indicate \code{i}-th analysis in \code{meta$plan}.}
 
 \item{...}{additional arguments transfer to \code{spec_call_program}.}
 }

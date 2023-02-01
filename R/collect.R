@@ -227,7 +227,7 @@ collect_observation_index <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param var a character vector of additional variables to be displayed in the output.
-#' @returns a data.frame showing the observation datset
+#' @returns a data.frame showing the observation dataset
 #'
 #' @examples
 #' library(r2rtf)

@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A metadata structure for clincial data analysis and reporting based on ADaM datasets.
+A metadata structure for clinical data analysis and reporting based on ADaM datasets.
 }
 \seealso{
 Useful links:
