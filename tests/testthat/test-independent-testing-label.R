@@ -1,5 +1,3 @@
-
-
 test_that("Get label for only tbl with out label", {
   tbl <- data.frame(a = c(1, 2, 3), b = c(-1, -2, -3))
   expect_equal(get_label(tbl)[[1]], c("a"))

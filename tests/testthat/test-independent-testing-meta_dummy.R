@@ -1,4 +1,3 @@
-
 x <- meta_dummy()
 
 test_that("meta_dummy() structure", {

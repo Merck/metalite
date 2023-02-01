@@ -4,9 +4,9 @@
 #' @param group a factor vector of group name
 #' @param par a character vector of parameter name
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
-#' 
+#'
 #' @return a data.frame summarizing the number of unique subjects in different arms
-#' 
+#'
 #' @examples
 #' library(r2rtf)
 #' r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
@@ -63,8 +63,8 @@ meta_remove_blank_group <- function(meta,
   obs_grp <- collect_adam_mapping(meta, population)$group
 
   pop_var <- collect_adam_mapping(meta, parameter)$var
-  
-  if(is.null(pop[[pop_var]])){
+
+  if (is.null(pop[[pop_var]])) {
     stop(glue::glue("meta_remove_blank_group: parameter {pop_var} is not available in meta$population"))
   }
 

@@ -1,4 +1,3 @@
-
 test_that("variable 'RACE' checking", {
   p <- meta_check_var(meta_dummy(), var = "RACE", type = c("observation"))
   expect_true("RACE" %in% names(p$data_observation))

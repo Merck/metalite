@@ -3,7 +3,7 @@
 #' @param data a data frame
 #'
 #' @return labels of the input data frame
-#' 
+#'
 #' @examples
 #' get_label(r2rtf::r2rtf_adae)
 #'

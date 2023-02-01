@@ -1,4 +1,3 @@
-
 test_that("check duplicate names", {
   expect_warning(check_duplicate_name(list(a = 1, b = 2, b = 3)))
   expect_warning(check_duplicate_name(list(a = 1, b = 2, b = 2)))
