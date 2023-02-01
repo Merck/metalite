@@ -23,6 +23,9 @@ The term name is used as key to link information.}
 
 \item{...}{additional arguments}
 }
+\value{
+a data.frame of analysis plans with new plans added
+}
 \description{
 Add additional analysis plan
 }

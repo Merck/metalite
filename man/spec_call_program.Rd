@@ -11,6 +11,10 @@ spec_call_program(meta, ...)
 
 \item{...}{additional arguments used in all call programs.}
 }
+\value{
+a vector of character showing the call program
+in the order of the analysis plans
+}
 \description{
 Specification for analysis call program
 }

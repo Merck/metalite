@@ -13,9 +13,12 @@ meta_check_var(meta, var, type = c("population", "observation"))
 
 \item{type}{a character vector of data type to check}
 }
+\value{
+nothing is check is passed; otherwise some error message
+}
 \description{
 Check variable name are in meta data
 }
 \examples{
-# meta_check_var(meta_dummy(), var = "RACE")
+metalite:::meta_check_var(meta_dummy(), var = "RACE")
 }

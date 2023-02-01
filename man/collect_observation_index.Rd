@@ -18,6 +18,9 @@ The term name is used as key to link information.}
 \item{parameter}{a character value of parameter term name.
 The term name is used as key to link information.}
 }
+\value{
+a vector of patient index within the observation group
+}
 \description{
 Collect observation record index from observation dataset
 }

@@ -23,6 +23,9 @@ meta_dummy_exploration(
 
 \item{label}{a character value of analysis label.}
 }
+\value{
+a metadata
+}
 \description{
 Create a data exploration \code{meta_adam} object
 }

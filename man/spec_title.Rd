@@ -9,6 +9,10 @@ spec_title(meta)
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
 }
+\value{
+a vector of character showing the table captions
+in the order of the analysis plans
+}
 \description{
 Specification for analysis title
 }

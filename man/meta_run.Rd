@@ -13,6 +13,9 @@ meta_run(meta, i = NULL, ...)
 
 \item{...}{additional arguments transfer to \code{spec_call_program}.}
 }
+\value{
+execute analysis based on the analysis plan
+}
 \description{
 Execute analysis based on the analysis plan.
 }

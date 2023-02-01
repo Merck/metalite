@@ -11,6 +11,9 @@ define_plan(meta, plan)
 
 \item{plan}{a dataframe for analysis plan}
 }
+\value{
+a metadata with plans defined
+}
 \description{
 Define analysis plan meta information for ADaM dataset
 }

@@ -13,6 +13,9 @@ define_analysis(meta, name, ...)
 
 \item{...}{additional variables.}
 }
+\value{
+a metadata with analysis details defined
+}
 \description{
 Define analysis function meta information for ADaM dataset
 }

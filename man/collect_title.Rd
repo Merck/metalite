@@ -21,6 +21,9 @@ The term name is used as key to link information.}
 \item{analysis}{a character value of analysis term name.
 The term name is used as key to link information.}
 }
+\value{
+a vector of strings to compose the table captions
+}
 \description{
 Collect specification for title
 }

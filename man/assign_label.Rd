@@ -44,7 +44,7 @@ If the variable's label is not define in the original data frame,
 neither does it defined by assign_label(...), its labels will be the variable name itself.
 }
 \examples{
-metalite:::assign_label(r2rtf::r2rtf_adae)
-metalite:::assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
+assign_label(r2rtf::r2rtf_adae)
+assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
 
 }

@@ -12,6 +12,9 @@ collect_population_id(meta, population)
 \item{population}{a character value of population term name.
 The term name is used as key to link information.}
 }
+\value{
+a vector of patient ID within the population group
+}
 \description{
 Collect subject id information from population dataset
 }
@@ -19,4 +22,5 @@ Collect subject id information from population dataset
 library(r2rtf)
 meta <- meta_dummy()
 head(collect_population_id(meta, "apat"))
+
 }

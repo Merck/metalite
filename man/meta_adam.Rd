@@ -11,6 +11,9 @@ meta_adam(observation, population = observation)
 
 \item{population}{a data frame for population level data. Default is the same as \code{observation}}
 }
+\value{
+a metadata initialization with observation and population defined.
+}
 \description{
 Create a metadata representation for ADaM data analysis
 }

@@ -12,6 +12,9 @@ collect_population_index(meta, population)
 \item{population}{a character value of population term name.
 The term name is used as key to link information.}
 }
+\value{
+a vector of patient index within the population group
+}
 \description{
 Collect population record index from population dataset
 }
@@ -19,4 +22,5 @@ Collect population record index from population dataset
 library(r2rtf)
 meta <- meta_dummy()
 head(collect_population_index(meta, "apat"))
+
 }

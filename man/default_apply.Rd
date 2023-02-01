@@ -9,6 +9,9 @@ default_apply(x)
 \arguments{
 \item{x}{an \code{adam_mapping} object}
 }
+\value{
+similar to the input, but with the missing values updated to the default values
+}
 \description{
 Apply default values to ADaM mappings
 }

@@ -16,6 +16,6 @@ labels of the input data frame
 A function to get the labels of data frame columns
 }
 \examples{
-metalite:::get_label(r2rtf::r2rtf_adae)
+get_label(r2rtf::r2rtf_adae)
 
 }

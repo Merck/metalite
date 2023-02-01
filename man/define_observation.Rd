@@ -32,6 +32,9 @@ define_observation(
 
 \item{...}{additional variables.}
 }
+\value{
+a metadata with observation defined
+}
 \description{
 Define analysis observation meta information for ADaM dataset
 }

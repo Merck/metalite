@@ -18,12 +18,18 @@ The term name is used as key to link information.}
 \item{parameter}{a character value of parameter term name.
 The term name is used as key to link information.}
 }
+\value{
+a list covering the filter of population,
+observation (if input) and parameter (if input)
+}
 \description{
 Collect specification for population definition
 }
 \examples{
 library(r2rtf)
 meta <- meta_dummy()
-
+collect_population(meta, "apat")
+collect_population(meta, "apat", "wk12")
 collect_population(meta, "apat", "wk12", "ser")
+
 }

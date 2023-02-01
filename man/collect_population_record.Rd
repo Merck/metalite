@@ -14,6 +14,9 @@ The term name is used as key to link information.}
 
 \item{var}{a character vector of additional variables to be displayed in the output.}
 }
+\value{
+a data.frame showing the variables in the population dataset
+}
 \description{
 The key variables used in \code{id}, \code{group}, and \code{subset} are displayed by default.
 }

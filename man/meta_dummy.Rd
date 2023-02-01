@@ -6,6 +6,9 @@
 \usage{
 meta_dummy()
 }
+\value{
+a metadata
+}
 \description{
 This function is only for illustration purpose.
 \code{r2rtf} package is required.

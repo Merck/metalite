@@ -13,6 +13,9 @@ update_adam_mapping(meta, name, ...)
 
 \item{...}{additional variables to be added in the mapping rule among those keywords.}
 }
+\value{
+a metadat with the input updated
+}
 \description{
 Update mapping rule in \code{adam_mapping}
 }

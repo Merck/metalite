@@ -4,7 +4,9 @@
 #' @param group a factor vector of group name
 #' @param par a character vector of parameter name
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
-#'
+#' 
+#' @return a data.frame summarizing the number of unique subjects in different arms
+#' 
 #' @examples
 #' library(r2rtf)
 #' r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
@@ -95,7 +97,7 @@ meta_remove_blank_group <- function(meta,
 #' @param type a character value to control title name. e.g. Subjects or Records.
 #' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
 #' @param display_total a logical value to display total column.
-#'
+#' @returns a list showing number of subjects and its subset condition
 #' @examples
 #' suppressWarnings(
 #'   meta <- meta_dummy() |>

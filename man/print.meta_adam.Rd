@@ -11,6 +11,9 @@
 
 \item{...}{additional variables save to \code{print}}
 }
+\value{
+a printed summary of the metadata
+}
 \description{
 Print a meta data with its population, observation and analysis plans
 }

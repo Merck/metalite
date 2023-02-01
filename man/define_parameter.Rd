@@ -15,6 +15,9 @@ define_parameter(meta, name, subset = NULL, ...)
 
 \item{...}{additional variables.}
 }
+\value{
+a metadata with parameters defined
+}
 \description{
 Define analysis parameter meta information for ADaM dataset
 }

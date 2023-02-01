@@ -20,7 +20,7 @@
 #' @inheritParams define_plan
 #' @param by a character variable name both in
 #' population level and observation level data of a meta object.
-#'
+#' @returns a metadata split by the input variable
 #' @export
 #'
 #' @examples

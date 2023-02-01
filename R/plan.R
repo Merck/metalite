@@ -29,7 +29,7 @@
 #' The term name is used as key to link information.
 #' @param mock a numeric value of mock table number.
 #' @param ... additional arguments
-#'
+#' @returns a data.frame showing the analysis plans
 #' @examples
 #'
 #' # example 1
@@ -107,7 +107,7 @@ validate_plan <- function(plan) {
 #'
 #' @inheritParams plan
 #' @inheritParams validate_plan
-#'
+#' @returns a data.frame of analysis plans with new plans added
 #' @examples
 #' plan("ae_summary",
 #'   population = "apat",

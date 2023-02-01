@@ -15,6 +15,9 @@ n_subject(id, group, par = NULL, use_na = c("ifany", "no", "always"))
 
 \item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
 }
+\value{
+a data.frame summarizing the number of unique subjects in different arms
+}
 \description{
 Count number of unique subjects
 }

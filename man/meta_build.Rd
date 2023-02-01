@@ -9,6 +9,9 @@ meta_build(meta)
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
 }
+\value{
+a composed metadata
+}
 \description{
 Build complete meta information
 }

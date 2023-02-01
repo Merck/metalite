@@ -19,7 +19,8 @@
 #'
 #' @param observation a data frame for observation level data
 #' @param population a data frame for population level data. Default is the same as `observation`
-#'
+#' @returns a metadata initialization with observation and population defined.
+#' 
 #' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
 #' @export
@@ -47,7 +48,7 @@ meta_adam <- function(observation,
 #' Print a meta data with its population, observation and analysis plans
 #' @param x a object returned by \code{meta_adam}
 #' @param ... additional variables save to `print`
-#'
+#' @returns a printed summary of the metadata
 #' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()
 #' @export
