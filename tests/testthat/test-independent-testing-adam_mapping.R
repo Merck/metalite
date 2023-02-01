@@ -1,4 +1,3 @@
-
 x <- adam_mapping(
   name = "apat",
   id = "USUBJID",

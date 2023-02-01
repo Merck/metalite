@@ -20,8 +20,8 @@
 #' @param meta a `meta_adam` object.
 #' @param plan a dataframe for analysis plan
 #' @returns a metadata with plans defined
-#' 
-#' @examples 
+#'
+#' @examples
 #' library(r2rtf)
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",

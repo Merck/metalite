@@ -1,4 +1,3 @@
-
 plan1 <- plan(
   analysis = "ae_summary", population = "apat",
   observation = c("wk12", "wk24"), parameter = "any;rel;ser"

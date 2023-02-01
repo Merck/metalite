@@ -4,7 +4,14 @@
 \alias{collect_title}
 \title{Collect specification for title}
 \usage{
-collect_title(meta, population, observation, parameter, analysis)
+collect_title(
+  meta,
+  population,
+  observation,
+  parameter,
+  analysis,
+  title_order = c("analysis", "observation", "population")
+)
 }
 \arguments{
 \item{meta}{an \code{meta_adam} object.}
@@ -20,6 +27,8 @@ The term name is used as key to link information.}
 
 \item{analysis}{a character value of analysis term name.
 The term name is used as key to link information.}
+
+\item{title_order}{a character vector to define the order of title from each component.}
 }
 \value{
 a vector of strings to compose the table captions

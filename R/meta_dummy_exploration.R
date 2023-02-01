@@ -2,7 +2,7 @@
 #'
 #' @param data a data frame
 #' @inheritParams define_population
-#' @returns a metadata  
+#' @returns a metadata
 #' @examples
 #' meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
 #' collect_n_subject(meta, "ase", "AGE")

@@ -58,7 +58,7 @@ spec_filename <- function(meta) {
 #' Specification for population definition
 #'
 #' @inheritParams define_population
-#' @returns a vector of character showing the populations used 
+#' @returns a vector of character showing the populations used
 #' in the order of the analysis plans
 #' @examples
 #' library(r2rtf)

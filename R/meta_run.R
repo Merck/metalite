@@ -21,7 +21,7 @@
 #' @param i a vector of integer to indicate `i`th analysis in `meta$plan`.
 #' @param ... additional arguments transfer to `spec_call_program`.
 #' @returns execute analysis based on the analysis plan
-#' @export 
+#' @export
 #' @examples
 #' meta <- meta_dummy()
 #' ae_summary <- function(...) {

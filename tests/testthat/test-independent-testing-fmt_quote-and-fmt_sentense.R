@@ -1,4 +1,3 @@
-
 # Testing Quote Function
 test_that("Testing of Quote", {
   expect_equal(fmt_quote('"b"'), "'b'")
