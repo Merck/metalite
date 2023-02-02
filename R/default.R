@@ -28,11 +28,15 @@ default_all <- function() {
 
 #' Apply default values to ADaM mappings
 #'
-#' @param x an `adam_mapping` object
-#' @return similar to the input, but with the missing values updated to the default values
+#' @param x An `adam_mapping` object.
+#'
+#' @return Similar to the input, but with the missing values
+#'   updated to the default values.
+#'
+#' @export
+#'
 #' @examples
 #' default_apply(adam_mapping(name = "apat"))
-#' @export
 default_apply <- function(x) {
   default <- default_all()
 

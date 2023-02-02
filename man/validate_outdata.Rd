@@ -7,7 +7,7 @@
 validate_outdata(x)
 }
 \arguments{
-\item{x}{an \code{outdata} object}
+\item{x}{An \code{outdata} object.}
 }
 \description{
 Validate outdata class

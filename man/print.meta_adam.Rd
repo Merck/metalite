@@ -2,20 +2,20 @@
 % Please edit documentation in R/meta_adam.R
 \name{print.meta_adam}
 \alias{print.meta_adam}
-\title{Print a meta data with its population, observation and analysis plans}
+\title{Print a metadata object with its population, observation, and analysis plans}
 \usage{
 \method{print}{meta_adam}(x, ...)
 }
 \arguments{
-\item{x}{a object returned by \code{meta_adam}}
+\item{x}{An object returned by \code{\link[=meta_adam]{meta_adam()}}.}
 
-\item{...}{additional variables save to \code{print}}
+\item{...}{Additional parameters for \code{\link[=print]{print()}} (not used).}
 }
 \value{
-a printed summary of the metadata
+A printed summary of the metadata.
 }
 \description{
-Print a meta data with its population, observation and analysis plans
+Print a metadata object with its population, observation, and analysis plans
 }
 \examples{
 meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()

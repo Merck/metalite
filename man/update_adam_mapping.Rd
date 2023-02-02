@@ -7,14 +7,15 @@
 update_adam_mapping(meta, name, ...)
 }
 \arguments{
-\item{meta}{a \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{name}{a vector of keywords}
+\item{name}{A vector of keywords.}
 
-\item{...}{additional variables to be added in the mapping rule among those keywords.}
+\item{...}{Additional variables to be added in the mapping rule
+among those keywords.}
 }
 \value{
-a metadata with the input updated
+A metadata object with the input updated.
 }
 \description{
 Update mapping rule in \code{adam_mapping}

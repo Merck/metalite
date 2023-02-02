@@ -18,13 +18,17 @@
 
 #' Create a metadata representation for ADaM data analysis
 #'
-#' @param observation a data frame for observation level data
-#' @param population a data frame for population level data. Default is the same as `observation`
-#' @return a metadata initialization with observation and population defined.
+#' @param observation A data frame for observation level data.
+#' @param population A data frame for population level data.
+#'   Default is the same as `observation`.
+#'
+#' @return An initialized metadata object with
+#'   observation and population defined.
+#'
+#' @export
 #'
 #' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
-#' @export
 meta_adam <- function(observation,
                       population = observation) {
   attr(population, "data_name") <- deparse(substitute(population))
@@ -45,19 +49,22 @@ meta_adam <- function(observation,
   )
 }
 
-
-#' Print a meta data with its population, observation and analysis plans
-#' @param x a object returned by \code{meta_adam}
-#' @param ... additional variables save to `print`
-#' @return a printed summary of the metadata
+#' Print a metadata object with its population, observation, and analysis plans
+#'
+#' @param x An object returned by [meta_adam()].
+#' @param ... Additional parameters for [print()] (not used).
+#'
+#' @return A printed summary of the metadata.
+#'
+#' @export
+#'
 #' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae) |> print()
-#' @export
 print.meta_adam <- function(x, ...) {
   e <- c(".$data_population", ".$data_observation", ".$plan")
 
   # print the number of subjects in population & observation
-  cat("ADaM Meta Data:", "\n")
+  cat("ADaM metadata:", "\n")
   cat("  ", e[1], "\tPopulation data", "with", nrow(x$data_population), "subjects", "\n")
   cat("  ", e[2], "\tObservation data", "with", nrow(x$data_observation), "records", "\n")
 

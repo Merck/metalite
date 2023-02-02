@@ -7,7 +7,7 @@
 validate_plan(plan)
 }
 \arguments{
-\item{plan}{a \code{meta_plan} object}
+\item{plan}{A \code{meta_plan} object.}
 }
 \description{
 Validate an analysis plan object

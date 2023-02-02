@@ -20,11 +20,14 @@
 # https://github.com/nathaneastwood/poorman/tree/v0.2.5
 
 #' Check whether any elements of a list are nested
-#' @param lst A `list()`
+#'
+#' @param lst A list.
+#'
+#' @noRd
+#'
 #' @examples
 #' is_nested(list(a = 1, b = 2, c = 3))
 #' is_nested(list(a = 1, b = list(c = 2, d = 3)))
-#' @noRd
 is_nested <- function(lst) vapply(lst, function(x) inherits(x[1L], "list"), FALSE)
 
 is_named <- function(x) {
@@ -42,7 +45,7 @@ names_are_invalid <- function(x) {
   x == "" | is.na(x)
 }
 
-#' Check whether the input is an atomic vector or a data.frame
+#' Check whether the input is an atomic vector or a data frame
 #' @noRd
 is_df_or_vector <- function(x) {
   res <- is.data.frame(x) || is.atomic(x)

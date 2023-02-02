@@ -16,12 +16,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Check variable name are in meta data
+#' Check variable name are in metadata
 #'
 #' @inheritParams define_plan
-#' @param var a character vector of variable names
-#' @param type a character vector of data type to check
-#' @return nothing is check is passed; otherwise some error message
+#' @param var A character vector of variable names.
+#' @param type A character vector of the data type to check.
+#'
+#' @return The input object (invisibly). Nothing is printed when check
+#'   is passed, otherwise some error messages.
+#'
 #' @examples
 #' metalite:::meta_check_var(meta_dummy(), var = "RACE")
 meta_check_var <- function(meta,

@@ -19,7 +19,11 @@
 #' Build complete meta information
 #'
 #' @inheritParams define_population
-#' @return a composed metadata
+#'
+#' @return A composed metadata object.
+#'
+#' @export
+#'
 #' @examples
 #' meta_adam(
 #'   observation = r2rtf::r2rtf_adae,
@@ -58,7 +62,6 @@
 #'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
 #'   ) |>
 #'   meta_build()
-#' @export
 meta_build <- function(meta) {
   # Attach
   data_pop <- meta$data_population

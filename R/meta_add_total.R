@@ -16,14 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Add duplicate data to enable a total group.
+#' Add duplicate data to enable a total group
 #'
-#' @param meta a metalite object
-#' @param total a character value of total group name.
+#' @param meta A metalite object.
+#' @param total A character value of total group name.
 #'
 #' @export
-meta_add_total <- function(meta,
-                           total = "Total") {
+meta_add_total <- function(meta, total = "Total") {
   stopifnot(length(total) == 1)
 
   pop <- meta$data_population

@@ -13,29 +13,29 @@ collect_observation_record(
 )
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{var}{a character vector of additional variables to be displayed in the output.}
+\item{var}{A character vector of additional variables to be displayed
+in the output.}
 }
 \value{
-a data.frame showing the observation dataset
+A data frame of the observation dataset.
 }
 \description{
-The key variables used in \code{id}, \code{group}, and \code{subset} are displayed by default.
+The key variables used in \code{id}, \code{group}, and \code{subset}
+are displayed by default.
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 collect_observation_record(meta, "apat", "wk12", "ser")
 collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
 }

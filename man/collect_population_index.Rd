@@ -7,20 +7,18 @@
 collect_population_index(meta, population)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 }
 \value{
-a vector of patient index within the population group
+A vector of patient index within the population group.
 }
 \description{
 Collect population record index from population dataset
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
 head(collect_population_index(meta, "apat"))
-
 }

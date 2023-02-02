@@ -16,26 +16,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Construct outdata class
+#' Construct `outdata` class
 #'
-#' The outdata class define a standard output format for analysis and reporting.
+#' The `outdata` class defines a standard output format for
+#' analysis and reporting.
 #'
-#' The implementation idea mimic `ggplot2::aes`.
+#' The design is inspired by `ggplot2::aes()`.
 #'
-#' @param meta a meta data created by `metalite`.
-#' @param population a character value of population term name.
-#' The term name is used as key to link information.
-#' @param observation a character value of observation term name.
-#' The term name is used as key to link information.
-#' @param parameter a character value of parameter term name.
-#' The term name is used as key to link information.
-#' @param n a dataframe for number of subjects in each criteria
-#' @param order a numeric vector of row display order
-#' @param group a character vector of group variable names in an ADaM dataset.
-#' @param reference_group a numeric value to indicate reference group in levels of group.
-#' @param ... additional variables save to `outdata`.
+#' @param meta A metadata object created by metalite.
+#' @param population A character value of population term name.
+#'   The term name is used as key to link information.
+#' @param observation A character value of observation term name.
+#'   The term name is used as key to link information.
+#' @param parameter A character value of parameter term name.
+#'   The term name is used as key to link information.
+#' @param n A data frame for number of subjects in each criteria.
+#' @param order A numeric vector of row display order.
+#' @param group A character vector of group variable names in an ADaM dataset.
+#' @param reference_group A numeric value to indicate reference group
+#'   in levels of group.
+#' @param ... Additional variables to save to `outdata`.
 #'
-#' @return A list with class `outdata`. Components of the list are either quosures or constants.
+#' @return A list with class `outdata`.
+#'   Components of the list are either quosures or constants.
+#'
+#' @export
+#'
 #' @examples
 #' metalite:::outdata(
 #'   meta = meta_dummy(),
@@ -50,8 +56,6 @@
 #'   reference_group = 1,
 #'   order = 1:3
 #' )
-#'
-#' @export
 outdata <- function(meta,
                     population,
                     observation,
@@ -75,14 +79,26 @@ outdata <- function(meta,
 
   x <- new_outdata(x, env = parent.frame())
 
-  # Input Checking
+  # Input checking
   validate_outdata(x)
 }
 
 #' Structure outdata class
 #'
-#' @param x an list object containing elements: meta, population, observation, parameter, n, order, group, and reference_group
-#' @param env an environment
+#' @param x A list, see Details.
+#' @param env An environment.
+#'
+#' @details
+#' The list contains these elements:
+#'
+#' - `meta`
+#' - `population`
+#' - `observation`
+#' - `parameter`
+#' - `n`
+#' - `order`
+#' - `group`
+#' - `reference_group`
 #'
 #' @examples
 #' meta <- meta_dummy()
@@ -110,7 +126,7 @@ new_outdata <- function(x, env = globalenv()) {
 
 #' Validate outdata class
 #'
-#' @param x an `outdata` object
+#' @param x An `outdata` object.
 #'
 #' @examples
 #' meta <- meta_dummy()
@@ -173,12 +189,10 @@ validate_outdata <- function(x) {
   x
 }
 
-
 #' @export
 print.outdata <- function(x, ...) {
   utils::str(x, max.level = 1, give.attr = FALSE, ...)
 }
-
 
 #' @export
 "[.outdata" <- function(x, i, ...) {

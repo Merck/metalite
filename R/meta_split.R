@@ -16,17 +16,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Divide Meta into Groups
+#' Split metadata into groups
 #'
 #' @inheritParams define_plan
-#' @param by a character variable name both in
-#' population level and observation level data of a meta object.
-#' @return a metadata split by the input variable
+#' @param by A character variable name both in
+#'   population level and observation level data of a metadata object.
+#'
+#' @return A metadata object split by the input variable.
+#'
 #' @export
 #'
 #' @examples
-#' meta_dummy() |>
-#'   meta_split("RACE")
+#' meta_dummy() |> meta_split("RACE")
 meta_split <- function(meta, by) {
   meta_check_var(meta, by)
 

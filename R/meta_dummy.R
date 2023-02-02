@@ -18,12 +18,15 @@
 
 #' Create a dummy `meta_adam` object
 #'
-#' This function is only for illustration purpose.
-#' `r2rtf` package is required.
-#' @return a metadata
+#' This function is only for illustration purposes.
+#' The `r2rtf` package is required.
+#'
+#' @return A metadata object.
+#'
+#' @export
+#'
 #' @examples
 #' meta_dummy()
-#' @export
 meta_dummy <- function() {
   adsl <- r2rtf::r2rtf_adsl
   adsl$TRTA <- adsl$TRT01A

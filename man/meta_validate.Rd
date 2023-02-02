@@ -7,7 +7,7 @@
 meta_validate(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \description{
 Validate meta information

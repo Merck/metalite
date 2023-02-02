@@ -2,19 +2,19 @@
 % Please edit documentation in R/collect_n_subject.R
 \name{meta_remove_blank_group}
 \alias{meta_remove_blank_group}
-\title{Remove blank group based on analysis parameter.}
+\title{Remove blank group based on analysis parameter}
 \usage{
 meta_remove_blank_group(meta, population, parameter)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 }
 \description{
-Remove blank group based on analysis parameter.
+Remove blank group based on analysis parameter
 }

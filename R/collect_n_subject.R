@@ -18,22 +18,26 @@
 
 #' Count number of unique subjects
 #'
-#' @param id a character vector of subject id
-#' @param group a factor vector of group name
-#' @param par a character vector of parameter name
-#' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
+#' @param id A character vector of subject identifier.
+#' @param group A factor vector of group name.
+#' @param par A character vector of parameter name.
+#' @param use_na A character value for whether to include `NA` values
+#'   in the table. See the `useNA` argument in [base::table()] for more details.
 #'
-#' @return a data.frame summarizing the number of unique subjects in different arms
+#' @return A data frame summarizing the number of unique subjects
+#'   in different arms.
+#'
+#' @noRd
 #'
 #' @examples
 #' library(r2rtf)
+#'
 #' r2rtf_adae$TRTA <- factor(r2rtf_adae$TRTA)
 #' r2rtf_adae$SEX[1:5] <- NA
-#' \dontrun{
+#'
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
-#' }
 n_subject <- function(id,
                       group,
                       par = NULL,
@@ -68,7 +72,7 @@ n_subject <- function(id,
   res
 }
 
-#' Remove blank group based on analysis parameter.
+#' Remove blank group based on analysis parameter
 #'
 #' @inheritParams collect_n_subject
 meta_remove_blank_group <- function(meta,
@@ -108,22 +112,28 @@ meta_remove_blank_group <- function(meta,
 #'
 #' @inheritParams plan
 #' @inheritParams define_population
-#' @param listing a logical value to display drill down listing per row.
-#' @param histogram a logical value to display histogram by group.
-#' @param var_listing a character vector of additional variables included in the listing.
-#' @param remove_blank_group a logical value to remove a group with all missing value of a parameter.
-#' @param type a character value to control title name. e.g. Subjects or Records.
-#' @param use_na a character value for whether to include NA values in the table. Refer `useNA` argument in `table` function for more details.
-#' @param display_total a logical value to display total column.
-#' @return a list showing number of subjects and its subset condition
+#' @param listing A logical value to display drill down listing per row.
+#' @param histogram A logical value to display histogram by group.
+#' @param var_listing A character vector of additional variables included
+#'   in the listing.
+#' @param remove_blank_group A logical value to remove a group with all
+#'   missing value of a parameter.
+#' @param type A character value to control title name,
+#'   e.g., Subjects or Records.
+#' @param use_na A character value for whether to include `NA` values
+#' in the table. See the `useNA` argument in [base::table()] for more details.
+#' @param display_total A logical value to display total column.
+#'
+#' @return A list containing number of subjects and its subset condition.
+#'
+#' @export
+#'
 #' @examples
 #' suppressWarnings(
 #'   meta <- meta_dummy() |>
 #'     define_parameter(name = "sex", var = "SEX", label = "Sex")
 #' )
 #' collect_n_subject(meta, "apat", "sex")
-#'
-#' @export
 collect_n_subject <- function(meta,
                               population,
                               parameter,

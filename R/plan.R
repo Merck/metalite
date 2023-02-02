@@ -18,24 +18,27 @@
 
 #' Create a analysis plan from all combination of variables
 #'
-#' This function is a wrapper of `expand.grid`
+#' This function is a wrapper of [base::expand.grid()].
 #'
-#' @param analysis a character value of analysis term name.
-#' The term name is used as key to link information.
-#' @param population a character value of population term name.
-#' The term name is used as key to link information.
-#' @param observation a character value of observation term name.
-#' The term name is used as key to link information.
-#' @param parameter a character value of parameter term name.
-#' The term name is used as key to link information.
-#' @param mock a numeric value of mock table number.
-#' @param ... additional arguments
-#' @return a data.frame showing the analysis plans
+#' @param analysis A character value of analysis term name.
+#'   The term name is used as key to link information.
+#' @param population A character value of population term name.
+#'   The term name is used as key to link information.
+#' @param observation A character value of observation term name.
+#'   The term name is used as key to link information.
+#' @param parameter A character value of parameter term name.
+#'   The term name is used as key to link information.
+#' @param mock A numeric value of mock table number.
+#' @param ... Additional arguments.
+#'
+#' @return A data frame containing the analysis plan.
+#'
+#' @export
+#'
 #' @examples
-#'
-#' # example 1
-#' # create an analysis plan of AE summary
-#' # with any AE, drug-related AE and serious AE
+#' # Example 1
+#' # Create an analysis plan of AE summary
+#' # with any AE, drug-related AE, and serious AE
 #' plan(
 #'   analysis = "ae_summary",
 #'   population = "apat",
@@ -43,17 +46,15 @@
 #'   parameter = "any;rel;ser"
 #' )
 #'
-#' # example 2
-#' # create an analysis plan of AE specific
-#' # with any AE, drug-related AE and serious AE
+#' # Example 2
+#' # Create an analysis plan of AE specific
+#' # with any AE, drug-related AE, and serious AE
 #' plan(
 #'   analysis = "ae_specific",
 #'   population = "apat",
 #'   observation = c("wk12", "wk24"),
 #'   parameter = c("any", "rel", "ser")
 #' )
-#' @export
-#'
 plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
   stopifnot(length(analysis) == 1)
 
@@ -64,9 +65,10 @@ plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
 
 #' Create a analysis plan from all combination of variables
 #'
-#' This function is a wrapper of `expand.grid`
+#' This function is a wrapper of [base::expand.grid()].
 #'
 #' @inheritParams plan
+#'
 #' @examples
 #' metalite:::new_plan(
 #'   analysis = "ae_specific",
@@ -93,7 +95,8 @@ new_plan <- function(analysis, population, observation, parameter, mock = 1, ...
 
 #' Validate an analysis plan object
 #'
-#' @param plan a `meta_plan` object
+#' @param plan A `meta_plan` object.
+#'
 #' @examples
 #' x <- plan(analysis = "ae_summary", population = "apat", observation = "wk12", parameter = "any")
 #' metalite:::validate_plan(x)
@@ -108,7 +111,11 @@ validate_plan <- function(plan) {
 #'
 #' @inheritParams plan
 #' @inheritParams validate_plan
-#' @return a data.frame of analysis plans with new plans added
+#'
+#' @return A data frame containing analysis plans with new plans added.
+#'
+#' @export
+#'
 #' @examples
 #' plan("ae_summary",
 #'   population = "apat",
@@ -118,7 +125,6 @@ validate_plan <- function(plan) {
 #'     population = "apat",
 #'     observation = c("wk12", "wk24"), parameter = c("any", "rel")
 #'   )
-#' @export
 add_plan <- function(plan, analysis, population, observation, parameter, ...) {
   plan <- validate_plan(plan)
 

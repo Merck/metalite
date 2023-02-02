@@ -18,30 +18,34 @@ collect_n_subject(
 )
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{listing}{a logical value to display drill down listing per row.}
+\item{listing}{A logical value to display drill down listing per row.}
 
-\item{histogram}{a logical value to display histogram by group.}
+\item{histogram}{A logical value to display histogram by group.}
 
-\item{var_listing}{a character vector of additional variables included in the listing.}
+\item{var_listing}{A character vector of additional variables included
+in the listing.}
 
-\item{remove_blank_group}{a logical value to remove a group with all missing value of a parameter.}
+\item{remove_blank_group}{A logical value to remove a group with all
+missing value of a parameter.}
 
-\item{type}{a character value to control title name. e.g. Subjects or Records.}
+\item{type}{A character value to control title name,
+e.g., Subjects or Records.}
 
-\item{use_na}{a character value for whether to include NA values in the table. Refer \code{useNA} argument in \code{table} function for more details.}
+\item{use_na}{A character value for whether to include \code{NA} values
+in the table. See the \code{useNA} argument in \code{\link[base:table]{base::table()}} for more details.}
 
-\item{display_total}{a logical value to display total column.}
+\item{display_total}{A logical value to display total column.}
 }
 \value{
-a list showing number of subjects and its subset condition
+A list containing number of subjects and its subset condition.
 }
 \description{
 Collect number of subjects and its subset condition
@@ -52,5 +56,4 @@ suppressWarnings(
     define_parameter(name = "sex", var = "SEX", label = "Sex")
 )
 collect_n_subject(meta, "apat", "sex")
-
 }

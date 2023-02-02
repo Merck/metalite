@@ -2,7 +2,7 @@
 % Please edit documentation in R/outdata.R
 \name{outdata}
 \alias{outdata}
-\title{Construct outdata class}
+\title{Construct \code{outdata} class}
 \usage{
 outdata(
   meta,
@@ -17,35 +17,38 @@ outdata(
 )
 }
 \arguments{
-\item{meta}{a meta data created by \code{metalite}.}
+\item{meta}{A metadata object created by metalite.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{n}{a dataframe for number of subjects in each criteria}
+\item{n}{A data frame for number of subjects in each criteria.}
 
-\item{order}{a numeric vector of row display order}
+\item{order}{A numeric vector of row display order.}
 
-\item{group}{a character vector of group variable names in an ADaM dataset.}
+\item{group}{A character vector of group variable names in an ADaM dataset.}
 
-\item{reference_group}{a numeric value to indicate reference group in levels of group.}
+\item{reference_group}{A numeric value to indicate reference group
+in levels of group.}
 
-\item{...}{additional variables save to \code{outdata}.}
+\item{...}{Additional variables to save to \code{outdata}.}
 }
 \value{
-A list with class \code{outdata}. Components of the list are either quosures or constants.
+A list with class \code{outdata}.
+Components of the list are either quosures or constants.
 }
 \description{
-The outdata class define a standard output format for analysis and reporting.
+The \code{outdata} class defines a standard output format for
+analysis and reporting.
 }
 \details{
-The implementation idea mimic \code{ggplot2::aes}.
+The design is inspired by \code{ggplot2::aes()}.
 }
 \examples{
 metalite:::outdata(
@@ -61,5 +64,4 @@ metalite:::outdata(
   reference_group = 1,
   order = 1:3
 )
-
 }

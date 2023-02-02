@@ -7,11 +7,11 @@
 meta_dummy()
 }
 \value{
-a metadata
+A metadata object.
 }
 \description{
-This function is only for illustration purpose.
-\code{r2rtf} package is required.
+This function is only for illustration purposes.
+The \code{r2rtf} package is required.
 }
 \examples{
 meta_dummy()

@@ -7,12 +7,25 @@
 new_outdata(x, env = globalenv())
 }
 \arguments{
-\item{x}{an list object containing elements: meta, population, observation, parameter, n, order, group, and reference_group}
+\item{x}{A list, see Details.}
 
-\item{env}{an environment}
+\item{env}{An environment.}
 }
 \description{
 Structure outdata class
+}
+\details{
+The list contains these elements:
+\itemize{
+\item \code{meta}
+\item \code{population}
+\item \code{observation}
+\item \code{parameter}
+\item \code{n}
+\item \code{order}
+\item \code{group}
+\item \code{reference_group}
+}
 }
 \examples{
 meta <- meta_dummy()

@@ -7,24 +7,24 @@
 add_plan(plan, analysis, population, observation, parameter, ...)
 }
 \arguments{
-\item{plan}{a \code{meta_plan} object}
+\item{plan}{A \code{meta_plan} object.}
 
-\item{analysis}{a character value of analysis term name.
+\item{analysis}{A character value of analysis term name.
 The term name is used as key to link information.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{...}{additional arguments}
+\item{...}{Additional arguments.}
 }
 \value{
-a data.frame of analysis plans with new plans added
+A data frame containing analysis plans with new plans added.
 }
 \description{
 Add additional analysis plan

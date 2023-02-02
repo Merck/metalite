@@ -2,49 +2,41 @@
 % Please edit documentation in R/label.R
 \name{assign_label}
 \alias{assign_label}
-\title{A function to assign labels to a data frame
-Case 1:
-If the variable's label is already define in the original data frame,
-but not re-defined in assign_label(...), its original labels will be kept.
-Case 2:
-If the variable's label is already define in the original data frame,
-but re-defined by assign_label(...), its labels will be re-defined.
-Case 3:
-If the variable's label is not define in the original data frame,
-but it is defined by assign_label(...), its labels will added.
-Case 4:
-If the variable's label is not define in the original data frame,
-neither does it defined by assign_label(...), its labels will be the variable name itself.}
+\title{A function to assign labels to a data frame}
 \usage{
 assign_label(data, var = names(data), label = names(data))
 }
 \arguments{
-\item{data}{a data frame}
+\item{data}{A data frame.}
 
-\item{var}{the variables to assign labels}
+\item{var}{The variables to assign labels.}
 
-\item{label}{the labels to be assigned}
+\item{label}{The labels to be assigned.}
 }
 \value{
-a data frame with labels updated
+A data frame with labels updated.
 }
 \description{
 A function to assign labels to a data frame
-Case 1:
-If the variable's label is already define in the original data frame,
-but not re-defined in assign_label(...), its original labels will be kept.
-Case 2:
-If the variable's label is already define in the original data frame,
-but re-defined by assign_label(...), its labels will be re-defined.
-Case 3:
+}
+\details{
+\itemize{
+\item Case 1:
+If the variable's label is already define in the original data frame
+but not redefined in \code{assign_label(...)}, its original labels will be kept.
+\item Case 2:
+If the variable's label is already define in the original data frame
+but re-defined by \code{assign_label(...)}, its labels will be re-defined.
+\item Case 3:
+If the variable's label is not define in the original data frame
+but it is defined by \code{assign_label(...)}, its labels will added.
+\item Case 4:
 If the variable's label is not define in the original data frame,
-but it is defined by assign_label(...), its labels will added.
-Case 4:
-If the variable's label is not define in the original data frame,
-neither does it defined by assign_label(...), its labels will be the variable name itself.
+neither was it defined by \code{assign_label(...)}, its labels will be the
+variable name itself.
+}
 }
 \examples{
 assign_label(r2rtf::r2rtf_adae)
-assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject id")
-
+assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject ID")
 }

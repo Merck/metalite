@@ -7,16 +7,18 @@
 define_parameter(meta, name, subset = NULL, ...)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{name}{a character value of term name. The term name is used as key to link information.}
+\item{name}{A character value of term name.
+The term name is used as key to link information.}
 
-\item{subset}{an expression to identify analysis records. Refer \code{subset()} function.}
+\item{subset}{An expression to identify analysis records.
+See \code{\link[base:subset]{base::subset()}}.}
 
-\item{...}{additional variables.}
+\item{...}{Additional variables.}
 }
 \value{
-a metadata with parameters defined
+A metadata object with parameters defined.
 }
 \description{
 Define analysis parameter meta information for ADaM dataset

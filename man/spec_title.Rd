@@ -7,18 +7,16 @@
 spec_title(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \value{
-a vector of character showing the table captions
-in the order of the analysis plans
+A vector of character strings containing the table captions
+in the order of the analysis plans.
 }
 \description{
 Specification for analysis title
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 spec_title(meta)
 }

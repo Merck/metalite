@@ -7,23 +7,23 @@
 collect_population_record(meta, population, var = NULL)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{var}{a character vector of additional variables to be displayed in the output.}
+\item{var}{A character vector of additional variables to be displayed
+in the output.}
 }
 \value{
-a data.frame showing the variables in the population dataset
+A data frame containing the variables in the population dataset.
 }
 \description{
-The key variables used in \code{id}, \code{group}, and \code{subset} are displayed by default.
+The key variables used in \code{id}, \code{group}, and \code{subset}
+are displayed by default.
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 head(collect_population_record(meta, "apat"))
 head(collect_population_record(meta, "apat", var = "AGE"))
 }

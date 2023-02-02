@@ -2,15 +2,15 @@
 % Please edit documentation in R/utility.R
 \name{reset_label}
 \alias{reset_label}
-\title{Reset Dataset Label}
+\title{Reset dataset label}
 \usage{
 reset_label(data, data_label)
 }
 \arguments{
-\item{data}{a data frame}
+\item{data}{A data frame.}
 
-\item{data_label}{a data frame with label}
+\item{data_label}{A data frame with label.}
 }
 \description{
-Reset Dataset Label
+Reset dataset label
 }

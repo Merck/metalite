@@ -7,19 +7,18 @@
 collect_adam_mapping(meta, name)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{name}{a value of keyword}
+\item{name}{A keyword value.}
 }
 \value{
-an \code{adam_mapping} class showing the definition of the search variable in \code{name}
+An \code{adam_mapping} class object containing the definition of
+the search variable in \code{name}.
 }
 \description{
 Collect \code{adam_mapping} from \code{meta_adam} by \code{name}
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
 collect_adam_mapping(meta, "apat")
-
 }

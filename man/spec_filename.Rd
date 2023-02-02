@@ -7,17 +7,15 @@
 spec_filename(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \value{
-a vector of character showing the rtf file names
+A vector of character strings containing the RTF file names.
 }
 \description{
 Specification for analysis output filename
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 spec_filename(meta)
 }

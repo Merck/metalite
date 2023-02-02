@@ -18,12 +18,14 @@
 
 #' Define analysis plan meta information for ADaM dataset
 #'
-#' @param meta a `meta_adam` object.
-#' @param plan a dataframe for analysis plan
-#' @return a metadata with plans defined
+#' @param meta A `meta_adam` object.
+#' @param plan A data frame for analysis plan.
+#'
+#' @return A metadata object with plans defined.
+#'
+#' @export
 #'
 #' @examples
-#' library(r2rtf)
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
 #'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
@@ -34,20 +36,21 @@
 #'   observation = r2rtf::r2rtf_adae
 #' ) |>
 #'   define_plan(plan)
-#' @export
-define_plan <- function(meta,
-                        plan) {
+define_plan <- function(meta, plan) {
   meta$plan <- plan
   meta
 }
 
 #' Define analysis population meta information for ADaM dataset
 #'
-#' @param meta an `meta_adam` object.
+#' @param meta A `meta_adam` object.
 #' @inheritParams adam_mapping
-#' @return a metadata with population defined
+#'
+#' @return A metadata object with population defined.
+#'
+#' @export
+#'
 #' @examples
-#' library(r2rtf)
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
 #'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
@@ -59,7 +62,6 @@ define_plan <- function(meta,
 #' ) |>
 #'   define_plan(plan) |>
 #'   define_population(name = "apat")
-#' @export
 define_population <- function(meta,
                               name,
                               id = "USUBJID",
@@ -93,7 +95,11 @@ define_population <- function(meta,
 #' Define analysis observation meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @return a metadata with observation defined
+#'
+#' @return A metadata object with observation defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -111,7 +117,6 @@ define_population <- function(meta,
 #'     subset = SAFFL == "Y",
 #'     label = "Weeks 0 to 12"
 #'   )
-#' @export
 define_observation <- function(meta,
                                name,
                                id = "USUBJID",
@@ -145,7 +150,11 @@ define_observation <- function(meta,
 #' Define analysis parameter meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @return a metadata with parameters defined
+#'
+#' @return A metadata object with parameters defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -161,7 +170,6 @@ define_observation <- function(meta,
 #'     name = "rel",
 #'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
 #'   )
-#' @export
 define_parameter <- function(meta,
                              name,
                              subset = NULL,
@@ -187,7 +195,11 @@ define_parameter <- function(meta,
 #' Define analysis function meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @return a metadata with analysis details defined
+#'
+#' @return A metadata object with analysis details defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -203,7 +215,6 @@ define_parameter <- function(meta,
 #'     name = "ae_summary",
 #'     title = "Summary of Adverse Events"
 #'   )
-#' @export
 define_analysis <- function(meta,
                             name,
                             ...) {

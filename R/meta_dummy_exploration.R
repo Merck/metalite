@@ -18,15 +18,17 @@
 
 #' Create a data exploration `meta_adam` object
 #'
-#' @param data a data frame
+#' @param data A data frame.
 #' @inheritParams define_population
-#' @return a metadata
+#'
+#' @return A metadata object.
+#'
+#' @export
+#'
 #' @examples
 #' meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
 #' collect_n_subject(meta, "ase", "AGE")
 #' collect_n_subject(meta, "ase", "SEX")
-#'
-#' @export
 meta_dummy_exploration <- function(data,
                                    group,
                                    name = "ase",

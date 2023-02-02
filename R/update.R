@@ -19,14 +19,18 @@
 #' Update mapping rule in `adam_mapping`
 #'
 #' @inheritParams define_plan
-#' @param name a vector of keywords
-#' @param ... additional variables to be added in the mapping rule among those keywords.
-#' @return a metadata with the input updated
+#' @param name A vector of keywords.
+#' @param ... Additional variables to be added in the mapping rule
+#'   among those keywords.
+#'
+#' @return A metadata object with the input updated.
+#'
+#' @export
+#'
 #' @examples
 #' meta <- meta_dummy()
 #' meta <- update_adam_mapping(meta, names(meta$parameter), start_date = "ASTDT")
 #' collect_adam_mapping(meta, "ser")
-#' @export
 update_adam_mapping <- function(meta, name, ...) {
   map <- lapply(name, collect_adam_mapping, meta = meta)
 

@@ -7,15 +7,14 @@
 get_label(data)
 }
 \arguments{
-\item{data}{a data frame}
+\item{data}{A data frame.}
 }
 \value{
-labels of the input data frame
+Labels of the input data frame.
 }
 \description{
 A function to get the labels of data frame columns
 }
 \examples{
 get_label(r2rtf::r2rtf_adae)
-
 }

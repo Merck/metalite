@@ -2,22 +2,23 @@
 % Please edit documentation in R/meta_check.R
 \name{meta_check_var}
 \alias{meta_check_var}
-\title{Check variable name are in meta data}
+\title{Check variable name are in metadata}
 \usage{
 meta_check_var(meta, var, type = c("population", "observation"))
 }
 \arguments{
-\item{meta}{a \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{var}{a character vector of variable names}
+\item{var}{A character vector of variable names.}
 
-\item{type}{a character vector of data type to check}
+\item{type}{A character vector of the data type to check.}
 }
 \value{
-nothing is check is passed; otherwise some error message
+The input object (invisibly). Nothing is printed when check
+is passed, otherwise some error messages.
 }
 \description{
-Check variable name are in meta data
+Check variable name are in metadata
 }
 \examples{
 metalite:::meta_check_var(meta_dummy(), var = "RACE")

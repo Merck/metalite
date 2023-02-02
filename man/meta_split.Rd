@@ -2,23 +2,22 @@
 % Please edit documentation in R/meta_split.R
 \name{meta_split}
 \alias{meta_split}
-\title{Divide Meta into Groups}
+\title{Split metadata into groups}
 \usage{
 meta_split(meta, by)
 }
 \arguments{
-\item{meta}{a \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{by}{a character variable name both in
-population level and observation level data of a meta object.}
+\item{by}{A character variable name both in
+population level and observation level data of a metadata object.}
 }
 \value{
-a metadata split by the input variable
+A metadata object split by the input variable.
 }
 \description{
-Divide Meta into Groups
+Split metadata into groups
 }
 \examples{
-meta_dummy() |>
-  meta_split("RACE")
+meta_dummy() |> meta_split("RACE")
 }

@@ -16,13 +16,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Execute analysis based on the analysis plan.
+#' Execute analysis based on the analysis plan
 #'
 #' @inherit define_plan
-#' @param i a vector of integer to indicate `i`-th analysis in `meta$plan`.
-#' @param ... additional arguments transfer to `spec_call_program`.
-#' @return execute analysis based on the analysis plan
+#' @param i A vector of integers to indicate `i`-th analysis in `meta$plan`.
+#' @param ... Additional arguments passed to `[spec_call_program()]`.
+#'
+#' @return Executed analysis based on the analysis plan.
+#'
 #' @export
+#'
 #' @examples
 #' meta <- meta_dummy()
 #' ae_summary <- function(...) {
