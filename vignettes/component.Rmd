@@ -1,12 +1,12 @@
 ---
 title: "Collect Components"
-output:
-  rmarkdown::html_vignette
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Collect Components}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 resource_files:
    - package_manual.pdf
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Collect Components}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}

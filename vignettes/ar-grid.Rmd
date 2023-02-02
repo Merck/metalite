@@ -1,10 +1,10 @@
 ---
 title: "Create AR Grid"
-output:
-  rmarkdown::html_vignette
+output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Create AR Grid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -129,4 +129,3 @@ ar_grid |>
   gt::fmt_markdown(columns = gt::everything()) |>
   gt::tab_options(table.font.size = 15)
 ```
-

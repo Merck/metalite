@@ -1,13 +1,13 @@
 ---
 title: "Create Mockup Table Based on Metadata"
 output: rmarkdown::html_vignette
-resource_files:
-  - tlf/*.rtf
-  - tlf/*.pdf
 vignette: >
   %\VignetteIndexEntry{Create Mockup Table Based on Metadata}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - tlf/*.rtf
+  - tlf/*.pdf
 ---
 
 ```{r, include = FALSE}
@@ -44,7 +44,7 @@ In this section, we introduce the steps to prepare the metadata used for the afo
 
 ### Step 1: Define the metadata
 
-To define a metadata, users need to specify both population and observations datasets.
+To define the metadata, users need to specify both population and observations datasets.
 In our example, the observation dataset comes from `r2rtf::r2rtf_adae` and the population dataset comes from `r2rtf::r2rtf_adsl`.
 So we define the metadata by `metalite::meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
 
@@ -314,7 +314,6 @@ ae_summary <- function(meta,
 }
 ```
 </details>
-
 
 For illustration purposes, we only create mock up table for the first row.
 
