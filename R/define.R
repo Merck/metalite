@@ -19,7 +19,7 @@
 #'
 #' @param meta a `meta_adam` object.
 #' @param plan a dataframe for analysis plan
-#' @returns a metadata with plans defined
+#' @return a metadata with plans defined
 #'
 #' @examples
 #' library(r2rtf)
@@ -44,7 +44,7 @@ define_plan <- function(meta,
 #'
 #' @param meta an `meta_adam` object.
 #' @inheritParams adam_mapping
-#' @returns a metadata with population defined
+#' @return a metadata with population defined
 #' @examples
 #' library(r2rtf)
 #' plan <- plan(
@@ -92,7 +92,7 @@ define_population <- function(meta,
 #' Define analysis observation meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with observation defined
+#' @return a metadata with observation defined
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -144,7 +144,7 @@ define_observation <- function(meta,
 #' Define analysis parameter meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with parameters defined
+#' @return a metadata with parameters defined
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -186,7 +186,7 @@ define_parameter <- function(meta,
 #' Define analysis function meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with analysis details defined
+#' @return a metadata with analysis details defined
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",

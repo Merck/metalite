@@ -20,7 +20,7 @@
 #' @inherit define_plan
 #' @param i a vector of integer to indicate `i`-th analysis in `meta$plan`.
 #' @param ... additional arguments transfer to `spec_call_program`.
-#' @returns execute analysis based on the analysis plan
+#' @return execute analysis based on the analysis plan
 #' @export
 #' @examples
 #' meta <- meta_dummy()

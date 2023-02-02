@@ -19,7 +19,7 @@
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of character showing the rtf file names
+#' @return a vector of character showing the rtf file names
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -58,7 +58,7 @@ spec_filename <- function(meta) {
 #' Specification for population definition
 #'
 #' @inheritParams define_population
-#' @returns a vector of character showing the populations used
+#' @return a vector of character showing the populations used
 #' in the order of the analysis plans
 #' @examples
 #' library(r2rtf)
@@ -96,7 +96,7 @@ spec_analysis_population <- function(meta) {
 #'
 #' @inheritParams define_population
 #' @param ... additional arguments used in all call programs.
-#' @returns a vector of character showing the call program
+#' @return a vector of character showing the call program
 #' in the order of the analysis plans
 #' @examples
 #' library(r2rtf)
@@ -130,7 +130,7 @@ spec_call_program <- function(meta,
 #' Specification for analysis title
 #'
 #' @inheritParams define_population
-#' @returns a vector of character showing the table captions
+#' @return a vector of character showing the table captions
 #' in the order of the analysis plans
 #' @examples
 #' library(r2rtf)

@@ -20,7 +20,7 @@
 #' @inheritParams define_population
 #' @param name a value of keyword
 #'
-#' @returns an \code{adam_mapping} class showing the definition of the search variable in \code{name}
+#' @return an \code{adam_mapping} class showing the definition of the search variable in \code{name}
 #'
 #' @examples
 #' library(r2rtf)
@@ -68,7 +68,7 @@ collect_adam_mapping <- function(meta, name) {
 #' collect_population(meta, "apat", "wk12")
 #' collect_population(meta, "apat", "wk12", "ser")
 #'
-#' @returns a list covering the filter of population,
+#' @return a list covering the filter of population,
 #' observation (if input) and parameter (if input)
 #'
 #' @export
@@ -92,7 +92,7 @@ collect_population <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient index within the population group
+#' @return a vector of patient index within the population group
 #'
 #' @examples
 #' library(r2rtf)
@@ -124,7 +124,7 @@ collect_population_index <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient ID within the population group
+#' @return a vector of patient ID within the population group
 #'
 #' @examples
 #' library(r2rtf)
@@ -147,7 +147,7 @@ collect_population_id <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param var a character vector of additional variables to be displayed in the output.
-#' @returns a data.frame showing the variables in the population dataset
+#' @return a data.frame showing the variables in the population dataset
 #'
 #' @examples
 #' library(r2rtf)
@@ -181,7 +181,7 @@ collect_population_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient index within the observation group
+#' @return a vector of patient index within the observation group
 #'
 #' @examples
 #' library(r2rtf)
@@ -227,7 +227,7 @@ collect_observation_index <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param var a character vector of additional variables to be displayed in the output.
-#' @returns a data.frame showing the observation dataset
+#' @return a data.frame showing the observation dataset
 #'
 #' @examples
 #' library(r2rtf)
@@ -271,7 +271,7 @@ collect_observation_record <- function(meta,
 #' @inheritParams define_population
 #' @inheritParams plan
 #' @param title_order a character vector to define the order of title from each component.
-#' @returns a vector of strings to compose the table captions
+#' @return a vector of strings to compose the table captions
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()
@@ -311,7 +311,7 @@ collect_title <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of character showing the name of the population/observation
+#' @return a vector of character showing the name of the population/observation
 #' @examples
 #' library(r2rtf)
 #' meta <- meta_dummy()

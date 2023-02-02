@@ -20,7 +20,7 @@
 #' @inheritParams define_plan
 #' @param name a vector of keywords
 #' @param ... additional variables to be added in the mapping rule among those keywords.
-#' @returns a metadata with the input updated
+#' @return a metadata with the input updated
 #' @examples
 #' meta <- meta_dummy()
 #' meta <- update_adam_mapping(meta, names(meta$parameter), start_date = "ASTDT")

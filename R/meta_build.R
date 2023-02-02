@@ -18,7 +18,7 @@
 #' Build complete meta information
 #'
 #' @inheritParams define_population
-#' @returns a composed metadata
+#' @return a composed metadata
 #' @examples
 #' meta_adam(
 #'   observation = r2rtf::r2rtf_adae,
