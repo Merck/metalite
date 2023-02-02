@@ -21,7 +21,7 @@ A metadata object with the input updated.
 Update mapping rule in \code{adam_mapping}
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 meta <- update_adam_mapping(meta, names(meta$parameter), start_date = "ASTDT")
 collect_adam_mapping(meta, "ser")
 }

@@ -17,6 +17,6 @@ the population/observation.
 Collect specification for dataset name
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_dataname(meta)
 }

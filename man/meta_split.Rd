@@ -19,5 +19,5 @@ A metadata object split by the input variable.
 Split metadata into groups
 }
 \examples{
-meta_dummy() |> meta_split("RACE")
+meta_example() |> meta_split("RACE")
 }

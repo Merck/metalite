@@ -170,7 +170,7 @@ Similarly, we can define other meta information
 for analysis observation, parameter and function.
 We will also use `meta_build()` to add default values for other `name` that is not specified.
 
-> In metalite, we save this demo example in `meta_dummy()` to illustrate
+> In metalite, we saved this demo in `meta_example()` to illustrate
 > different use cases.
 
 ```{r}

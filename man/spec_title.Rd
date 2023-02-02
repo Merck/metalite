@@ -17,6 +17,6 @@ in the order of the analysis plans.
 Specification for analysis title
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 spec_title(meta)
 }

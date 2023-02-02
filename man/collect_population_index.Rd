@@ -19,6 +19,6 @@ A vector of patient index within the population group.
 Collect population record index from population dataset
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 head(collect_population_index(meta, "apat"))
 }

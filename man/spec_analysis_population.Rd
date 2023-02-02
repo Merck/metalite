@@ -17,6 +17,6 @@ in the order of the analysis plans.
 Specification for population definition
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 spec_analysis_population(meta)
 }

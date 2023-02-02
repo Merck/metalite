@@ -1,4 +1,4 @@
-# Create 2 dummy functions
+# Create two example functions
 ae_summary <- function(...) {
   paste("results of", deparse(match.call(), nlines = 1))
 }

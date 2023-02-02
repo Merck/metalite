@@ -26,7 +26,7 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' spec_filename(meta)
 spec_filename <- function(meta) {
   x <- split(meta$plan, meta$plan$analysis)
@@ -66,7 +66,7 @@ spec_filename <- function(meta) {
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' spec_analysis_population(meta)
 spec_analysis_population <- function(meta) {
   plan <- meta$plan
@@ -103,7 +103,7 @@ spec_analysis_population <- function(meta) {
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' spec_call_program(meta)
 #' spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
 spec_call_program <- function(meta, ...) {
@@ -136,7 +136,7 @@ spec_call_program <- function(meta, ...) {
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' spec_title(meta)
 spec_title <- function(meta) {
   plan <- meta$plan

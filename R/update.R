@@ -28,7 +28,7 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' meta <- update_adam_mapping(meta, names(meta$parameter), start_date = "ASTDT")
 #' collect_adam_mapping(meta, "ser")
 update_adam_mapping <- function(meta, name, ...) {

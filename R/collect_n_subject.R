@@ -132,7 +132,7 @@ meta_remove_blank_group <- function(meta,
 #'
 #' @examples
 #' suppressWarnings(
-#'   meta <- meta_dummy() |>
+#'   meta <- meta_example() |>
 #'     define_parameter(name = "sex", var = "SEX", label = "Sex")
 #' )
 #' collect_n_subject(meta, "apat", "sex")

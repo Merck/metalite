@@ -26,10 +26,10 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
+#' meta <- meta_example_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
 #' collect_n_subject(meta, "ase", "AGE")
 #' collect_n_subject(meta, "ase", "SEX")
-meta_dummy_exploration <- function(data,
+meta_example_exploration <- function(data,
                                    group,
                                    name = "ase",
                                    subset = NULL,

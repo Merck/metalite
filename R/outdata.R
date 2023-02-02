@@ -44,7 +44,7 @@
 #'
 #' @examples
 #' metalite:::outdata(
-#'   meta = meta_dummy(),
+#'   meta = meta_example(),
 #'   population = "apat",
 #'   observation = "wk12",
 #'   parameter = "rel",
@@ -103,9 +103,9 @@ outdata <- function(meta,
 #' @noRd
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' x <- list(
-#'   meta = meta_dummy(),
+#'   meta = meta_example(),
 #'   population = "apat",
 #'   observation = "wk12",
 #'   parameter = "rel",
@@ -133,10 +133,10 @@ new_outdata <- function(x, env = globalenv()) {
 #' @noRd
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' metalite:::validate_outdata(
 #'   metalite:::outdata(
-#'     meta = meta_dummy(),
+#'     meta = meta_example(),
 #'     population = "apat",
 #'     observation = "wk12",
 #'     parameter = "rel",

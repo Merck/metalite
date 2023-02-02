@@ -52,7 +52,7 @@ The design is inspired by \code{ggplot2::aes()}.
 }
 \examples{
 metalite:::outdata(
-  meta = meta_dummy(),
+  meta = meta_example(),
   population = "apat",
   observation = "wk12",
   parameter = "rel",

@@ -28,7 +28,7 @@
 #' @noRd
 #'
 #' @examples
-#' metalite:::meta_check_var(meta_dummy(), var = "RACE")
+#' metalite:::meta_check_var(meta_example(), var = "RACE")
 meta_check_var <- function(meta,
                            var,
                            type = c("population", "observation")) {

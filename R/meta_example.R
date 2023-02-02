@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Create a dummy `meta_adam` object
+#' Create an example `meta_adam` object
 #'
 #' This function is only for illustration purposes.
 #' The r2rtf package is required.
@@ -26,8 +26,8 @@
 #' @export
 #'
 #' @examples
-#' meta_dummy()
-meta_dummy <- function() {
+#' meta_example()
+meta_example <- function() {
   adsl <- r2rtf::r2rtf_adsl
   adsl$TRTA <- adsl$TRT01A
   adsl$TRTA <- factor(adsl$TRTA,

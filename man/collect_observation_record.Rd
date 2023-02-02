@@ -35,7 +35,7 @@ The key variables used in \code{id}, \code{group}, and \code{subset}
 are displayed by default.
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_observation_record(meta, "apat", "wk12", "ser")
 collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
 }

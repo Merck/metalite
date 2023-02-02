@@ -27,7 +27,7 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_adam_mapping(meta, "apat")
 collect_adam_mapping <- function(meta, name) {
   if (is.null(name)) {
@@ -67,7 +67,7 @@ collect_adam_mapping <- function(meta, name) {
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_population(meta, "apat")
 #' collect_population(meta, "apat", "wk12")
 #' collect_population(meta, "apat", "wk12", "ser")
@@ -96,7 +96,7 @@ collect_population <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' head(collect_population_index(meta, "apat"))
 collect_population_index <- function(meta,
                                      population) {
@@ -127,7 +127,7 @@ collect_population_index <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' head(collect_population_id(meta, "apat"))
 collect_population_id <- function(meta,
                                   population) {
@@ -151,7 +151,7 @@ collect_population_id <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' head(collect_population_record(meta, "apat"))
 #' head(collect_population_record(meta, "apat", var = "AGE"))
 collect_population_record <- function(meta,
@@ -184,7 +184,7 @@ collect_population_record <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_observation_index(meta, "apat", "wk12", "ser")
 collect_observation_index <- function(meta,
                                       population,
@@ -231,7 +231,7 @@ collect_observation_index <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_observation_record(meta, "apat", "wk12", "ser")
 #' collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
 collect_observation_record <- function(meta,
@@ -275,7 +275,7 @@ collect_observation_record <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_title(meta, "apat", "wk12", "ser", "ae_summary")
 #' collect_title(meta, "apat", "wk12", "ser", "ae_specific")
 collect_title <- function(meta,
@@ -315,7 +315,7 @@ collect_title <- function(meta,
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' collect_dataname(meta)
 collect_dataname <- function(meta) {
   c(

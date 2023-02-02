@@ -1,6 +1,6 @@
-x <- meta_dummy_exploration(data = r2rtf::r2rtf_adsl, group = "TRT01A", name = "apat")
+x <- meta_example_exploration(data = r2rtf::r2rtf_adsl, group = "TRT01A", name = "apat")
 
-test_that("meta_dummy_exploration() structure", {
+test_that("meta_example_exploration() structure", {
   expect_equal(x$analysis$exploration$name, "exploration")
   expect_equal(x$population$apat$name, "apat")
   expect_equal(x$observation$inf$name, "inf")
