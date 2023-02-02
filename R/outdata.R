@@ -100,6 +100,8 @@ outdata <- function(meta,
 #' - `group`
 #' - `reference_group`
 #'
+#' @noRd
+#'
 #' @examples
 #' meta <- meta_dummy()
 #' x <- list(
@@ -127,6 +129,8 @@ new_outdata <- function(x, env = globalenv()) {
 #' Validate outdata class
 #'
 #' @param x An `outdata` object.
+#'
+#' @noRd
 #'
 #' @examples
 #' meta <- meta_dummy()

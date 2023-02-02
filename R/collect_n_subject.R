@@ -75,6 +75,8 @@ n_subject <- function(id,
 #' Remove blank group based on analysis parameter
 #'
 #' @inheritParams collect_n_subject
+#'
+#' @noRd
 meta_remove_blank_group <- function(meta,
                                     population,
                                     parameter) {

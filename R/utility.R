@@ -77,6 +77,8 @@ fmt_sentence <- function(x) {
 #'
 #' @param data A data frame.
 #' @param data_label A data frame with label.
+#'
+#' @noRd
 reset_label <- function(data, data_label) {
   name <- names(data)
 

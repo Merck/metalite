@@ -69,6 +69,8 @@ plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
 #'
 #' @inheritParams plan
 #'
+#' @noRd
+#'
 #' @examples
 #' metalite:::new_plan(
 #'   analysis = "ae_specific",
@@ -97,6 +99,8 @@ new_plan <- function(analysis, population, observation, parameter, mock = 1, ...
 #'
 #' @param plan A `meta_plan` object.
 #'
+#' @noRd
+#'
 #' @examples
 #' x <- plan(analysis = "ae_summary", population = "apat", observation = "wk12", parameter = "any")
 #' metalite:::validate_plan(x)
@@ -109,8 +113,8 @@ validate_plan <- function(plan) {
 
 #' Add additional analysis plan
 #'
+#' @param plan A `meta_plan` object.
 #' @inheritParams plan
-#' @inheritParams validate_plan
 #'
 #' @return A data frame containing analysis plans with new plans added.
 #'

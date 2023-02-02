@@ -19,6 +19,8 @@
 #' Validate meta information
 #'
 #' @inheritParams define_population
+#'
+#' @noRd
 meta_validate <- function(meta) {
   # Check data type
   if (!is.data.frame(meta$data_population)) {

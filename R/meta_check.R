@@ -25,6 +25,8 @@
 #' @return The input object (invisibly). Nothing is printed when check
 #'   is passed, otherwise some error messages.
 #'
+#' @noRd
+#'
 #' @examples
 #' metalite:::meta_check_var(meta_dummy(), var = "RACE")
 meta_check_var <- function(meta,
