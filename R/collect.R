@@ -1,34 +1,34 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
 #
-#    This file is part of the metalite program.
+# This file is part of the metalite program.
 #
-#    metalite is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' Collect `adam_mapping` from `meta_adam` by `name`
 #'
 #' @inheritParams define_population
-#' @param name a value of keyword
+#' @param name A keyword value.
 #'
-#' @returns an \code{adam_mapping} class showing the definition of the search variable in \code{name}
-#'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
-#' collect_adam_mapping(meta, "apat")
+#' @return An `adam_mapping` class object containing the definition of
+#'   the search variable in `name`.
 #'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' collect_adam_mapping(meta, "apat")
 collect_adam_mapping <- function(meta, name) {
   if (is.null(name)) {
     return(list())
@@ -61,18 +61,16 @@ collect_adam_mapping <- function(meta, name) {
 #' @inheritParams define_population
 #' @inheritParams plan
 #'
+#' @return A list covering the filter of population,
+#' observation (if given) and parameter (if given).
+#'
+#' @export
+#'
 #' @examples
-#' library(r2rtf)
 #' meta <- meta_dummy()
 #' collect_population(meta, "apat")
 #' collect_population(meta, "apat", "wk12")
 #' collect_population(meta, "apat", "wk12", "ser")
-#'
-#' @returns a list covering the filter of population,
-#' observation (if input) and parameter (if input)
-#'
-#' @export
-#'
 collect_population <- function(meta,
                                population,
                                observation = NULL,
@@ -92,15 +90,14 @@ collect_population <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient index within the population group
 #'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
-#' head(collect_population_index(meta, "apat"))
+#' @return A vector of patient index within the population group.
 #'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' head(collect_population_index(meta, "apat"))
 collect_population_index <- function(meta,
                                      population) {
   # eval_tidy() is a variant of base::eval() that powers the tidy evaluation framework
@@ -120,19 +117,18 @@ collect_population_index <- function(meta,
 }
 
 
-#' Collect subject id information from population dataset
+#' Collect subject identifier information from population dataset
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient ID within the population group
 #'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
-#' head(collect_population_id(meta, "apat"))
+#' @return A vector of patient ID within the population group.
 #'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' head(collect_population_id(meta, "apat"))
 collect_population_id <- function(meta,
                                   population) {
   # get the USUBJID (usually) from the population                    (extract the variable name "USUBJID")
@@ -142,21 +138,22 @@ collect_population_id <- function(meta,
 
 #' Collect population record from population dataset
 #'
-#' The key variables used in `id`, `group`, and `subset` are displayed by default.
+#' The key variables used in `id`, `group`, and `subset`
+#' are displayed by default.
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @param var a character vector of additional variables to be displayed in the output.
-#' @returns a data.frame showing the variables in the population dataset
+#' @param var A character vector of additional variables to be displayed
+#'   in the output.
 #'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
+#' @return A data frame containing the variables in the population dataset.
 #'
-#' head(collect_population_record(meta, "apat"))
-#' head(collect_population_record(meta, "apat", var = "AGE"))
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' head(collect_population_record(meta, "apat"))
+#' head(collect_population_record(meta, "apat", var = "AGE"))
 collect_population_record <- function(meta,
                                       population,
                                       var = NULL) {
@@ -181,15 +178,14 @@ collect_population_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of patient index within the observation group
 #'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
+#' @return A vector of patient index within the observation group.
 #'
-#' collect_observation_index(meta, "apat", "wk12", "ser")
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' collect_observation_index(meta, "apat", "wk12", "ser")
 collect_observation_index <- function(meta,
                                       population,
                                       observation,
@@ -222,21 +218,22 @@ collect_observation_index <- function(meta,
 
 #' Collect observation record from observation dataset
 #'
-#' The key variables used in `id`, `group`, and `subset` are displayed by default.
+#' The key variables used in `id`, `group`, and `subset`
+#' are displayed by default.
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @param var a character vector of additional variables to be displayed in the output.
-#' @returns a data.frame showing the observation datset
+#' @param var A character vector of additional variables to be displayed
+#'   in the output.
 #'
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
+#' @return A data frame of the observation dataset.
 #'
-#' collect_observation_record(meta, "apat", "wk12", "ser")
-#' collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' collect_observation_record(meta, "apat", "wk12", "ser")
+#' collect_observation_record(meta, "apat", "wk12", "ser", var = "AEDECOD")
 collect_observation_record <- function(meta,
                                        population,
                                        observation,
@@ -270,23 +267,23 @@ collect_observation_record <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @param title_order a character vector to define the order of title from each component.
-#' @returns a vector of strings to compose the table captions
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
+#' @param title_order A character vector to define the order of title
+#'   from each component.
 #'
-#' collect_title(meta, "apat", "wk12", "ser", "ae_summary")
-#' collect_title(meta, "apat", "wk12", "ser", "ae_specific")
+#' @return A vector of strings to compose the table captions.
+#'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' collect_title(meta, "apat", "wk12", "ser", "ae_summary")
+#' collect_title(meta, "apat", "wk12", "ser", "ae_specific")
 collect_title <- function(meta,
                           population,
                           observation,
                           parameter,
                           analysis,
                           title_order = c("analysis", "observation", "population")) {
-  
   title_component <- c()
   for (i in seq(title_order)) {
     title_component[i] <- get(title_order[i])
@@ -311,14 +308,15 @@ collect_title <- function(meta,
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector of character showing the name of the population/observation
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
 #'
-#' collect_dataname(meta)
+#' @return A vector of character strings containing the name of
+#'   the population/observation.
+#'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' collect_dataname(meta)
 collect_dataname <- function(meta) {
   c(
     population = attr(meta$data_population, "data_name"),

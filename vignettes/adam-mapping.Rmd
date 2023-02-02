@@ -1,12 +1,12 @@
 ---
 title: "Introduction to Variable Mapping"
-output:
-  rmarkdown::html_vignette
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to Variable Mapping}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 resource_files:
    - package_manual.pdf
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Introduction to Variable Mapping}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -25,22 +25,22 @@ library(metalite)
 
 We design an abstraction of variable mapping to enhance the robustness
 of the metadata information.
-The goal is to follow the 
+The goal is to follow the
 [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
 in software design.
 
-The idea mimics the design of `ggplot2::aes()`.
+The design is inspired by `ggplot2::aes()`.
 
-For a typical analysis, we require developer to provide variable names for
+For a typical analysis, we require developer to provide variable names for:
 
-- `name`: a reference name as a key to link other components
-- subject id (`id`): typically using "USUBJID" in ADaM data
-- treatment group (`group`): typically using `TRTXX` in ADaM data
-- other variables (`var`): additional variables required for analysis
+- `name`: a reference name as a key to link other components.
+- Subject identifier (`id`): typically using `USUBJID` in ADaM data.
+- Treatment group (`group`): typically using `TRTXX` in ADaM data.
+- Other variables (`var`): additional variables required for analysis.
 - `subset`: a subset expression to define the analysis. Typically using analysis flag `XXFL` in ADaM data.
-- `label`: a nature language to describe the purpose of this `adam_mapping` object.
+- `label`: natural language to describe the purpose of this `adam_mapping` object.
 
-## Example 1: All Participants as Treated (apat)
+## Example 1: All Participants as Treated (`apat`)
 
 In this example, we define an `adam_mapping` for APaT population.
 The example illustrate an use case to decouple variable name in `ADSL` based on `data_mapping` abstract layer.
@@ -57,9 +57,9 @@ x <- adam_mapping(
 x
 ```
 
-With the defined variable mapping, 
+With the defined variable mapping,
 our development of other standard function can rely on the abstraction.
-As long as a study team provide proper data and associate `adam_mapping`,
+As long as a study team provide proper data and the associate `adam_mapping`,
 our standard function can be used.
 
 In R, the abstraction is a named list that can be accessed by `.$subset` and assigned by `<-`.
@@ -93,7 +93,7 @@ split(ana, ana[[x$group]]) |>
   sapply(function(y) mean(y[[x$var]]))
 ```
 
-Reference: `eval` and expression. <https://adv-r.hadley.nz/evaluation.html?q=eval#evaluating>
+Reference: [`eval` and expression](https://adv-r.hadley.nz/evaluation.html#evaluating).
 
 ### Tidy evaluation
 
@@ -105,22 +105,22 @@ df |>
   dplyr::summarise(mean = mean(.data[[x$var]]))
 ```
 
-- Reference: <https://dplyr.tidyverse.org/articles/programming.html>
+- Reference: [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html).
 
 By using the `adam_mapping` abstract layer,
 it creates additional challenges to develop R program,
 yet we can reduce maintenance in the future.
 
-## Example 2: Serious adverse events (ser)
+## Example 2: Serious adverse events (`ser`)
 
 In this example, we define an `adam_mapping` for serious adverse events (AE).
-The example illustrate an use case to inherit default values defined in `metalite`.
+The example illustrate an use case to inherit default values defined in metalite.
 
 An organization have conventions to define different analysis terms.
 We can define default values of those commonly used analysis terms.
 
 For example, we define a default `adam_mapping` object as below.
-A real example can be found in `mkmeta:::default_parameter_ae`
+A real example can be found in `metalite:::default_parameter_ae`.
 
 ```{r}
 ser_default <- adam_mapping(
@@ -132,7 +132,7 @@ ser_default <- adam_mapping(
 ser_default
 ```
 
-With default values, 
+With default values,
 user can reduce input but still allow override
 default values if required.
 
@@ -165,8 +165,3 @@ merge(ser_user, ser_default)
 
 Note: the `adam_mapping` object also allow user to define other variables.
 In this example, we added `footnote` variable.
-
-
-
-
-

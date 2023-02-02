@@ -1,10 +1,10 @@
 ---
 title: "Create AR Grid"
-output:
-  rmarkdown::html_vignette
+output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Create AR Grid}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -23,7 +23,7 @@ library(dplyr)
 
 ## Overview
 
-In this document, we illustrate how to create the A&R grid by `metalite`.
+In this document, we illustrate how to create the A&R grid by metalite.
 
 ## Build metadata
 
@@ -111,7 +111,7 @@ metadata <- metadata |>
 metadata <- metadata |> meta_build()
 ```
 
-## Create A\&R Grid
+## Create A\&R grid
 
 ```{r}
 ar_grid <- data.frame(
@@ -129,4 +129,3 @@ ar_grid |>
   gt::fmt_markdown(columns = gt::everything()) |>
   gt::tab_options(table.font.size = 15)
 ```
-

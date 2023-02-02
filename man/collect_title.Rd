@@ -14,32 +14,31 @@ collect_title(
 )
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{analysis}{a character value of analysis term name.
+\item{analysis}{A character value of analysis term name.
 The term name is used as key to link information.}
 
-\item{title_order}{a character vector to define the order of title from each component.}
+\item{title_order}{A character vector to define the order of title
+from each component.}
 }
 \value{
-a vector of strings to compose the table captions
+A vector of strings to compose the table captions.
 }
 \description{
 Collect specification for title
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 collect_title(meta, "apat", "wk12", "ser", "ae_summary")
 collect_title(meta, "apat", "wk12", "ser", "ae_specific")
 }

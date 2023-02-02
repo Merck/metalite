@@ -2,15 +2,15 @@
 % Please edit documentation in R/meta_add_total.R
 \name{meta_add_total}
 \alias{meta_add_total}
-\title{Add duplicate data to enable a total group.}
+\title{Add duplicate data to enable a total group}
 \usage{
 meta_add_total(meta, total = "Total")
 }
 \arguments{
-\item{meta}{a metalite object}
+\item{meta}{A metalite object.}
 
-\item{total}{a character value of total group name.}
+\item{total}{A character value of total group name.}
 }
 \description{
-Add duplicate data to enable a total group.
+Add duplicate data to enable a total group
 }

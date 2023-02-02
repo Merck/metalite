@@ -7,17 +7,16 @@
 collect_dataname(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \value{
-a vector of character showing the name of the population/observation
+A vector of character strings containing the name of
+the population/observation.
 }
 \description{
 Collect specification for dataset name
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 collect_dataname(meta)
 }

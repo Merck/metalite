@@ -3,7 +3,7 @@
     Code
       print(meta)
     Output
-      ADaM Meta Data: 
+      ADaM metadata: 
          .$data_population 	Population data with 254 subjects 
          .$data_observation 	Observation data with 1191 records 
          .$plan 	Analysis plan with 1 plans 

@@ -1,14 +1,34 @@
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
+#
+# This file is part of the metalite program.
+#
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #' Create a data exploration `meta_adam` object
 #'
-#' @param data a data frame
+#' @param data A data frame.
 #' @inheritParams define_population
-#' @returns a metadata
+#'
+#' @return A metadata object.
+#'
+#' @export
+#'
 #' @examples
 #' meta <- meta_dummy_exploration(r2rtf::r2rtf_adsl, group = "TRT01A")
 #' collect_n_subject(meta, "ase", "AGE")
 #' collect_n_subject(meta, "ase", "SEX")
-#'
-#' @export
 meta_dummy_exploration <- function(data,
                                    group,
                                    name = "ase",

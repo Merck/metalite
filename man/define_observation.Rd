@@ -16,24 +16,27 @@ define_observation(
 )
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{name}{a character value of term name. The term name is used as key to link information.}
+\item{name}{A character value of term name.
+The term name is used as key to link information.}
 
-\item{id}{a character value of subject id variable name in an ADaM dataset.}
+\item{id}{A character value of subject identifier variable name
+in an ADaM dataset.}
 
-\item{group}{a character vector of group variable names in an ADaM dataset.}
+\item{group}{A character vector of group variable names in an ADaM dataset.}
 
-\item{var}{a character vector of useful variable names in an ADaM dataset.}
+\item{var}{A character vector of useful variable names in an ADaM dataset.}
 
-\item{subset}{an expression to identify analysis records. Refer \code{subset()} function.}
+\item{subset}{An expression to identify analysis records.
+See \code{\link[base:subset]{base::subset()}}.}
 
-\item{label}{a character value of analysis label.}
+\item{label}{A character value of analysis label.}
 
-\item{...}{additional variables.}
+\item{...}{Additional variables.}
 }
 \value{
-a metadata with observation defined
+A metadata object with observation defined.
 }
 \description{
 Define analysis observation meta information for ADaM dataset

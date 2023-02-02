@@ -1,29 +1,33 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
 #
-#    This file is part of the metalite program.
+# This file is part of the metalite program.
 #
-#    metalite is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # These function are directly copied from
 # https://github.com/nathaneastwood/poorman/tree/v0.2.5
 
 #' Check whether any elements of a list are nested
-#' @param lst A `list()`
+#'
+#' @param lst A list.
+#'
+#' @noRd
+#'
 #' @examples
 #' is_nested(list(a = 1, b = 2, c = 3))
 #' is_nested(list(a = 1, b = list(c = 2, d = 3)))
-#' @noRd
 is_nested <- function(lst) vapply(lst, function(x) inherits(x[1L], "list"), FALSE)
 
 is_named <- function(x) {
@@ -41,7 +45,7 @@ names_are_invalid <- function(x) {
   x == "" | is.na(x)
 }
 
-#' Check whether the input is an atomic vector or a data.frame
+#' Check whether the input is an atomic vector or a data frame
 #' @noRd
 is_df_or_vector <- function(x) {
   res <- is.data.frame(x) || is.atomic(x)

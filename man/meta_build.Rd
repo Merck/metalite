@@ -7,10 +7,10 @@
 meta_build(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \value{
-a composed metadata
+A composed metadata object.
 }
 \description{
 Build complete meta information

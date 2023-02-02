@@ -1,28 +1,31 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
 #
-#    This file is part of the metalite program.
+# This file is part of the metalite program.
 #
-#    metalite is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' Define analysis plan meta information for ADaM dataset
 #'
-#' @param meta a `meta_adam` object.
-#' @param plan a dataframe for analysis plan
-#' @returns a metadata with plans defined
+#' @param meta A `meta_adam` object.
+#' @param plan A data frame for analysis plan.
+#'
+#' @return A metadata object with plans defined.
+#'
+#' @export
 #'
 #' @examples
-#' library(r2rtf)
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
 #'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
@@ -33,20 +36,21 @@
 #'   observation = r2rtf::r2rtf_adae
 #' ) |>
 #'   define_plan(plan)
-#' @export
-define_plan <- function(meta,
-                        plan) {
+define_plan <- function(meta, plan) {
   meta$plan <- plan
   meta
 }
 
 #' Define analysis population meta information for ADaM dataset
 #'
-#' @param meta an `meta_adam` object.
+#' @param meta A `meta_adam` object.
 #' @inheritParams adam_mapping
-#' @returns a metadata with population defined
+#'
+#' @return A metadata object with population defined.
+#'
+#' @export
+#'
 #' @examples
-#' library(r2rtf)
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
 #'   observation = c("wk12", "wk24"), parameter = "any;rel;ser"
@@ -58,7 +62,6 @@ define_plan <- function(meta,
 #' ) |>
 #'   define_plan(plan) |>
 #'   define_population(name = "apat")
-#' @export
 define_population <- function(meta,
                               name,
                               id = "USUBJID",
@@ -92,7 +95,11 @@ define_population <- function(meta,
 #' Define analysis observation meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with observation defined
+#'
+#' @return A metadata object with observation defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -110,7 +117,6 @@ define_population <- function(meta,
 #'     subset = SAFFL == "Y",
 #'     label = "Weeks 0 to 12"
 #'   )
-#' @export
 define_observation <- function(meta,
                                name,
                                id = "USUBJID",
@@ -144,7 +150,11 @@ define_observation <- function(meta,
 #' Define analysis parameter meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with parameters defined
+#'
+#' @return A metadata object with parameters defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -160,7 +170,6 @@ define_observation <- function(meta,
 #'     name = "rel",
 #'     subset = AEREL %in% c("POSSIBLE", "PROBABLE")
 #'   )
-#' @export
 define_parameter <- function(meta,
                              name,
                              subset = NULL,
@@ -186,7 +195,11 @@ define_parameter <- function(meta,
 #' Define analysis function meta information for ADaM dataset
 #'
 #' @inheritParams define_population
-#' @returns a metadata with analysis details defined
+#'
+#' @return A metadata object with analysis details defined.
+#'
+#' @export
+#'
 #' @examples
 #' plan <- plan(
 #'   analysis = "ae_summary", population = "apat",
@@ -202,7 +215,6 @@ define_parameter <- function(meta,
 #'     name = "ae_summary",
 #'     title = "Summary of Adverse Events"
 #'   )
-#' @export
 define_analysis <- function(meta,
                             name,
                             ...) {

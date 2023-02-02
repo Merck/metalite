@@ -1,32 +1,33 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
 #
-#    This file is part of the metalite program.
+# This file is part of the metalite program.
 #
-#    metalite is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' Specification for analysis output filename
 #'
 #' @inheritParams define_population
 #' @inheritParams plan
-#' @returns a vector os character showing the rtf file names
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
 #'
-#' spec_filename(meta)
+#' @return A vector of character strings containing the RTF file names.
+#'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' spec_filename(meta)
 spec_filename <- function(meta) {
   x <- split(meta$plan, meta$plan$analysis)
 
@@ -58,15 +59,15 @@ spec_filename <- function(meta) {
 #' Specification for population definition
 #'
 #' @inheritParams define_population
-#' @returns a vector of character showing the populations used
-#' in the order of the analysis plans
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
 #'
-#' spec_analysis_population(meta)
+#' @return A vector of character strings containing the populations used
+#'   in the order of the analysis plans.
+#'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' spec_analysis_population(meta)
 spec_analysis_population <- function(meta) {
   plan <- meta$plan
 
@@ -91,23 +92,21 @@ spec_analysis_population <- function(meta) {
   }, character(1))
 }
 
-
 #' Specification for analysis call program
 #'
 #' @inheritParams define_population
-#' @param ... additional arguments used in all call programs.
-#' @returns a vector of character showing the call program
-#' in the order of the analysis plans
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
+#' @param ... Additional arguments used in all call programs.
 #'
-#' spec_call_program(meta)
-#' spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
+#' @return A vector of character strings containing the call program
+#'   in the order of the analysis plans.
+#'
 #' @export
 #'
-spec_call_program <- function(meta,
-                              ...) {
+#' @examples
+#' meta <- meta_dummy()
+#' spec_call_program(meta)
+#' spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
+spec_call_program <- function(meta, ...) {
   plan <- meta$plan
 
   fun <- c()
@@ -130,15 +129,15 @@ spec_call_program <- function(meta,
 #' Specification for analysis title
 #'
 #' @inheritParams define_population
-#' @returns a vector of character showing the table captions
-#' in the order of the analysis plans
-#' @examples
-#' library(r2rtf)
-#' meta <- meta_dummy()
 #'
-#' spec_title(meta)
+#' @return A vector of character strings containing the table captions
+#'   in the order of the analysis plans.
+#'
 #' @export
 #'
+#' @examples
+#' meta <- meta_dummy()
+#' spec_title(meta)
 spec_title <- function(meta) {
   plan <- meta$plan
 

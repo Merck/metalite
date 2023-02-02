@@ -15,29 +15,33 @@ adam_mapping(
 )
 }
 \arguments{
-\item{name}{a character value of term name. The term name is used as key to link information.}
+\item{name}{A character value of term name.
+The term name is used as key to link information.}
 
-\item{id}{a character value of subject id variable name in an ADaM dataset.}
+\item{id}{A character value of subject identifier variable name
+in an ADaM dataset.}
 
-\item{group}{a character vector of group variable names in an ADaM dataset.}
+\item{group}{A character vector of group variable names in an ADaM dataset.}
 
-\item{var}{a character vector of useful variable names in an ADaM dataset.}
+\item{var}{A character vector of useful variable names in an ADaM dataset.}
 
-\item{subset}{an expression to identify analysis records. Refer \code{subset()} function.}
+\item{subset}{An expression to identify analysis records.
+See \code{\link[base:subset]{base::subset()}}.}
 
-\item{label}{a character value of analysis label.}
+\item{label}{A character value of analysis label.}
 
-\item{...}{additional variables.}
+\item{...}{Additional variables.}
 }
 \value{
-A list with class \code{adam_mapping}. Components of the list are either quosures or constants.
+A list with class \code{adam_mapping}.
+Components of the list are either quosures or constants.
 }
 \description{
 ADaM mappings describe how variables and meta information in the ADaM data
 are mapped to standardized term.
 }
 \details{
-The implementation idea mimic \code{ggplot2::aes}.
+The design is inspired by \code{ggplot2::aes()}.
 }
 \examples{
 adam_mapping(

@@ -39,11 +39,11 @@ reference:
   - "meta_adam"
   - "print.meta_adam"
   - "meta_build"
-- title: Meta Dummy Examples
+- title: Meta dummy examples
   contents:
   - "meta_dummy"
   - "meta_dummy_exploration"
-- title: Component definition 
+- title: Component definition
   contents:
   - "define_plan"
   - "define_population"
@@ -62,7 +62,7 @@ reference:
   - "collect_dataname"
   - "collect_title"
   - "collect_n_subject"
-- title: Collect specification information 
+- title: Collect specification information
   contents:
   - "spec_title"
   - "spec_filename"
@@ -72,42 +72,25 @@ reference:
   contents:
   - "plan"
   - "add_plan"
-  - "new_plan"
-  - "validate_plan"
 - title: Variable mapping
   contents:
   - "adam_mapping"
   - "update_adam_mapping"
-  - "validate_adam_mapping"
-- title: Outdata 
+- title: Outdata
   contents:
   - "outdata"
-  - "new_outdata"
-  - "validate_outdata"
-- title: Format
+- title: Utilities
   contents:
-  - "fmt_quote"
-  - "fmt_sentence"
-- title: Utility
-  contents:
-  - "check_duplicate_name"
-  - "check_args"
   - "default_apply"
-  - "meta_check_var"
   - "meta_run"
   - "meta_split"
-  - "meta_validate"
   - "meta_add_total"
-  - "meta_remove_blank_group"
-  - "omit_null"
-  - "n_subject"
-  - "reset_label"
   - "get_label"
   - "assign_label"
 
 articles:
 - title: Get started
-  desc: "The first topic to read"
+  desc: "The first topic to read."
   contents:
   - metalite
   - ar-grid

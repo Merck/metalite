@@ -1,36 +1,43 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
+# Copyright (c) 2023 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+# All rights reserved.
 #
-#    This file is part of the metalite program.
+# This file is part of the metalite program.
 #
-#    metalite is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
+# metalite is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 #
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #' Construct ADaM mappings
 #'
 #' ADaM mappings describe how variables and meta information in the ADaM data
 #' are mapped to standardized term.
 #'
-#' The implementation idea mimic `ggplot2::aes`.
+#' The design is inspired by `ggplot2::aes()`.
 #'
-#' @param name a character value of term name. The term name is used as key to link information.
-#' @param id a character value of subject id variable name in an ADaM dataset.
-#' @param group a character vector of group variable names in an ADaM dataset.
-#' @param var a character vector of useful variable names in an ADaM dataset.
-#' @param subset an expression to identify analysis records. Refer `subset()` function.
-#' @param label a character value of analysis label.
-#' @param ... additional variables.
+#' @param name A character value of term name.
+#'   The term name is used as key to link information.
+#' @param id A character value of subject identifier variable name
+#'   in an ADaM dataset.
+#' @param group A character vector of group variable names in an ADaM dataset.
+#' @param var A character vector of useful variable names in an ADaM dataset.
+#' @param subset An expression to identify analysis records.
+#'   See [base::subset()].
+#' @param label A character value of analysis label.
+#' @param ... Additional variables.
 #'
-#' @return A list with class `adam_mapping`. Components of the list are either quosures or constants.
+#' @return A list with class `adam_mapping`.
+#'   Components of the list are either quosures or constants.
+#'
+#' @export
 #'
 #' @examples
 #' adam_mapping(
@@ -40,7 +47,6 @@
 #'   subset = TRTFL == "Y",
 #'   label = "All Participants as Treated"
 #' )
-#' @export
 adam_mapping <- function(name,
                          id = NULL,
                          group = NULL,
@@ -87,12 +93,12 @@ new_adam_mapping <- function(x, env = globalenv()) {
 
 #' Check adam_mapping class
 #'
-#' @param x an `adam_mapping` object
+#' @param x An `adam_mapping` object.
+#'
+#' @noRd
 #'
 #' @examples
-#' \dontrun{
 #' validate_adam_mapping(new_adam_mapping(list(name = "apat")))
-#' }
 validate_adam_mapping <- function(x) {
   # All required variable
   char <- c("name", "id", "group", "var", "header", "label")

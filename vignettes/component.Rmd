@@ -1,12 +1,12 @@
 ---
 title: "Collect Components"
-output:
-  rmarkdown::html_vignette
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Collect Components}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 resource_files:
    - package_manual.pdf
-vignette: >
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Collect Components}
 ---
 
 ```{r, echo = FALSE, message = FALSE, include = FALSE}
@@ -22,14 +22,14 @@ library(metalite)
 ```
 
 
-In this document, let's explore how to collect components using `metalite`.
+In this document, let's explore how to collect components using metalite.
 The document is for developer who plan to create new tools.
 
-Let's first define a meta object by using `meta_dummy()` function.
+Let's first define a meta object by using the `meta_dummy()` function.
 It is an ad-hoc function to create a meta object same as in the `get started` page.
 
 ```{r}
-meta <- metalite:::meta_dummy()
+meta <- meta_dummy()
 meta
 ```
 
@@ -75,13 +75,13 @@ meta$population$apat$subset
 ```
 
 Equivalently, we can also use  `collect_population()` to collect the definition of a population.
-For example, we can collect subset condition for "apat" as
+For example, we can collect subset condition for `apat` as
 
 ```{r}
 collect_population(meta, population = "apat")
 ```
 
-By using `collect_population`, we can find subset condition from multiple levels.
+By using `collect_population()`, we can find subset condition from multiple levels.
 For example, we can collect analysis population definition for
 `apat` population, `wk12` observation and `ser` parameters.
 

@@ -7,18 +7,16 @@
 spec_analysis_population(meta)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 }
 \value{
-a vector of character showing the populations used
-in the order of the analysis plans
+A vector of character strings containing the populations used
+in the order of the analysis plans.
 }
 \description{
 Specification for population definition
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 spec_analysis_population(meta)
 }

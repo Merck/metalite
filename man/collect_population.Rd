@@ -7,29 +7,27 @@
 collect_population(meta, population, observation = NULL, parameter = NULL)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 }
 \value{
-a list covering the filter of population,
-observation (if input) and parameter (if input)
+A list covering the filter of population,
+observation (if given) and parameter (if given).
 }
 \description{
 Collect specification for population definition
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
 collect_population(meta, "apat")
 collect_population(meta, "apat", "wk12")
 collect_population(meta, "apat", "wk12", "ser")
-
 }

@@ -7,33 +7,32 @@
 plan(analysis, population, observation, parameter, mock = 1, ...)
 }
 \arguments{
-\item{analysis}{a character value of analysis term name.
+\item{analysis}{A character value of analysis term name.
 The term name is used as key to link information.}
 
-\item{population}{a character value of population term name.
+\item{population}{A character value of population term name.
 The term name is used as key to link information.}
 
-\item{observation}{a character value of observation term name.
+\item{observation}{A character value of observation term name.
 The term name is used as key to link information.}
 
-\item{parameter}{a character value of parameter term name.
+\item{parameter}{A character value of parameter term name.
 The term name is used as key to link information.}
 
-\item{mock}{a numeric value of mock table number.}
+\item{mock}{A numeric value of mock table number.}
 
-\item{...}{additional arguments}
+\item{...}{Additional arguments.}
 }
 \value{
-a data.frame showing the analysis plans
+A data frame containing the analysis plan.
 }
 \description{
-This function is a wrapper of \code{expand.grid}
+This function is a wrapper of \code{\link[base:expand.grid]{base::expand.grid()}}.
 }
 \examples{
-
-# example 1
-# create an analysis plan of AE summary
-# with any AE, drug-related AE and serious AE
+# Example 1
+# Create an analysis plan of AE summary
+# with any AE, drug-related AE, and serious AE
 plan(
   analysis = "ae_summary",
   population = "apat",
@@ -41,9 +40,9 @@ plan(
   parameter = "any;rel;ser"
 )
 
-# example 2
-# create an analysis plan of AE specific
-# with any AE, drug-related AE and serious AE
+# Example 2
+# Create an analysis plan of AE specific
+# with any AE, drug-related AE, and serious AE
 plan(
   analysis = "ae_specific",
   population = "apat",

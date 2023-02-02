@@ -7,18 +7,17 @@
 define_plan(meta, plan)
 }
 \arguments{
-\item{meta}{a \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{plan}{a dataframe for analysis plan}
+\item{plan}{A data frame for analysis plan.}
 }
 \value{
-a metadata with plans defined
+A metadata object with plans defined.
 }
 \description{
 Define analysis plan meta information for ADaM dataset
 }
 \examples{
-library(r2rtf)
 plan <- plan(
   analysis = "ae_summary", population = "apat",
   observation = c("wk12", "wk24"), parameter = "any;rel;ser"

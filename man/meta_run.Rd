@@ -2,22 +2,22 @@
 % Please edit documentation in R/meta_run.R
 \name{meta_run}
 \alias{meta_run}
-\title{Execute analysis based on the analysis plan.}
+\title{Execute analysis based on the analysis plan}
 \usage{
 meta_run(meta, i = NULL, ...)
 }
 \arguments{
-\item{meta}{a \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{i}{a vector of integer to indicate \code{i}th analysis in \code{meta$plan}.}
+\item{i}{A vector of integers to indicate \code{i}-th analysis in \code{meta$plan}.}
 
-\item{...}{additional arguments transfer to \code{spec_call_program}.}
+\item{...}{Additional arguments passed to \verb{[spec_call_program()]}.}
 }
 \value{
-execute analysis based on the analysis plan
+Executed analysis based on the analysis plan.
 }
 \description{
-Execute analysis based on the analysis plan.
+Execute analysis based on the analysis plan
 }
 \examples{
 meta <- meta_dummy()

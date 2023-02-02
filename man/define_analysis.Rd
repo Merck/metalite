@@ -7,14 +7,15 @@
 define_analysis(meta, name, ...)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{name}{a character value of term name. The term name is used as key to link information.}
+\item{name}{A character value of term name.
+The term name is used as key to link information.}
 
-\item{...}{additional variables.}
+\item{...}{Additional variables.}
 }
 \value{
-a metadata with analysis details defined
+A metadata object with analysis details defined.
 }
 \description{
 Define analysis function meta information for ADaM dataset

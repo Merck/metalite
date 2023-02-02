@@ -7,21 +7,19 @@
 spec_call_program(meta, ...)
 }
 \arguments{
-\item{meta}{an \code{meta_adam} object.}
+\item{meta}{A \code{meta_adam} object.}
 
-\item{...}{additional arguments used in all call programs.}
+\item{...}{Additional arguments used in all call programs.}
 }
 \value{
-a vector of character showing the call program
-in the order of the analysis plans
+A vector of character strings containing the call program
+in the order of the analysis plans.
 }
 \description{
 Specification for analysis call program
 }
 \examples{
-library(r2rtf)
 meta <- meta_dummy()
-
 spec_call_program(meta)
 spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
 }
