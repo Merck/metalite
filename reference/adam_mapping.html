@@ -77,42 +77,46 @@ are mapped to standardized term.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>name</dt>
-<dd><p>a character value of term name. The term name is used as key to link information.</p></dd>
+<dd><p>A character value of term name.
+The term name is used as key to link information.</p></dd>
 
 
 <dt>id</dt>
-<dd><p>a character value of subject id variable name in an ADaM dataset.</p></dd>
+<dd><p>A character value of subject identifier variable name
+in an ADaM dataset.</p></dd>
 
 
 <dt>group</dt>
-<dd><p>a character vector of group variable names in an ADaM dataset.</p></dd>
+<dd><p>A character vector of group variable names in an ADaM dataset.</p></dd>
 
 
 <dt>var</dt>
-<dd><p>a character vector of useful variable names in an ADaM dataset.</p></dd>
+<dd><p>A character vector of useful variable names in an ADaM dataset.</p></dd>
 
 
 <dt>subset</dt>
-<dd><p>an expression to identify analysis records. Refer <code><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset()</a></code> function.</p></dd>
+<dd><p>An expression to identify analysis records.
+See <code><a href="https://rdrr.io/r/base/subset.html" class="external-link">base::subset()</a></code>.</p></dd>
 
 
 <dt>label</dt>
-<dd><p>a character value of analysis label.</p></dd>
+<dd><p>A character value of analysis label.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>additional variables.</p></dd>
+<dd><p>Additional variables.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A list with class <code>adam_mapping</code>. Components of the list are either quosures or constants.</p>
+<p>A list with class <code>adam_mapping</code>.
+Components of the list are either quosures or constants.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The implementation idea mimic <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes</a></code>.</p>
+    <p>The design is inspired by <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes()</a></code>.</p>
     </div>
 
     <div class="section level2">

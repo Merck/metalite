@@ -43,12 +43,6 @@
     <loc>/reference/assign_label.html</loc>
   </url>
   <url>
-    <loc>/reference/check_args.html</loc>
-  </url>
-  <url>
-    <loc>/reference/check_duplicate_name.html</loc>
-  </url>
-  <url>
     <loc>/reference/collect_adam_mapping.html</loc>
   </url>
   <url>
@@ -97,12 +91,6 @@
     <loc>/reference/define_population.html</loc>
   </url>
   <url>
-    <loc>/reference/fmt_quote.html</loc>
-  </url>
-  <url>
-    <loc>/reference/fmt_sentence.html</loc>
-  </url>
-  <url>
     <loc>/reference/get_label.html</loc>
   </url>
   <url>
@@ -118,16 +106,10 @@
     <loc>/reference/meta_build.html</loc>
   </url>
   <url>
-    <loc>/reference/meta_check_var.html</loc>
-  </url>
-  <url>
     <loc>/reference/meta_dummy.html</loc>
   </url>
   <url>
     <loc>/reference/meta_dummy_exploration.html</loc>
-  </url>
-  <url>
-    <loc>/reference/meta_remove_blank_group.html</loc>
   </url>
   <url>
     <loc>/reference/meta_run.html</loc>
@@ -136,22 +118,7 @@
     <loc>/reference/meta_split.html</loc>
   </url>
   <url>
-    <loc>/reference/meta_validate.html</loc>
-  </url>
-  <url>
     <loc>/reference/metalite-package.html</loc>
-  </url>
-  <url>
-    <loc>/reference/n_subject.html</loc>
-  </url>
-  <url>
-    <loc>/reference/new_outdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/new_plan.html</loc>
-  </url>
-  <url>
-    <loc>/reference/omit_null.html</loc>
   </url>
   <url>
     <loc>/reference/outdata.html</loc>
@@ -161,9 +128,6 @@
   </url>
   <url>
     <loc>/reference/print.meta_adam.html</loc>
-  </url>
-  <url>
-    <loc>/reference/reset_label.html</loc>
   </url>
   <url>
     <loc>/reference/spec_analysis_population.html</loc>
@@ -179,14 +143,5 @@
   </url>
   <url>
     <loc>/reference/update_adam_mapping.html</loc>
-  </url>
-  <url>
-    <loc>/reference/validate_adam_mapping.html</loc>
-  </url>
-  <url>
-    <loc>/reference/validate_outdata.html</loc>
-  </url>
-  <url>
-    <loc>/reference/validate_plan.html</loc>
   </url>
 </urlset>

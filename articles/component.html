@@ -94,15 +94,15 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/metalite/" class="external-link">metalite</a></span><span class="op">)</span></span></code></pre></div>
 <p>In this document, let’s explore how to collect components using
-<code>metalite</code>. The document is for developer who plan to create
-new tools.</p>
-<p>Let’s first define a meta object by using <code><a href="../reference/meta_dummy.html">meta_dummy()</a></code>
-function. It is an ad-hoc function to create a meta object same as in
-the <code>get started</code> page.</p>
+metalite. The document is for developer who plan to create new
+tools.</p>
+<p>Let’s first define a meta object by using the
+<code><a href="../reference/meta_dummy.html">meta_dummy()</a></code> function. It is an ad-hoc function to create a
+meta object same as in the <code>get started</code> page.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu">metalite</span><span class="fu">:::</span><span class="fu"><a href="../reference/meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/meta_dummy.html">meta_dummy</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">meta</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
 <span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
@@ -208,12 +208,12 @@ as</p>
 <span><span class="co">#&gt; SAFFL == "Y"</span></span></code></pre></div>
 <p>Equivalently, we can also use <code><a href="../reference/collect_population.html">collect_population()</a></code> to
 collect the definition of a population. For example, we can collect
-subset condition for “apat” as</p>
+subset condition for <code>apat</code> as</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/collect_population.html">collect_population</a></span><span class="op">(</span><span class="va">meta</span>, population <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $population</span></span>
 <span><span class="co">#&gt; [1] "SAFFL == 'Y'"</span></span></code></pre></div>
-<p>By using <code>collect_population</code>, we can find subset
+<p>By using <code><a href="../reference/collect_population.html">collect_population()</a></code>, we can find subset
 condition from multiple levels. For example, we can collect analysis
 population definition for <code>apat</code> population,
 <code>wk12</code> observation and <code>ser</code> parameters.</p>

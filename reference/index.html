@@ -72,14 +72,14 @@
           
           <code><a href="print.meta_adam.html">print(<i>&lt;meta_adam&gt;</i>)</a></code> 
         </dt>
-        <dd>Print a meta data with its population, observation and analysis plans</dd>
+        <dd>Print a metadata object with its population, observation, and analysis plans</dd>
       </dl><dl><dt>
           
           <code><a href="meta_build.html">meta_build()</a></code> 
         </dt>
         <dd>Build complete meta information</dd>
       </dl></div><div class="section level2">
-      <h2 id="meta-dummy-examples">Meta Dummy Examples<a class="anchor" aria-label="anchor" href="#meta-dummy-examples"></a></h2>
+      <h2 id="meta-dummy-examples">Meta dummy examples<a class="anchor" aria-label="anchor" href="#meta-dummy-examples"></a></h2>
       
       
 
@@ -165,7 +165,7 @@
           
           <code><a href="collect_population_id.html">collect_population_id()</a></code> 
         </dt>
-        <dd>Collect subject id information from population dataset</dd>
+        <dd>Collect subject identifier information from population dataset</dd>
       </dl><dl><dt>
           
           <code><a href="collect_population_record.html">collect_population_record()</a></code> 
@@ -248,16 +248,6 @@
           <code><a href="add_plan.html">add_plan()</a></code> 
         </dt>
         <dd>Add additional analysis plan</dd>
-      </dl><dl><dt>
-          
-          <code><a href="new_plan.html">new_plan()</a></code> 
-        </dt>
-        <dd>Create a analysis plan from all combination of variables</dd>
-      </dl><dl><dt>
-          
-          <code><a href="validate_plan.html">validate_plan()</a></code> 
-        </dt>
-        <dd>Validate an analysis plan object</dd>
       </dl></div><div class="section level2">
       <h2 id="variable-mapping">Variable mapping<a class="anchor" aria-label="anchor" href="#variable-mapping"></a></h2>
       
@@ -279,11 +269,6 @@
           <code><a href="update_adam_mapping.html">update_adam_mapping()</a></code> 
         </dt>
         <dd>Update mapping rule in <code>adam_mapping</code></dd>
-      </dl><dl><dt>
-          
-          <code><a href="validate_adam_mapping.html">validate_adam_mapping()</a></code> 
-        </dt>
-        <dd>Check adam_mapping class</dd>
       </dl></div><div class="section level2">
       <h2 id="outdata">Outdata<a class="anchor" aria-label="anchor" href="#outdata"></a></h2>
       
@@ -299,19 +284,9 @@
           
           <code><a href="outdata.html">outdata()</a></code> 
         </dt>
-        <dd>Construct outdata class</dd>
-      </dl><dl><dt>
-          
-          <code><a href="new_outdata.html">new_outdata()</a></code> 
-        </dt>
-        <dd>Structure outdata class</dd>
-      </dl><dl><dt>
-          
-          <code><a href="validate_outdata.html">validate_outdata()</a></code> 
-        </dt>
-        <dd>Validate outdata class</dd>
+        <dd>Construct <code>outdata</code> class</dd>
       </dl></div><div class="section level2">
-      <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
+      <h2 id="utilities">Utilities<a class="anchor" aria-label="anchor" href="#utilities"></a></h2>
       
       
 
@@ -322,86 +297,25 @@
       
 
       <dl><dt>
-          
-          <code><a href="fmt_quote.html">fmt_quote()</a></code> 
-        </dt>
-        <dd>Format quote</dd>
-      </dl><dl><dt>
-          
-          <code><a href="fmt_sentence.html">fmt_sentence()</a></code> 
-        </dt>
-        <dd>Format sentence</dd>
-      </dl></div><div class="section level2">
-      <h2 id="utility">Utility<a class="anchor" aria-label="anchor" href="#utility"></a></h2>
-      
-      
-
-      
-    </div><div id="" class="section level2">
-      
-      
-      
-
-      <dl><dt>
-          
-          <code><a href="check_duplicate_name.html">check_duplicate_name()</a></code> 
-        </dt>
-        <dd>Check duplicate name</dd>
-      </dl><dl><dt>
-          
-          <code><a href="check_args.html">check_args()</a></code> 
-        </dt>
-        <dd>Check Argument Types, Length or Dimension</dd>
-      </dl><dl><dt>
           
           <code><a href="default_apply.html">default_apply()</a></code> 
         </dt>
         <dd>Apply default values to ADaM mappings</dd>
       </dl><dl><dt>
           
-          <code><a href="meta_check_var.html">meta_check_var()</a></code> 
-        </dt>
-        <dd>Check variable name are in meta data</dd>
-      </dl><dl><dt>
-          
           <code><a href="meta_run.html">meta_run()</a></code> 
         </dt>
-        <dd>Execute analysis based on the analysis plan.</dd>
+        <dd>Execute analysis based on the analysis plan</dd>
       </dl><dl><dt>
           
           <code><a href="meta_split.html">meta_split()</a></code> 
         </dt>
-        <dd>Devide Meta into Groups</dd>
-      </dl><dl><dt>
-          
-          <code><a href="meta_validate.html">meta_validate()</a></code> 
-        </dt>
-        <dd>Validate meta information</dd>
+        <dd>Split metadata into groups</dd>
       </dl><dl><dt>
           
           <code><a href="meta_add_total.html">meta_add_total()</a></code> 
         </dt>
-        <dd>Add duplicate data to enable a total group.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="meta_remove_blank_group.html">meta_remove_blank_group()</a></code> 
-        </dt>
-        <dd>Remove blank group based on analysis parameter.</dd>
-      </dl><dl><dt>
-          
-          <code><a href="omit_null.html">omit_null()</a></code> 
-        </dt>
-        <dd>Omit NULL values in a list</dd>
-      </dl><dl><dt>
-          
-          <code><a href="n_subject.html">n_subject()</a></code> 
-        </dt>
-        <dd>Count number of unique subjects</dd>
-      </dl><dl><dt>
-          
-          <code><a href="reset_label.html">reset_label()</a></code> 
-        </dt>
-        <dd>Reset Dataset Label</dd>
+        <dd>Add duplicate data to enable a total group</dd>
       </dl><dl><dt>
           
           <code><a href="get_label.html">get_label()</a></code> 
@@ -411,19 +325,7 @@
           
           <code><a href="assign_label.html">assign_label()</a></code> 
         </dt>
-        <dd>A function to assign labels to a data frame
-Case 1:
-If the variable's label is already define in the original data frame,
-but not re-defined in assign_label(...), its original labels will be kept.
-Case 2:
-If the variable's label is already define in the original data frame,
-but re-defined by assign_label(...), its labels will be re-defined.
-Case 3:
-If the variable's label is not define in the original data frame,
-but it is defined by assign_label(...), its labels will added.
-Case 4:
-If the variable's label is not define in the original data frame,
-neither does it defined by assign_label(...), its labels will be the variable name itself.</dd>
+        <dd>A function to assign labels to a data frame</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>

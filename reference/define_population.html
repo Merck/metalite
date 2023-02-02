@@ -75,48 +75,50 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>meta</dt>
-<dd><p>an <code>meta_adam</code> object.</p></dd>
+<dd><p>A <code>meta_adam</code> object.</p></dd>
 
 
 <dt>name</dt>
-<dd><p>a character value of term name. The term name is used as key to link information.</p></dd>
+<dd><p>A character value of term name.
+The term name is used as key to link information.</p></dd>
 
 
 <dt>id</dt>
-<dd><p>a character value of subject id variable name in an ADaM dataset.</p></dd>
+<dd><p>A character value of subject identifier variable name
+in an ADaM dataset.</p></dd>
 
 
 <dt>group</dt>
-<dd><p>a character vector of group variable names in an ADaM dataset.</p></dd>
+<dd><p>A character vector of group variable names in an ADaM dataset.</p></dd>
 
 
 <dt>var</dt>
-<dd><p>a character vector of useful variable names in an ADaM dataset.</p></dd>
+<dd><p>A character vector of useful variable names in an ADaM dataset.</p></dd>
 
 
 <dt>subset</dt>
-<dd><p>an expression to identify analysis records. Refer <code><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset()</a></code> function.</p></dd>
+<dd><p>An expression to identify analysis records.
+See <code><a href="https://rdrr.io/r/base/subset.html" class="external-link">base::subset()</a></code>.</p></dd>
 
 
 <dt>label</dt>
-<dd><p>a character value of analysis label.</p></dd>
+<dd><p>A character value of analysis label.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>additional variables.</p></dd>
+<dd><p>Additional variables.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a metadata with population defined</p>
+<p>A metadata object with population defined.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/" class="external-link">r2rtf</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="plan.html">plan</a></span><span class="op">(</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">plan</span> <span class="op">&lt;-</span> <span class="fu"><a href="plan.html">plan</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  analysis <span class="op">=</span> <span class="st">"ae_summary"</span>, population <span class="op">=</span> <span class="st">"apat"</span>,</span></span>
 <span class="r-in"><span>  observation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"wk12"</span>, <span class="st">"wk24"</span><span class="op">)</span>, parameter <span class="op">=</span> <span class="st">"any;rel;ser"</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
@@ -127,7 +129,7 @@
 <span class="r-in"><span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">define_population</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ADaM Meta Data: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ADaM metadata: </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .$data_population 	Population data with 254 subjects </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .$data_observation 	Observation data with 1191 records </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    .$plan 	Analysis plan with 2 plans </span>

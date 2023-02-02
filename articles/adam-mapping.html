@@ -99,29 +99,29 @@
 <p>We design an abstraction of variable mapping to enhance the
 robustness of the metadata information. The goal is to follow the <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" class="external-link">dependency
 inversion principle</a> in software design.</p>
-<p>The idea mimics the design of <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes()</a></code>.</p>
+<p>The design is inspired by <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes()</a></code>.</p>
 <p>For a typical analysis, we require developer to provide variable
-names for</p>
+names for:</p>
 <ul>
 <li>
 <code>name</code>: a reference name as a key to link other
-components</li>
-<li>subject id (<code>id</code>): typically using “USUBJID” in ADaM
-data</li>
-<li>treatment group (<code>group</code>): typically using
-<code>TRTXX</code> in ADaM data</li>
-<li>other variables (<code>var</code>): additional variables required
-for analysis</li>
+components.</li>
+<li>Subject identifier (<code>id</code>): typically using
+<code>USUBJID</code> in ADaM data.</li>
+<li>Treatment group (<code>group</code>): typically using
+<code>TRTXX</code> in ADaM data.</li>
+<li>Other variables (<code>var</code>): additional variables required
+for analysis.</li>
 <li>
 <code>subset</code>: a subset expression to define the analysis.
 Typically using analysis flag <code>XXFL</code> in ADaM data.</li>
 <li>
-<code>label</code>: a nature language to describe the purpose of
-this <code>adam_mapping</code> object.</li>
+<code>label</code>: natural language to describe the purpose of this
+<code>adam_mapping</code> object.</li>
 </ul>
 </div>
 <div class="section level2">
-<h2 id="example-1-all-participants-as-treated-apat">Example 1: All Participants as Treated (apat)<a class="anchor" aria-label="anchor" href="#example-1-all-participants-as-treated-apat"></a>
+<h2 id="example-1-all-participants-as-treated-apat">Example 1: All Participants as Treated (<code>apat</code>)<a class="anchor" aria-label="anchor" href="#example-1-all-participants-as-treated-apat"></a>
 </h2>
 <p>In this example, we define an <code>adam_mapping</code> for APaT
 population. The example illustrate an use case to decouple variable name
@@ -146,7 +146,7 @@ layer.</p>
 <span><span class="co">#&gt; * `label`  -&gt; "All Participants as Treated"</span></span></code></pre></div>
 <p>With the defined variable mapping, our development of other standard
 function can rely on the abstraction. As long as a study team provide
-proper data and associate <code>adam_mapping</code>, our standard
+proper data and the associate <code>adam_mapping</code>, our standard
 function can be used.</p>
 <p>In R, the abstraction is a named list that can be accessed by
 <code>.$subset</code> and assigned by <code>&lt;-</code>.</p>
@@ -181,7 +181,8 @@ below.</p>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">y</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">[[</span><span class="va">x</span><span class="op">$</span><span class="va">var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt;              Placebo Xanomeline High Dose  Xanomeline Low Dose </span></span>
 <span><span class="co">#&gt;             75.20930             74.38095             75.66667</span></span></code></pre></div>
-<p>Reference: <code>eval</code> and expression. <a href="https://adv-r.hadley.nz/evaluation.html?q=eval#evaluating" class="external-link uri">https://adv-r.hadley.nz/evaluation.html?q=eval#evaluating</a></p>
+<p>Reference: <a href="https://adv-r.hadley.nz/evaluation.html#evaluating" class="external-link"><code>eval</code>
+and expression</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="tidy-evaluation">Tidy evaluation<a class="anchor" aria-label="anchor" href="#tidy-evaluation"></a>
@@ -193,8 +194,8 @@ below.</p>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">x</span><span class="op">$</span><span class="va">group</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">x</span><span class="op">$</span><span class="va">var</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ul>
-<li>Reference: <a href="https://dplyr.tidyverse.org/articles/programming.html" class="external-link uri">https://dplyr.tidyverse.org/articles/programming.html</a>
-</li>
+<li>Reference: <a href="https://dplyr.tidyverse.org/articles/programming.html" class="external-link">Programming
+with dplyr</a>.</li>
 </ul>
 <p>By using the <code>adam_mapping</code> abstract layer, it creates
 additional challenges to develop R program, yet we can reduce
@@ -202,16 +203,16 @@ maintenance in the future.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="example-2-serious-adverse-events-ser">Example 2: Serious adverse events (ser)<a class="anchor" aria-label="anchor" href="#example-2-serious-adverse-events-ser"></a>
+<h2 id="example-2-serious-adverse-events-ser">Example 2: Serious adverse events (<code>ser</code>)<a class="anchor" aria-label="anchor" href="#example-2-serious-adverse-events-ser"></a>
 </h2>
 <p>In this example, we define an <code>adam_mapping</code> for serious
 adverse events (AE). The example illustrate an use case to inherit
-default values defined in <code>metalite</code>.</p>
+default values defined in metalite.</p>
 <p>An organization have conventions to define different analysis terms.
 We can define default values of those commonly used analysis terms.</p>
 <p>For example, we define a default <code>adam_mapping</code> object as
 below. A real example can be found in
-<code>mkmeta:::default_parameter_ae</code></p>
+<code>metalite:::default_parameter_ae</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ser_default</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/adam_mapping.html">adam_mapping</a></span><span class="op">(</span></span>
 <span>  name <span class="op">=</span> <span class="st">"ser"</span>,</span>

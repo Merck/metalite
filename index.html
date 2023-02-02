@@ -5,8 +5,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A metadata structure for clincial data analysis 
-    and reporting based on ADaM datasets.">
+<meta name="description" content="A metadata structure for clinical data analysis
+    and reporting based on Analysis Data Model (ADaM) datasets.">
 <title>ADaM Metadata Structure • metalite</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -20,8 +20,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="ADaM Metadata Structure">
-<meta property="og:description" content="A metadata structure for clincial data analysis 
-    and reporting based on ADaM datasets.">
+<meta property="og:description" content="A metadata structure for clinical data analysis
+    and reporting based on Analysis Data Model (ADaM) datasets.">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -87,42 +87,46 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
+<p>Unify the data structure for saving metadata information in clinical analysis &amp; reporting (A&amp;R), leveraging the Analysis Data Model (ADaM) datasets for consistent and accurate metadata representation.</p>
+<p><img src="reference/figures/design-diagram.png" width="100%"></p>
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The purpose of the metalite R package is to define a unified data structure to save metadata information for clinical analysis &amp; reporting (A&amp;R) based on ADaM datasets.</p>
-<p>The R package is designed to</p>
+<p>The metalite framework is designed to:</p>
 <ul>
-<li>standardize function input for analysis and reporting.</li>
-<li>separate analysis logic from data source.</li>
-<li>enables pipes (<code>|&gt;</code>).</li>
-<li>reduce manual steps to develop and maintain documentation in clinical trial development.</li>
-<li>ensure consistency between analysis specification, mock, and results.</li>
-</ul>
-<p>We build the metalite R package to enable principals below:</p>
-<ul>
-<li>Automation: a function call is better than a checklist.</li>
-<li>Single-entry: enter in one place, sync to all deliveries.
-<ul>
-<li>e.g., Enter data source one time for all AE analysis.</li>
-</ul>
-</li>
-<li>End-to-end: cover all steps in software development lifecycle (SDLC) from define to delivery.</li>
+<li>Standardize function input for analysis and reporting.</li>
+<li>Separate analysis logic from data source.</li>
+<li>Enable the use of pipes (<code>|&gt;</code>).</li>
+<li>Reduce manual steps to develop and maintain documentation in clinical trial development.</li>
+<li>Ensure consistency between analysis specification, mock, and results.</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="use-cases">Use cases<a class="anchor" aria-label="anchor" href="#use-cases"></a>
 </h2>
-<p>The metalite R package build a foundation to simplify tool development. For example, the metalite can be used to:</p>
+<p>The metalite package offers a foundation to simplify tool development and create standard engineering workflows. For example, metalite can be used to:</p>
 <ul>
-<li>standardize input and output for A&amp;R functions.</li>
-<li>create analysis and reporting planning grid</li>
-<li>create mock table</li>
-<li>create and validate A&amp;R results</li>
-<li>trace analysis records</li>
+<li>Standardize input and output for A&amp;R functions.</li>
+<li>Create analysis and reporting planning grid.</li>
+<li>Create mock table.</li>
+<li>Create and validate A&amp;R results.</li>
+<li>Trace analysis records.</li>
 </ul>
-<p>Note: metalite is a low level R package that needs to work with other R packages to complete the work. We illustrate the idea in the diagram below.</p>
-<p><img src="reference/figures/design-diagram.png" width="100%"></p>
+<p>Note: metalite is a low-level R package that needs to work with other R packages to complete the work. The idea is illustrated in the diagram above.</p>
+</div>
+<div class="section level2">
+<h2 id="design-principles">Design principles<a class="anchor" aria-label="anchor" href="#design-principles"></a>
+</h2>
+<p>We built metalite with the following principles:</p>
+<ul>
+<li>Automation: prefer a function call more than a checklist.</li>
+<li>Single-entry: enter in one place, sync to all deliveries.
+<ul>
+<li>For example, enter data source one time for all AE analysis.</li>
+</ul>
+</li>
+<li>End-to-end: cover all steps in software development lifecycle (SDLC) from define to delivery.</li>
+</ul>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

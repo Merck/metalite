@@ -97,42 +97,45 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>The purpose of <code>metalite</code> is to define a unified data
-structure to save meta information for analysis &amp; reporting
-(A&amp;R) based on ADaM datasets in clinical trial development.</p>
-<p>The R package is design to</p>
+<p>The purpose of metalite is to unify the data structure for saving
+metadata information in clinical analysis &amp; reporting (A&amp;R),
+leveraging the Analysis Data Model (ADaM) datasets for consistent and
+accurate metadata representation.</p>
+<p>The metalite framework is designed to:</p>
 <ul>
-<li>standardize function input for analysis and reporting.</li>
-<li>enables pipes (<code>|&gt;</code>).</li>
-<li>reduce manual steps to maintain SDLC documentation.</li>
-<li>ensure consistency between analysis specification, mock and
+<li>Standardize function input for analysis and reporting.</li>
+<li>Enable the use of pipes (<code>|&gt;</code>).</li>
+<li>Reduce manual steps to maintain SDLC documentation.</li>
+<li>Ensure consistency between analysis specification, mock, and
 results.</li>
 </ul>
-<p>We build <code>metalite</code> to enable principals below:</p>
+<p>We built metalite with the following principles:</p>
 <ul>
-<li>Automation: a function call is better than a checklist.</li>
-<li>Single-entry: enter in one place, sync to all delivery.
+<li>Automation: prefer a function call more than a checklist.</li>
+<li>Single-entry: enter in one place, sync to all deliveries.
 <ul>
-<li>e.g. Enter data source one time for all AE analysis.</li>
+<li>For example, enter data source one time for all AE analysis.</li>
 </ul>
 </li>
-<li>End-to-end: cover all steps in SDLC from define to delivery.</li>
+<li>End-to-end: cover all steps in software development lifecycle (SDLC)
+from define to delivery.</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="use-cases">Use cases<a class="anchor" aria-label="anchor" href="#use-cases"></a>
 </h2>
-<p><code>metalite</code> build a foundation to simplify tool
-development. For example, <code>metalite</code> can be used to:</p>
+<p>The metalite package offers a foundation to simplify tool development
+and create standard engineering workflows. For example, metalite can be
+used to:</p>
 <ul>
-<li>standardize input and output for A&amp;R functions.</li>
-<li>create A&amp;R grid</li>
-<li>create mock table</li>
-<li>create and validate A&amp;R results</li>
-<li>trace analysis records</li>
+<li>Standardize input and output for A&amp;R functions.</li>
+<li>Create analysis and reporting planning grid.</li>
+<li>Create mock table.</li>
+<li>Create and validate A&amp;R results.</li>
+<li>Trace analysis records.</li>
 </ul>
-<p><code>metalite</code> need to work with other R packages to complete
-the work. We illustrate the idea in the diagram below.</p>
+<p>metalite needs to work with other R packages to complete the work.
+The idea is illustrated in the diagram below.</p>
 <p><img src="images/design-diagram.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level2">
@@ -142,18 +145,18 @@ the work. We illustrate the idea in the diagram below.</p>
 layers.</p>
 <ul>
 <li>Data</li>
-<li>Analysis Plan</li>
-<li>Analysis Meta data</li>
+<li>Analysis plan</li>
+<li>Analysis metadata</li>
 </ul>
-<p>The design of <code>metalite</code> is to align the layers using
-<code>meta_adam</code>, and <code>define_xxx</code> functions.</p>
+<p>The design of metalite is to align the layers using
+<code>meta_adam</code> and <code>define_xxx</code> functions.</p>
 <div class="section level3">
 <h3 id="example-adverse-events-analysis">Example: adverse events analysis<a class="anchor" aria-label="anchor" href="#example-adverse-events-analysis"></a>
 </h3>
 <p>We use a simplified adverse events analysis as an example to
 illustrate the mental model.</p>
 <ul>
-<li>Data (<code>meta_adam</code>):
+<li>Data (<code><a href="../reference/meta_adam.html">meta_adam()</a></code>):
 <ul>
 <li>Observation level: ADAE</li>
 <li>Population level: ADSL</li>
@@ -162,19 +165,19 @@ illustrate the mental model.</p>
 </ul>
 <p>For a typical adverse events analysis, the AE records is saved in
 ADAE (observation level) and the population information is saved in ADSL
-(population level). With demo ADaM datasets in <code>r2rtf</code>
-package, we can construct an object as below using
-<code>meta_adam</code>.</p>
+(population level). With demo ADaM datasets in r2rtf package, we can
+construct an object as below using <code><a href="../reference/meta_adam.html">meta_adam()</a></code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span></span>
 <span>  observation <span class="op">=</span> <span class="va">r2rtf_adae</span>,</span>
 <span>  population <span class="op">=</span> <span class="va">r2rtf_adsl</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records</span></span></code></pre></div>
 <ul>
-<li>Analysis Plan (<code>define_plan</code>): specification of analysis
+<li>Analysis Plan (<code><a href="../reference/define_plan.html">define_plan()</a></code>): specification of
+analysis
 <ul>
 <li>A&amp;R grid</li>
 <li>validation tracker</li>
@@ -185,9 +188,9 @@ package, we can construct an object as below using
 <p>We also need to understand the analysis plan for the adverse events
 analysis. Specifically, the details of each table, listing and figure
 (TLF)</p>
-<p>Here we use two helper functions (<code>plan</code> and
-<code>add_plan</code>) to create an analysis plan. The analysis plan is
-a dataframe that indicate the specification of each TLF. In the code
+<p>Here we use two helper functions (<code><a href="../reference/plan.html">plan()</a></code> and
+<code><a href="../reference/add_plan.html">add_plan()</a></code>) to create an analysis plan. The analysis plan
+is a data frame that indicate the specification of each TLF. In the code
 below, we construct 10 TLFs based on different combination of analysis
 function, population, observation and parameter.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -214,31 +217,31 @@ function, population, observation and parameter.</p>
 <span><span class="co">#&gt; 9     1 ae_specific       apat        wk12         ser</span></span>
 <span><span class="co">#&gt; 10    1 ae_specific       apat        wk24         ser</span></span></code></pre></div>
 <p>Then, we can define the analysis plan using
-<code>define_plan</code>.</p>
+<code><a href="../reference/define_plan.html">define_plan()</a></code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span></span>
 <span>  population <span class="op">=</span> <span class="va">r2rtf_adsl</span>,</span>
 <span>  observation <span class="op">=</span> <span class="va">r2rtf_adae</span></span>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
 <span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans</span></span></code></pre></div>
 <ul>
-<li>Analysis Meta data:
+<li>Analysis metadata:
 <ul>
-<li>population (<code>define_population</code>): e.g.:
+<li>population (<code><a href="../reference/define_population.html">define_population()</a></code>): e.g.:
 <code>name = "apat", group = "TRT01A", subset = SAFFL == "Y"</code>
 </li>
-<li>observation (<code>define_observation</code>): e.g.:
+<li>observation (<code><a href="../reference/define_observation.html">define_observation()</a></code>): e.g.:
 <code>name = "wk12", group = "TRTA", subset = SAFFL == "Y", label = "Weeks 0 to 12"</code>
 </li>
-<li>parameter (<code>define_parameter</code>): e.g.:
+<li>parameter (<code><a href="../reference/define_parameter.html">define_parameter()</a></code>): e.g.:
 <code>name = "ser", subset = AESER == "Y", label = "serious adverse events"</code>
 </li>
-<li>analysis (<code>define_analysis</code>): AE summary, Specific AE
-table, Rainfall plot (static or interactive), Volcano plot, etc</li>
+<li>analysis (<code><a href="../reference/define_analysis.html">define_analysis()</a></code>): AE summary, Specific AE
+table, Rainfall plot (static or interactive), Volcano plot, etc.</li>
 </ul>
 </li>
 </ul>
@@ -246,7 +249,8 @@ table, Rainfall plot (static or interactive), Volcano plot, etc</li>
 information. For example, how to select the APaT population from the
 <code>ADSL</code> dataset. This is achieved by defining the population.
 We have defined some built-in information that follows an A&amp;R
-conventions. So, the programs know the meaning of “apat” as below.</p>
+conventions. So, the programs know the meaning of <code>apat</code> as
+below.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span></span>
 <span>  population <span class="op">=</span> <span class="va">r2rtf_adsl</span>,</span>
@@ -254,7 +258,7 @@ conventions. So, the programs know the meaning of “apat” as below.</p>
 <span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_plan.html">define_plan</a></span><span class="op">(</span><span class="va">plan</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/define_population.html">define_population</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"apat"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
 <span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
@@ -276,7 +280,7 @@ team such as the group variable name and subset flag condition.</p>
 <span>    group <span class="op">=</span> <span class="st">"TRT01A"</span>,</span>
 <span>    subset <span class="op">=</span> <span class="va">SAFFL</span> <span class="op">==</span> <span class="st">"Y"</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
 <span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
@@ -287,11 +291,11 @@ team such as the group variable name and subset flag condition.</p>
 <span><span class="co">#&gt; 1 'apat' 'USUBJID' 'TRT01A'     SAFFL == 'Y' 'All Participants as Treated'</span></span></code></pre></div>
 <p>Similarly, we can define other meta information for analysis
 observation, parameter and function. We will also use
-<code>meta_build</code> to add default values for other
+<code><a href="../reference/meta_build.html">meta_build()</a></code> to add default values for other
 <code>name</code> that is not specified.</p>
 <blockquote>
-<p>In <code>metalite</code>, we save this demo example in
-<code><a href="../reference/meta_dummy.html">meta_dummy()</a></code> to illustrate different use cases.</p>
+<p>In metalite, we save this demo example in <code><a href="../reference/meta_dummy.html">meta_dummy()</a></code>
+to illustrate different use cases.</p>
 </blockquote>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/meta_adam.html">meta_adam</a></span><span class="op">(</span></span>
@@ -330,7 +334,7 @@ observation, parameter and function. We will also use
 <span>    title <span class="op">=</span> <span class="st">"Summary of Adverse Events"</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/meta_build.html">meta_build</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ADaM Meta Data: </span></span>
+<span><span class="co">#&gt; ADaM metadata: </span></span>
 <span><span class="co">#&gt;    .$data_population     Population data with 254 subjects </span></span>
 <span><span class="co">#&gt;    .$data_observation    Observation data with 1191 records </span></span>
 <span><span class="co">#&gt;    .$plan    Analysis plan with 10 plans </span></span>
@@ -367,8 +371,8 @@ observation, parameter and function. We will also use
 <p>As a developer, you can reuse those meta information for your
 development. It also allow developers to <strong>standardize</strong>
 the input of their functions. So the <code>plan$analysis</code> is
-analysis name. <code>meta</code> and other columns in <code>plan</code>
-are function arguments</p>
+analysis name. <code>meta</code> and other columns in
+<code><a href="../reference/plan.html">plan()</a></code> are function arguments</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">ae_summary</span><span class="op">(</span></span>
 <span>  <span class="va">meta</span>,</span>
