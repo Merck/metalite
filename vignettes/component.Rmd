@@ -25,11 +25,11 @@ library(metalite)
 In this document, let's explore how to collect components using metalite.
 The document is for developer who plan to create new tools.
 
-Let's first define a meta object by using the `meta_dummy()` function.
+Let's first define a meta object by using the `meta_example()` function.
 It is an ad-hoc function to create a meta object same as in the `get started` page.
 
 ```{r}
-meta <- meta_dummy()
+meta <- meta_example()
 meta
 ```
 

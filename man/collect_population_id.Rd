@@ -19,6 +19,6 @@ A vector of patient ID within the population group.
 Collect subject identifier information from population dataset
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 head(collect_population_id(meta, "apat"))
 }

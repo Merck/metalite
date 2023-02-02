@@ -1,5 +1,5 @@
-# Create dummy meta_adam object
-meta <- meta_dummy()
+# Create example `meta_adam` object
+meta <- meta_example()
 
 # Snapshot testing
 test_that("all analysis based on the analysis plan would be executed", {

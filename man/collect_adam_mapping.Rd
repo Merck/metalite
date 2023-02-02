@@ -19,6 +19,6 @@ the search variable in \code{name}.
 Collect \code{adam_mapping} from \code{meta_adam} by \code{name}
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_adam_mapping(meta, "apat")
 }

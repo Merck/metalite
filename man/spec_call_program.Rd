@@ -19,7 +19,7 @@ in the order of the analysis plans.
 Specification for analysis call program
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 spec_call_program(meta)
 spec_call_program(meta, data_source = "[Study CDISCpilot: adam-adsl; adae]")
 }

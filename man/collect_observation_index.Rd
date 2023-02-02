@@ -25,6 +25,6 @@ A vector of patient index within the observation group.
 Collect observation record index from observation dataset
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_observation_index(meta, "apat", "wk12", "ser")
 }

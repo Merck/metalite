@@ -38,7 +38,7 @@ A vector of strings to compose the table captions.
 Collect specification for title
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_title(meta, "apat", "wk12", "ser", "ae_summary")
 collect_title(meta, "apat", "wk12", "ser", "ae_specific")
 }

@@ -27,7 +27,7 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_dummy()
+#' meta <- meta_example()
 #' ae_summary <- function(...) {
 #'   paste("results of", deparse(match.call(), nlines = 1))
 #' }

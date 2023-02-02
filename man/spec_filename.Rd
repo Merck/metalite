@@ -16,6 +16,6 @@ A vector of character strings containing the RTF file names.
 Specification for analysis output filename
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 spec_filename(meta)
 }

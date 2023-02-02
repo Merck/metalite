@@ -20,7 +20,7 @@ Executed analysis based on the analysis plan.
 Execute analysis based on the analysis plan
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 ae_summary <- function(...) {
   paste("results of", deparse(match.call(), nlines = 1))
 }

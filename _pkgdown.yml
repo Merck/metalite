@@ -34,15 +34,15 @@ navbar:
       href: news/index.html
 
 reference:
-- title: Meta information
+- title: Create metadata
   contents:
   - "meta_adam"
   - "print.meta_adam"
   - "meta_build"
-- title: Meta dummy examples
+- title: Metadata example
   contents:
-  - "meta_dummy"
-  - "meta_dummy_exploration"
+  - "meta_example"
+  - "meta_example_exploration"
 - title: Component definition
   contents:
   - "define_plan"
@@ -89,13 +89,13 @@ reference:
   - "assign_label"
 
 articles:
-- title: Get started
+- title: Getting started
   desc: "The first topic to read."
   contents:
   - metalite
   - ar-grid
   - mockup-table
-- title: Development details
+- title: Developer guides
   contents:
   - component
   - adam-mapping

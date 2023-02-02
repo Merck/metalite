@@ -26,7 +26,7 @@ observation (if given) and parameter (if given).
 Collect specification for population definition
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 collect_population(meta, "apat")
 collect_population(meta, "apat", "wk12")
 collect_population(meta, "apat", "wk12", "ser")

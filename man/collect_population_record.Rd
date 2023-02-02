@@ -23,7 +23,7 @@ The key variables used in \code{id}, \code{group}, and \code{subset}
 are displayed by default.
 }
 \examples{
-meta <- meta_dummy()
+meta <- meta_example()
 head(collect_population_record(meta, "apat"))
 head(collect_population_record(meta, "apat", var = "AGE"))
 }

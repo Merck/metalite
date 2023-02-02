@@ -27,7 +27,7 @@
 #' @export
 #'
 #' @examples
-#' meta_dummy() |> meta_split("RACE")
+#' meta_example() |> meta_split("RACE")
 meta_split <- function(meta, by) {
   meta_check_var(meta, by)
 
