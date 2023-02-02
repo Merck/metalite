@@ -41,7 +41,7 @@ ADaM mappings describe how variables and meta information in the ADaM data
 are mapped to standardized term.
 }
 \details{
-The implementation mimics the idea of \code{ggplot2::aes()}.
+The design is inspired by \code{ggplot2::aes()}.
 }
 \examples{
 adam_mapping(

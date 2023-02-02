@@ -21,7 +21,7 @@
 #' ADaM mappings describe how variables and meta information in the ADaM data
 #' are mapped to standardized term.
 #'
-#' The implementation mimics the idea of `ggplot2::aes()`.
+#' The design is inspired by `ggplot2::aes()`.
 #'
 #' @param name A character value of term name.
 #'   The term name is used as key to link information.
