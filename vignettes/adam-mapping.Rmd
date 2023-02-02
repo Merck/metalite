@@ -59,7 +59,7 @@ x
 
 With the defined variable mapping,
 our development of other standard function can rely on the abstraction.
-As long as a study team provide proper data and associate `adam_mapping`,
+As long as a study team provide proper data and the associate `adam_mapping`,
 our standard function can be used.
 
 In R, the abstraction is a named list that can be accessed by `.$subset` and assigned by `<-`.
@@ -114,7 +114,7 @@ yet we can reduce maintenance in the future.
 ## Example 2: Serious adverse events (`ser`)
 
 In this example, we define an `adam_mapping` for serious adverse events (AE).
-The example illustrate an use case to inherit default values defined in `metalite`.
+The example illustrate an use case to inherit default values defined in metalite.
 
 An organization have conventions to define different analysis terms.
 We can define default values of those commonly used analysis terms.

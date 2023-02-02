@@ -23,7 +23,7 @@ library(dplyr)
 
 ## Overview
 
-In this document, we illustrate how to create the A&R grid by `metalite`.
+In this document, we illustrate how to create the A&R grid by metalite.
 
 ## Build metadata
 
@@ -111,7 +111,7 @@ metadata <- metadata |>
 metadata <- metadata |> meta_build()
 ```
 
-## Create A\&R Grid
+## Create A\&R grid
 
 ```{r}
 ar_grid <- data.frame(

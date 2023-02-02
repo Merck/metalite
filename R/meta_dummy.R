@@ -19,7 +19,7 @@
 #' Create a dummy `meta_adam` object
 #'
 #' This function is only for illustration purposes.
-#' The `r2rtf` package is required.
+#' The r2rtf package is required.
 #'
 #' @return A metadata object.
 #'

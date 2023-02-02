@@ -23,13 +23,13 @@ library(r2rtf)
 library(dplyr)
 ```
 
-In this document, we illustrate a way to create mockup table by using the metadata created by `metalite`.
+In this document, we illustrate a way to create mockup table by using the metadata created by metalite.
 An easy-to-follow example is used for illustration purpose.
 If users want to get a comprehensive production ready work, then users need to refine this simple example to align with their cases.
 
 ## Overview of the example we used
 
-In this example, the available datasets are adae and adsl, which are available in the `r2rtf` R package, i.e., `r2rtf::r2rtf_adae` and `r2rtf::r2rtf_adsl`.
+In this example, the available datasets are adae and adsl, which are available in the r2rtf package, i.e., `r2rtf::r2rtf_adae` and `r2rtf::r2rtf_adsl`.
 For these two datasets, our objective is to conduct two adverse event (AE) analysis: (1) AE summary analysis and (3) specific AE analysis.
 And the population for these two analysis is all participants as treated (APaT).
 Besides, there is one observations for these two analysis: weeks 0-12.
@@ -46,7 +46,7 @@ In this section, we introduce the steps to prepare the metadata used for the afo
 
 To define the metadata, users need to specify both population and observations datasets.
 In our example, the observation dataset comes from `r2rtf::r2rtf_adae` and the population dataset comes from `r2rtf::r2rtf_adsl`.
-So we define the metadata by `metalite::meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
+So we define the metadata by `meta_adam()` as follows, where users can specify the observation dataset name and population dataset name.
 
 ```{r}
 adae <- r2rtf::r2rtf_adae
@@ -91,7 +91,7 @@ plan <- plan(
 plan
 ```
 
-Then, we use incorporate the above defined plan into the metadata by using `metalite::define_plan()`, i.e.,
+Then, we use incorporate the above defined plan into the metadata by using `define_plan()`, i.e.,
 
 ```{r}
 meta <- meta |> define_plan(plan)
@@ -146,7 +146,7 @@ Note that in the analysis plan, there are 5 keywords:
 - `"ae_summary"`: an analysis keywords for AE summary analysis.
 - `"ae_specific"`: an analysis keywords for specific AE analysis.
 
-For the first three keywords, we can define them by `metalite::define_parameter()` as follows.
+For the first three keywords, we can define them by `define_parameter()` as follows.
 Here we can add (1) the endnotes, (2) labels, (3) the criterion to filter, etc.
 
 ```{r}
@@ -168,7 +168,7 @@ meta <- meta |>
   )
 ```
 
-For the last two keywords, we can define them by `metalite::define_analysis()`.
+For the last two keywords, we can define them by `define_analysis()`.
 In this vignette, we only present the mockup table of AE summary.
 If users are interested in specific AE analysis, please define the keywords for `"ae_specific"` as `define_analysis(name = "ae_specific", title = ...)`.
 
@@ -225,11 +225,11 @@ spec_call_program(meta,
 )
 ```
 
-The pending effort is to define `ae_summary` and `ae_specific` function that can generate the mock up tables based on the inputs.
+The pending effort is to define an `ae_summary()` and an `ae_specific()` function that can generate the mock up tables based on the inputs.
 
 ## Create functions
 
-Let's create a simplified version of `ae_summary` to illustrate the idea.
+Let's create a simplified version of `ae_summary()` to illustrate the idea.
 
 <details>
 <summary> Click to view the code for function `ae_summary()` </summary>

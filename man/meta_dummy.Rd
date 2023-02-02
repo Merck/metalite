@@ -11,7 +11,7 @@ A metadata object.
 }
 \description{
 This function is only for illustration purposes.
-The \code{r2rtf} package is required.
+The r2rtf package is required.
 }
 \examples{
 meta_dummy()
