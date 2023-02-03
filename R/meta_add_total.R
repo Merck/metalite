@@ -21,6 +21,13 @@
 #' @param meta A metalite object.
 #' @param total A character value of total group name.
 #'
+#' @return a metadata with a group total added
+#'
+#' @examples
+#' x <- meta_add_total(meta_example())
+#' # check there is a new group called Total
+#' table(x$data_population$TRTA)
+#'
 #' @export
 meta_add_total <- function(meta, total = "Total") {
   stopifnot(length(total) == 1)

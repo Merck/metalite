@@ -37,6 +37,6 @@ variable name itself.
 }
 }
 \examples{
-assign_label(r2rtf::r2rtf_adae)
-assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject ID")
+assign_label(r2rtf::r2rtf_adae)[1:5, ]
+assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject ID")[1:5, ]
 }
