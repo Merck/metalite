@@ -64,8 +64,12 @@ get_label <- function(data) {
 #' @export
 #'
 #' @examples
-#' assign_label(r2rtf::r2rtf_adae)
-#' assign_label(r2rtf::r2rtf_adae, var = "USUBJID", label = "Unique subject ID")
+#' assign_label(r2rtf::r2rtf_adae) |> head()
+#' assign_label(
+#'   r2rtf::r2rtf_adae,
+#'   var = "USUBJID",
+#'   label = "Unique subject identifier"
+#' ) |> head()
 assign_label <- function(data,
                          var = names(data),
                          label = names(data)) {

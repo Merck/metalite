@@ -11,6 +11,14 @@ meta_add_total(meta, total = "Total")
 
 \item{total}{A character value of total group name.}
 }
+\value{
+A metadata object with a total group added.
+}
 \description{
 Add duplicate data to enable a total group
+}
+\examples{
+x <- meta_add_total(meta_example())
+# A `Total` group is added
+table(x$data_population$TRTA)
 }
