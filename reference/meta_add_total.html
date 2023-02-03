@@ -73,7 +73,25 @@
 <dd><p>A character value of total group name.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    
 
+<p>A metadata object with a total group added.</p>
+    </div>
+
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">meta_add_total</span><span class="op">(</span><span class="fu"><a href="meta_example.html">meta_example</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># A `Total` group is added</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">data_population</span><span class="op">$</span><span class="va">TRTA</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Placebo  Xanomeline Low Dose Xanomeline High Dose </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                   86                   84                   84 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                Total </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  254 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
