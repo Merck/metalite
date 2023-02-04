@@ -8,7 +8,7 @@
 
 <!-- badges: end -->
 
-Unify the data structure for saving metadata information
+Unified data structure for metadata information
 in clinical analysis & reporting (A&R), leveraging the
 Analysis Data Model (ADaM) datasets for
 consistent and accurate metadata representation.
