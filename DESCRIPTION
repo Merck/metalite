@@ -15,16 +15,11 @@ Authors@R: c(
     person("Merck Sharp & Dohme Corp", role = c("cph"))
     )
 Description: A metadata structure for clinical data analysis
-    and reporting based on Analysis Data Model (ADaM) datasets. 
-    It offers a foundation to simplify tool development and 
-    create standard engineering workflows. For example, 
-    metalite can be used to: standardize input and output for 
-    A&R functions, create analysis and reporting planning grid; 
-    create mock table, create and validate A&R results, and 
-    trace analysis records. It offers an unified data structure 
-    for metadata information in clinical analysis & reporting (A&R), 
-    leveraging the ADaM datasets for consistent and accurate 
-    metadata representation. 
+    and reporting based on Analysis Data Model (ADaM) datasets.
+    The package simplify clinical analysis and reporting tool development
+    by defining standardized input, output and workflow. For example,
+    the package can be used to create analysis and reporting planning grid;
+    mock table, and validated A&R results based on consistent input.
 License: GPL-3
 URL: https://merck.github.io/metalite/, https://github.com/Merck/metalite
 BugReports: https://github.com/Merck/metalite/issues
