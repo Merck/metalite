@@ -1,9 +1,7 @@
-This is a new release that fixed the issue in v0.1.1 identified by CRAN.
+## Resubmission
 
-## R CMD check results
+This is a resubmission. In this version, I have fixed the issues identified in v0.1.0:
 
-0 errors | 0 warnings | 0 note
-
-- Update DESCRIPTION by adding rich text in the Description section
-- Skip adding reference in DESCRIPTION since no reference is cited
-- Omit the usage of `:::`
+* Updated DESCRIPTION to add more details to the Description field.
+* Skipped adding references to the Description field for now, as after evaluation, no appropriate publications or links were identified.
+* Removed the usage of `:::` in documentation.
