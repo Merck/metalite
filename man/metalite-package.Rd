@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A metadata structure for clinical data analysis and reporting based on Analysis Data Model (ADaM) datasets. It offers a foundation to simplify tool development and create standard engineering workflows. For example, metalite can be used to: standardize input and output for A&R functions, create analysis and reporting planning grid; create mock table, create and validate A&R results, and trace analysis records. It offers an unified data structure for metadata information in clinical analysis & reporting (A&R), leveraging the ADaM datasets for consistent and accurate metadata representation.
+A metadata structure for clinical data analysis and reporting based on Analysis Data Model (ADaM) datasets. The package simplifies clinical analysis and reporting tool development by defining standardized inputs, outputs, and workflow. The package can be used to create analysis and reporting planning grid, mock table, and validated analysis and reporting results based on consistent inputs.
 }
 \seealso{
 Useful links:
