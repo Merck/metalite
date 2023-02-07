@@ -51,7 +51,7 @@ analysis and reporting.
 The design is inspired by \code{ggplot2::aes()}.
 }
 \examples{
-metalite:::outdata(
+outdata(
   meta = meta_example(),
   population = "apat",
   observation = "wk12",

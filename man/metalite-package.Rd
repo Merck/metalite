@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A metadata structure for clinical data analysis and reporting based on Analysis Data Model (ADaM) datasets.
+A metadata structure for clinical data analysis and reporting based on Analysis Data Model (ADaM) datasets. The package simplifies clinical analysis and reporting tool development by defining standardized inputs, outputs, and workflow. The package can be used to create analysis and reporting planning grid, mock table, and validated analysis and reporting results based on consistent inputs.
 }
 \seealso{
 Useful links:

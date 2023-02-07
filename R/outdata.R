@@ -43,7 +43,7 @@
 #' @export
 #'
 #' @examples
-#' metalite:::outdata(
+#' outdata(
 #'   meta = meta_example(),
 #'   population = "apat",
 #'   observation = "wk12",
