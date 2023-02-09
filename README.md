@@ -1,11 +1,13 @@
 # metalite <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
-
+[![CRAN
+status](https://www.r-pkg.org/badges/version/metalite)](https://CRAN.R-project.org/package=metalite)
+[![CRAN
+Downloads](https://cranlogs.r-pkg.org/badges/metalite)](https://cran.r-project.org/package=metalite)
 [![R-CMD-check](https://github.com/Merck/metalite/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Merck/metalite/actions/workflows/R-CMD-check.yaml)
 [![Codecov test coverage](https://codecov.io/gh/Merck/metalite/branch/main/graph/badge.svg)](https://app.codecov.io/gh/Merck/metalite?branch=main)
 [![status](https://tinyverse.netlify.com/badge/metalite)](https://tinyverse.netlify.app/)
-
 <!-- badges: end -->
 
 Unified data structure for metadata information
