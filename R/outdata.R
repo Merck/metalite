@@ -196,6 +196,7 @@ validate_outdata <- function(x) {
 #' @export
 print.outdata <- function(x, ...) {
   utils::str(x, max.level = 1, give.attr = FALSE, ...)
+  invisible(x)
 }
 
 #' @export

@@ -102,4 +102,6 @@ print.meta_adam <- function(x, ...) {
     print(bind_rows2(lapply(x$analysis, as.data.frame))[, c("name", "label")])
     cat("\n")
   }
+
+  invisible(x)
 }
