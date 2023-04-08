@@ -30,10 +30,10 @@
 #' collect_n_subject(meta, "ase", "AGE")
 #' collect_n_subject(meta, "ase", "SEX")
 meta_example_exploration <- function(data,
-                                   group,
-                                   name = "ase",
-                                   subset = NULL,
-                                   label = "All Subjects Enrolled") {
+                                     group,
+                                     name = "ase",
+                                     subset = NULL,
+                                     label = "All Subjects Enrolled") {
   meta <- meta_adam(observation = data)
 
   var <- names(data)
