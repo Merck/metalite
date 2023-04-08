@@ -58,7 +58,7 @@
 plan <- function(analysis, population, observation, parameter, mock = 1, ...) {
   stopifnot(length(analysis) == 1)
 
-  x <- new_plan(analysis, population, observation, parameter, mock = 1, ...)
+  x <- new_plan(analysis, population, observation, parameter, mock = mock, ...)
 
   validate_plan(x)
 }
