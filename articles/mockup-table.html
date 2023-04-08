@@ -182,9 +182,9 @@ to generate 4 TLFs.</p>
 <span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter</span></span>
 <span><span class="co">#&gt; 1    1  ae_summary       apat        wk12 any;rel;ser</span></span>
-<span><span class="co">#&gt; 2    1 ae_specific       apat        wk12         any</span></span>
-<span><span class="co">#&gt; 3    1 ae_specific       apat        wk12         rel</span></span>
-<span><span class="co">#&gt; 4    1 ae_specific       apat        wk12         ser</span></span></code></pre></div>
+<span><span class="co">#&gt; 2    2 ae_specific       apat        wk12         any</span></span>
+<span><span class="co">#&gt; 3    2 ae_specific       apat        wk12         rel</span></span>
+<span><span class="co">#&gt; 4    2 ae_specific       apat        wk12         ser</span></span></code></pre></div>
 <p>Then, we use incorporate the above defined plan into the metadata by
 using <code><a href="../reference/define_plan.html">define_plan()</a></code>, i.e.,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -287,9 +287,9 @@ plan by</p>
 <code class="sourceCode R"><span><span class="va">meta</span><span class="op">$</span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter</span></span>
 <span><span class="co">#&gt; 1    1  ae_summary       apat        wk12 any;rel;ser</span></span>
-<span><span class="co">#&gt; 2    1 ae_specific       apat        wk12         any</span></span>
-<span><span class="co">#&gt; 3    1 ae_specific       apat        wk12         rel</span></span>
-<span><span class="co">#&gt; 4    1 ae_specific       apat        wk12         ser</span></span></code></pre></div>
+<span><span class="co">#&gt; 2    2 ae_specific       apat        wk12         any</span></span>
+<span><span class="co">#&gt; 3    2 ae_specific       apat        wk12         rel</span></span>
+<span><span class="co">#&gt; 4    2 ae_specific       apat        wk12         ser</span></span></code></pre></div>
 <p>And the entire meta is</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">meta</span></span>
@@ -346,9 +346,9 @@ analysis.</li>
 <span><span class="va">meta</span><span class="op">$</span><span class="va">plan</span></span>
 <span><span class="co">#&gt;   mock    analysis population observation   parameter mockup</span></span>
 <span><span class="co">#&gt; 1    1  ae_summary       apat        wk12 any;rel;ser   TRUE</span></span>
-<span><span class="co">#&gt; 2    1 ae_specific       apat        wk12         any   TRUE</span></span>
-<span><span class="co">#&gt; 3    1 ae_specific       apat        wk12         rel   TRUE</span></span>
-<span><span class="co">#&gt; 4    1 ae_specific       apat        wk12         ser   TRUE</span></span>
+<span><span class="co">#&gt; 2    2 ae_specific       apat        wk12         any   TRUE</span></span>
+<span><span class="co">#&gt; 3    2 ae_specific       apat        wk12         rel   TRUE</span></span>
+<span><span class="co">#&gt; 4    2 ae_specific       apat        wk12         ser   TRUE</span></span>
 <span><span class="co">#&gt;                output_report</span></span>
 <span><span class="co">#&gt; 1  ./tlf/mock-ae_summary.rtf</span></span>
 <span><span class="co">#&gt; 2 ./tlf/mock-ae_specific.rtf</span></span>
