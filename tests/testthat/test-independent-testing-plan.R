@@ -1,5 +1,4 @@
 library(dplyr)
-library(metalite)
 
 
 test_that("error is thrown", {
@@ -37,7 +36,7 @@ test_that("Outputs are same", {
 
   output2 <- dplyr::bind_rows(
     plan("ae_summary", population = "apat", observation = c("wk12", "wk24"), parameter = "any;rel"),
-    plan("ae_specific", population = "apat", observation = c("wk12", "wk24"), parameter = c("any", "rel"))
+    plan("ae_specific", population = "apat", observation = c("wk12", "wk24"), parameter = c("any", "rel"), mock = 2)
   )
 
   expect_equal(output1, output2)
