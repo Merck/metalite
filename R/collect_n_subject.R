@@ -203,12 +203,12 @@ collect_n_subject <- function(meta,
 
   # summary of population
   all <- rep(title["all"], length(var))
-  pop_all <- n_subject(id, group, par = all)
+  pop_all <- n_subject(id, group, par = all, use_na)
 
   var_n <- factor(is.na(var), c(FALSE, TRUE), title[c("with_data", "missing")])
 
   # Obtain Number of Subjects
-  pop_n <- n_subject(id, group, par = var_n)
+  pop_n <- n_subject(id, group, par = var_n, use_na)
 
   # Transfer logical value
   if ("logical" %in% class_var) {
@@ -263,7 +263,7 @@ collect_n_subject <- function(meta,
     }
 
     # Obtain Number of Subjects
-    pop_num <- n_subject(id, group, par = var)
+    pop_num <- n_subject(id, group, par = var, use_na)
 
     pop_tmp <- pop_num
     for (i in seq(names(pop_tmp))) {
