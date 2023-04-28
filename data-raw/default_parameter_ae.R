@@ -38,7 +38,7 @@ default_parameter_ae <- list(
   ),
   g340rel = adam_mapping(
     name = "g340rel",
-    label = "drug-related grade 3-5 adverse events",
+    label = "drug-related grade 3-4 adverse events",
     subset = quote(ATOXGRN %in% c(3, 4) & AREL == "Y"),
     var = "AEDECOD",
     soc = "AEBODSYS",
