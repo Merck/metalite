@@ -27,7 +27,7 @@
 #' @return A data frame summarizing the number of unique subjects
 #'   in different arms.
 #'
-#' @noRd
+#' @export
 #'
 #' @examples
 #' library(r2rtf)
