@@ -10,10 +10,9 @@
 
 <!-- badges: end -->
 
-Unified data structure for metadata information
-in clinical analysis & reporting (A&R), leveraging the
-Analysis Data Model (ADaM) datasets for
-consistent and accurate metadata representation.
+Unified representation of metadata structure for
+clinical analysis & reporting (A&R) by leveraging the
+Analysis Data Model (ADaM) datasets.
 
 <img src="man/figures/design-diagram.png" width="100%" />
 
