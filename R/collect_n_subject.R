@@ -151,7 +151,7 @@ collect_n_subject <- function(meta,
   title <- c(
     all = glue::glue("Number of {type}"),
     with_data = glue::glue("{type} with Data"),
-    missing = "Missing"
+    missing = NA
   )
 
   if (remove_blank_group) {
@@ -195,20 +195,28 @@ collect_n_subject <- function(meta,
 
   # standardize group variable
   stopifnot(inherits(group, c("factor", "character")))
-  group <- factor(group, exclude = NULL)
-  levels(group)[is.na(levels(group))] <- "Missing"
+  if (any(is.na(group))) {
+    stop("Missing value in population `group` variable is not allowed")
+  }
+
+  group <- factor(group)
 
   # standardize continuous variables
   stopifnot(inherits(var, c("numeric", "integer", "factor", "character", "logical")))
 
   # summary of population
   all <- rep(title["all"], length(var))
-  pop_all <- n_subject(id, group = group, par = all, use_na = use_na)
+  pop_all <- n_subject(id, group = group, par = all, use_na = "no")
 
   var_n <- factor(is.na(var), c(FALSE, TRUE), title[c("with_data", "missing")])
 
   # Obtain Number of Subjects
   pop_n <- n_subject(id, group = group, par = var_n, use_na = use_na)
+
+  # Remove Missing Column
+  if (all(pop_n[["Missing"]] == 0)) {
+    pop_n <- pop_n[, !names(pop_n) %in% "Missing"]
+  }
 
   # Transfer logical value
   if ("logical" %in% class_var) {
@@ -247,7 +255,13 @@ collect_n_subject <- function(meta,
     }
 
     # prepare summary table
-    pop_table <- rbind(pop_all, pop_n[1, ], pop_num, pop_tmp[2, ])
+    pop_table <- rbind(pop_all, pop_n[1, ], pop_num)
+
+    if ((use_na == "ifany" & sum(pop_n[2, -1], na.rm = TRUE) != 0) |
+      use_na == "always") {
+      pop_table <- rbind(pop_table, pop_tmp[2, ])
+    }
+
     var_level <- title
     names(var_level) <- NULL
   }
@@ -287,16 +301,16 @@ collect_n_subject <- function(meta,
 
   # Prepare subset condition
   subset_condition <- function(x, name) {
+    if (is.na(x)) {
+      return(glue::glue("is.na({name})"))
+    }
+
     if (x == title["all"]) {
       return("TRUE")
     }
 
     if (x == title["with_data"]) {
       return(glue::glue("(! is.na({name}))"))
-    }
-
-    if (x == title["missing"]) {
-      return(glue::glue("is.na({name})"))
     }
 
     glue::glue("{name} == '{x}'")
