@@ -195,7 +195,7 @@ collect_n_subject <- function(meta,
 
   # standardize group variable
   stopifnot(inherits(group, c("factor", "character")))
-  if(any(is.na(group))){
+  if (any(is.na(group))) {
     stop("Missing value in population `group` variable is not allowed")
   }
 
@@ -214,8 +214,8 @@ collect_n_subject <- function(meta,
   pop_n <- n_subject(id, group = group, par = var_n, use_na = use_na)
 
   # Remove Missing Column
-  if(all(pop_n[["Missing"]] == 0)){
-    pop_n <- pop_n[, ! names(pop_n) %in% "Missing"]
+  if (all(pop_n[["Missing"]] == 0)) {
+    pop_n <- pop_n[, !names(pop_n) %in% "Missing"]
   }
 
   # Transfer logical value
@@ -257,10 +257,10 @@ collect_n_subject <- function(meta,
     # prepare summary table
     pop_table <- rbind(pop_all, pop_n[1, ], pop_num)
 
-    if((use_na == "ifany" & sum(pop_n[2, -1], na.rm = TRUE) != 0) |
-        use_na == "always"){
-          pop_table <- rbind(pop_table, pop_tmp[2, ])
-        }
+    if ((use_na == "ifany" & sum(pop_n[2, -1], na.rm = TRUE) != 0) |
+      use_na == "always") {
+      pop_table <- rbind(pop_table, pop_tmp[2, ])
+    }
 
     var_level <- title
     names(var_level) <- NULL
@@ -301,8 +301,7 @@ collect_n_subject <- function(meta,
 
   # Prepare subset condition
   subset_condition <- function(x, name) {
-
-    if(is.na(x)){
+    if (is.na(x)) {
       return(glue::glue("is.na({name})"))
     }
 
