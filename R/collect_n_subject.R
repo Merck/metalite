@@ -282,7 +282,7 @@ collect_n_subject <- function(meta,
 
     if (all(pop_n[["Missing"]] == 0)) {
       pop_tmp <- pop_num[, !names(pop_num) %in% "Missing"]
-    }else{
+    } else {
       pop_tmp <- pop_num
     }
 
