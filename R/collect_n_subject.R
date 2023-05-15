@@ -135,7 +135,7 @@ meta_remove_blank_group <- function(meta,
 #'   meta <- meta_example() |>
 #'     define_parameter(name = "sex", var = "SEX", label = "Sex")
 #' )
-#' collect_n_subject(meta, "apat", "sex")
+#' collect_n_subject(meta, "apat", "sex", use_na = "always")
 collect_n_subject <- function(meta,
                               population,
                               parameter,
@@ -262,6 +262,7 @@ collect_n_subject <- function(meta,
       pop_table <- rbind(pop_table, pop_tmp[2, ])
     }
 
+
     var_level <- title
     names(var_level) <- NULL
   }
@@ -279,7 +280,12 @@ collect_n_subject <- function(meta,
     # Obtain Number of Subjects
     pop_num <- n_subject(id, group = group, par = var, use_na = use_na)
 
-    pop_tmp <- pop_num
+    if (all(pop_n[["Missing"]] == 0)) {
+      pop_tmp <- pop_num[, !names(pop_num) %in% "Missing"]
+    } else {
+      pop_tmp <- pop_num
+    }
+
     for (i in seq(names(pop_tmp))) {
       if ("integer" %in% class(pop_tmp[[i]])) {
         pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
