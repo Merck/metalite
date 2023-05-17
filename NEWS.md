@@ -1,3 +1,10 @@
+# metalite 0.1.2
+- Add styler workflow
+- Fix bug to count unique mock number properly in `plan()`
+- Fix bug to display NA value properly in `collect_n_subject()`
+- Export `n_subject()`
+- Add test cases for functions within collect_n_subject.R
+
 # metalite 0.1.1
 
 - Updated `DESCRIPTION` file to add more details to the `Description` field.
