@@ -1,4 +1,5 @@
 # metalite 0.1.2
+
 - Add styler workflow
 - Fix bug to count unique mock number properly in `plan()`
 - Fix bug to display NA value properly in `collect_n_subject()`
