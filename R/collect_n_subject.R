@@ -43,7 +43,7 @@
 n_subject <- function(id,
                       group,
                       par = NULL,
-                      na_name = "Missing",
+                      na = "Missing",
                       use_na = c("ifany", "no", "always")
                       ) {
   use_na <- match.arg(use_na)

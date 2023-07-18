@@ -8,7 +8,7 @@ n_subject(
   id,
   group,
   par = NULL,
-  na_name = "Missing",
+  na = "Missing",
   use_na = c("ifany", "no", "always")
 )
 }
@@ -19,10 +19,10 @@ n_subject(
 
 \item{par}{A character vector of parameter name.}
 
+\item{na}{A character string used to label missing values. Defaults to \code{"Missing"}.}
+
 \item{use_na}{A character value for whether to include \code{NA} values
 in the table. See the \code{useNA} argument in \code{\link[base:table]{base::table()}} for more details.}
-
-\item{na}{A character string used to label missing values. Defaults to \code{"Missing"}.}
 }
 \value{
 A data frame summarizing the number of unique subjects
