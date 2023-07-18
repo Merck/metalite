@@ -8,8 +8,8 @@ n_subject(
   id,
   group,
   par = NULL,
-  use_na = c("ifany", "no", "always"),
-  na_name = "Missing"
+  na_name = "Missing",
+  use_na = c("ifany", "no", "always")
 )
 }
 \arguments{
@@ -22,7 +22,7 @@ n_subject(
 \item{use_na}{A character value for whether to include \code{NA} values
 in the table. See the \code{useNA} argument in \code{\link[base:table]{base::table()}} for more details.}
 
-\item{na_name}{A character value for missing value label, default is "Missing".}
+\item{na}{A character string used to label missing values. Defaults to \code{"Missing"}.}
 }
 \value{
 A data frame summarizing the number of unique subjects
@@ -40,5 +40,5 @@ r2rtf_adae$SEX[1:5] <- NA
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
-n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, na_name = "Null")
+n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, na = "Null")
 }
