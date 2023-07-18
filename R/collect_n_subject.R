@@ -49,7 +49,7 @@ n_subject <- function(id,
   use_na <- match.arg(use_na)
 
   if ("factor" %in% class(group)) {
-    u_group <- c(as.character(levels(group)), na_name)
+    u_group <- c(as.character(levels(group)), na)
   } else {
     stop("n_subject: group variable must be a factor")
   }
@@ -65,7 +65,7 @@ n_subject <- function(id,
     db <- data.frame(id = id, group = group, par = par)
     res <- table(unique(db)[, c("group", "par")], useNA = use_na)
     name <- colnames(res)
-    name[is.na(name)] <- na_name
+    name[is.na(name)] <- na
 
     n_row <- nrow(res)
     n_col <- ncol(res)
