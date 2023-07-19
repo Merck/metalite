@@ -21,6 +21,7 @@
 #' @param id A character vector of subject identifier.
 #' @param group A factor vector of group name.
 #' @param par A character vector of parameter name.
+#' @param na A character string used to label missing values. Defaults to `"Missing"`.
 #' @param use_na A character value for whether to include `NA` values
 #'   in the table. See the `useNA` argument in [base::table()] for more details.
 #'
@@ -38,14 +39,16 @@
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
 #' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+#' n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, na = "Null")
 n_subject <- function(id,
                       group,
                       par = NULL,
+                      na = "Missing",
                       use_na = c("ifany", "no", "always")) {
   use_na <- match.arg(use_na)
 
   if ("factor" %in% class(group)) {
-    u_group <- c(as.character(levels(group)), "Missing")
+    u_group <- c(as.character(levels(group)), na)
   } else {
     stop("n_subject: group variable must be a factor")
   }
@@ -61,7 +64,7 @@ n_subject <- function(id,
     db <- data.frame(id = id, group = group, par = par)
     res <- table(unique(db)[, c("group", "par")], useNA = use_na)
     name <- colnames(res)
-    name[is.na(name)] <- "Missing"
+    name[is.na(name)] <- na
 
     n_row <- nrow(res)
     n_col <- ncol(res)

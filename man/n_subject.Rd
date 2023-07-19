@@ -4,7 +4,13 @@
 \alias{n_subject}
 \title{Count number of unique subjects}
 \usage{
-n_subject(id, group, par = NULL, use_na = c("ifany", "no", "always"))
+n_subject(
+  id,
+  group,
+  par = NULL,
+  na = "Missing",
+  use_na = c("ifany", "no", "always")
+)
 }
 \arguments{
 \item{id}{A character vector of subject identifier.}
@@ -12,6 +18,8 @@ n_subject(id, group, par = NULL, use_na = c("ifany", "no", "always"))
 \item{group}{A factor vector of group name.}
 
 \item{par}{A character vector of parameter name.}
+
+\item{na}{A character string used to label missing values. Defaults to \code{"Missing"}.}
 
 \item{use_na}{A character value for whether to include \code{NA} values
 in the table. See the \code{useNA} argument in \code{\link[base:table]{base::table()}} for more details.}
@@ -32,4 +40,5 @@ r2rtf_adae$SEX[1:5] <- NA
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA)
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX)
 n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, use_na = "always")
+n_subject(r2rtf_adae$USUBJID, r2rtf_adae$TRTA, r2rtf_adae$SEX, na = "Null")
 }
