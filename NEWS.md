@@ -1,7 +1,7 @@
 # metalite 0.1.3
 
-- Add argument `na_name` for `n_subject()`
-- Update GitHub Actions workflows
+- `n_subject()` now has a new argument `na` for labeling missing values.
+- Update GitHub Actions workflows.
 
 # metalite 0.1.2
 
