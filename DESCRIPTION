@@ -1,6 +1,6 @@
 Package: metalite
 Title: ADaM Metadata Structure
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: c(
     person("Yilong", "Zhang", role = c("aut")),
     person("Yujie", "Zhao", email = "yujie.zhao@merck.com", role = c("aut", "cre")),
