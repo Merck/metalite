@@ -1,3 +1,8 @@
+# metalite 0.1.3
+
+- Add argument `na_name` for `n_subject()`
+- Update GitHub Actions workflows
+
 # metalite 0.1.2
 
 - Add styler workflow.
