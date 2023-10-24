@@ -20,7 +20,7 @@ Executed analysis based on the analysis plan.
 Execute analysis based on the analysis plan
 }
 \examples{
-if(interactive()){
+if (interactive()) {
   meta <- meta_example()
   ae_summary <- function(...) {
     "results of ae_summary"

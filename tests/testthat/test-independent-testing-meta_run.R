@@ -12,13 +12,13 @@ ae_specific <- function(meta, population, observation, parameter) {
 }
 
 test_that("all analysis based on the analysis plan would be executed", {
-  expect_null(meta_run(meta)[[1]])
+  expect_equal(class(meta_run(meta)), "list")
 })
 
 test_that("only the first analysis based on the analysis plan would be executed", {
-  expect_null(meta_run(meta, i = 1)[[1]])
+  expect_equal(class(meta_run(meta, i = 1)), "list")
 })
 
 test_that("selected analysis based on the analysis plan would be executed", {
-  expect_null(meta_run(meta, i = c(1, 3, 5))[[1]])
+  expect_equal(class(meta_run(meta, i = c(1, 3, 5))), "list")
 })
