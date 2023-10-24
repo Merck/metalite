@@ -1,12 +1,12 @@
 # Create example `meta_adam` object
 meta <- meta_example()
 
-ae_summary <- function(meta, population, observation, parameter){
+ae_summary <- function(meta, population, observation, parameter) {
   message("run ae_summary")
   return(NULL)
 }
 
-ae_specific <- function(meta, population, observation, parameter){
+ae_specific <- function(meta, population, observation, parameter) {
   message("run ae_specific")
   return(NULL)
 }
