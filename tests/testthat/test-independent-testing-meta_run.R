@@ -20,5 +20,5 @@ test_that("only the first analysis based on the analysis plan would be executed"
 })
 
 test_that("selected analysis based on the analysis plan would be executed", {
-  expect_equal(class(meta_run(meta, i =  c(1, 3, 5))), "list")
+  expect_equal(class(meta_run(meta, i = c(1, 3, 5))), "list")
 })
