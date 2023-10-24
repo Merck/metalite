@@ -9,11 +9,11 @@ meta_inherit(meta, inherit, name, overwrite = FALSE)
 \arguments{
 \item{meta}{A \code{meta_adam} object.}
 
+\item{inherit}{A \code{meta_adam} object to be inherit.}
+
 \item{name}{A vector of keywords from \code{meta_inherit} to \code{meta_adam}.}
 
 \item{overwrite}{A logical value to force mapping update.}
-
-\item{meta_inherit}{A \code{meta_adam} object to be inherit.}
 }
 \value{
 A metadata object with population defined.

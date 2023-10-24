@@ -19,7 +19,7 @@
 #' Inherit meta information by keywords
 #'
 #' @param meta A `meta_adam` object.
-#' @param meta_inherit A `meta_adam` object to be inherit.
+#' @param inherit A `meta_adam` object to be inherit.
 #' @param name A vector of keywords from `meta_inherit` to `meta_adam`.
 #' @param overwrite A logical value to force mapping update.
 #'
