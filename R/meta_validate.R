@@ -90,12 +90,12 @@ meta_validate <- function(meta) {
 
   # check group factor level are the same
   u_plan <- unique(meta$plan[, c("population", "observation")])
-  for(i in 1:nrow(u_plan)){
+  for (i in 1:nrow(u_plan)) {
     key_pop <- u_plan[i, "population"]
     key_obs <- u_plan[i, "observation"]
     level_pop <- levels(meta$data_population[[metalite::collect_adam_mapping(meta, key_pop)$group]])
     level_obs <- levels(meta$data_observation[[metalite::collect_adam_mapping(meta, key_obs)$group]])
-    if(! all(level_pop == level_obs)){
+    if (!all(level_pop == level_obs)) {
       stop("Inconsistent group level: the levels of group variable from population and observation datasets are not the same")
     }
   }
