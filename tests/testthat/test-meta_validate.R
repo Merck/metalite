@@ -15,7 +15,7 @@ test_that("Check data_type", {
 
 test_that("Check group factor level", {
   meta <- meta_example()
-  meta$data_population$TRTA <- factor(x$data_population$TRTA, c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose"))
+  meta$data_population$TRTA <- factor(meta$data_population$TRTA, c("Placebo", "Xanomeline High Dose", "Xanomeline Low Dose"))
   expect_error(meta_validate(meta))
 })
 
