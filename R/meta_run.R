@@ -27,7 +27,7 @@
 #' @export
 #'
 #' @examples
-#' if(interactive()){
+#' if (interactive()) {
 #'   meta <- meta_example()
 #'   ae_summary <- function(...) {
 #'     "results of ae_summary"
