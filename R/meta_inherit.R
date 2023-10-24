@@ -26,8 +26,10 @@
 #' @return A metadata object with population defined.
 #'
 #' @examples
-#' meta_adam(population = r2rtf::r2rtf_adsl,
-#'           observation = r2rtf::r2rtf_adae) |>
+#' meta_adam(
+#'   population = r2rtf::r2rtf_adsl,
+#'   observation = r2rtf::r2rtf_adae
+#' ) |>
 #'   meta_inherit(meta_example(), c("apat", "wk12", "ae_summary"))
 #'
 #' @export
@@ -35,21 +37,19 @@ meta_inherit <- function(
     meta,
     inherit,
     name,
-    overwrite = FALSE
-){
-
+    overwrite = FALSE) {
   mapping <- list()
-  for(i in seq_along(name)){
+  for (i in seq_along(name)) {
     x <- collect_adam_mapping(inherit, name[i])
-    if(is.null(x)){
-      stop(name[i],": keyword is not defined in the `inherit` meta information")
-    }else{
+    if (is.null(x)) {
+      stop(name[i], ": keyword is not defined in the `inherit` meta information")
+    } else {
       mapping[[i]] <- x
     }
   }
 
-  for(i in seq_along(mapping)){
-    if(is.null(collect_adam_mapping(meta, name[[i]])) | overwrite){
+  for (i in seq_along(mapping)) {
+    if (is.null(collect_adam_mapping(meta, name[[i]])) | overwrite) {
       meta[[mapping[[i]][[".location"]]]][[name[[i]]]] <- mapping[[i]]
     }
   }

@@ -1,7 +1,8 @@
-
 test_that("Inherit keywords", {
-  x <- meta_adam(population = r2rtf::r2rtf_adsl,
-                     observation = r2rtf::r2rtf_adae) |>
+  x <- meta_adam(
+    population = r2rtf::r2rtf_adsl,
+    observation = r2rtf::r2rtf_adae
+  ) |>
     meta_inherit(meta_example(), c("apat", "wk12", "ae_summary"))
 
   expect_equal(names(x$population), "apat")
@@ -11,8 +12,10 @@ test_that("Inherit keywords", {
 
 test_that("Wrong key words", {
   expect_error(
-    meta_adam(population = r2rtf::r2rtf_adsl,
-              observation = r2rtf::r2rtf_adae) |>
+    meta_adam(
+      population = r2rtf::r2rtf_adsl,
+      observation = r2rtf::r2rtf_adae
+    ) |>
       meta_inherit(meta_example(), c("apat", "wk12", "ae_ser"))
   )
 })
