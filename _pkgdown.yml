@@ -39,8 +39,10 @@ reference:
 - title: Create metadata
   contents:
   - "meta_adam"
-  - "print.meta_adam"
+  - "meta_inherit"
+  - "meta_split"
   - "meta_build"
+  - "meta_run"
 - title: Metadata example
   contents:
   - "meta_example"
@@ -85,12 +87,10 @@ reference:
 - title: Utilities
   contents:
   - "default_apply"
-  - "meta_run"
-  - "meta_inherit"
-  - "meta_split"
   - "meta_add_total"
   - "get_label"
   - "assign_label"
+  - "print.meta_adam"
 
 articles:
 - title: Getting started
