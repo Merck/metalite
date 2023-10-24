@@ -1,4 +1,3 @@
-
 test_that("Check data_type", {
   meta <- meta_example()
   meta$data_population <- NULL
