@@ -40,6 +40,8 @@ meta_validate <- function(meta) {
     stop(".$plan must contain all required variable names: 'mock', 'analysis', 'population', 'observation', 'parameter'")
   }
 
+  meta$data_population
+  meta$population
   # Check id variable
   lapply(c(meta$population, meta$observation), function(x) {
     if (is.null(x$id)) {
@@ -85,6 +87,18 @@ meta_validate <- function(meta) {
       stop(x$name, ": variable name in '.$var' is not defined in .$data_observation")
     }
   })
+
+  # check group factor level are the same
+  u_plan <- unique(meta$plan[, c("population", "observation")])
+  for (i in 1:nrow(u_plan)) {
+    key_pop <- u_plan[i, "population"]
+    key_obs <- u_plan[i, "observation"]
+    level_pop <- levels(meta$data_population[[metalite::collect_adam_mapping(meta, key_pop)$group]])
+    level_obs <- levels(meta$data_observation[[metalite::collect_adam_mapping(meta, key_obs)$group]])
+    if (!all(level_pop == level_obs)) {
+      stop("Inconsistent group level: the levels of group variable from population and observation datasets are not the same")
+    }
+  }
 
   meta
 }

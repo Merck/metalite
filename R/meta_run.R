@@ -27,15 +27,17 @@
 #' @export
 #'
 #' @examples
-#' meta <- meta_example()
-#' ae_summary <- function(...) {
-#'   paste("results of", deparse(match.call(), nlines = 1))
+#' if (interactive()) {
+#'   meta <- meta_example()
+#'   ae_summary <- function(...) {
+#'     "results of ae_summary"
+#'   }
+#'   ae_specific <- function(...) {
+#'     "results of ae_specific"
+#'   }
+#'   meta_run(meta)
+#'   meta_run(meta, i = 2)
 #' }
-#' ae_specific <- function(...) {
-#'   paste("results of", deparse(match.call(), nlines = 1))
-#' }
-#' meta_run(meta)
-#' meta_run(meta, i = 2)
 meta_run <- function(meta, i = NULL, ...) {
   if (is.null(i)) i <- 1:nrow(meta$plan)
   call <- spec_call_program(meta, ...)

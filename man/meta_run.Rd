@@ -20,13 +20,15 @@ Executed analysis based on the analysis plan.
 Execute analysis based on the analysis plan
 }
 \examples{
-meta <- meta_example()
-ae_summary <- function(...) {
-  paste("results of", deparse(match.call(), nlines = 1))
+if(interactive()){
+  meta <- meta_example()
+  ae_summary <- function(...) {
+    "results of ae_summary"
+  }
+  ae_specific <- function(...) {
+    "results of ae_specific"
+  }
+  meta_run(meta)
+  meta_run(meta, i = 2)
 }
-ae_specific <- function(...) {
-  paste("results of", deparse(match.call(), nlines = 1))
-}
-meta_run(meta)
-meta_run(meta, i = 2)
 }
