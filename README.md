@@ -16,6 +16,22 @@ Analysis Data Model (ADaM) datasets.
 
 <img src="man/figures/design-diagram.png" width="100%" />
 
+## Installation
+
+The easiest way to get metalite is to install from CRAN:
+
+```r
+install.packages("metalite")
+```
+
+Alternatively, to use a new feature or get a bug fix,
+you can install the development version of metalite from GitHub:
+
+```r
+# install.packages("remotes")
+remotes::install_github("Merck/metalite")
+```
+
 ## Overview
 
 The metalite framework is designed to:
