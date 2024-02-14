@@ -1,6 +1,3 @@
-library(r2rtf)
-
-
 test_that("meta_adam testing", {
   test <- meta_adam(
     population = r2rtf::r2rtf_adsl,

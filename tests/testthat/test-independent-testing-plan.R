@@ -1,6 +1,3 @@
-library(dplyr)
-
-
 test_that("error is thrown", {
   expect_error(metalite::plan(c("ae_summary", "ae_specific"), population = "apat", observation = c("wk12", "wk24"), parameter = "any;rel"))
 })
