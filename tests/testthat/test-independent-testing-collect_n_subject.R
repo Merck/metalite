@@ -1,5 +1,3 @@
-library(r2rtf)
-
 test_that("test n_subject can calculate number of records by group in diffrent `use_na` situation", {
   df1 <- data.frame(
     id = c(1, 2, 3, 4, 5, 6, 7),
