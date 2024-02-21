@@ -28,7 +28,6 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 Depends: R (>= 4.1.0)
 Imports:
-    glue,
     rlang,
     utils,
     stats
@@ -36,6 +35,7 @@ Suggests:
     ggplot2,
     covr,
     dplyr,
+    glue,
     gt,
     knitr,
     r2rtf,
