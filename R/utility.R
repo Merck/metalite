@@ -54,7 +54,7 @@ check_duplicate_name <- function(x) {
   duplicated_names <- names(x)[duplicated(names(x))]
   if (length(duplicated_names) > 0L) {
     duplicated_message <- paste0(unique(duplicated_names), collapse = ", ")
-    rlang::warn(glue::glue("Duplicated name: {duplicated_message}"))
+    rlang::warn(gluestick("Duplicated name: {duplicated_message}"))
   }
   x
 }
@@ -87,4 +87,46 @@ reset_label <- function(data, data_label) {
   }
 
   data
+}
+
+#' Simple, single-function string interpolation in base R
+#'
+#' Drop-in replacement for the glue package.
+#' Taken from <https://github.com/coolbutuseless/gluestick> (licence: MIT).
+#'
+#' @noRd
+gluestick <- function(fmt, src = parent.frame(), open = "{", close = "}", eval = TRUE) {
+  nchar_open <- nchar(open)
+  nchar_close <- nchar(close)
+
+  stopifnot(exprs = {
+    is.character(fmt)
+    length(fmt) == 1L
+    is.character(open)
+    length(open) == 1L
+    nchar_open > 0L
+    is.character(close)
+    length(close) == 1
+    nchar_close > 0
+  })
+
+  open <- gsub("(.)", "\\\\\\1", open)
+  close <- gsub("(.)", "\\\\\\1", close)
+  re <- paste0(open, ".*?", close)
+
+  matches <- gregexpr(re, fmt)
+  exprs <- regmatches(fmt, matches)[[1]]
+
+  exprs <- substr(exprs, nchar_open + 1L, nchar(exprs) - nchar_close)
+
+  fmt_sprintf <- gsub(re, "%s", fmt)
+  fmt_sprintf <- gsub("%(?!s)", "%%", fmt_sprintf, perl = TRUE)
+
+  args <- if (eval) {
+    lapply(exprs, function(expr) eval(parse(text = expr), envir = src))
+  } else {
+    unname(mget(exprs, envir = as.environment(src)))
+  }
+
+  do.call(sprintf, c(list(fmt_sprintf), args))
 }

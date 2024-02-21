@@ -10,7 +10,7 @@ source code license, in order to use this software.
   Third party R packages listed by License type
 [Format: Name - URL]
 --------------------------------------------------
-  
+
   MIT / X11 License (or adaptations) (https://www.opensource.org/licenses/MIT)
 * rlang - https://github.com/r-lib/rlang
-* glue - https://github.com/tidyverse/glue
+* gluestick - https://github.com/coolbutuseless/gluestick

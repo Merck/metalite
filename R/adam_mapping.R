@@ -121,11 +121,11 @@ validate_adam_mapping <- function(x) {
   lapply(char, function(term) {
     if (!is.null(x[[term]])) {
       if (!rlang::is_character(x[[term]])) {
-        rlang::abort(glue::glue("variable '{term}' must be a character value"))
+        rlang::abort(gluestick("variable '{term}' must be a character value"))
       }
 
       if (term %in% char_length_1 & length(x[[term]]) > 1L) {
-        rlang::abort(glue::glue("variable '{term}' must be length 1"))
+        rlang::abort(gluestick("variable '{term}' must be length 1"))
       }
     }
   })
@@ -133,7 +133,7 @@ validate_adam_mapping <- function(x) {
   # Check expression variable
   lapply(expr, function(term) {
     if (!(rlang::is_expression(x[[term]]) | rlang::is_null(x[[term]]))) {
-      rlang::abort(glue::glue("variable '{term}' must be an expression"))
+      rlang::abort(gluestick("variable '{term}' must be an expression"))
     }
   })
 

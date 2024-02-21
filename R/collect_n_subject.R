@@ -92,7 +92,7 @@ meta_remove_blank_group <- function(meta,
   pop_var <- collect_adam_mapping(meta, parameter)$var
 
   if (is.null(pop[[pop_var]])) {
-    stop(glue::glue("meta_remove_blank_group: parameter {pop_var} is not available in meta$population"))
+    stop(gluestick("meta_remove_blank_group: parameter {pop_var} is not available in meta$population"))
   }
 
   loc <- which(table(is.na(pop[[pop_var]]), pop[[pop_grp]])["FALSE", ] == 0)
@@ -152,8 +152,8 @@ collect_n_subject <- function(meta,
   use_na <- match.arg(use_na)
 
   title <- c(
-    all = glue::glue("Number of {type}"),
-    with_data = glue::glue("{type} with Data"),
+    all = gluestick("Number of {type}"),
+    with_data = gluestick("{type} with Data"),
     missing = NA
   )
 
@@ -238,7 +238,7 @@ collect_n_subject <- function(meta,
         max = max(x, na.rm = TRUE)
       )
       value <- formatC(value, format = "f", digits = 1)
-      c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
+      c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
     })
     pop_num <- data.frame(
       name = c("Mean (SD)", "Median [Min, Max]"),
@@ -253,7 +253,7 @@ collect_n_subject <- function(meta,
     for (i in seq(names(pop_n))) {
       if ("integer" %in% class(pop_n[[i]])) {
         pct <- formatC(pop_n[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
-        pop_tmp[[i]] <- glue::glue("{pop_n[[i]]} ({pct}%)")
+        pop_tmp[[i]] <- gluestick("{pop_n[[i]]} ({pct}%)")
       }
     }
 
@@ -292,7 +292,7 @@ collect_n_subject <- function(meta,
     for (i in seq(names(pop_tmp))) {
       if ("integer" %in% class(pop_tmp[[i]])) {
         pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
-        pop_tmp[[i]] <- glue::glue("{pop_tmp[[i]]} ({pct}%)")
+        pop_tmp[[i]] <- gluestick("{pop_tmp[[i]]} ({pct}%)")
       }
     }
 
@@ -311,7 +311,7 @@ collect_n_subject <- function(meta,
   # Prepare subset condition
   subset_condition <- function(x, name) {
     if (is.na(x)) {
-      return(glue::glue("is.na({name})"))
+      return(gluestick("is.na({name})"))
     }
 
     if (x == title["all"]) {
@@ -319,10 +319,10 @@ collect_n_subject <- function(meta,
     }
 
     if (x == title["with_data"]) {
-      return(glue::glue("(! is.na({name}))"))
+      return(gluestick("(! is.na({name}))"))
     }
 
-    glue::glue("{name} == '{x}'")
+    gluestick("{name} == '{x}'")
   }
 
   var_subset <- vapply(var_level, subset_condition, name = par_var, FUN.VALUE = character(1))
@@ -370,7 +370,7 @@ collect_n_subject <- function(meta,
       ggplot2::facet_wrap(~group) +
       ggplot2::xlab(label) +
       ggplot2::ylab(title["all"]) +
-      ggplot2::ggtitle(glue::glue("Histogram of {label}")) +
+      ggplot2::ggtitle(gluestick("Histogram of {label}")) +
       ggplot2::theme_bw()
 
     # Rotate x-axis direction

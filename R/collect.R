@@ -294,7 +294,7 @@ collect_title <- function(meta,
     function(x) {
       tmp <- omit_null(collect_adam_mapping(meta, x)[c("title", "label")])
       if (length(tmp) > 0) {
-        with(collect_adam_mapping(meta, parameter), fmt_sentence(glue::glue(tmp[[1]])))
+        with(collect_adam_mapping(meta, parameter), fmt_sentence(gluestick(tmp[[1]])))
       } else {
         NULL
       }

@@ -168,11 +168,11 @@ validate_outdata <- function(x) {
   lapply(num, function(term) {
     if (!is.null(x[[term]])) {
       if (!rlang::is_bare_numeric(x[[term]])) {
-        rlang::abort(glue::glue("variable '{term}' must be a numeric value"))
+        rlang::abort(gluestick("variable '{term}' must be a numeric value"))
       }
 
       if (term %in% num_length_1 & length(x[[term]]) > 1L) {
-        rlang::abort(glue::glue("variable '{term}' must be length 1"))
+        rlang::abort(gluestick("variable '{term}' must be length 1"))
       }
     }
   })
@@ -181,11 +181,11 @@ validate_outdata <- function(x) {
   lapply(char, function(term) {
     if (!is.null(x[[term]])) {
       if (!rlang::is_character(x[[term]])) {
-        rlang::abort(glue::glue("variable '{term}' must be a character value"))
+        rlang::abort(gluestick("variable '{term}' must be a character value"))
       }
 
       if (term %in% char_length_1 & length(x[[term]]) > 1L) {
-        rlang::abort(glue::glue("variable '{term}' must be length 1"))
+        rlang::abort(gluestick("variable '{term}' must be length 1"))
       }
     }
   })
