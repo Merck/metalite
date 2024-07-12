@@ -1,153 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://merck.github.io/metalite/404.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/adam-mapping.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/ar-grid.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/component.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/metalite.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/articles/mockup-table.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/adam_mapping.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/add_plan.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/assign_label.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_adam_mapping.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_dataname.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_n_subject.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_observation_index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_observation_record.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_population.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_population_id.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_population_index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_population_record.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/collect_title.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/default_apply.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/define_analysis.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/define_observation.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/define_parameter.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/define_plan.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/define_population.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/get_label.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_adam.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_add_total.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_build.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_example.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_example_exploration.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_inherit.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_run.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/meta_split.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/metalite-package.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/n_subject.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/outdata.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/plan.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/print.meta_adam.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/spec_analysis_population.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/spec_call_program.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/spec_filename.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/spec_title.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/metalite/reference/update_adam_mapping.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://merck.github.io/metalite/404.html</loc></url>
+<url><loc>https://merck.github.io/metalite/LICENSE.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/adam-mapping.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/ar-grid.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/component.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/metalite.html</loc></url>
+<url><loc>https://merck.github.io/metalite/articles/mockup-table.html</loc></url>
+<url><loc>https://merck.github.io/metalite/authors.html</loc></url>
+<url><loc>https://merck.github.io/metalite/index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/news/index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/adam_mapping.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/add_plan.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/assign_label.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_adam_mapping.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_dataname.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_n_subject.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_observation_index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_observation_record.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_population.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_population_id.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_population_index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_population_record.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/collect_title.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/default_apply.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/define_analysis.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/define_observation.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/define_parameter.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/define_plan.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/define_population.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/get_label.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/index.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_adam.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_add_total.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_build.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_example.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_example_exploration.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_inherit.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_run.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/meta_split.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/metalite-package.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/n_subject.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/outdata.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/plan.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/print.meta_adam.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/spec_analysis_population.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/spec_call_program.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/spec_filename.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/spec_title.html</loc></url>
+<url><loc>https://merck.github.io/metalite/reference/update_adam_mapping.html</loc></url>
 </urlset>
+

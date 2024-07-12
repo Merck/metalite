@@ -5,75 +5,46 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="metalite">
 <title>Create AR Grid • metalite</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Create AR Grid">
-<meta property="og:description" content="metalite">
-<meta property="og:image" content="https://merck.github.io/metalite/logo.png">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
-    
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
-    
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+
     <a class="navbar-brand me-2" href="../index.html">metalite</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.3</small>
 
-    
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item">
-  <a class="nav-link" href="../index.html">Home</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../reference/index.html">Reference</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../articles/metalite.html">Get Started</a>
-</li>
-<li class="active nav-item">
-  <a class="nav-link" href="../articles/index.html">Articles</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/metalite.html">Get Started</a></li>
+<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
-</form>
-
-      <ul class="navbar-nav">
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/Merck/metalite/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/Merck/metalite/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
-    
+
   </div>
 </nav><div class="container template-article">
 
@@ -85,7 +56,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Create AR Grid</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Merck/metalite/blob/HEAD/vignettes/ar-grid.Rmd" class="external-link"><code>vignettes/ar-grid.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Merck/metalite/blob/main/vignettes/ar-grid.Rmd" class="external-link"><code>vignettes/ar-grid.Rmd</code></a></small>
       <div class="d-none name"><code>ar-grid.Rmd</code></div>
     </div>
 
@@ -206,23 +177,23 @@ metalite.</p>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/fmt_markdown.html" class="external-link">fmt_markdown</a></span><span class="op">(</span>columns <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://gt.rstudio.com/reference/tab_options.html" class="external-link">tab_options</a></span><span class="op">(</span>table.font.size <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span></code></pre></div>
-<div id="gbheryfrmx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gbheryfrmx table {
+<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gbheryfrmx thead, #gbheryfrmx tbody, #gbheryfrmx tfoot, #gbheryfrmx tr, #gbheryfrmx td, #gbheryfrmx th {
+#mwlefoodfi thead, #mwlefoodfi tbody, #mwlefoodfi tfoot, #mwlefoodfi tr, #mwlefoodfi td, #mwlefoodfi th {
   border-style: none;
 }
 
-#gbheryfrmx p {
+#mwlefoodfi p {
   margin: 0;
   padding: 0;
 }
 
-#gbheryfrmx .gt_table {
+#mwlefoodfi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -248,12 +219,12 @@ metalite.</p>
   border-left-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_caption {
+#mwlefoodfi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gbheryfrmx .gt_title {
+#mwlefoodfi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -265,7 +236,7 @@ metalite.</p>
   border-bottom-width: 0;
 }
 
-#gbheryfrmx .gt_subtitle {
+#mwlefoodfi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -277,7 +248,7 @@ metalite.</p>
   border-top-width: 0;
 }
 
-#gbheryfrmx .gt_heading {
+#mwlefoodfi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -289,13 +260,13 @@ metalite.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_bottom_border {
+#mwlefoodfi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_col_headings {
+#mwlefoodfi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -310,7 +281,7 @@ metalite.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_col_heading {
+#mwlefoodfi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -330,7 +301,7 @@ metalite.</p>
   overflow-x: hidden;
 }
 
-#gbheryfrmx .gt_column_spanner_outer {
+#mwlefoodfi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -342,15 +313,15 @@ metalite.</p>
   padding-right: 4px;
 }
 
-#gbheryfrmx .gt_column_spanner_outer:first-child {
+#mwlefoodfi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gbheryfrmx .gt_column_spanner_outer:last-child {
+#mwlefoodfi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gbheryfrmx .gt_column_spanner {
+#mwlefoodfi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -362,11 +333,11 @@ metalite.</p>
   width: 100%;
 }
 
-#gbheryfrmx .gt_spanner_row {
+#mwlefoodfi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gbheryfrmx .gt_group_heading {
+#mwlefoodfi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -392,7 +363,7 @@ metalite.</p>
   text-align: left;
 }
 
-#gbheryfrmx .gt_empty_group_heading {
+#mwlefoodfi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -407,15 +378,15 @@ metalite.</p>
   vertical-align: middle;
 }
 
-#gbheryfrmx .gt_from_md > :first-child {
+#mwlefoodfi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gbheryfrmx .gt_from_md > :last-child {
+#mwlefoodfi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gbheryfrmx .gt_row {
+#mwlefoodfi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -434,7 +405,7 @@ metalite.</p>
   overflow-x: hidden;
 }
 
-#gbheryfrmx .gt_stub {
+#mwlefoodfi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -447,7 +418,7 @@ metalite.</p>
   padding-right: 5px;
 }
 
-#gbheryfrmx .gt_stub_row_group {
+#mwlefoodfi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -461,15 +432,15 @@ metalite.</p>
   vertical-align: top;
 }
 
-#gbheryfrmx .gt_row_group_first td {
+#mwlefoodfi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gbheryfrmx .gt_row_group_first th {
+#mwlefoodfi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gbheryfrmx .gt_summary_row {
+#mwlefoodfi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -479,16 +450,16 @@ metalite.</p>
   padding-right: 5px;
 }
 
-#gbheryfrmx .gt_first_summary_row {
+#mwlefoodfi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_first_summary_row.thick {
+#mwlefoodfi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gbheryfrmx .gt_last_summary_row {
+#mwlefoodfi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -498,7 +469,7 @@ metalite.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_grand_summary_row {
+#mwlefoodfi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -508,7 +479,7 @@ metalite.</p>
   padding-right: 5px;
 }
 
-#gbheryfrmx .gt_first_grand_summary_row {
+#mwlefoodfi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -518,7 +489,7 @@ metalite.</p>
   border-top-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_last_grand_summary_row_top {
+#mwlefoodfi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -528,11 +499,11 @@ metalite.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_striped {
+#mwlefoodfi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gbheryfrmx .gt_table_body {
+#mwlefoodfi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -541,7 +512,7 @@ metalite.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_footnotes {
+#mwlefoodfi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -555,7 +526,7 @@ metalite.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_footnote {
+#mwlefoodfi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -564,7 +535,7 @@ metalite.</p>
   padding-right: 5px;
 }
 
-#gbheryfrmx .gt_sourcenotes {
+#mwlefoodfi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -578,7 +549,7 @@ metalite.</p>
   border-right-color: #D3D3D3;
 }
 
-#gbheryfrmx .gt_sourcenote {
+#mwlefoodfi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -586,64 +557,73 @@ metalite.</p>
   padding-right: 5px;
 }
 
-#gbheryfrmx .gt_left {
+#mwlefoodfi .gt_left {
   text-align: left;
 }
 
-#gbheryfrmx .gt_center {
+#mwlefoodfi .gt_center {
   text-align: center;
 }
 
-#gbheryfrmx .gt_right {
+#mwlefoodfi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gbheryfrmx .gt_font_normal {
+#mwlefoodfi .gt_font_normal {
   font-weight: normal;
 }
 
-#gbheryfrmx .gt_font_bold {
+#mwlefoodfi .gt_font_bold {
   font-weight: bold;
 }
 
-#gbheryfrmx .gt_font_italic {
+#mwlefoodfi .gt_font_italic {
   font-style: italic;
 }
 
-#gbheryfrmx .gt_super {
+#mwlefoodfi .gt_super {
   font-size: 65%;
 }
 
-#gbheryfrmx .gt_footnote_marks {
+#mwlefoodfi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gbheryfrmx .gt_asterisk {
+#mwlefoodfi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gbheryfrmx .gt_indent_1 {
+#mwlefoodfi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gbheryfrmx .gt_indent_2 {
+#mwlefoodfi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gbheryfrmx .gt_indent_3 {
+#mwlefoodfi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gbheryfrmx .gt_indent_4 {
+#mwlefoodfi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gbheryfrmx .gt_indent_5 {
+#mwlefoodfi .gt_indent_5 {
   text-indent: 25px;
+}
+
+#mwlefoodfi .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mwlefoodfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
 }
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
@@ -655,171 +635,89 @@ metalite.</p>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0summary0wk12.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_summary</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0summary0wk12.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_summary</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0summary0wk24.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_summary</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0summary0wk24.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_summary</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk120any.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk120any.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk240any.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk240any.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk120aeosi.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AEOSI == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk120aeosi.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AEOSI == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk240aeosi.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AEOSI == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk240aeosi.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AEOSI == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk120rel.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AEREL %in% c(‘POSSIBLE’, ‘PROBABLE’)</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk120rel.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AEREL %in% c(‘POSSIBLE’, ‘PROBABLE’)</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk240rel.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AEREL %in% c(‘POSSIBLE’, ‘PROBABLE’)</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk240rel.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AEREL %in% c(‘POSSIBLE’, ‘PROBABLE’)</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk120ser.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AESER == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 12<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk120ser.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: SAFFL == ‘Y’ AESER == ‘Y’</span></td>
 </tr>
 <tr>
-<td headers="title" class="gt_row gt_left"><div class="gt_from_md">
-<p>Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</p>
-</div></td>
-<td headers="filename" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae0specific0wk240ser.rtf</p>
-</div></td>
-<td headers="function_name" class="gt_row gt_left"><div class="gt_from_md">
-<p>ae_specific</p>
-</div></td>
-<td headers="population" class="gt_row gt_left"><div class="gt_from_md">
-<p>Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AESER == ‘Y’</p>
-</div></td>
+<td headers="title" class="gt_row gt_left"><span class="gt_from_md">Summary of Specific Adverse Events<br>Weeks 0 to 24<br>All Participants as Treated</span></td>
+<td headers="filename" class="gt_row gt_left"><span class="gt_from_md">ae0specific0wk240ser.rtf</span></td>
+<td headers="function_name" class="gt_row gt_left"><span class="gt_from_md">ae_specific</span></td>
+<td headers="population" class="gt_row gt_left"><span class="gt_from_md">Population: SAFFL == ‘Y’<br>Observation: AOCC01FL == ‘Y’ AESER == ‘Y’</span></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p>
-<p>Developed by Yilong Zhang, Yujie Zhao, Nan Xiao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
+  <p>Developed by Yilong Zhang, Yujie Zhao, Nan Xiao. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p>
-<p><span></span></p>
+  <p><span></span></p>
 </div>
 
     </footer>
 </div>
 
-  
 
-  
+
+
 
   </body>
 </html>
