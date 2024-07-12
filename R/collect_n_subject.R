@@ -272,7 +272,6 @@ collect_n_subject <- function(meta,
 
   # standardize categorical variables
   if (any(c("factor", "character") %in% class_var)) {
-
     if (any(c("character") %in% class_var)) {
       var <- factor(var, exclude = NULL)
     }
