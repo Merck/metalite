@@ -128,9 +128,9 @@ check_factor <- function(x, type = c("message", "error", "warning"), message = "
   if (!is.factor(x)) {
     x <- factor(x, sort(unique(x)), exclude = exclude)
     switch(type,
-           message = message(message),
-           warning = warning(message),
-           error = stop(message)
+      message = message(message),
+      warning = warning(message),
+      error = stop(message)
     )
   }
 
