@@ -113,6 +113,30 @@ meta_remove_blank_group <- function(meta,
   meta
 }
 
+#' Check factor
+#' Check whether the input argument is a factor or not
+#'
+#' @param x object to check
+#' @param type type of message to display. message or error or warning.
+#' @param message display message if an object is not a factor
+#'
+#' @return the value is a factor or not
+#' @noRd
+check_factor <- function(x, type = c("message", "error", "warning"), message = "The value is converted to a factor", exclude = NA) {
+  type <- match.arg(type)
+
+  if (!is.factor(x)) {
+    x <- factor(x, sort(unique(x)), exclude = exclude)
+    switch(type,
+           message = message(message),
+           warning = warning(message),
+           error = stop(message)
+    )
+  }
+
+  x
+}
+
 #' Collect number of subjects and its subset condition
 #'
 #' @inheritParams plan
@@ -202,7 +226,7 @@ collect_n_subject <- function(meta,
     stop("Missing value in population `group` variable is not allowed")
   }
 
-  group <- factor(group)
+  group <- check_factor(group)
 
   # standardize continuous variables
   stopifnot(inherits(var, c("numeric", "integer", "factor", "character", "logical")))
@@ -273,7 +297,7 @@ collect_n_subject <- function(meta,
   # standardize categorical variables
   if (any(c("factor", "character") %in% class_var)) {
     if (any(c("character") %in% class_var)) {
-      var <- factor(var, exclude = NULL)
+      var <- check_factor(var, exclude = NULL)
     }
 
     if (all(is.na(var))) {
