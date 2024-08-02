@@ -1,6 +1,7 @@
 # metalite 0.1.3
 
 - `n_subject()` now has a new argument `na` for labeling missing values.
+- Add default mapping for subject level analysis.
 - Update GitHub Actions workflows.
 
 # metalite 0.1.2
