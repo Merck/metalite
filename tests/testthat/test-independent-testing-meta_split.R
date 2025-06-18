@@ -1,5 +1,5 @@
 test_that("variable 'RACE' checking", {
-  expect_equal(names(meta_example() |> meta_split("RACE")), sort(unique(meta_example()$data_population$RACE)))
+  expect_equal(names(meta_example() |> meta_split("RACE")), unique(meta_example()$data_population$RACE))
 })
 
 
