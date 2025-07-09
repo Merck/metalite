@@ -128,6 +128,9 @@ meta_remove_blank_group <- function(meta,
 #' @param use_na A character value for whether to include `NA` values
 #' in the table. See the `useNA` argument in [base::table()] for more details.
 #' @param display_total A logical value to display total column.
+#' @param quantile_method An integer between 1 and 9 selecting one of the nine quantile algorithms to be used for `type` argument in [stats::quantile()]. Default is 2 as the same percentile definition used by the UNIVARIATE procedure in SAS.
+#' @param decimal_places_summary Number of decimal places to be displayed in statistical summary values (Mean, SD, Median, Min, Max, Q1 and Q3). Default is 1.
+#' @param decimal_places_percent Number of decimal places to be displayed in percentage values. Default is 1.
 #'
 #' @return A list containing number of subjects and its subset condition.
 #'
@@ -148,7 +151,10 @@ collect_n_subject <- function(meta,
                               remove_blank_group = FALSE,
                               type = "Subjects",
                               use_na = c("ifany", "no", "always"),
-                              display_total = TRUE) {
+                              display_total = TRUE,
+                              quantile_method = 2,
+                              decimal_places_summary = 1,
+                              decimal_places_percent = 1) {
   use_na <- match.arg(use_na)
 
   title <- c(
@@ -235,13 +241,15 @@ collect_n_subject <- function(meta,
         sd = stats::sd(x, na.rm = TRUE),
         median = stats::median(x, na.rm = TRUE),
         min = min(x, na.rm = TRUE),
-        max = max(x, na.rm = TRUE)
+        max = max(x, na.rm = TRUE),
+        q1 = stats::quantile(x, probs=0.25, na.rm = TRUE, type = quantile_method, names = FALSE),
+        q3 = stats::quantile(x, probs=0.75, na.rm = TRUE, type = quantile_method, names = FALSE)
       )
-      value <- formatC(value, format = "f", digits = 1)
-      c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
+      value <- formatC(value, format = "f", digits = decimal_places_summary)
+      c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"),gluestick("{value[['q1']]} to {value[['q3']]}"))
     })
     pop_num <- data.frame(
-      name = c("Mean (SD)", "Median [Min, Max]"),
+      name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
       do.call(cbind, pop_num)
     )
 
@@ -252,7 +260,7 @@ collect_n_subject <- function(meta,
     pop_tmp <- pop_n
     for (i in seq(names(pop_n))) {
       if ("integer" %in% class(pop_n[[i]])) {
-        pct <- formatC(pop_n[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
+        pct <- formatC(pop_n[[i]] / pop_all[[i]] * 100, format = "f", digits = decimal_places_percent, width = 5)
         pop_tmp[[i]] <- gluestick("{pop_n[[i]]} ({pct}%)")
       }
     }
@@ -293,7 +301,7 @@ collect_n_subject <- function(meta,
 
     for (i in seq(names(pop_tmp))) {
       if ("integer" %in% class(pop_tmp[[i]])) {
-        pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = 1, width = 5)
+        pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = decimal_places_percent, width = 5)
         pop_tmp[[i]] <- gluestick("{pop_tmp[[i]]} ({pct}%)")
       }
     }
