@@ -242,11 +242,11 @@ collect_n_subject <- function(meta,
         median = stats::median(x, na.rm = TRUE),
         min = min(x, na.rm = TRUE),
         max = max(x, na.rm = TRUE),
-        q1 = stats::quantile(x, probs=0.25, na.rm = TRUE, type = quantile_method, names = FALSE),
-        q3 = stats::quantile(x, probs=0.75, na.rm = TRUE, type = quantile_method, names = FALSE)
+        q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = quantile_method, names = FALSE),
+        q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = quantile_method, names = FALSE)
       )
       value <- formatC(value, format = "f", digits = decimal_places_summary)
-      c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"),gluestick("{value[['q1']]} to {value[['q3']]}"))
+      c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), gluestick("{value[['q1']]} to {value[['q3']]}"))
     })
     pop_num <- data.frame(
       name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),

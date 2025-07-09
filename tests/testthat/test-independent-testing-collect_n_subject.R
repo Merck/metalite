@@ -178,11 +178,11 @@ test_that("test collect_n_subject with continous parameter", {
       median = stats::median(x, na.rm = TRUE),
       min = min(x, na.rm = TRUE),
       max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs=0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs=0.75, na.rm = TRUE, type = 2, names = FALSE)
+      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
+      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
     )
     value <- formatC(value, format = "f", digits = 1)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"),glue::glue("{value[['q1']]} to {value[['q3']]}"))
+    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
   })
   pop_age <- data.frame(
     name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
@@ -269,11 +269,11 @@ test_that("test collect_n_subject with continous parameter", {
       median = stats::median(x, na.rm = TRUE),
       min = min(x, na.rm = TRUE),
       max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs=0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs=0.75, na.rm = TRUE, type = 2, names = FALSE)
+      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
+      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
     )
     value <- formatC(value, format = "f", digits = 1)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"),glue::glue("{value[['q1']]} to {value[['q3']]}"))
+    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
   })
   pop_age <- data.frame(
     name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
@@ -558,7 +558,7 @@ test_that("test collect_n_subject with decimal places formatting", {
   )
   ## test test1$n
   meta$data_population$AGE[2:5] <- NA
-  test1 <- collect_n_subject(meta, "apat", "age",decimal_places_summary = 2,decimal_places_percent = 3)
+  test1 <- collect_n_subject(meta, "apat", "age", decimal_places_summary = 2, decimal_places_percent = 3)
 
   meta_add <- meta_add_total(meta)
   pop <- collect_population_record(meta_add, "apat", "AGE")
@@ -586,11 +586,11 @@ test_that("test collect_n_subject with decimal places formatting", {
       median = stats::median(x, na.rm = TRUE),
       min = min(x, na.rm = TRUE),
       max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs=0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs=0.75, na.rm = TRUE, type = 2, names = FALSE)
+      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
+      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
     )
     value <- formatC(value, format = "f", digits = 2)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"),glue::glue("{value[['q1']]} to {value[['q3']]}"))
+    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
   })
   pop_age <- data.frame(
     name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
