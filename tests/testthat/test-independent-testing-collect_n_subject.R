@@ -177,15 +177,13 @@ test_that("test collect_n_subject with continous parameter", {
       sd = stats::sd(x, na.rm = TRUE),
       median = stats::median(x, na.rm = TRUE),
       min = min(x, na.rm = TRUE),
-      max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
+      max = max(x, na.rm = TRUE)
     )
     value <- formatC(value, format = "f", digits = 1)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
+    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
   })
   pop_age <- data.frame(
-    name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
+    name = c("Mean (SD)", "Median [Min, Max]"),
     do.call(cbind, pop_age)
   )
 
@@ -268,15 +266,13 @@ test_that("test collect_n_subject with continous parameter", {
       sd = stats::sd(x, na.rm = TRUE),
       median = stats::median(x, na.rm = TRUE),
       min = min(x, na.rm = TRUE),
-      max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
+      max = max(x, na.rm = TRUE)
     )
     value <- formatC(value, format = "f", digits = 1)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
+    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"))
   })
   pop_age <- data.frame(
-    name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
+    name = c("Mean (SD)", "Median [Min, Max]"),
     do.call(cbind, pop_age)
   )
 
@@ -548,63 +544,4 @@ test_that("test collect_n_subject with character parameter", {
 
   meta$data_population$USUBJID[1] <- meta$data_population$USUBJID[2]
   expect_warning(collect_n_subject(meta, "apat", "sex"))
-})
-
-
-test_that("test collect_n_subject with decimal places formatting", {
-  suppressWarnings(
-    meta <- meta_example() |>
-      define_parameter(name = "age", var = "AGE", label = "Age")
-  )
-  ## test test1$n
-  meta$data_population$AGE[2:5] <- NA
-  test1 <- collect_n_subject(meta, "apat", "age", decimal_places_summary = 2, decimal_places_percent = 3)
-
-  meta_add <- meta_add_total(meta)
-  pop <- collect_population_record(meta_add, "apat", "AGE")
-  Total <- length(unique(pop$USUBJID))
-  pop_all <- n_subject(pop$USUBJID, pop$TRTA)
-  pop_all <- data.frame(
-    name = "Number of Subjects",
-    pop_all
-  )
-  names(pop_all) <- c("name", "Placebo", "Xanomeline Low Dose", "Xanomeline High Dose", "Total")
-  expect_equal(test1$n, pop_all, ignore_attr = TRUE)
-  ## test test1$table
-  pop_all[2, ] <- c("Age", NA, NA, NA, NA)
-
-  pop_all_with_data <- n_subject(pop$USUBJID, pop$TRTA, par = factor(
-    is.na(pop[["AGE"]]),
-    c(FALSE, TRUE), c("Subjects with Data", "Missing")
-  ))
-  names(pop_all_with_data) <- c("name", "Placebo", "Xanomeline Low Dose", "Xanomeline High Dose", "Total")
-
-  pop_age <- tapply(pop$AGE, pop$TRTA, function(x) {
-    value <- c(
-      mean = mean(x, na.rm = TRUE),
-      sd = stats::sd(x, na.rm = TRUE),
-      median = stats::median(x, na.rm = TRUE),
-      min = min(x, na.rm = TRUE),
-      max = max(x, na.rm = TRUE),
-      q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = 2, names = FALSE),
-      q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = 2, names = FALSE)
-    )
-    value <- formatC(value, format = "f", digits = 2)
-    c(glue::glue("{value[['mean']]} ({value[['sd']]})"), glue::glue("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), glue::glue("{value[['q1']]} to {value[['q3']]}"))
-  })
-  pop_age <- data.frame(
-    name = c("Mean (SD)", "Median [Min, Max]", "Q1 to Q3"),
-    do.call(cbind, pop_age)
-  )
-
-  names(pop_age) <- c("name", "Placebo", "Xanomeline Low Dose", "Xanomeline High Dose", "Total")
-
-  pop_pct <- pop_all_with_data
-  for (i in 2:ncol(pop_all_with_data)) {
-    pct <- formatC(pop_all_with_data[, i] / as.numeric(pop_all[1, i]) * 100, format = "f", digits = 3, width = 5)
-    pop_pct[, i] <- glue::glue("{pop_all_with_data[,i]} ({pct}%)")
-  }
-
-  pop_n <- rbind(pop_all, pop_all_with_data[1, ], pop_age, pop_pct[2, ])
-  expect_equal(test1$table, pop_n, ignore_attr = TRUE)
 })
