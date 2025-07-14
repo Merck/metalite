@@ -14,7 +14,10 @@ collect_n_subject(
   remove_blank_group = FALSE,
   type = "Subjects",
   use_na = c("ifany", "no", "always"),
-  display_total = TRUE
+  display_total = TRUE,
+  quantile_method = 2,
+  decimal_places_summary = 1,
+  decimal_places_percent = 1
 )
 }
 \arguments{
@@ -43,6 +46,12 @@ e.g., Subjects or Records.}
 in the table. See the \code{useNA} argument in \code{\link[base:table]{base::table()}} for more details.}
 
 \item{display_total}{A logical value to display total column.}
+
+\item{quantile_method}{An integer between 1 and 9 selecting one of the nine quantile algorithms to be used for \code{type} argument in \code{\link[stats:quantile]{stats::quantile()}}. Default is 2 as the same percentile definition used by the UNIVARIATE procedure in SAS.}
+
+\item{decimal_places_summary}{Number of decimal places to be displayed in statistical summary values (Mean, SD, Median, Min, Max, Q1 and Q3). Default is 1.}
+
+\item{decimal_places_percent}{Number of decimal places to be displayed in percentage values. Default is 1.}
 }
 \value{
 A list containing number of subjects and its subset condition.
