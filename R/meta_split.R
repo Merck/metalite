@@ -34,16 +34,23 @@ meta_split <- function(meta, by) {
   pop <- meta$data_population
   obs <- meta$data_observation
 
-  pop_by <- split(pop, pop[[by]])
-  obs_by <- split(obs, obs[[by]])
+  # Get unique values for the 'by' variable in both datasets
+  unique_values <- unique(c(pop[[by]], obs[[by]]))
 
-  res <- list()
-  for (i in 1:length(pop_by)) {
-    res[[i]] <- meta
-    res[[i]]$data_population <- pop_by[[i]]
-    res[[i]]$data_observation <- obs_by[[i]]
+  # Initialize the result list
+  res <- vector("list", length(unique_values))
+  names(res) <- unique_values
+
+  for (value in unique_values) {
+    # Split population and observation data based on the current unique value
+    pop_subset <- pop[pop[[by]] == value, , drop = FALSE]
+    obs_subset <- obs[obs[[by]] == value, , drop = FALSE]
+
+    # Create a new metadata object for the current group
+    res[[value]] <- meta
+    res[[value]]$data_population <- pop_subset
+    res[[value]]$data_observation <- obs_subset
   }
-  names(res) <- names(pop_by)
 
   res
 }
