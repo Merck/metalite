@@ -56,6 +56,89 @@ collect_adam_mapping <- function(meta, name) {
   map
 }
 
+#' Resolve a source dataset by its registered name
+#'
+#' Given a `from` name (as recorded in the `from` field of an `adam_mapping`),
+#' return the corresponding source data frame. When `from` is `NULL` (older
+#' metadata or terms defined without `from`), the supplied `default` slot is
+#' used, preserving backward compatibility.
+#'
+#' Callers pass the `from` value taken from the appropriate mapping list
+#' (population vs. observation) rather than a term name, because the same name
+#' can appear in both lists (e.g. a population and an observation both called
+#' `"apat"`).
+#'
+#' @inheritParams collect_adam_mapping
+#' @param from A character value naming the source dataset, or `NULL`.
+#' @param default A character value naming the fallback source, either
+#'   `"population"` or `"observation"`.
+#'
+#' @return A data frame corresponding to the resolved source dataset.
+#'
+#' @noRd
+collect_data_source <- function(meta, from, default = "observation") {
+  if (is.null(from) || length(from) == 0) {
+    from <- default
+  }
+
+  # `population` and `observation` always resolve to the primary slots so that
+  # they stay in sync with in-place edits to `data_population`/`data_observation`.
+  if (from == "population") {
+    return(meta$data_population)
+  }
+  if (from == "observation") {
+    return(meta$data_observation)
+  }
+
+  if (!from %in% names(meta$data_source)) {
+    stop(
+      "Source dataset '", from, "' is not registered in `meta_adam()`. ",
+      "Available sources: ", paste(meta_source_names(meta), collapse = ", ")
+    )
+  }
+
+  meta$data_source[[from]]
+}
+
+#' Names of all source datasets registered in a `meta_adam` object
+#'
+#' @inheritParams collect_adam_mapping
+#'
+#' @return A character vector of source dataset names.
+#'
+#' @noRd
+meta_source_names <- function(meta) {
+  c("population", "observation", names(meta$data_source))
+}
+
+#' Validate a `from` argument against registered source datasets
+#'
+#' @inheritParams collect_adam_mapping
+#' @param from A character value naming a source dataset.
+#'
+#' @return Invisibly returns `from` when valid; otherwise throws an error.
+#'
+#' @noRd
+validate_from <- function(meta, from) {
+  if (is.null(from)) {
+    return(invisible(from))
+  }
+
+  check_args(arg = from, type = "character", length = 1)
+
+  sources <- meta_source_names(meta)
+
+  if (!from %in% sources) {
+    stop(
+      "`from = \"", from, "\"` is not a registered source dataset. ",
+      "Available sources: ", paste(sources, collapse = ", "),
+      ". Register extra datasets via the `...` argument of `meta_adam()`."
+    )
+  }
+
+  invisible(from)
+}
+
 #' Collect specification for population definition
 #'
 #' @inheritParams define_population
@@ -100,13 +183,15 @@ collect_population <- function(meta,
 #' head(collect_population_index(meta, "apat"))
 collect_population_index <- function(meta,
                                      population) {
+  data_pop <- collect_data_source(meta, meta$population[[population]]$from, default = "population")
+
   # eval_tidy() is a variant of base::eval() that powers the tidy evaluation framework
   pop <- rlang::eval_tidy(
     expr = collect_adam_mapping(meta, population)$subset,
-    data = meta$data_population
+    data = data_pop
   )
 
-  n <- nrow(meta$data_population)
+  n <- nrow(data_pop)
 
   # if the `population = ...` is not defined
   if (is.null(pop)) {
@@ -132,7 +217,8 @@ collect_population_index <- function(meta,
 collect_population_id <- function(meta,
                                   population) {
   # get the USUBJID (usually) from the population                    (extract the variable name "USUBJID")
-  meta$data_population[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
+  data_pop <- collect_data_source(meta, meta$population[[population]]$from, default = "population")
+  data_pop[collect_population_index(meta, population), ][[collect_adam_mapping(meta, population)$id]]
 }
 
 
@@ -171,7 +257,8 @@ collect_population_record <- function(meta,
   var <- unique(unlist(c(key, var)))
 
   # output the population dataset with their index (id), and selected `var = ...`
-  meta$data_population[id, var]
+  data_pop <- collect_data_source(meta, meta$population[[population]]$from, default = "population")
+  data_pop[id, var]
 }
 
 #' Collect observation record index from observation dataset
@@ -192,22 +279,24 @@ collect_observation_index <- function(meta,
                                       parameter) {
   pop_id <- collect_population_id(meta, population)
 
+  data_obs <- collect_data_source(meta, meta$observation[[observation]]$from, default = "observation")
+
   # Records in the population
-  pop <- meta$data_observation[[collect_adam_mapping(meta, observation)$id]] %in% pop_id
+  pop <- data_obs[[collect_adam_mapping(meta, observation)$id]] %in% pop_id
 
   # analysis observations
   obs <- rlang::eval_tidy(
     expr = collect_adam_mapping(meta, observation)$subset,
-    data = meta$data_observation
+    data = data_obs
   )
 
   # parameter observations
   par <- rlang::eval_tidy(
     expr = collect_adam_mapping(meta, parameter)$subset,
-    data = meta$data_observation
+    data = data_obs
   )
 
-  n <- nrow(meta$data_observation)
+  n <- nrow(data_obs)
 
   if (is.null(pop)) pop <- rep(TRUE, n)
   if (is.null(obs)) obs <- rep(TRUE, n)
@@ -252,9 +341,10 @@ collect_observation_record <- function(meta,
   var <- unique(unlist(c(key, var)))
 
   # subset the data to be output
-  ans <- meta$data_observation[id, var, drop = FALSE]
+  data_obs <- collect_data_source(meta, meta$observation[[observation]]$from, default = "observation")
+  ans <- data_obs[id, var, drop = FALSE]
   # get all labels from the un-subset data
-  ans_label <- get_label(meta$data_observation)
+  ans_label <- get_label(data_obs)
   # assign labels
   assign_label(
     data = ans,

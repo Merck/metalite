@@ -1,5 +1,10 @@
 # metalite 0.1.4
 
+- Support multiple source datasets in a single `meta_adam()` object. Extra
+  datasets can be registered by name via `...` and referenced through the new
+  `from` argument of `define_population()` and `define_observation()`, enabling
+  one metadata object to drive analyses that read from different source
+  datasets (e.g. an AE dataset and a lab dataset) (#174).
 - Fix bug of `n_subject()` for empty factor.
 - Add default mapping for subject level analysis.
 - Update GitHub Actions workflows.

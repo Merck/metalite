@@ -4,13 +4,19 @@
 \alias{meta_adam}
 \title{Create a metadata representation for ADaM data analysis}
 \usage{
-meta_adam(observation, population = observation)
+meta_adam(observation, population = observation, ...)
 }
 \arguments{
 \item{observation}{A data frame for observation level data.}
 
 \item{population}{A data frame for population level data.
 Default is the same as \code{observation}.}
+
+\item{...}{Additional named data frames registered as extra source
+datasets. These can be referenced by name via the \code{from} argument of
+\code{\link[=define_observation]{define_observation()}} and \code{\link[=define_population]{define_population()}}, allowing a single
+metadata object to drive analyses that read from different source
+datasets (for example an AE dataset and a lab dataset).}
 }
 \value{
 An initialized metadata object with

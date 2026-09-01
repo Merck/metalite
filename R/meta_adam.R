@@ -21,6 +21,11 @@
 #' @param observation A data frame for observation level data.
 #' @param population A data frame for population level data.
 #'   Default is the same as `observation`.
+#' @param ... Additional named data frames registered as extra source
+#'   datasets. These can be referenced by name via the `from` argument of
+#'   [define_observation()] and [define_population()], allowing a single
+#'   metadata object to drive analyses that read from different source
+#'   datasets (for example an AE dataset and a lab dataset).
 #'
 #' @return An initialized metadata object with
 #'   observation and population defined.
@@ -30,9 +35,20 @@
 #' @examples
 #' meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
 meta_adam <- function(observation,
-                      population = observation) {
+                      population = observation,
+                      ...) {
   attr(population, "data_name") <- deparse(substitute(population))
   attr(observation, "data_name") <- deparse(substitute(observation))
+
+  # Extra named source datasets, e.g. `adlb = boxly_adlb`. `population` and
+  # `observation` are always available through their own slots, so only the
+  # additional datasets are stored in `data_source`, keeping a single source
+  # of truth for the primary datasets.
+  extra_source <- list(...)
+  if (length(extra_source) > 0 &&
+    (is.null(names(extra_source)) || any(names(extra_source) == ""))) {
+    stop("Additional datasets passed to `meta_adam()` via `...` must be named")
+  }
 
   # Creating a `meta_adam` by using structure() function
   structure(
@@ -43,7 +59,8 @@ meta_adam <- function(observation,
       observation = list(),
       population = list(),
       parameter = list(),
-      analysis = list()
+      analysis = list(),
+      data_source = extra_source
     ),
     class = "meta_adam"
   )
@@ -67,6 +84,15 @@ print.meta_adam <- function(x, ...) {
   cat("ADaM metadata:", "\n")
   cat("  ", e[1], "\tPopulation data", "with", nrow(x$data_population), "subjects", "\n")
   cat("  ", e[2], "\tObservation data", "with", nrow(x$data_observation), "records", "\n")
+
+  # print extra registered source datasets, if any
+  extra_source <- setdiff(names(x$data_source), c("population", "observation"))
+  if (length(extra_source) > 0) {
+    for (nm in extra_source) {
+      cat("  ", paste0(".$data_source$", nm), "\tSource data", "with",
+        nrow(x$data_source[[nm]]), "records", "\n")
+    }
+  }
 
   # print the number of analysis plans
   if (length(x$plan) > 0) {
