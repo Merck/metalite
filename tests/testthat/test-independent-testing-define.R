@@ -69,7 +69,6 @@ test_that("warning if one of name is not in the plan data frame of meta define_o
 })
 
 
-
 test_that("meta_adam class object with list population contains in the object at define_observation", {
   expect_equal(names(z)[4], "observation")
 })

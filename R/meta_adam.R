@@ -89,8 +89,10 @@ print.meta_adam <- function(x, ...) {
   extra_source <- setdiff(names(x$data_source), c("population", "observation"))
   if (length(extra_source) > 0) {
     for (nm in extra_source) {
-      cat("  ", paste0(".$data_source$", nm), "\tSource data", "with",
-        nrow(x$data_source[[nm]]), "records", "\n")
+      cat(
+        "  ", paste0(".$data_source$", nm), "\tSource data", "with",
+        nrow(x$data_source[[nm]]), "records", "\n"
+      )
     }
   }
 
