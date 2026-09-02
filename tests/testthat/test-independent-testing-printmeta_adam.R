@@ -37,5 +37,9 @@ meta <- meta_adam(
 
 
 test_that("meta print", {
+  # Pin the console width so the printed data frames wrap identically across
+  # environments (e.g. local vs. R CMD check on CI).
+  old_width <- options(width = 80)
+  on.exit(options(old_width), add = TRUE)
   testthat::expect_snapshot(meta |> print())
 })
