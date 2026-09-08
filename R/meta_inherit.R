@@ -34,10 +34,11 @@
 #'
 #' @export
 meta_inherit <- function(
-    meta,
-    inherit,
-    name,
-    overwrite = FALSE) {
+  meta,
+  inherit,
+  name,
+  overwrite = FALSE
+) {
   mapping <- list()
   for (i in seq_along(name)) {
     x <- collect_adam_mapping(inherit, name[i])

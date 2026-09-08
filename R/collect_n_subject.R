@@ -132,6 +132,11 @@ meta_remove_blank_group <- function(meta,
 #' @param decimal_places_summary Number of decimal places to be displayed in statistical summary values (Mean, SD, Median, Min, Max, Q1 and Q3). Default is 1.
 #' @param decimal_places_percent Number of decimal places to be displayed in percentage values. Default is 1.
 #'
+#' @details
+#' Summary statistics and percentages are calculated without rounding, then
+#' rounded once at the display boundary with [round_half_away_from_zero()].
+#' Decimal ties are rounded away from zero and trailing zeros are retained.
+#'
 #' @return A list containing number of subjects and its subset condition.
 #'
 #' @export
@@ -245,7 +250,7 @@ collect_n_subject <- function(meta,
         q1 = stats::quantile(x, probs = 0.25, na.rm = TRUE, type = quantile_method, names = FALSE),
         q3 = stats::quantile(x, probs = 0.75, na.rm = TRUE, type = quantile_method, names = FALSE)
       )
-      value <- formatC(value, format = "f", digits = decimal_places_summary)
+      value <- format_number(value, digits = decimal_places_summary)
       c(gluestick("{value[['mean']]} ({value[['sd']]})"), gluestick("{value[['median']]} [{value[['min']]}, {value[['max']]}]"), gluestick("{value[['q1']]} to {value[['q3']]}"))
     })
     pop_num <- data.frame(
@@ -260,7 +265,9 @@ collect_n_subject <- function(meta,
     pop_tmp <- pop_n
     for (i in seq(names(pop_n))) {
       if ("integer" %in% class(pop_n[[i]])) {
-        pct <- formatC(pop_n[[i]] / pop_all[[i]] * 100, format = "f", digits = decimal_places_percent, width = 5)
+        pct <- format_number(pop_n[[i]] / pop_all[[i]] * 100,
+          digits = decimal_places_percent, width = 5
+        )
         pop_tmp[[i]] <- gluestick("{pop_n[[i]]} ({pct}%)")
       }
     }
@@ -301,7 +308,9 @@ collect_n_subject <- function(meta,
 
     for (i in seq(names(pop_tmp))) {
       if ("integer" %in% class(pop_tmp[[i]])) {
-        pct <- formatC(pop_tmp[[i]] / pop_all[[i]] * 100, format = "f", digits = decimal_places_percent, width = 5)
+        pct <- format_number(pop_tmp[[i]] / pop_all[[i]] * 100,
+          digits = decimal_places_percent, width = 5
+        )
         pop_tmp[[i]] <- gluestick("{pop_tmp[[i]]} ({pct}%)")
       }
     }
