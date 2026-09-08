@@ -59,6 +59,11 @@ A list containing number of subjects and its subset condition.
 \description{
 Collect number of subjects and its subset condition
 }
+\details{
+Summary statistics and percentages are calculated without rounding, then
+rounded once at the display boundary with \code{\link[=round_half_away_from_zero]{round_half_away_from_zero()}}.
+Decimal ties are rounded away from zero and trailing zeros are retained.
+}
 \examples{
 suppressWarnings(
   meta <- meta_example() |>
