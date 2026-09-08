@@ -25,7 +25,8 @@ make_meta_multi_source <- function() {
       observation = "lb", parameter = "alt"
     )
 
-  meta_adam(population = adsl, observation = adae, adlb = adlb) |>
+  # `observation` names two datasets separated by ";"; they are get()'d by name.
+  meta_adam(population = "adsl", observation = "adae;adlb") |>
     define_plan(plan) |>
     define_analysis(name = "ae_specific", label = "AE") |>
     define_analysis(name = "lab_box", label = "Lab") |>
@@ -52,10 +53,15 @@ make_meta_multi_source <- function() {
     meta_build()
 }
 
-test_that("meta_adam registers extra source datasets via ...", {
+test_that("meta_adam registers extra datasets from a ';'-separated string", {
   meta <- make_meta_multi_source()
+  expect_equal(meta$data_observation_name, "adae")
+  expect_equal(meta$data_population_name, "adsl")
   expect_true("adlb" %in% names(meta$data_source))
-  expect_equal(metalite:::meta_source_names(meta), c("population", "observation", "adlb"))
+  expect_setequal(
+    metalite:::meta_source_names(meta),
+    c("population", "observation", "adsl", "adae", "adlb")
+  )
 })
 
 test_that("define_observation records the `from` source", {
@@ -76,6 +82,31 @@ test_that("collect_observation_record routes to the declared source dataset", {
   expect_false(identical(nrow(ae), nrow(lb)))
 })
 
+test_that("meta_adam accepts a named list of datasets", {
+  adsl <- r2rtf::r2rtf_adsl
+  adae <- r2rtf::r2rtf_adae
+  meta <- meta_adam(
+    population = adsl,
+    observation = list(adae = adae, adsl2 = adsl)
+  )
+  expect_equal(meta$data_observation_name, "adae")
+  expect_true("adsl2" %in% names(meta$data_source))
+  expect_equal(nrow(meta$data_observation), nrow(adae))
+})
+
+test_that("the primary dataset name resolves through `from`", {
+  meta <- make_meta_multi_source()
+  # `from = "adae"` (the primary observation name) resolves to the live slot
+  expect_identical(
+    collect_data_source(meta, "adae", default = "observation"),
+    meta$data_observation
+  )
+  expect_identical(
+    collect_data_source(meta, "observation", default = "observation"),
+    meta$data_observation
+  )
+})
+
 test_that("define_observation errors on an unregistered `from`", {
   adsl <- r2rtf::r2rtf_adsl
   adae <- r2rtf::r2rtf_adae
@@ -91,11 +122,20 @@ test_that("define_observation errors on an unregistered `from`", {
   )
 })
 
-test_that("meta_adam rejects unnamed extra datasets", {
+test_that("meta_adam errors on a non-data-frame dataset name", {
+  adae <- r2rtf::r2rtf_adae
+  not_a_df <- 1:10
+  expect_error(
+    meta_adam(observation = "not_a_df"),
+    "not a data frame"
+  )
+})
+
+test_that("meta_adam errors on an unnamed list of datasets", {
   adsl <- r2rtf::r2rtf_adsl
   adae <- r2rtf::r2rtf_adae
   expect_error(
-    meta_adam(population = adsl, observation = adae, adae),
+    meta_adam(population = adsl, observation = list(adae, adsl)),
     "must be named"
   )
 })

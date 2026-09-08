@@ -45,10 +45,11 @@ define_plan <- function(meta, plan) {
 #'
 #' @param meta A `meta_adam` object.
 #' @param from A character value naming the source dataset this term reads
-#'   from. Must match `"population"`, `"observation"`, or the name of an
-#'   extra dataset registered through the `...` argument of [meta_adam()].
+#'   from. Must match `"population"`, `"observation"`, or the name of a dataset
+#'   registered in the `observation`/`population` argument of [meta_adam()].
 #'   Defaults to `"population"` for [define_population()] and
-#'   `"observation"` for [define_observation()].
+#'   `"observation"` for [define_observation()], which resolve to the primary
+#'   population/observation datasets.
 #' @inheritParams adam_mapping
 #'
 #' @return A metadata object with population defined.

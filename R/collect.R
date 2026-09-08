@@ -63,6 +63,12 @@ collect_adam_mapping <- function(meta, name) {
 #' metadata or terms defined without `from`), the supplied `default` slot is
 #' used, preserving backward compatibility.
 #'
+#' `from` names a dataset registered in `meta_adam()`. The primary
+#' population/observation datasets resolve to their own slots (so they stay in
+#' sync with in-place edits, e.g. by [meta_add_total()]); any other name is
+#' looked up in `data_source`. The keywords `"population"` and `"observation"`
+#' also resolve to the primary slots for backward compatibility.
+#'
 #' Callers pass the `from` value taken from the appropriate mapping list
 #' (population vs. observation) rather than a term name, because the same name
 #' can appear in both lists (e.g. a population and an observation both called
@@ -81,12 +87,12 @@ collect_data_source <- function(meta, from, default = "observation") {
     from <- default
   }
 
-  # `population` and `observation` always resolve to the primary slots so that
-  # they stay in sync with in-place edits to `data_population`/`data_observation`.
-  if (from == "population") {
+  # Primary datasets resolve to their live slots, whether referenced by the
+  # generic keyword or by their registered dataset name.
+  if (from == "population" || identical(from, meta$data_population_name)) {
     return(meta$data_population)
   }
-  if (from == "observation") {
+  if (from == "observation" || identical(from, meta$data_observation_name)) {
     return(meta$data_observation)
   }
 
@@ -108,7 +114,11 @@ collect_data_source <- function(meta, from, default = "observation") {
 #'
 #' @noRd
 meta_source_names <- function(meta) {
-  c("population", "observation", names(meta$data_source))
+  unique(c(
+    "population", "observation",
+    meta$data_population_name, meta$data_observation_name,
+    names(meta$data_source)
+  ))
 }
 
 #' Validate a `from` argument against registered source datasets
@@ -132,7 +142,8 @@ validate_from <- function(meta, from) {
     stop(
       "`from = \"", from, "\"` is not a registered source dataset. ",
       "Available sources: ", paste(sources, collapse = ", "),
-      ". Register extra datasets via the `...` argument of `meta_adam()`."
+      ". Register additional datasets in the `observation`/`population` ",
+      "argument of `meta_adam()`."
     )
   }
 

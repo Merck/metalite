@@ -35,10 +35,11 @@ See \code{\link[base:subset]{base::subset()}}.}
 \item{label}{A character value of analysis label.}
 
 \item{from}{A character value naming the source dataset this term reads
-from. Must match \code{"population"}, \code{"observation"}, or the name of an
-extra dataset registered through the \code{...} argument of \code{\link[=meta_adam]{meta_adam()}}.
+from. Must match \code{"population"}, \code{"observation"}, or the name of a dataset
+registered in the \code{observation}/\code{population} argument of \code{\link[=meta_adam]{meta_adam()}}.
 Defaults to \code{"population"} for \code{\link[=define_population]{define_population()}} and
-\code{"observation"} for \code{\link[=define_observation]{define_observation()}}.}
+\code{"observation"} for \code{\link[=define_observation]{define_observation()}}, which resolve to the primary
+population/observation datasets.}
 
 \item{...}{Additional variables.}
 }
