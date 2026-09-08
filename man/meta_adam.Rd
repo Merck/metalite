@@ -7,10 +7,24 @@
 meta_adam(observation, population = observation)
 }
 \arguments{
-\item{observation}{A data frame for observation level data.}
+\item{observation}{Observation level data. One of:
+\itemize{
+\item a data frame;
+\item a character value of one or more dataset names separated by \code{";"}
+(e.g. \code{"adae;adlb"}); each name is retrieved with \code{\link[=get]{get()}} from the
+calling environment;
+\item a named list of data frames.
+}
 
-\item{population}{A data frame for population level data.
-Default is the same as \code{observation}.}
+When more than one dataset is supplied, the first is the primary
+observation dataset and the rest are registered as additional source
+datasets. Any dataset can then be selected by name through the \code{from}
+argument of \code{\link[=define_observation]{define_observation()}}, allowing a single metadata object to
+drive analyses that read from different source datasets (for example an AE
+dataset and a lab dataset).}
+
+\item{population}{Population level data, specified the same way as
+\code{observation}. Default is the same as \code{observation}.}
 }
 \value{
 An initialized metadata object with
@@ -21,4 +35,9 @@ Create a metadata representation for ADaM data analysis
 }
 \examples{
 meta_adam(observation = r2rtf::r2rtf_adae, population = r2rtf::r2rtf_adae)
+
+# Multiple observation datasets by name
+adae <- r2rtf::r2rtf_adae
+adsl <- r2rtf::r2rtf_adsl
+meta_adam(population = "adsl", observation = "adae;adsl")
 }

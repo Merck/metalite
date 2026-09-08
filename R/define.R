@@ -44,6 +44,12 @@ define_plan <- function(meta, plan) {
 #' Define analysis population meta information for ADaM dataset
 #'
 #' @param meta A `meta_adam` object.
+#' @param from A character value naming the source dataset this term reads
+#'   from. Must match `"population"`, `"observation"`, or the name of a dataset
+#'   registered in the `observation`/`population` argument of [meta_adam()].
+#'   Defaults to `"population"` for [define_population()] and
+#'   `"observation"` for [define_observation()], which resolve to the primary
+#'   population/observation datasets.
 #' @inheritParams adam_mapping
 #'
 #' @return A metadata object with population defined.
@@ -69,10 +75,13 @@ define_population <- function(meta,
                               var = NULL,
                               subset = NULL,
                               label = NULL,
+                              from = "population",
                               ...) {
   if (!any(grepl(name, meta$plan[["population"]]))) {
     warning(name, " is not in .$plan")
   }
+
+  validate_from(meta, from)
 
   try(subset, silent = TRUE)
   list(...)
@@ -84,6 +93,7 @@ define_population <- function(meta,
     var = !!var,
     subset = !!rlang::enquo(subset),
     label = !!label,
+    from = from,
     ...
   )
 
@@ -124,10 +134,13 @@ define_observation <- function(meta,
                                var = NULL,
                                subset = NULL,
                                label = NULL,
+                               from = "observation",
                                ...) {
   if (!any(grepl(name, meta$plan[["observation"]]))) {
     warning(name, " is not in .$plan")
   }
+
+  validate_from(meta, from)
 
   try(subset, silent = TRUE)
   list(...)
@@ -139,6 +152,7 @@ define_observation <- function(meta,
     var = !!var,
     subset = !!rlang::enquo(subset),
     label = !!label,
+    from = from,
     ...
   )
 

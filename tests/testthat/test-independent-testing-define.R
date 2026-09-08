@@ -36,7 +36,7 @@ test_that("meta_adam class object with list population contains in the object at
 
 
 test_that("population contains a list of default argument at define_population", {
-  expect_equal(names(y$population$apat), c("name", "id", "group", "var", "subset", "label"))
+  expect_equal(names(y$population$apat), c("name", "id", "group", "var", "subset", "label", "from"))
 })
 
 
@@ -69,14 +69,13 @@ test_that("warning if one of name is not in the plan data frame of meta define_o
 })
 
 
-
 test_that("meta_adam class object with list population contains in the object at define_observation", {
   expect_equal(names(z)[4], "observation")
 })
 
 
 test_that("population contains a list of default argument at define_observation", {
-  expect_equal(names(z$observation$wk12), c("name", "id", "group", "var", "subset", "label"))
+  expect_equal(names(z$observation$wk12), c("name", "id", "group", "var", "subset", "label", "from"))
 })
 
 

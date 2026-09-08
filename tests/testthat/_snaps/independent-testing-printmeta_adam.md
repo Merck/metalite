@@ -12,11 +12,13 @@
         Analysis population type:
           name        id  group var       subset                         label
       1 'apat' 'USUBJID' 'TRTA'     SAFFL == 'Y' 'All Participants as Treated'
+                from
+      1 'population'
       
       
         Analysis observation type:
-          name        id  group var       subset           label
-      1 'wk12' 'USUBJID' 'TRTA'     SAFFL == 'Y' 'Weeks 0 to 12'
+          name        id  group var       subset           label          from
+      1 'wk12' 'USUBJID' 'TRTA'     SAFFL == 'Y' 'Weeks 0 to 12' 'observation'
       
       
         Analysis function:
