@@ -11,6 +11,11 @@ test_that("round_half_away_from_zero handles ties and signed zero", {
   expect_equal(1 / rounded_zero, Inf)
 })
 
+test_that("round_half_away_from_zero does not overflow finite values", {
+  expect_identical(round_half_away_from_zero(1e308, digits = 1), 1e308)
+  expect_identical(round_half_away_from_zero(1, digits = 309), 1)
+})
+
 test_that("round_half_away_from_zero preserves supported input shapes", {
   x <- matrix(c(1.25, -1.25), nrow = 1, dimnames = list("row", c("a", "b")))
   expect_equal(

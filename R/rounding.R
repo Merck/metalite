@@ -66,10 +66,11 @@ round_half_away_from_zero <- function(x, digits = 0) {
   dn <- dimnames(x)
 
   posneg <- sign(x)
-  z <- abs(x) * 10^digits
-  z <- z + 0.5 + sqrt(.Machine$double.eps)
-  z <- trunc(z)
-  z <- z / 10^digits
+  z <- abs(x)
+  finite <- is.finite(z)
+  tolerance <- sqrt(.Machine$double.eps) * 10^-digits
+  z[finite] <- z[finite] + pmin(tolerance, .Machine$double.xmax - z[finite])
+  z <- round(z, digits = digits)
   z <- ifelse(!is.na(z) & z > 0, z * posneg, z)
 
   dim(z) <- d
