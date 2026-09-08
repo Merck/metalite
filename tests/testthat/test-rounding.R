@@ -61,10 +61,12 @@ test_that("collect_n_subject rounds summaries and percentages at display", {
   )
 
   numeric_table <- collect_n_subject(
-    meta, "pop", "num", display_total = FALSE
+    meta, "pop", "num",
+    display_total = FALSE
   )$table
   categorical_table <- collect_n_subject(
-    meta, "pop", "cat", display_total = FALSE
+    meta, "pop", "cat",
+    display_total = FALSE
   )$table
 
   expect_equal(
