@@ -1,0 +1,213 @@
+# metalite
+
+Unified representation of metadata structure for clinical analysis &
+reporting (A&R) by leveraging the Analysis Data Model (ADaM) datasets.
+
+![](reference/figures/design-diagram.png)
+
+## Installation
+
+The easiest way to get metalite is to install from CRAN:
+
+``` r
+
+install.packages("metalite")
+```
+
+Alternatively, to use a new feature or get a bug fix, you can install
+the development version of metalite from GitHub:
+
+``` r
+
+# install.packages("remotes")
+remotes::install_github("Merck/metalite")
+```
+
+## Overview
+
+The metalite framework is designed to:
+
+- Standardize function input for analysis and reporting.
+- Separate analysis logic from data source.
+- Enable the use of pipes (`|>`).
+- Reduce manual steps to develop and maintain documentation in clinical
+  trial development.
+- Ensure consistency between analysis specification, mock, and results.
+
+## Use cases
+
+The metalite package offers a foundation to simplify tool development
+and create standard engineering workflows. For example, metalite can be
+used to:
+
+- Standardize input and output for A&R functions.
+- Create analysis and reporting planning grid.
+- Create mock table.
+- Create and validate A&R results.
+- Trace analysis records.
+
+Note: metalite is a low-level R package that needs to work with other R
+packages to complete the work. The idea is illustrated in the diagram
+above.
+
+## Design principles
+
+We built metalite with the following principles:
+
+- Automation: prefer a function call more than a checklist.
+- Single-entry: enter in one place, sync to all deliveries.
+  - For example, enter data source one time for all AE analysis.
+- End-to-end: cover all steps in software development lifecycle (SDLC)
+  from define to delivery.
+
+# Package index
+
+## Create metadata
+
+- [`meta_adam()`](https://merck.github.io/metalite/reference/meta_adam.md)
+  : Create a metadata representation for ADaM data analysis
+- [`meta_inherit()`](https://merck.github.io/metalite/reference/meta_inherit.md)
+  : Inherit meta information by keywords
+- [`meta_split()`](https://merck.github.io/metalite/reference/meta_split.md)
+  : Split metadata into groups
+- [`meta_build()`](https://merck.github.io/metalite/reference/meta_build.md)
+  : Build complete meta information
+- [`meta_run()`](https://merck.github.io/metalite/reference/meta_run.md)
+  : Execute analysis based on the analysis plan
+
+## Metadata example
+
+- [`meta_example()`](https://merck.github.io/metalite/reference/meta_example.md)
+  :
+
+  Create an example `meta_adam` object
+
+- [`meta_example_exploration()`](https://merck.github.io/metalite/reference/meta_example_exploration.md)
+  :
+
+  Create a data exploration `meta_adam` object
+
+## Component definition
+
+- [`define_plan()`](https://merck.github.io/metalite/reference/define_plan.md)
+  : Define analysis plan meta information for ADaM dataset
+- [`define_population()`](https://merck.github.io/metalite/reference/define_population.md)
+  : Define analysis population meta information for ADaM dataset
+- [`define_observation()`](https://merck.github.io/metalite/reference/define_observation.md)
+  : Define analysis observation meta information for ADaM dataset
+- [`define_parameter()`](https://merck.github.io/metalite/reference/define_parameter.md)
+  : Define analysis parameter meta information for ADaM dataset
+- [`define_analysis()`](https://merck.github.io/metalite/reference/define_analysis.md)
+  : Define analysis function meta information for ADaM dataset
+
+## Collect components
+
+- [`collect_adam_mapping()`](https://merck.github.io/metalite/reference/collect_adam_mapping.md)
+  :
+
+  Collect `adam_mapping` from `meta_adam` by `name`
+
+- [`collect_population()`](https://merck.github.io/metalite/reference/collect_population.md)
+  : Collect specification for population definition
+
+- [`collect_population_index()`](https://merck.github.io/metalite/reference/collect_population_index.md)
+  : Collect population record index from population dataset
+
+- [`collect_population_id()`](https://merck.github.io/metalite/reference/collect_population_id.md)
+  : Collect subject identifier information from population dataset
+
+- [`collect_population_record()`](https://merck.github.io/metalite/reference/collect_population_record.md)
+  : Collect population record from population dataset
+
+- [`collect_observation_index()`](https://merck.github.io/metalite/reference/collect_observation_index.md)
+  : Collect observation record index from observation dataset
+
+- [`collect_observation_record()`](https://merck.github.io/metalite/reference/collect_observation_record.md)
+  : Collect observation record from observation dataset
+
+- [`collect_dataname()`](https://merck.github.io/metalite/reference/collect_dataname.md)
+  : Collect specification for dataset name
+
+- [`collect_title()`](https://merck.github.io/metalite/reference/collect_title.md)
+  : Collect specification for title
+
+- [`collect_n_subject()`](https://merck.github.io/metalite/reference/collect_n_subject.md)
+  : Collect number of subjects and its subset condition
+
+- [`n_subject()`](https://merck.github.io/metalite/reference/n_subject.md)
+  : Count number of unique subjects
+
+## Collect specification information
+
+- [`spec_title()`](https://merck.github.io/metalite/reference/spec_title.md)
+  : Specification for analysis title
+- [`spec_filename()`](https://merck.github.io/metalite/reference/spec_filename.md)
+  : Specification for analysis output filename
+- [`spec_call_program()`](https://merck.github.io/metalite/reference/spec_call_program.md)
+  : Specification for analysis call program
+- [`spec_analysis_population()`](https://merck.github.io/metalite/reference/spec_analysis_population.md)
+  : Specification for population definition
+
+## Construct analysis plan
+
+- [`plan()`](https://merck.github.io/metalite/reference/plan.md) :
+  Create a analysis plan from all combination of variables
+- [`add_plan()`](https://merck.github.io/metalite/reference/add_plan.md)
+  : Add additional analysis plan
+
+## Variable mapping
+
+- [`adam_mapping()`](https://merck.github.io/metalite/reference/adam_mapping.md)
+  : Construct ADaM mappings
+
+- [`update_adam_mapping()`](https://merck.github.io/metalite/reference/update_adam_mapping.md)
+  :
+
+  Update mapping rule in `adam_mapping`
+
+## Outdata
+
+- [`outdata()`](https://merck.github.io/metalite/reference/outdata.md) :
+
+  Construct `outdata` class
+
+## Formatting
+
+- [`round_half_away_from_zero()`](https://merck.github.io/metalite/reference/round_half_away_from_zero.md)
+  : Round half away from zero
+- [`format_number()`](https://merck.github.io/metalite/reference/format_number.md)
+  : Format numbers with fixed decimal places
+
+## Utilities
+
+- [`default_apply()`](https://merck.github.io/metalite/reference/default_apply.md)
+  : Apply default values to ADaM mappings
+- [`meta_add_total()`](https://merck.github.io/metalite/reference/meta_add_total.md)
+  : Add duplicate data to enable a total group
+- [`get_label()`](https://merck.github.io/metalite/reference/get_label.md)
+  : A function to get the labels of data frame columns
+- [`assign_label()`](https://merck.github.io/metalite/reference/assign_label.md)
+  : A function to assign labels to a data frame
+- [`print(`*`<meta_adam>`*`)`](https://merck.github.io/metalite/reference/print.meta_adam.md)
+  : Print a metadata object with its population, observation, and
+  analysis plans
+
+# Articles
+
+### Getting started
+
+The first topic to read.
+
+- [Introduction to
+  metalite](https://merck.github.io/metalite/articles/metalite.md):
+- [Create AR
+  Grid](https://merck.github.io/metalite/articles/ar-grid.md):
+- [Create Mockup Table Based on
+  Metadata](https://merck.github.io/metalite/articles/mockup-table.md):
+
+### Developer guides
+
+- [Collect
+  Components](https://merck.github.io/metalite/articles/component.md):
+- [Introduction to Variable
+  Mapping](https://merck.github.io/metalite/articles/adam-mapping.md):
