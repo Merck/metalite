@@ -1,5 +1,7 @@
 # metalite 0.1.4
 
+- Add SAS-compatible rounding and fixed-decimal formatting helpers, and use
+  them for `collect_n_subject()` display values.
 - Fix bug of `n_subject()` for empty factor.
 - Add default mapping for subject level analysis.
 - Update GitHub Actions workflows.

@@ -85,6 +85,10 @@ reference:
 - title: Outdata
   contents:
   - "outdata"
+- title: Formatting
+  contents:
+  - "round_half_away_from_zero"
+  - "format_number"
 - title: Utilities
   contents:
   - "default_apply"
