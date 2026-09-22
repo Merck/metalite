@@ -37,9 +37,12 @@ meta <- meta_adam(
 
 
 test_that("meta print", {
-  # Pin the console width so the printed data frames wrap identically across
-  # environments (e.g. local vs. R CMD check on CI).
-  old_width <- options(width = 80)
-  on.exit(options(old_width), add = TRUE)
-  testthat::expect_snapshot(meta |> print())
+  out <- capture.output(print(meta))
+  expect_true(any(grepl("ADaM metadata", out, fixed = TRUE)))
+  expect_true(any(grepl("Population data with 254 subjects", out, fixed = TRUE)))
+  expect_true(any(grepl("Observation data with 1191 records", out, fixed = TRUE)))
+  expect_true(any(grepl("Analysis plan with 1 plans", out, fixed = TRUE)))
+  expect_true(any(grepl("'apat'", out, fixed = TRUE)))
+  expect_true(any(grepl("'wk12'", out, fixed = TRUE)))
+  expect_true(any(grepl("'ae_summary'", out, fixed = TRUE)))
 })

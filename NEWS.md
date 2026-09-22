@@ -7,6 +7,8 @@
   new `from` argument of `define_population()` and `define_observation()`,
   enabling one metadata object to drive analyses that read from different
   source datasets (e.g. an AE dataset and a lab dataset) (#174).
+- Add SAS-compatible rounding and fixed-decimal formatting helpers, and use
+  them for `collect_n_subject()` display values.
 - Fix bug of `n_subject()` for empty factor.
 - Add default mapping for subject level analysis.
 - Update GitHub Actions workflows.
