@@ -1,5 +1,12 @@
 # metalite 0.1.4
 
+- Support multiple source datasets in a single `meta_adam()` object. The
+  `observation` and `population` arguments now also accept a `";"`-separated
+  string of dataset names (e.g. `"adae;adlb"`, retrieved with `get()`) or a
+  named list of data frames. Any registered dataset can be selected through the
+  new `from` argument of `define_population()` and `define_observation()`,
+  enabling one metadata object to drive analyses that read from different
+  source datasets (e.g. an AE dataset and a lab dataset) (#174).
 - Add SAS-compatible rounding and fixed-decimal formatting helpers, and use
   them for `collect_n_subject()` display values.
 - Fix bug of `n_subject()` for empty factor.

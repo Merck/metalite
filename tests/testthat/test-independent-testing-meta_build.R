@@ -23,7 +23,8 @@ test_that("check if the keywords are available as their default value", {
     names(test_meta),
     c(
       "data_population", "data_observation", "plan",
-      "observation", "population", "parameter", "analysis"
+      "observation", "population", "parameter", "analysis", "data_source",
+      "data_population_name", "data_observation_name"
     )
   )
   expect_true(unique(c("id", "group") %in% names(test_meta$observation$wk12)))
