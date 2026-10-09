@@ -62,18 +62,22 @@ n_subject <- function(id,
     names(res) <- c(u_group[1:n_row])
   } else {
     # Same result as the original
-    # `table(unique(data.frame(id, group, par)), useNA = use_na)`, but dedupe the
-    # (id, group, par) rows with a single integer key instead of
-    # unique.data.frame()'s per-row paste + make.unique(), which dominated
-    # runtime on large observation tables (~7x faster). table() still does the
-    # counting, so factor-level order and the `useNA` NA row/column are native.
+    # `table(unique(data.frame(id, group, par)), useNA = use_na)`, but we dedupe
+    # the (id, group, par) rows ourselves and let table() count the survivors.
+    # The dedupe uses one integer key instead of unique.data.frame()'s per-row
+    # paste + make.unique(), which dominated runtime on large observation tables.
     par <- if (is.factor(par)) par else factor(par) # keep empty levels
     int <- function(x) {
       x <- as.integer(x)
       x[is.na(x)] <- 0L # NA -> code 0, so NA cells dedupe like unique() does
       x
     }
-    np <- nlevels(par) + 1L # +1 reserves the NA code; group likewise below
+    # Pack (id, group, par) into one number by mixed-radix encoding: each factor
+    # contributes a digit in base (nlevels + 1) -- the +1 leaves room for the 0
+    # (NA) code. Distinct triples therefore get distinct keys, so !duplicated()
+    # keeps exactly one row per subject x group x par. as.numeric() lifts the id
+    # digit to double so the product stays exact past the integer limit.
+    np <- nlevels(par) + 1L
     key <- as.numeric(int(factor(id))) * ((nlevels(group) + 1L) * np) +
       int(group) * np + int(par)
     keep <- !duplicated(key)
