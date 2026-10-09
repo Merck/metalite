@@ -61,56 +61,31 @@ n_subject <- function(id,
     res <- data.frame(t(as.vector(res)))
     names(res) <- c(u_group[1:n_row])
   } else {
-    # Count distinct subjects per group x par cell. Equivalent to the old
-    # `table(unique(data.frame(id, group, par))[, c("group", "par")])`, but
-    # avoids the data.frame / unique.data.frame / table pipeline -- which pastes
-    # and make.unique-s every row and dominated runtime on large observation
-    # tables. Instead: dedupe (id, group, par) with one integer key, then
-    # tabulate() the deduped (group, par) cells. ~7x faster; results are
-    # identical, including factor-level order and the trailing NA column that
-    # `useNA` adds for missing group/par values.
-    par <- if (is.factor(par)) par else factor(par)
-
-    # Encode a factor as 1-based integer codes. Keep an NA cell only when
-    # `useNA` would (matching table()); when kept, map NAs to one extra trailing
-    # level, otherwise leave them NA so they can be dropped below.
-    encode <- function(x) {
-      code <- as.integer(x)
-      lev <- levels(x)
-      if (use_na == "always" || (use_na == "ifany" && anyNA(code))) {
-        code[is.na(code)] <- length(lev) + 1L
-        lev <- c(lev, NA)
-      }
-      list(code = code, lev = lev)
+    # Same result as the original
+    # `table(unique(data.frame(id, group, par)), useNA = use_na)`, but dedupe the
+    # (id, group, par) rows with a single integer key instead of
+    # unique.data.frame()'s per-row paste + make.unique(), which dominated
+    # runtime on large observation tables (~7x faster). table() still does the
+    # counting, so factor-level order and the `useNA` NA row/column are native.
+    par <- if (is.factor(par)) par else factor(par) # keep empty levels
+    int <- function(x) {
+      x <- as.integer(x)
+      x[is.na(x)] <- 0L # NA -> code 0, so NA cells dedupe like unique() does
+      x
     }
-    g <- encode(group)
-    p <- encode(par)
-    ng <- length(g$lev)
-    np <- length(p$lev)
+    np <- nlevels(par) + 1L # +1 reserves the NA code; group likewise below
+    key <- as.numeric(int(factor(id))) * ((nlevels(group) + 1L) * np) +
+      int(group) * np + int(par)
+    keep <- !duplicated(key)
 
-    # Drop rows whose NA group/par is not kept (its code is still NA).
-    ok <- !is.na(g$code) & !is.na(p$code)
-    idcode <- as.integer(factor(id))[ok]
-    gcode <- g$code[ok]
-    pcode <- p$code[ok]
+    res <- table(group[keep], par[keep], useNA = use_na)
+    name <- colnames(res)
+    name[is.na(name)] <- na
 
-    # Integer key over (id, group, par). Double arithmetic keeps it exact well
-    # beyond .Machine$integer.max for large id counts.
-    key <- (as.numeric(idcode) - 1) * (ng * np) + (gcode - 1L) * np + pcode
-    distinct <- !duplicated(key)
-    cell <- (gcode[distinct] - 1L) + (pcode[distinct] - 1L) * ng
-    counts <- tabulate(cell + 1L, nbins = ng * np) # column-major: group fastest
-
-    # Label the kept-NA level with `na` in both dimensions.
-    lab <- function(lev) {
-      lev[is.na(lev)] <- na
-      lev
-    }
-    res <- data.frame(
-      name = lab(p$lev),
-      matrix(counts, nrow = np, ncol = ng, byrow = TRUE)
-    )
-    names(res) <- c("name", lab(g$lev))
+    n_row <- nrow(res)
+    n_col <- ncol(res)
+    res <- data.frame(name = name[1:n_col], matrix(res, ncol = n_row, byrow = TRUE))
+    names(res) <- c("name", u_group[1:n_row])
   }
 
   res
