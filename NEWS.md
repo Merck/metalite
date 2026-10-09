@@ -1,6 +1,6 @@
 # metalite 0.1.4
 
-- Speed up `n_subject()` when a parameter is supplied by deduplicating `(id, group, par)` with an integer key, instead of `unique.data.frame()`'s per-row paste and `make.unique()`. Results are unchanged (~7x faster on large observation tables) (#187, thanks to @yihui).
+- Speed up `n_subject()` when a parameter is supplied by deduplicating `(id, group, par)` with an integer key, instead of `unique.data.frame()`'s per-row paste and `make.unique()`. Results are unchanged (roughly 10x faster on large observation tables) (#187, thanks to @yihui).
 - Add SAS-compatible rounding and fixed-decimal formatting helpers, and use them for `collect_n_subject()` display values.
 - Fix bug of `n_subject()` for empty factor.
 - Add default mapping for subject level analysis.
