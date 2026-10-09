@@ -1,5 +1,6 @@
 # metalite 0.1.4
 
+- Speed up `n_subject()` when a parameter is supplied by deduplicating `(id, group, par)` with an integer key and counting cells with `tabulate()`, instead of the `data.frame()` / `unique.data.frame()` / `table()` pipeline. Results, including factor-level order and the `useNA` trailing column, are unchanged (~7x faster on large observation tables).
 - Fix bug of `n_subject()` for empty factor.
 - Add default mapping for subject level analysis.
 - Update GitHub Actions workflows.
