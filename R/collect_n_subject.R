@@ -70,32 +70,30 @@ n_subject <- function(id,
     # identical, including factor-level order and the trailing NA column that
     # `useNA` adds for missing group/par values.
     par <- if (is.factor(par)) par else factor(par)
-    gcode <- as.integer(group)
-    pcode <- as.integer(par)
-    g_na <- anyNA(gcode)
-    p_na <- anyNA(pcode)
-    # Keep an NA group/par cell only when `useNA` would (matching table()).
-    keep_gna <- use_na == "always" || (use_na == "ifany" && g_na)
-    keep_pna <- use_na == "always" || (use_na == "ifany" && p_na)
-    glev <- levels(group)
-    plev <- levels(par)
-    if (keep_gna) {
-      gcode[is.na(gcode)] <- length(glev) + 1L
-      glev <- c(glev, NA)
+
+    # Encode a factor as 1-based integer codes. Keep an NA cell only when
+    # `useNA` would (matching table()); when kept, map NAs to one extra trailing
+    # level, otherwise leave them NA so they can be dropped below.
+    encode <- function(x) {
+      code <- as.integer(x)
+      lev <- levels(x)
+      if (use_na == "always" || (use_na == "ifany" && anyNA(code))) {
+        code[is.na(code)] <- length(lev) + 1L
+        lev <- c(lev, NA)
+      }
+      list(code = code, lev = lev)
     }
-    if (keep_pna) {
-      pcode[is.na(pcode)] <- length(plev) + 1L
-      plev <- c(plev, NA)
-    }
-    ng <- length(glev)
-    np <- length(plev)
-    # Drop rows whose NA group/par is not being kept, so they do not count.
-    ok <- !logical(length(id))
-    if (!keep_gna && g_na) ok <- ok & !is.na(gcode)
-    if (!keep_pna && p_na) ok <- ok & !is.na(pcode)
+    g <- encode(group)
+    p <- encode(par)
+    ng <- length(g$lev)
+    np <- length(p$lev)
+
+    # Drop rows whose NA group/par is not kept (its code is still NA).
+    ok <- !is.na(g$code) & !is.na(p$code)
     idcode <- as.integer(factor(id))[ok]
-    gcode <- gcode[ok]
-    pcode <- pcode[ok]
+    gcode <- g$code[ok]
+    pcode <- p$code[ok]
+
     # Integer key over (id, group, par). Double arithmetic keeps it exact well
     # beyond .Machine$integer.max for large id counts.
     key <- (as.numeric(idcode) - 1) * (ng * np) + (gcode - 1L) * np + pcode
@@ -103,15 +101,16 @@ n_subject <- function(id,
     cell <- (gcode[distinct] - 1L) + (pcode[distinct] - 1L) * ng
     counts <- tabulate(cell + 1L, nbins = ng * np) # column-major: group fastest
 
-    name <- plev
-    name[is.na(name)] <- na
-    gname <- glev
-    gname[is.na(gname)] <- na
+    # Label the kept-NA level with `na` in both dimensions.
+    lab <- function(lev) {
+      lev[is.na(lev)] <- na
+      lev
+    }
     res <- data.frame(
-      name = name,
+      name = lab(p$lev),
       matrix(counts, nrow = np, ncol = ng, byrow = TRUE)
     )
-    names(res) <- c("name", gname)
+    names(res) <- c("name", lab(g$lev))
   }
 
   res
