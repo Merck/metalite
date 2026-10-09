@@ -4,7 +4,6 @@ test_that("variable 'RACE' checking", {
 })
 
 
-
 test_that("variable 'AEDECOD' checking in population", {
   expect_error(meta_check_var(meta_example(), var = "AEDECOD", type = c("population")))
 })
@@ -13,7 +12,6 @@ test_that("variable 'AEDECOD' checking in observation", {
   q <- meta_check_var(meta_example(), var = "AEDECOD", type = c("observation"))
   expect_true("AEDECOD" %in% names(q$data_observation))
 })
-
 
 
 test_that("variable 'BMIBL' checking in population or observation", {
