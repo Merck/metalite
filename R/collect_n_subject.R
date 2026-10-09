@@ -54,33 +54,19 @@ n_subject <- function(id,
   }
 
   if (is.null(par)) {
-    db <- data.frame(id = id, group = group)
-    res <- table(unique(db)[["group"]], useNA = use_na)
+    keep <- first_distinct(id, group)
+    res <- table(group[keep], useNA = use_na)
 
     n_row <- nrow(res)
     res <- data.frame(t(as.vector(res)))
     names(res) <- c(u_group[1:n_row])
   } else {
-    # Same result as the original
-    # `table(unique(data.frame(id, group, par)), useNA = use_na)`, but we dedupe
-    # the (id, group, par) rows ourselves and let table() count the survivors.
-    # The dedupe uses one integer key instead of unique.data.frame()'s per-row
-    # paste + make.unique(), which dominated runtime on large observation tables.
+    # Count distinct subjects per (group, par) cell: dedupe the (id, group, par)
+    # rows (see first_distinct()) and let table() count the survivors. Same
+    # result as the original table(unique(data.frame(id, group, par))), but much
+    # faster on large observation tables.
     par <- if (is.factor(par)) par else factor(par) # keep empty levels
-    int <- function(x) {
-      x <- as.integer(x)
-      x[is.na(x)] <- 0L # NA -> code 0, so NA cells dedupe like unique() does
-      x
-    }
-    # Pack (id, group, par) into one number by mixed-radix encoding: each factor
-    # contributes a digit in base (nlevels + 1) -- the +1 leaves room for the 0
-    # (NA) code. Distinct triples therefore get distinct keys, so !duplicated()
-    # keeps exactly one row per subject x group x par. as.numeric() lifts the id
-    # digit to double so the product stays exact past the integer limit.
-    np <- nlevels(par) + 1L
-    key <- as.numeric(int(factor(id))) * ((nlevels(group) + 1L) * np) +
-      int(group) * np + int(par)
-    keep <- !duplicated(key)
+    keep <- first_distinct(id, group, par)
 
     res <- table(group[keep], par[keep], useNA = use_na)
     name <- colnames(res)
@@ -93,6 +79,32 @@ n_subject <- function(id,
   }
 
   res
+}
+
+#' Index the first occurrence of each distinct combination of columns
+#'
+#' A fast `!duplicated(data.frame(...))`: instead of pasting every row, pack the
+#' columns into one number by mixed-radix encoding -- each is coerced to a factor
+#' and contributes a digit in base `nlevels + 1`, the `+ 1` leaving room for the
+#' `0` code that `NA` collapses to (so `NA` is treated as its own value, as
+#' `unique()` does). Distinct combinations therefore get distinct keys. The key
+#' is accumulated in a double so the product stays exact well past the integer
+#' limit for large row counts.
+#'
+#' @param ... Vectors of equal length (factors or coercible to factor).
+#'
+#' @return A logical vector flagging the first row of each distinct combination.
+#'
+#' @noRd
+first_distinct <- function(...) {
+  key <- 0
+  for (x in list(...)) {
+    f <- if (is.factor(x)) x else factor(x)
+    code <- as.integer(f)
+    code[is.na(code)] <- 0L
+    key <- key * (nlevels(f) + 1L) + code
+  }
+  !duplicated(key)
 }
 
 #' Remove blank group based on analysis parameter
