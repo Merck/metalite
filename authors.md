@@ -30,12 +30,12 @@ Source:
 [`DESCRIPTION`](https://github.com/Merck/metalite/blob/main/DESCRIPTION)
 
 Zhang Y, Zhao Y, Xiao N (2026). *metalite: ADaM Metadata Structure*. R
-package version 0.1.4, <https://merck.github.io/metalite/>.
+package version 0.1.5, <https://merck.github.io/metalite/>.
 
     @Manual{,
       title = {metalite: ADaM Metadata Structure},
       author = {Yilong Zhang and Yujie Zhao and Nan Xiao},
       year = {2026},
-      note = {R package version 0.1.4},
+      note = {R package version 0.1.5},
       url = {https://merck.github.io/metalite/},
     }

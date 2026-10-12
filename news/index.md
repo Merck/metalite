@@ -1,13 +1,25 @@
 # Changelog
 
-## metalite 0.1.4
+## metalite 0.1.5
 
-CRAN release: 2024-08-22
-
+- Speed up
+  [`n_subject()`](https://merck.github.io/metalite/reference/n_subject.md)
+  when a parameter is supplied by deduplicating `(id, group, par)` with
+  an integer key, instead of
+  [`unique.data.frame()`](https://rdrr.io/r/base/unique.html)’s per-row
+  paste and [`make.unique()`](https://rdrr.io/r/base/make.unique.html).
+  Results are unchanged (roughly 10x faster on large observation tables)
+  ([\#187](https://github.com/Merck/metalite/issues/187), thanks to
+  [@yihui](https://github.com/yihui)).
 - Add SAS-compatible rounding and fixed-decimal formatting helpers, and
   use them for
   [`collect_n_subject()`](https://merck.github.io/metalite/reference/collect_n_subject.md)
   display values.
+
+## metalite 0.1.4
+
+CRAN release: 2024-08-22
+
 - Fix bug of
   [`n_subject()`](https://merck.github.io/metalite/reference/n_subject.md)
   for empty factor.
