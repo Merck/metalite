@@ -60,41 +60,73 @@ meta_validate <- function(meta) {
 
   # Check population variables in the datasets
   lapply(meta$population, function(x) {
-    if (!all(x$id %in% names(meta$data_population))) {
-      stop(x$name, ": variable name in '.$id' is not defined in .$data_population")
+    data_pop <- collect_data_source(meta, x$from, default = "population")
+
+    if (!all(x$id %in% names(data_pop))) {
+      stop(x$name, ": variable name in '.$id' is not defined in the source dataset")
     }
 
-    if (!all(x$group %in% names(meta$data_population))) {
-      stop(x$name, ": variable name in '.$group' is not defined in .$data_population")
+    if (!all(x$group %in% names(data_pop))) {
+      stop(x$name, ": variable name in '.$group' is not defined in the source dataset")
     }
 
-    if (!all(x$var %in% names(meta$data_population))) {
-      stop(x$name, ": variable name in '.$var' is not defined in .$data_population")
+    if (!all(x$var %in% names(data_pop))) {
+      stop(x$name, ": variable name in '.$var' is not defined in the source dataset")
     }
   })
 
-  # Check observation variables in the datasets
-  lapply(adam_obs, function(x) {
-    if (!all(x$id %in% names(meta$data_observation))) {
-      stop(x$name, ": variable name in '.$id' is not defined in .$data_observation")
+  # Check observation variables against each observation's own source dataset.
+  lapply(meta$observation, function(x) {
+    data_obs <- collect_data_source(meta, x$from, default = "observation")
+
+    if (!all(x$id %in% names(data_obs))) {
+      stop(x$name, ": variable name in '.$id' is not defined in the source dataset")
     }
 
-    if (!all(x$group %in% names(meta$data_observation))) {
-      stop(x$name, ": variable name in '.$group' is not defined in .$data_observation")
+    if (!all(x$group %in% names(data_obs))) {
+      stop(x$name, ": variable name in '.$group' is not defined in the source dataset")
     }
 
-    if (!all(x$var %in% names(meta$data_observation))) {
-      stop(x$name, ": variable name in '.$var' is not defined in .$data_observation")
+    if (!all(x$var %in% names(data_obs))) {
+      stop(x$name, ": variable name in '.$var' is not defined in the source dataset")
     }
   })
+
+  # Parameter (and analysis) terms do not carry their own `from`; they are
+  # evaluated against the observation dataset they are paired with in the plan.
+  # Validate each parameter's variables against the source of every observation
+  # it is paired with, so a parameter reading from an alternate source dataset
+  # (e.g. a lab dataset) is checked against that dataset.
+  for (i in seq_len(nrow(meta$plan))) {
+    obs_terms <- trimws(unlist(strsplit(meta$plan[i, "observation"], split = ";")))
+    par_terms <- trimws(unlist(strsplit(meta$plan[i, "parameter"], split = ";")))
+
+    for (obs_name in obs_terms) {
+      data_obs <- collect_data_source(meta, meta$observation[[obs_name]]$from, default = "observation")
+
+      for (par_name in par_terms) {
+        x <- meta$parameter[[par_name]]
+        if (is.null(x)) next
+
+        if (!all(x$var %in% names(data_obs))) {
+          stop(
+            x$name, ": variable name in '.$var' is not defined in the source ",
+            "dataset for observation '", obs_name, "'"
+          )
+        }
+      }
+    }
+  }
 
   # check group factor level are the same
   u_plan <- unique(meta$plan[, c("population", "observation")])
   for (i in 1:nrow(u_plan)) {
     key_pop <- u_plan[i, "population"]
     key_obs <- u_plan[i, "observation"]
-    level_pop <- levels(meta$data_population[[metalite::collect_adam_mapping(meta, key_pop)$group]])
-    level_obs <- levels(meta$data_observation[[metalite::collect_adam_mapping(meta, key_obs)$group]])
+    data_pop <- collect_data_source(meta, meta$population[[key_pop]]$from, default = "population")
+    data_obs <- collect_data_source(meta, meta$observation[[key_obs]]$from, default = "observation")
+    level_pop <- levels(data_pop[[metalite::collect_adam_mapping(meta, key_pop)$group]])
+    level_obs <- levels(data_obs[[metalite::collect_adam_mapping(meta, key_obs)$group]])
     if (!all(level_pop == level_obs)) {
       stop("Inconsistent group level: the levels of group variable from population and observation datasets are not the same")
     }
